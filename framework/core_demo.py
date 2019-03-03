@@ -9,10 +9,10 @@ from controller import COREController
 from socket import *
 
 mazeMap = Map(16, 16)
-mazeMap.readFromFile('/home/zhiwei/Micromouse/mazes/2012japan-ef.txt')
+mazeMap.readFromFile('/home/parallels/Micromouse/mazes/2012japan-ef.txt') # load map
 micromouse = Micromouse(mazeMap)
 index = gethostname()[1:]
-initPoint = {'1':(0,0), '2':(15,0), '3':(0,15), '4':(15,15)}
+initPoint = {'1':(0,0), '2':(15,0), '3':(0,15), '4':(15,15)} # 4 robot initial positions
 micromouse.setMotorController(COREController(index, initPoint[index], '10.0.0.254'))
 micromouse.setInitPoint(initPoint[index][0], initPoint[index][1])
 micromouse.addTask(StrategyTestMultiDFS(micromouse))
