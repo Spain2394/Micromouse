@@ -191,8 +191,7 @@ class StrategyTestRendezvous(Strategy):
     path = []
     isBack = False
     network = None
-	index = None
-	num_bots = 0
+
 
     def __init__(self, mouse, num_bots, index):
 		#add
