@@ -38,6 +38,7 @@ while True:
             otherMap['down']) + ',left:' + str(otherMap['left']) + 'right:' + str(otherMap['right']))
         print(type(otherMap['x']))
 
+        print(initPoint[1])
         robot_pose = (' + str(otherMap['x']) + ',' + str(otherMap['y']) + ')'
         position.append('n':robot_pose)
         print('position', str(position))
