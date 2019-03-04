@@ -49,7 +49,6 @@ class StrategyTestGoDown(Strategy):
 		self.mouse.goRight()
 		self.mouse.goUp()
 		cell = self.mouse.mazeMap.getCell(self.mouse.x, self.mouse.y)
-		print("cell" + cell)
 		self.mapPainter.putRobotInCell(cell)
 		sleep(1)
 
