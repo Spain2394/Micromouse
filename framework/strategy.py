@@ -185,9 +185,7 @@ class StrategyTestMultiDFS(Strategy):
         sleep(0.5)
 
 
-class StrategyTestRendezvous(Strategy,num_bots,index):
-
-
+# class StrategyTestRendezvous(Strategy,num_bots,index):
 
 class StrategyTestDFSEV3(Strategy):
     mouse = None
