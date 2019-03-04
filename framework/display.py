@@ -29,15 +29,16 @@ while True:
 		mapPainter.putRobotInCell(lastCell)
 		mapPainter.putRobotInCell(cell, 'yellow')
 		lastCell = cell
-		print('('+str(otherMap['x'])+', '+str(otherMap['y'])+')  up:'+str(otherMap['up'])+',down:'+str(otherMap['down'])+',left:'+str(otherMap['left'])+'right:'+str(otherMap['right']))
+		print('(' + str(otherMap['x']) + ', ' + str(otherMap['y']) + ')  up:' + str(otherMap['up']) + ',down:' +
+		      str(otherMap['down']) + ',left:' + str(otherMap['left']) + 'right:' + str(otherMap['right']))
 		print(type(otherMap['x']))
 
 		for i in x:
-	    if i != 'lo':
-		    print('\nInterface: ' + i)
-		    mac = netifaces.ifaddresses(i)[netifaces.AF_LINK][0]['addr']
-		    print('Mac addr: ' + mac)
-
+		    if i != 'lo':
+			print('\nInterface: ' + i)
+			mac = netifaces.ifaddresses(i)[netifaces.AF_LINK][0]['addr']
+			print('Mac addr: ' + mac)
+			
 		    try:
 		        ip = netifaces.ifaddresses(i)[netifaces.AF_INET][0]['addr']
 
