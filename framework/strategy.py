@@ -191,8 +191,10 @@ class StrategyTestRendezvous(Strategy,num_bots,index):
     path = []
     isBack = False
     network = None
+	num_bots = 0
 
-    def __init__(self, mouse):
+    def __init__(self, mouse,num_bots):
+		self.num_bots = num_bots
         self.mouse = mouse
         self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(
             self.mouse.mazeMap.height)]
