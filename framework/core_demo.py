@@ -4,7 +4,7 @@
 
 from map import Map
 from mouse import Micromouse
-from strategy import StrategyTestMultiDFS
+from strategy import StrategyTestRendezvous
 from controller import COREController
 from socket import *
 
