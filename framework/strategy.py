@@ -194,12 +194,12 @@ class StrategyTestRendezvous(Strategy):
     network = None
 
 
-    def __init__(self, mouse,num_bots,index):
+    def __init__(self, mouse, num_bots,index):
 		# added
 		self.num_bots = num_bots
 		self.index = index
-		# print(num_bots)
-		# print(index)
+		print(num_bots)
+		print(index)
 
 
         self.mouse = mouse
