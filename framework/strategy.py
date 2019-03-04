@@ -60,10 +60,6 @@ class StrategyTestGoDown(Strategy):
         sleep(1)
 
 
-class StrategyTestRendezvous(Strategy):
-    mouse = None
-
-
 class StrategyTestDFS(Strategy):
     mouse = None
     mapPainter = None
@@ -193,7 +189,7 @@ class StrategyTestMultiDFS(Strategy):
         sleep(0.5)
 
 
-class StrategyTestMultiDFS(Strategy):
+class StrategyTestRendezvous(Strategy):
     mouse = None
     isVisited = []
     path = []
