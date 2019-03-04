@@ -112,5 +112,3 @@ class Micromouse:
 		self.wallDetector.detectRightWall(cell)
 		self.wallDetector.detectUpWall(cell)
 		self.wallDetector.detectDownWall(cell)
-
-

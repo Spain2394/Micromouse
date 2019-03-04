@@ -2,6 +2,7 @@
 from task import NetworkInterface
 from map import Map
 from map_painter import MapPainter
+from mouse import Micromouse
 # from core_demo import *
 # import netifaces
 
@@ -37,8 +38,9 @@ while True:
         print('(' + str(otherMap['x']) + ', ' + str(otherMap['y']) + ')  up:' + str(otherMap['up']) + ',down:' + str(
             otherMap['down']) + ',left:' + str(otherMap['left']) + 'right:' + str(otherMap['right']))
         print(type(otherMap['x']))
+        print("robot: 1 (%s,%s)"% ())
 
 
-        robot_pose = '1:' + '(' + str(otherMap['x']) + ',' + str(otherMap['y']) + ')'
-        position.append(robot_pose)
-        print('position', str(position))
+        # robot_pose = '1:' + '(' + str(otherMap['x']) + ',' + str(otherMap['y']) + ')'
+        # position.append(robot_pose)
+        # print('position', str(position))
