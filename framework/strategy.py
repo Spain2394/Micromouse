@@ -185,23 +185,14 @@ class StrategyTestMultiDFS(Strategy):
         sleep(0.5)
 
 
-class StrategyTestRendezvous(Strategy):
-
+class StrategyTestMultiDFS(Strategy):
     mouse = None
     isVisited = []
     path = []
     isBack = False
     network = None
 
-
-    def __init__(self, mouse, num_bots,index):
-		# added
-		self.num_bots = num_bots
-		self.index = index
-		print(num_bots)
-		print(index)
-
-
+    def __init__(self, mouse):
         self.mouse = mouse
         self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(
             self.mouse.mazeMap.height)]
@@ -269,20 +260,16 @@ class StrategyTestRendezvous(Strategy):
 
 
 
-
-
-
-
 class StrategyTestDFSEV3(Strategy):
     mouse = None
-    #mapPainter = None
+    # mapPainter = None
     isVisited = []
     path = []
     isBack = False
 
     def __init__(self, mouse):
         self.mouse = mouse
-        #self.mapPainter = mapPainter
+        # self.mapPainter = mapPainter
         self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(
             self.mouse.mazeMap.height)]
         self.isVisited[self.mouse.x][self.mouse.y] = 1
@@ -291,8 +278,8 @@ class StrategyTestDFSEV3(Strategy):
         return self.isBack
 
     def go(self):
-        #cell = self.mouse.mazeMap.getCell(self.mouse.x, self.mouse.y)
-        #self.mapPainter.drawCell(cell, 'grey')
+        # cell = self.mouse.mazeMap.getCell(self.mouse.x, self.mouse.y)
+        # self.mapPainter.drawCell(cell, 'grey')
         self.mouse.senseWalls()
         print(self.mouse.getCurrentCell().getWhichIsWall())
 
@@ -326,7 +313,7 @@ class StrategyTestDFSEV3(Strategy):
             else:
                 self.isBack = True
 
-        #cell = self.mouse.mazeMap.getCell(self.mouse.x, self.mouse.y)
+        # cell = self.mouse.mazeMap.getCell(self.mouse.x, self.mouse.y)
         # self.mapPainter.putRobotInCell(cell)
 
 
