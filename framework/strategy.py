@@ -108,7 +108,7 @@ class StrategyTestDFS(Strategy):
 		sleep(0.05)
 
 
-class StrategyTestMultiDFS(Strategy):
+class StrategyTestRendezvous(Strategy):
 	mouse = None
 	isVisited = []
 	path = []
