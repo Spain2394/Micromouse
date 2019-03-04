@@ -14,7 +14,7 @@ mapPainter.putRobotInCell(lastCell, 'yellow')
 network = NetworkInterface()
 network.initSocket()
 network.startReceiveThread()
-positions = []
+position = []
 
 while True:
     recvData = network.retrieveData()
