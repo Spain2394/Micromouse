@@ -39,6 +39,6 @@ while True:
         print(type(otherMap['x']))
 
         print(initPoint[1])
-        robot_pose = (' + str(otherMap['x']) + ',' + str(otherMap['y']) + ')'
+        robot_pose = '(' + str(otherMap['x']) + ',' + str(otherMap['y']) + ')'
         position.append('n':robot_pose)
         print('position', str(position))
