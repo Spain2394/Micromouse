@@ -16,36 +16,33 @@ network.initSocket()
 network.startReceiveThread()
 
 while True:
-	positions = []
-	recvData = network.retrieveData()
-	if recvData:
-		otherMap = recvData
-		cell = mazeMap.getCell(otherMap['x'], otherMap['y'])
-		if otherMap['up']: mazeMap.setCellUpAsWall(cell)
-		if otherMap['down']: mazeMap.setCellDownAsWall(cell)
-		if otherMap['left']: mazeMap.setCellLeftAsWall(cell)
-		if otherMap['right']: mazeMap.setCellRightAsWall(cell)
-		mapPainter.drawCell(cell, 'grey')
-		mapPainter.putRobotInCell(lastCell)
-		mapPainter.putRobotInCell(cell, 'yellow')
-		lastCell = cell
-		print('(' + str(otherMap['x']) + ', ' + str(otherMap['y']) + ')  up:' + str(otherMap['up']) + ',down:' +
-		      str(otherMap['down']) + ',left:' + str(otherMap['left']) + 'right:' + str(otherMap['right']))
-		print(type(otherMap['x']))
+    positions = []
+    recvData = network.retrieveData()
+    if recvData:
+        otherMap = recvData
+        cell = mazeMap.getCell(otherMap['x'], otherMap['y'])
+        if otherMap['up']:
+            mazeMap.setCellUpAsWall(cell)
+        if otherMap['down']:
+            mazeMap.setCellDownAsWall(cell)
+        if otherMap['left']:
+            mazeMap.setCellLeftAsWall(cell)
+        if otherMap['right']:
+            mazeMap.setCellRightAsWall(cell)
+        mapPainter.drawCell(cell, 'grey')
+        mapPainter.putRobotInCell(lastCell)
+        mapPainter.putRobotInCell(cell, 'yellow')
+        lastCell = cell
+        print('(' + str(otherMap['x']) + ', ' + str(otherMap['y']) + ')  up:' + str(otherMap['up']) + ',down:' +
+              str(otherMap['down']) + ',left:' + str(otherMap['left']) + 'right:' + str(otherMap['right']))
+        print(type(otherMap['x']))
+		position.append
 
-		for i in x:
-		    if i != 'lo':
-			print('\nInterface: ' + i)
-			mac = netifaces.ifaddresses(i)[netifaces.AF_LINK][0]['addr']
-			print('Mac addr: ' + mac)
-			
-		    try:
-		        ip = netifaces.ifaddresses(i)[netifaces.AF_INET][0]['addr']
+print("something: " + position)
 
-		        print('IP addr: {0} '.format(ip))
-		    except KeyError:
-		        print('NO IP')
-		        continue
 
-		# for n in range(4):
-		# 	positions.append('r'+'n'+':' + '('+ str(otherMap['x'])+')' +', ' + '('str(otherMap['y'])+')')
+
+
+
+        # for n in range(4):
+        # 	positions.append('r'+'n'+':' + '('+ str(otherMap['x'])+')' +', ' + '('str(otherMap['y'])+')')
