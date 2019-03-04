@@ -198,8 +198,8 @@ class StrategyTestRendezvous(Strategy):
 		# added
 		self.num_bots = num_bots
 		self.index = index
-		print(num_bots)
-		print(index)
+		# print(num_bots)
+		# print(index)
 
 
         self.mouse = mouse
