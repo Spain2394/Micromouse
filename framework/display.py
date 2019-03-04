@@ -38,7 +38,7 @@ while True:
         print(type(otherMap['x']))
         position.append(otherMap['x'])
 		print("something: %s"% position)
-		asdfs
+		
 
 # for n in range(4):
 # 	positions.append('r'+'n'+':' + '('+ str(otherMap['x'])+')' +', ' + '('str(otherMap['y'])+')')
