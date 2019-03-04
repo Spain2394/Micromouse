@@ -191,8 +191,14 @@ class StrategyTestRendezvous(Strategy):
     path = []
     isBack = False
     network = None
+	index = None
+	num_bots = 0
 
-    def __init__(self, mouse):
+    def __init__(self, mouse, num_bots, index):
+		#add
+		self.num_bots = num_bots
+		self.index = index
+
         self.mouse = mouse
         self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(
             self.mouse.mazeMap.height)]
@@ -201,8 +207,8 @@ class StrategyTestRendezvous(Strategy):
         self.network.initSocket()
         self.network.startReceiveThread()
 
-    def checkFinished(self):
-        return self.isBack
+    # def checkFinished(self):
+    #     return self.isBack
 
     def go(self):
         self.mouse.senseWalls()
@@ -211,7 +217,9 @@ class StrategyTestRendezvous(Strategy):
         ), 'down': not self.mouse.canGoDown(), 'left': not self.mouse.canGoLeft(), 'right': not self.mouse.canGoRight()}
         self.network.sendStringData(sendData)
         recvData = self.network.retrieveData()
+
         while recvData:
+			print("recvData")
             otherMap = recvData
             cell = self.mouse.mazeMap.getCell(otherMap['x'], otherMap['y'])
             self.isVisited[otherMap['x']][otherMap['y']] = 1
