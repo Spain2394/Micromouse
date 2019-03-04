@@ -207,8 +207,8 @@ class StrategyTestRendezvous(Strategy):
         self.network.initSocket()
         self.network.startReceiveThread()
 
-    # def checkFinished(self):
-    #     return self.isBack
+    def checkFinished(self):
+        return self.isBack
 
     def go(self):
         self.mouse.senseWalls()
