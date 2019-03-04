@@ -49,9 +49,10 @@ class StrategyTestGoDown(Strategy):
 		self.mouse.goRight()
 		self.mouse.goUp()
 		cell = self.mouse.mazeMap.getCell(self.mouse.x, self.mouse.y)
+		print("cell" + cell)
 		self.mapPainter.putRobotInCell(cell)
 		sleep(1)
-		
+
 
 class StrategyTestDFS(Strategy):
 	mouse = None
@@ -106,7 +107,7 @@ class StrategyTestDFS(Strategy):
 		cell = self.mouse.mazeMap.getCell(self.mouse.x, self.mouse.y)
 		self.mapPainter.putRobotInCell(cell)
 		sleep(0.05)
-		
+
 
 class StrategyTestMultiDFS(Strategy):
 	mouse = None
