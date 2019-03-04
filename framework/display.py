@@ -15,7 +15,7 @@ network.initSocket()
 network.startReceiveThread()
 
 while True:
-	positions = [x,y,z,n]
+	positions = []
 	recvData = network.retrieveData()
 	if recvData:
 		otherMap = recvData
