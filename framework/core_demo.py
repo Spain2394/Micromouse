@@ -12,7 +12,7 @@ from socket import *
 mazeMap = Map(16, 16)
 mazeMap.readFromFile('/Users/allenspain/Documents/Development/Micromouse/mazes/2012japan-ef.txt') # load map
 micromouse = Micromouse(mazeMap)
-index = gethostname()[1:]
+index = gethostname()[0:]
 initPoint = {'1':(0,0), '2':(15,0), '3':(0,15), '4':(15,15)} # 4 robot initial positions
 num_bots=len(initPoint)
 micromouse.setMotorController(COREController(index, initPoint[index], '10.0.0.254'))
