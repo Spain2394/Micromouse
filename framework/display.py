@@ -36,6 +36,6 @@ while True:
         print('(' + str(otherMap['x']) + ', ' + str(otherMap['y']) + ')  up:' + str(otherMap['up']) + ',down:' + str(
             otherMap['down']) + ',left:' + str(otherMap['left']) + 'right:' + str(otherMap['right']))
         print(type(otherMap['x']))
-        robot_pose = str('rx' +'(' + str(otherMap['x']) + ',' str(otherMap['y']) + ')')
+        robot_pose = 'rx' +'(' + str(otherMap['x']) + ',' str(otherMap['y']) + ')'
         # position.append("r1" + '(' + str(otherMap['x']) + ',' str(otherMap['y'])')')
         print('position', str(position))
