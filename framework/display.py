@@ -37,7 +37,7 @@ while True:
               str(otherMap['down']) + ',left:' + str(otherMap['left']) + 'right:' + str(otherMap['right']))
         print(type(otherMap['x']))
         position.append(otherMap['x'])
-		print("something:", position)
+		# print("something:", position)
 
 
 
