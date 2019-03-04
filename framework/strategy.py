@@ -185,7 +185,66 @@ class StrategyTestMultiDFS(Strategy):
         sleep(0.5)
 
 
-# class StrategyTestRendezvous(Strategy,num_bots,index):
+class StrategyTestRendezvous(Strategy,num_bots,index):
+	mouse = None
+    isVisited = []
+    path = []
+    isBack = False
+    network = None
+
+    def __init__(self, mouse):
+        self.mouse = mouse
+        self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(
+            self.mouse.mazeMap.height)]
+        self.isVisited[self.mouse.x][self.mouse.y] = 1
+        self.network = NetworkInterface()
+        self.network.initSocket()
+        self.network.startReceiveThread()
+
+	def checkFinished(self):
+        return self.isBack
+
+	def go(self):
+		print("rendezvous: go!!")
+		print("number of bots: %s" %num_bots)
+		print(index)
+		if self.mouse.canGoLeft():
+            self.path.append([self.mouse.x, self.mouse.y])
+            self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
+            self.mouse.goLeft()
+        elif self.mouse.canGoUp():
+            self.path.append([self.mouse.x, self.mouse.y])
+            self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
+            self.mouse.goUp()
+        elif self.mouse.canGoRight():
+            self.path.append([self.mouse.x, self.mouse.y])
+            self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
+            self.mouse.goRight()
+        elif self.mouse.canGoDown():
+            self.path.append([self.mouse.x, self.mouse.y])
+            self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
+            self.mouse.goDown()
+        else:
+            if len(self.path) != 0:
+                x, y = self.path.pop()
+                if x < self.mouse.x:
+                    self.mouse.goLeft()
+                elif x > self.mouse.x:
+                    self.mouse.goRight()
+                elif y < self.mouse.y:
+                    self.mouse.goUp()
+                elif y > self.mouse.y:
+                    self.mouse.goDown()
+            else:
+                self.isBack = True
+
+        sleep(0.5)
+
+
+
+
+
+
 
 class StrategyTestDFSEV3(Strategy):
     mouse = None
