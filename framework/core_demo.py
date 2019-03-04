@@ -14,6 +14,7 @@ micromouse = Micromouse(mazeMap)
 index = gethostname()[1:]
 initPoint = {'1':(0,0), '2':(15,0), '3':(0,15), '4':(15,15)} # 4 robot initial positions
 micromouse.setMotorController(COREController(index, initPoint[index], '10.0.0.254'))
+print('index' + index)
 micromouse.setInitPoint(initPoint[index][0], initPoint[index][1])
 micromouse.addTask(StrategyTestMultiDFS(micromouse))
 micromouse.run()

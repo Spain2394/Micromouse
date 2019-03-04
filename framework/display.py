@@ -2,6 +2,7 @@
 from task import NetworkInterface
 from map import Map
 from map_painter import MapPainter
+import core_demo
 # import netifaces
 
 mazeMap = Map(16, 16)
@@ -14,7 +15,7 @@ mapPainter.putRobotInCell(lastCell, 'yellow')
 network = NetworkInterface()
 network.initSocket()
 network.startReceiveThread()
-position = []
+position = {}
 
 while True:
     recvData = network.retrieveData()
@@ -36,6 +37,7 @@ while True:
         print('(' + str(otherMap['x']) + ', ' + str(otherMap['y']) + ')  up:' + str(otherMap['up']) + ',down:' + str(
             otherMap['down']) + ',left:' + str(otherMap['left']) + 'right:' + str(otherMap['right']))
         print(type(otherMap['x']))
-        robot_pose = ' rx' + '(' + str(otherMap['x']) + ',' + str(otherMap['y']) + ')'
-        position.append(robot_pose)
+
+        robot_pose = (' + str(otherMap['x']) + ',' + str(otherMap['y']) + ')'
+        position.append('n':robot_pose)
         print('position', str(position))
