@@ -36,11 +36,5 @@ while True:
         print('(' + str(otherMap['x']) + ', ' + str(otherMap['y']) + ')  up:' + str(otherMap['up']) + ',down:' + str(
             otherMap['down']) + ',left:' + str(otherMap['left']) + 'right:' + str(otherMap['right']))
         print(type(otherMap['x']))
-        position.append(1)
-
-		print("position", str(position))
-
-
-
-# for n in range(4):
-# 	positions.append('r'+'n'+':' + '('+ str(otherMap['x'])+')' +', ' + '('str(otherMap['y'])+')')
+		position.append(1)
+		print('position', str(position))
