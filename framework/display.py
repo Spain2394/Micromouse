@@ -15,7 +15,7 @@ mapPainter.putRobotInCell(lastCell, 'yellow')
 network = NetworkInterface()
 network.initSocket()
 network.startReceiveThread()
-position = {}
+position = []
 
 while True:
     recvData = network.retrieveData()
@@ -38,7 +38,6 @@ while True:
             otherMap['down']) + ',left:' + str(otherMap['left']) + 'right:' + str(otherMap['right']))
         print(type(otherMap['x']))
 
-        # print(initPoint[1])
         robot_pose = '1:' + '(' + str(otherMap['x']) + ',' + str(otherMap['y']) + ')'
-        position.join(robot_pose)
+        position.add(robot_pose)
         print('position', str(position))
