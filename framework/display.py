@@ -33,8 +33,7 @@ while True:
         mapPainter.putRobotInCell(lastCell)
         mapPainter.putRobotInCell(cell, 'yellow')
         lastCell = cell
-        print('(' + str(otherMap['x']) + ', ' + str(otherMap['y']) + ')  up:' + str(otherMap['up']) + ',down:' +
-              str(otherMap['down']) + ',left:' + str(otherMap['left']) + 'right:' + str(otherMap['right']))
+        print('(' + str(otherMap['x']) + ', ' + str(otherMap['y']) + ')  up:' + str(otherMap['up']) + ',down:' + str(otherMap['down']) + ',left:' + str(otherMap['left']) + 'right:' + str(otherMap['right']))
         print(type(otherMap['x']))
         position.append(otherMap['x'])
 		print('' + str(position[0]))
