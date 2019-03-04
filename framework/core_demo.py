@@ -19,5 +19,5 @@ micromouse.setMotorController(COREController(index, initPoint[index], '10.0.0.25
 micromouse.setInitPoint(initPoint[index][0], initPoint[index][1])
 # micromouse.addTask(StrategyTestMultiDFS(micromouse))
 # micromouse.addTask(Rendezvous(micromouse))
-micromouse.addTask(StrategyTestGoDown(Strategy))
+micromouse.addTask(StrategyTestGoDown(micromouse))
 micromouse.run()
