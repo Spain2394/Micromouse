@@ -2,7 +2,7 @@
 from task import NetworkInterface
 from map import Map
 from map_painter import MapPainter
-import core_demo
+# import core_demo
 # import netifaces
 
 mazeMap = Map(16, 16)
