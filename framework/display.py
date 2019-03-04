@@ -2,6 +2,7 @@
 from task import NetworkInterface
 from map import Map
 from map_painter import MapPainter
+import netifaces
 
 mazeMap = Map(16, 16)
 mapPainter = MapPainter(mazeMap)
@@ -30,4 +31,20 @@ while True:
 		lastCell = cell
 		print('('+str(otherMap['x'])+', '+str(otherMap['y'])+')  up:'+str(otherMap['up'])+',down:'+str(otherMap['down'])+',left:'+str(otherMap['left'])+'right:'+str(otherMap['right']))
 		print(type(otherMap['x']))
-		positions.append(otherMap['x'])
+
+		for i in x:
+	    if i != 'lo':
+		    print('\nInterface: ' + i)
+		    mac = netifaces.ifaddresses(i)[netifaces.AF_LINK][0]['addr']
+		    print('Mac addr: ' + mac)
+
+		    try:
+		        ip = netifaces.ifaddresses(i)[netifaces.AF_INET][0]['addr']
+
+		        print('IP addr: {0} '.format(ip))
+		    except KeyError:
+		        print('NO IP')
+		        continue
+
+		# for n in range(4):
+		# 	positions.append('r'+'n'+':' + '('+ str(otherMap['x'])+')' +', ' + '('str(otherMap['y'])+')')
