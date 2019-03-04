@@ -18,7 +18,6 @@ network.startReceiveThread()
 position = []
 
 while True:
-    num_bots =
     recvData = network.retrieveData()
     if recvData:
         otherMap = recvData
