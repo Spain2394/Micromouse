@@ -205,9 +205,10 @@ class StrategyTestRendezvous(Strategy):
         self.mouse = mouse
         self.num_bots = num_bots
         for i in range(1, num_bots + 1):
-        	if initPoint[str(i)] != (self.mouse.x, self.mouse.y):
-        		self.neighbors_states[i] = {'robot:' i, 'x': initPoint[str(i)][0], 'y': initPoint[str(i)][1]}
-        	else: self.whoami = i
+            if initPoint[str(i)] != (self.mouse.x, self.mouse.y):
+        	       self.neighbors_states[i] = {'robot:' i, 'x': initPoint[str(i)][0], 'y': initPoint[str(i)][1]}
+            else:
+                 self.whoami = i
         self.network = NetworkInterface()
         self.network.initSocket()
         self.network.startReceiveThread()
