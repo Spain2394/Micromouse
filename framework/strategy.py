@@ -252,7 +252,7 @@ class StrategyTestRendezvous(Strategy):
 
         cell = self.mouse.mazeMap.getCell(self.mouse.x, self.mouse.y)
         self.mapPainter.putRobotInCell(cell)
-        sleep(0.05)
+        sleep(0.1)
 
 
 #
