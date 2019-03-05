@@ -191,7 +191,7 @@ class StrategyTestRendezvous(Strategy):
     path = []
     isBack = False
     network = None
-	neighbors_states = {}
+    neighbors_states = {}
 	topological_neighbors = []
 	num_bots = 0
 	stop_condition = False
@@ -215,8 +215,8 @@ class StrategyTestRendezvous(Strategy):
     def checkFinished(self):
         return self.stop_condition
 
-    def go(self):
 
+    def go(self):
         if self.mouse.canGoLeft():
             self.mouse.goLeft()
         elif self.mouse.canGoRight():
