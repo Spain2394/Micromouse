@@ -187,7 +187,7 @@ class StrategyTestMultiDFS(Strategy):
 
 class StrategyTestRendezvous(Strategy):
     mouse = None
-    # isVisited = []
+    isVisited = []
     path = []
     network = None
     neighbors_states = {}
