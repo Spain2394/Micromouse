@@ -220,7 +220,7 @@ class StrategyTestRendezvous(Strategy):
     def go(self):
         for state in self.neighbors_states:
             temp_dx = state['x'] - self.mouse.x
-            temp_dy = state['x'] - self.mouse.x
+            temp_dy = state['y'] - self.mouse.y
 
             if abs(temp_dx) > abs(self.dx):
                 self.dx = temp_dx
