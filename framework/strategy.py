@@ -254,7 +254,7 @@ class StrategyTestRendezvous(Strategy):
         else:
             self.stop_condition = True
 
-        sleep(0.5)
+    sleep(0.5)
 
 
 
