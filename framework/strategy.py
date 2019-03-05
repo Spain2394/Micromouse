@@ -217,52 +217,25 @@ class StrategyTestRendezvous(Strategy):
 
 
     def go(self):
-        self.mouse.senseWalls()
-        print(self.mouse.getCurrentCell().getWhichIsWall())
-        sendData = {'x': self.mouse.x, 'y': self.mouse.y, 'up': not self.mouse.canGoUp(
-        ), 'down': not self.mouse.canGoDown(), 'left': not self.mouse.canGoLeft(), 'right': not self.mouse.canGoRight()}
-        self.network.sendStringData(sendData)
-        recvData = self.network.retrieveData()
+        cell = self.mouse.mazeMap.getCell(self.mouse.x, self.mouse.y)
+        self.mapPainter.drawCell(cell, 'grey')
 
-        while recvData:
-            otherMap = recvData
-            cell = self.mouse.mazeMap.getCell(otherMap['x'], otherMap['y'])
-            self.isVisited[otherMap['x']][otherMap['y']] = 1
-            if otherMap['up']:
-                self.mouse.mazeMap.setCellUpAsWall(cell)
-            if otherMap['down']:
-                self.mouse.mazeMap.setCellDownAsWall(cell)
-            if otherMap['left']:
-                self.mouse.mazeMap.setCellLeftAsWall(cell)
-            if otherMap['right']:
-                self.mouse.mazeMap.setCellRightAsWall(cell)
-            recvData = self.network.retrieveData()
-
-        # iterate through each neighbor state
-        # for k in range(1, num_bots + 1):
-        #     temp_dx = self.neighbors_states[k]['x'] - self.mouse.x
-        #     temp_dy = self.neighbors_states[k]['y'] - self.mouse.y
-        #     as
-        #         self.dx = temp_dx
-        #     if temp_dy > self.dy:
-        #         self.dy = temp_dy
-
-        if not self.mouse.canGoLeft():
+        if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x - 1][self.mouse.y]:
             self.path.append([self.mouse.x, self.mouse.y])
+            self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
             self.mouse.goLeft()
-            self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y}
-        elif self.mouse.canGoRight():
+        elif self.mouse.canGoUp() and not self.isVisited[self.mouse.x][self.mouse.y - 1]:
             self.path.append([self.mouse.x, self.mouse.y])
-            self.mouse.goRight()
-            self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y}
-        elif self.mouse.canGoUp():
-            self.path.append([self.mouse.x, self.mouse.y])
+            self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
             self.mouse.goUp()
-            self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y}
-        elif self.mouse.canGoDown():
+        elif self.mouse.canGoRight() and not self.isVisited[self.mouse.x + 1][self.mouse.y]:
             self.path.append([self.mouse.x, self.mouse.y])
+            self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
+            self.mouse.goRight()
+        elif self.mouse.canGoDown() and not self.isVisited[self.mouse.x][self.mouse.y + 1]:
+            self.path.append([self.mouse.x, self.mouse.y])
+            self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
             self.mouse.goDown()
-            self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y}
         else:
             if len(self.path) != 0:
                 x, y = self.path.pop()
@@ -277,6 +250,9 @@ class StrategyTestRendezvous(Strategy):
             else:
                 self.isBack = True
 
+        cell = self.mouse.mazeMap.getCell(self.mouse.x, self.mouse.y)
+        self.mapPainter.putRobotInCell(cell)
+        sleep(0.05)
 
 
 #
