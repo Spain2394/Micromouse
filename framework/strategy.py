@@ -187,68 +187,91 @@ class StrategyTestMultiDFS(Strategy):
 
 class StrategyTestRendezvous(Strategy):
     mouse = None
-    isVisited = []
+    # isVisited = []
     path = []
     isBack = False
     network = None
+	neighbors_states = {}
+	topological_neighbors = []
+	num_bots = 0
+	stop_condition = False
+	whoami = -1
+	dx = -1.0
+	dy = -1.0
 
-
-    def __init__(self, mouse, num_bots, index):
-		#add
+    def __init__(self, mouse, num_bots, initPoint):
+		# add
+		self.mouse = mouse
 		self.num_bots = num_bots
-		self.index = index
-
-        self.mouse = mouse
-        self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(
-            self.mouse.mazeMap.height)]
-        self.isVisited[self.mouse.x][self.mouse.y] = 1
+		for i in range(1, num_bots+1):
+			if initPoint[str(i)] != (self.mouse.x, self.mouse.y):
+				self.neighbors_states[i] = {'robot:' i, 'x': initPoint[str(i)][0], 'y': initPoint[str(i)][1]}
+			else: self.whoami = i
         self.network = NetworkInterface()
         self.network.initSocket()
         self.network.startReceiveThread()
 
     def checkFinished(self):
-        return self.isBack
+		threshold = 2.0
+		if self.dx <= threshold and self.dy <= threshold:
+			self.stop_condition = True
+		elif:
+			self.stop_condition = False
+        return self.stop_condition
 
     def go(self):
         self.mouse.senseWalls()
         print(self.mouse.getCurrentCell().getWhichIsWall())
-        sendData = {'x': self.mouse.x, 'y': self.mouse.y, 'up': not self.mouse.canGoUp(
+        sendData = {'robot': self.whoami , 'x': self.mouse.x, 'y': self.mouse.y, 'up': not self.mouse.canGoUp(
         ), 'down': not self.mouse.canGoDown(), 'left': not self.mouse.canGoLeft(), 'right': not self.mouse.canGoRight()}
         self.network.sendStringData(sendData)
         recvData = self.network.retrieveData()
 
-        while recvData:
-			print("recvData")
-            otherMap = recvData
-            cell = self.mouse.mazeMap.getCell(otherMap['x'], otherMap['y'])
-            self.isVisited[otherMap['x']][otherMap['y']] = 1
-            if otherMap['up']:
+		# data recieved from neighbors
+		while recvData:
+            some_data = recvData
+            if some_data['up']:
                 self.mouse.mazeMap.setCellUpAsWall(cell)
-            if otherMap['down']:
+            if some_data['down']:
                 self.mouse.mazeMap.setCellDownAsWall(cell)
-            if otherMap['left']:
+            if some_data['left']:
                 self.mouse.mazeMap.setCellLeftAsWall(cell)
-            if otherMap['right']:
+            if some_data['right']:
                 self.mouse.mazeMap.setCellRightAsWall(cell)
             recvData = self.network.retrieveData()
 
-        if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x - 1][self.mouse.y]:
+		# calculate the direction to pursue
+		def slope(self, num_bots):
+			# find largest delta x, and delta deltay
+			for i in range(1, num_bots + 1):
+				if i != self.whoami:
+					dx_temp = self.mouse.x - self.neighbors_states[str(i)]['x']
+					dy_temp = self.mouse.y - self.neighbors_states[str(i)]['y']
+
+					if dx_temp > dx:
+						self.dx = dx_temp # right/left
+					if dy_temp > dy:
+						self.dy = dy_temp # up/down
+
+
+        if self.mouse.canGoLeft() and self.dx < 0 and (self.dx > self.dy):
             self.path.append([self.mouse.x, self.mouse.y])
-            self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
-            self.mouse.goLeft()
-        elif self.mouse.canGoUp() and not self.isVisited[self.mouse.x][self.mouse.y - 1]:
+			self.mouse.goLeft()
+			self.neighbors_states[self.whoami] = {'robot:' whoami, 'x': self.mouse.x, 'y': self.mouse.y}
+        elif self.mouse.canGoUp() and self.dy > 0 and (self.dy > self.dx):
             self.path.append([self.mouse.x, self.mouse.y])
-            self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
             self.mouse.goUp()
-        elif self.mouse.canGoRight() and not self.isVisited[self.mouse.x + 1][self.mouse.y]:
+			self.neighbors_states[self.whoami] = {'robot:' whoami, 'x': self.mouse.x, 'y': self.mouse.y}
+        elif self.mouse.canGoRight() and self.dx > 0 and (self.dx > self.dy):
             self.path.append([self.mouse.x, self.mouse.y])
-            self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
             self.mouse.goRight()
-        elif self.mouse.canGoDown() and not self.isVisited[self.mouse.x][self.mouse.y + 1]:
+			self.neighbors_states[self.whoami] = {'robot:' whoami, 'x': self.mouse.x, 'y': self.mouse.y}
+        elif self.mouse.canGoDown() and self.dy < 0 and (self.dy > self.dx):
             self.path.append([self.mouse.x, self.mouse.y])
-            self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
             self.mouse.goDown()
+			self.neighbors_states[self.whoami] = {'robot:' whoami, 'x': self.mouse.x, 'y': self.mouse.y}
         else:
+			# define !stop condition
             if len(self.path) != 0:
                 x, y = self.path.pop()
                 if x < self.mouse.x:
@@ -260,21 +283,21 @@ class StrategyTestRendezvous(Strategy):
                 elif y > self.mouse.y:
                     self.mouse.goDown()
             else:
-                self.isBack = True
+                self.stop_condition = 1
 
         sleep(0.5)
 
 
 class StrategyTestDFSEV3(Strategy):
     mouse = None
-    #mapPainter = None
+    # mapPainter = None
     isVisited = []
     path = []
     isBack = False
 
     def __init__(self, mouse):
         self.mouse = mouse
-        #self.mapPainter = mapPainter
+        # self.mapPainter = mapPainter
         self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(
             self.mouse.mazeMap.height)]
         self.isVisited[self.mouse.x][self.mouse.y] = 1
@@ -283,8 +306,8 @@ class StrategyTestDFSEV3(Strategy):
         return self.isBack
 
     def go(self):
-        #cell = self.mouse.mazeMap.getCell(self.mouse.x, self.mouse.y)
-        #self.mapPainter.drawCell(cell, 'grey')
+        # cell = self.mouse.mazeMap.getCell(self.mouse.x, self.mouse.y)
+        # self.mapPainter.drawCell(cell, 'grey')
         self.mouse.senseWalls()
         print(self.mouse.getCurrentCell().getWhichIsWall())
 
@@ -318,7 +341,7 @@ class StrategyTestDFSEV3(Strategy):
             else:
                 self.isBack = True
 
-        #cell = self.mouse.mazeMap.getCell(self.mouse.x, self.mouse.y)
+        # cell = self.mouse.mazeMap.getCell(self.mouse.x, self.mouse.y)
         # self.mapPainter.putRobotInCell(cell)
 
 
