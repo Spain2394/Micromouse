@@ -250,20 +250,20 @@ class StrategyTestRendezvous(Strategy):
 
         if self.mouse.canGoLeft():
             self.mouse.goLeft()
-            self.neighbors_states[whoami] = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y}
+            self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y}
         elif self.mouse.canGoRight():
             self.mouse.goRight()
-            self.neighbors_states[whoami] = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y}
+            self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y}
         elif self.mouse.canGoUp():
             self.mouse.goUp()
-            self.neighbors_states[whoami] = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y}
+            self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y}
         elif self.mouse.canGoDown():
             self.mouse.goDown()
-            self.neighbors_states[whoami] = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y}
+            self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y}
         else:
             self.stop_condition = True
 
-    sleep(0.5)
+        sleep(0.5)
 
 
 
