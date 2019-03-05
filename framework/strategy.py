@@ -201,6 +201,7 @@ class StrategyTestRendezvous(Strategy):
 
     def __init__(self, mouse, num_bots, initPoint):
 		# add
+		print("hello")
 		self.mouse = mouse
 		self.num_bots = num_bots
 		for i in range(1, num_bots + 1):
