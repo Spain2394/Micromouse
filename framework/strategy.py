@@ -218,13 +218,22 @@ class StrategyTestRendezvous(Strategy):
 
 
     def go(self):
-        if self.mouse.canGoLeft():
+        for state in self.neighbors_states:
+            temp_dx = state['x'] - self.mouse.x
+            temp_dy = state['x'] - self.mouse.x
+
+            if abs(temp_dx) > abs(self.dx):
+                self.dx = temp_dx
+            if abs(temp_dy) > abs(self.dy):
+                self.dy = temp_dy
+
+        if self.mouse.canGoLeft() and self.dx < 0:
             self.mouse.goLeft()
-        elif self.mouse.canGoRight():
+        elif self.mouse.canGoRight() and self.dx > 0:
             self.mouse.goRight()
-        elif self.mouse.canGoUp():
+        elif self.mouse.canGoUp() and self.dy < 0:
             self.mouse.goUp()
-        elif self.mouse.canGoDown():
+        elif self.mouse.canGoDown() and self.dy < 0:
             self.mouse.goDown()
         else:
             self.stop_condition = True
