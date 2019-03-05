@@ -218,9 +218,9 @@ class StrategyTestRendezvous(Strategy):
 
 
     def go(self):
-        for state in self.neighbors_states:
-            temp_dx = state['x'] - self.mouse.x
-            temp_dy = state['x'] - self.mouse.x
+        for k in range(1,num_bots+1):
+            temp_dx = self.neighbors_states[k]['x'] - self.mouse.x
+            temp_dy = self.neighbors_states[k]['y'] - self.mouse.y
 
             if temp_dx > self.dx:
                 self.dx = temp_dx
