@@ -218,14 +218,30 @@ class StrategyTestRendezvous(Strategy):
 
 
     def go(self):
-        for k in range(1, num_bots + 1):
-            temp_dx = self.neighbors_states[k]['x'] - self.mouse.x
-            temp_dy = self.neighbors_states[k]['y'] - self.mouse.y
+        self.mouse.senseWalls()
+        print(self.mouse.getCurrentCell().getWhichIsWall())
+        sendData = {'x': self.mouse.x, 'y': self.mouse.y, 'up': not self.mouse.canGoUp(
+        ), 'down': not self.mouse.canGoDown(), 'left': not self.mouse.canGoLeft(), 'right': not self.mouse.canGoRight()}
+        self.network.sendStringData(sendData)
+        recvData = self.network.retrieveData()
 
-            if temp_dx > self.dx:
-                self.dx = temp_dx
-            if temp_dy > self.dy:
-                self.dy = temp_dy
+        while recvData:
+            otherMap = recvData
+            cell = self.mouse.mazeMap.getCell(otherMap['x'], otherMap['y'])
+            self.isVisited[otherMap['x']][otherMap['y']] = 1
+            if otherMap['up']:
+                self.mouse.mazeMap.setCellUpAsWall(cell)
+            if otherMap['down']:
+                self.mouse.mazeMap.setCellDownAsWall(cell)
+            if otherMap['left']:
+                self.mouse.mazeMap.setCellLeftAsWall(cell)
+            if otherMap['right']:
+                self.mouse.mazeMap.setCellRightAsWall(cell)
+            recvData = self.network.retrieveData()
+
+        # for k in range(1, num_bots + 1):
+        #     temp_dx = self.neighbors_states[k]['x'] - self.mouse.x
+        #     temp_dy = self.neighbors_states[k]['y'] - self.mouse.y
 
         if self.mouse.canGoLeft():
             self.mouse.goLeft()
