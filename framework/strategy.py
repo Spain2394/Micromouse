@@ -186,11 +186,11 @@ class StrategyTestMultiDFS(Strategy):
 
 
 class StrategyTestRendezvous(Strategy):
-    mouse = None
+	mouse = None
     # isVisited = []
-    path = []
-    isBack = False
-    network = None
+	path = []
+	isBack = False
+	network = None
 	neighbors_states = {}
 	topological_neighbors = []
 	num_bots = 0
@@ -199,42 +199,42 @@ class StrategyTestRendezvous(Strategy):
 	dx = -1.0
 	dy = -1.0
 
-    def __init__(self, mouse, num_bots, initPoint):
+	def __init__(self, mouse, num_bots, initPoint):
 		# add
 		print("hello")
 		self.mouse = mouse
 		self.num_bots = num_bots
 		for i in range(1, num_bots + 1):
 			if initPoint[str(i)] != (self.mouse.x, self.mouse.y):
-				self.neighbors_states[i] = {'robot:' i, 'x': initPoint[str(i)][0], 'y': initPoint[str(i)][1]}
+				self.neighbors_states[i] = {'robot': i, 'x': initPoint[str(i)][0], 'y': initPoint[str(i)][1]}
 			else: self.whoami = i
-        self.network = NetworkInterface()
-        self.network.initSocket()
-        self.network.startReceiveThread()
+		self.network = NetworkInterface()
+		self.network.initSocket()
+		self.network.startReceiveThread()
 
-    def checkFinished(self):
-        return self.stop_condition
+	def checkFinished(self):
+		return self.stop_condition
 
-    def go(self):
-        self.mouse.senseWalls()
-        print(self.mouse.getCurrentCell().getWhichIsWall())
-        sendData = {'robot': self.whoami , 'x': self.mouse.x, 'y': self.mouse.y, 'up': not self.mouse.canGoUp(
+	def go(self):
+		self.mouse.senseWalls()
+		print(self.mouse.getCurrentCell().getWhichIsWall())
+		sendData = {'robot': self.whoami , 'x': self.mouse.x, 'y': self.mouse.y, 'up': not self.mouse.canGoUp(
         ), 'down': not self.mouse.canGoDown(), 'left': not self.mouse.canGoLeft(), 'right': not self.mouse.canGoRight()}
-        self.network.sendStringData(sendData)
-        recvData = self.network.retrieveData()
+		self.network.sendStringData(sendData)
+		recvData = self.network.retrieveData()
 
 		# data recieved from neighbors
 		while recvData:
-            some_data = recvData
-            if some_data['up']:
-                self.mouse.mazeMap.setCellUpAsWall(cell)
-            if some_data['down']:
-                self.mouse.mazeMap.setCellDownAsWall(cell)
-            if some_data['left']:
-                self.mouse.mazeMap.setCellLeftAsWall(cell)
-            if some_data['right']:
-                self.mouse.mazeMap.setCellRightAsWall(cell)
-            recvData = self.network.retrieveData()
+			some_data = recvData
+			if some_data['up']:
+				self.mouse.mazeMap.setCellUpAsWall(cell)
+			if some_data['down']:
+				self.mouse.mazeMap.setCellDownAsWall(cell)
+			if some_data['left']:
+				self.mouse.mazeMap.setCellLeftAsWall(cell)
+			if some_data['right']:
+				self.mouse.mazeMap.setCellRightAsWall(cell)
+			recvData = self.network.retrieveData()
 #
 # 		# calculate the direction to pursue
 # 		def slope(self, num_bots):
