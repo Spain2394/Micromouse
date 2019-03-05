@@ -192,22 +192,22 @@ class StrategyTestRendezvous(Strategy):
     isBack = False
     network = None
     neighbors_states = {}
-	topological_neighbors = []
-	num_bots = 0
-	stop_condition = False
-	whoami = -1
-	dx = -1.0
-	dy = -1.0
+    topological_neighbors = []
+    num_bots = 0
+    stop_condition = False
+    whoami = -1
+    dx = -1.0
+    dy = -1.0
 
     def __init__(self, mouse, num_bots, initPoint):
 		# add
-		print("hello")
-		self.mouse = mouse
-		self.num_bots = num_bots
-		for i in range(1, num_bots + 1):
-			if initPoint[str(i)] != (self.mouse.x, self.mouse.y):
-				self.neighbors_states[i] = {'robot:' i, 'x': initPoint[str(i)][0], 'y': initPoint[str(i)][1]}
-			else: self.whoami = i
+        print("hello")
+        self.mouse = mouse
+        self.num_bots = num_bots
+        for i in range(1, num_bots + 1):
+        	if initPoint[str(i)] != (self.mouse.x, self.mouse.y):
+        		self.neighbors_states[i] = {'robot:' i, 'x': initPoint[str(i)][0], 'y': initPoint[str(i)][1]}
+        	else: self.whoami = i
         self.network = NetworkInterface()
         self.network.initSocket()
         self.network.startReceiveThread()
