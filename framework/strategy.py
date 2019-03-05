@@ -203,7 +203,7 @@ class StrategyTestRendezvous(Strategy):
 		# add
 		self.mouse = mouse
 		self.num_bots = num_bots
-		for i in range(1, num_bots+1):
+		for i in range(1, num_bots + 1):
 			if initPoint[str(i)] != (self.mouse.x, self.mouse.y):
 				self.neighbors_states[i] = {'robot:' i, 'x': initPoint[str(i)][0], 'y': initPoint[str(i)][1]}
 			else: self.whoami = i
@@ -215,7 +215,7 @@ class StrategyTestRendezvous(Strategy):
 		threshold = 2.0
 		if self.dx <= threshold and self.dy <= threshold:
 			self.stop_condition = True
-		elif:
+		else:
 			self.stop_condition = False
         return self.stop_condition
 
@@ -243,10 +243,10 @@ class StrategyTestRendezvous(Strategy):
 		# calculate the direction to pursue
 		def slope(self, num_bots):
 			# find largest delta x, and delta deltay
-			for i in range(1, num_bots + 1):
-				if i != self.whoami:
-					dx_temp = self.mouse.x - self.neighbors_states[str(i)]['x']
-					dy_temp = self.mouse.y - self.neighbors_states[str(i)]['y']
+			for k in range(1, num_bots + 1):
+				if k != self.whoami:
+					dx_temp = self.mouse.x - self.neighbors_states[str(k)]['x']
+					dy_temp = self.mouse.y - self.neighbors_states[str(k)]['y']
 
 					if dx_temp > dx:
 						self.dx = dx_temp # right/left
@@ -275,7 +275,7 @@ class StrategyTestRendezvous(Strategy):
             if len(self.path) != 0:
                 x, y = self.path.pop()
                 if x < self.mouse.x:
-                    self.mouse.goLeft()
+                    self.mouse.goLeft()s
                 elif x > self.mouse.x:
                     self.mouse.goRight()
                 elif y < self.mouse.y:
