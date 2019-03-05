@@ -189,7 +189,6 @@ class StrategyTestRendezvous(Strategy):
     mouse = None
     # isVisited = []
     path = []
-    isBack = False
     network = None
     neighbors_states = {}
     topological_neighbors = []
