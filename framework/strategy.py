@@ -240,13 +240,13 @@ class StrategyTestRendezvous(Strategy):
             recvData = self.network.retrieveData()
 
         # iterate through each neighbor state
-        for k in range(1, num_bots + 1):
-            temp_dx = self.neighbors_states[k]['x'] - self.mouse.x
-            temp_dy = self.neighbors_states[k]['y'] - self.mouse.y
-            if temp_dx > self.dx:
-                self.dx = temp_dx
-            if temp_dy > self.dy:
-                self.dy = temp_dy
+        # for k in range(1, num_bots + 1):
+        #     temp_dx = self.neighbors_states[k]['x'] - self.mouse.x
+        #     temp_dy = self.neighbors_states[k]['y'] - self.mouse.y
+        #     as
+        #         self.dx = temp_dx
+        #     if temp_dy > self.dy:
+        #         self.dy = temp_dy
 
         if self.mouse.canGoLeft():
             self.mouse.goLeft()
