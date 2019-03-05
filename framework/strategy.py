@@ -248,16 +248,16 @@ class StrategyTestRendezvous(Strategy):
             if temp_dy > self.dy:
                 self.dy = temp_dy
 
-        if self.mouse.canGoLeft() or self.dx < 0:
+        if self.mouse.canGoLeft():
             self.mouse.goLeft()
             self.neighbors_states[whoami] = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y}
-        elif self.mouse.canGoRight() or self.dx > 0:
+        elif self.mouse.canGoRight():
             self.mouse.goRight()
             self.neighbors_states[whoami] = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y}
-        elif self.mouse.canGoUp() or self.dy > 0:
+        elif self.mouse.canGoUp():
             self.mouse.goUp()
             self.neighbors_states[whoami] = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y}
-        elif self.mouse.canGoDown() or self.dy < 0:
+        elif self.mouse.canGoDown():
             self.mouse.goDown()
             self.neighbors_states[whoami] = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y}
         else:
