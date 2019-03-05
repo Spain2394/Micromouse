@@ -216,25 +216,22 @@ class StrategyTestRendezvous(Strategy):
         return self.stop_condition
 
     def go(self):
-        self.mouse.senseWalls()
-        print(self.mouse.getCurrentCell().getWhichIsWall())
-        sendData = {'robot': self.whoami , 'x': self.mouse.x, 'y': self.mouse.y, 'up': not self.mouse.canGoUp(
-        ), 'down': not self.mouse.canGoDown(), 'left': not self.mouse.canGoLeft(), 'right': not self.mouse.canGoRight()}
-        self.network.sendStringData(sendData)
-        recvData = self.network.retrieveData()
 
-		# data recieved from neighbors
-		while recvData:
-            some_data = recvData
-            if some_data['up']:
-                self.mouse.mazeMap.setCellUpAsWall(cell)
-            if some_data['down']:
-                self.mouse.mazeMap.setCellDownAsWall(cell)
-            if some_data['left']:
-                self.mouse.mazeMap.setCellLeftAsWall(cell)
-            if some_data['right']:
-                self.mouse.mazeMap.setCellRightAsWall(cell)
-            recvData = self.network.retrieveData()
+        if self.mouse.canGoLeft():
+            self.mouse.goLeft()
+        elif self.mouse.canGoRight():
+            self.mouse.goRight()
+        elif self.mouse.canGoUp():
+            self.mouse.goUp()
+        elif self.mouse.canGoDown():
+            self.mouse.goDown()
+        else:
+            self.stop_condition = True
+
+        sleep(0.5)
+
+
+
 #
 # 		# calculate the direction to pursue
 # 		def slope(self, num_bots):
