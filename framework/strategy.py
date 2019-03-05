@@ -245,7 +245,7 @@ class StrategyTestRendezvous(Strategy):
             temp_dy = self.neighbors_states[k]['y'] - self.mouse.y
             if temp_dx > self.dx:
                 self.dx = temp_dx
-            if temp_dy > self.dx:
+            if temp_dy > self.dy:
                 self.dy = temp_dy
 
         if self.mouse.canGoLeft() or self.dx < 0:
