@@ -239,18 +239,27 @@ class StrategyTestRendezvous(Strategy):
                 self.mouse.mazeMap.setCellRightAsWall(cell)
             recvData = self.network.retrieveData()
 
-        # for k in range(1, num_bots + 1):
-        #     temp_dx = self.neighbors_states[k]['x'] - self.mouse.x
-        #     temp_dy = self.neighbors_states[k]['y'] - self.mouse.y
+        # iterate through each neighbor state
+        for k in range(1, num_bots + 1):
+            temp_dx = self.neighbors_states[k]['x'] - self.mouse.x
+            temp_dy = self.neighbors_states[k]['y'] - self.mouse.y
+            if temp_dx > self.dx:
+                self.dx = temp_dx
+            if temp_dy > self.dy:
+                self.dy = temp_dx
 
-        if self.mouse.canGoLeft():
+        if self.mouse.canGoLeft() and self.dx < 0:
             self.mouse.goLeft()
-        elif self.mouse.canGoRight():
+            self.neighbors_states[whoami] = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y}
+        elif self.mouse.canGoRight() and self.dx > 0:
             self.mouse.goRight()
-        elif self.mouse.canGoUp():
+            self.neighbors_states[whoami] = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y}
+        elif self.mouse.canGoUp() and self.dy > 0:
             self.mouse.goUp()
-        elif self.mouse.canGoDown():
+            self.neighbors_states[whoami] = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y}
+        elif self.mouse.canGoDown() and self.dy < 0:
             self.mouse.goDown()
+            self.neighbors_states[whoami] = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y}
         else:
             self.stop_condition = True
 
