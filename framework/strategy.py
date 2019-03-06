@@ -223,7 +223,7 @@ class StrategyTestRendezvous(Strategy):
 
         self.network.sendStringData(sendData)
         recvData = self.network.retrieveData()
-        print("recvData:%s, robot%s"%(recvData,self.whoami))
+        print("recvData:%s"%(recvData,self.whoami))
 
         while recvData:
             if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x - 1][self.mouse.y]:
