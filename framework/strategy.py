@@ -227,7 +227,7 @@ class StrategyTestRendezvous(Strategy):
         print(recvData)
 
         while recvData:
-            print("got into the loop%s"%srecvData)
+            print("got into the loop%s"%recvData)
             otherMap = recvData
             cell = self.mouse.mazeMap.getCell(otherMap['x'], otherMap['y'])
             self.isVisited[otherMap['x']][otherMap['y']] = 1
