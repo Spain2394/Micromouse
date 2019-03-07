@@ -285,6 +285,7 @@ class StrategyTestRendezvous(Strategy):
         far_bot_dir = self.check_greatest_distance()
         print("far bot direction: %s"%far_bot_dir)
 
+        #TODO If you want visited to be accurate it needs to be updated here
         if far_bot_dir is "LEFT" and self.mouse.canGoLeft():
             self.mouse.goLeft()
             # whoami makes more sense with a cool id
@@ -302,22 +303,21 @@ class StrategyTestRendezvous(Strategy):
         # first see if the bot can go towards gradient
         else:
             print("in the last section")
-            print(self.mouse.canGoUp())
-            if self.mouse.canGoLeft() and not self.isVisited():
+            if self.mouse.canGoLeft() and not self.isVisited()[self.mouse.x-1][self.mouse.y]:
                 self.path.append([self.mouse.x, self.mouse.y])
                 self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
                 self.mouse.goLeft()
                 self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-            elif self.mouse.canGoUp() and not self.isVisited():
+            elif self.mouse.canGoUp() and not self.isVisited()[self.mouse.x][self.mouse.y-1]:
                 self.path.append([self.mouse.x, self.mouse.y])
                 self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
                 self.mouse.goUp()
                 self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-            elif self.mouse.canGoRight() and not self.isVisited():
+            elif self.mouse.canGoRight() and not self.isVisited()[self.mouse.x+1][self.mouse.y]:
                 self.path.append([self.mouse.x, self.mouse.y])
                 self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
                 self.mouse.goRight()
-            elif self.mouse.canGoDown() and not self.isVisited():
+            elif self.mouse.canGoDown() and not self.isVisited()[self.mouse.x][self.mouse.y-1]:
                 self.path.append([self.mouse.x, self.mouse.y])
                 self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
                 self.mouse.goDown()
