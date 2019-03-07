@@ -227,21 +227,25 @@ class StrategyTestRendezvous(Strategy):
 
 
     def check_greatest_distance(self):
+        x_Dir = None
+        y_Dir = None
+
+
         for bots in self.neighbors_states:
             dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
             dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
 
             if abs(dx_temp) > abs(self.dx):
                 self.dx = dx_temp
-                if self.dx < 0: return "LEFT"
-                return "RIGHT"
+                if self.dx < 0: x_Dir = "LEFT"
+                x_Dir = "RIGHT"
 
             elif abs(dy_temp) > abs(self.dy):
                 self.dy = dx_temp
-                if self.dy < 0: return "DOWN"
-                return "RIGHT"
+                if self.dy < 0: x_Dir = "DOWN"
+                y_Dir = "UP"
 
-
+            if abs(self.dx) > abs(self.dy):return delta_p
 
 
 
@@ -272,36 +276,47 @@ class StrategyTestRendezvous(Strategy):
 
         far_bot_dir = self.check_greatest_distance()
         print(far_bot_dir)
-        # first see if the bot can go towards gradient
-        if self.mouse.canGoLeft() and far_bot_dir is "LEFT":
-            self.path.append([self.mouse.x, self.mouse.y])
-            # self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
+
+        if far_bot_dir is "LEFT" and self.mouse.canGoLeft():
             self.mouse.goLeft()
-        elif self.mouse.canGoUp() and far_bot_dir is "UP":
-            self.path.append([self.mouse.x, self.mouse.y])
-            # self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
-            self.mouse.goUp()
-        elif self.mouse.canGoRight() and far_bot_dir is "RIGHT":
-            self.path.append([self.mouse.x, self.mouse.y])
-            # self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
+        elif far_bot_dir is "RIGHT" and self.mouse.canGoRight():
             self.mouse.goRight()
-        elif self.mouse.canGoDown() and far_bot_dir is "DOWN":
-            self.path.append([self.mouse.x, self.mouse.y])
-            # self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
-            self.mouse.goDown()
-        else: # if no gradient available, then backtrack
-            if len(self.path) != 0:
-                x, y = self.path.pop()
-                if x < self.mouse.x:
-                    self.mouse.goLeft()
-                elif x > self.mouse.x:
-                    self.mouse.goRight()
-                elif y < self.mouse.y:
-                    self.mouse.goUp()
-                elif y > self.mouse.y:
-                    self.mouse.goDown()
-            else:
-                self.isBack = True
+        elif far_bot_dir is "UP" and self.mouse.canGoUp():
+            self.mouse.goUp()
+        elif far_bot_dir is "DOWN" and self.mouse.canGoDown():
+            self.mouse.goLeft()
+
+        # first see if the bot can go towards gradient
+        else:
+            if self.mouse.canGoLeft() and not self.isVisited() :
+                self.path.append([self.mouse.x, self.mouse.y])
+                # self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
+                self.mouse.goLeft()
+            elif self.mouse.canGoUp() and not self.isVisited():
+                self.path.append([self.mouse.x, self.mouse.y])
+                # self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
+                self.mouse.goUp()
+            elif self.mouse.canGoRight() and not self.isVisited():
+                self.path.append([self.mouse.x, self.mouse.y])
+                # self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
+                self.mouse.goRight()
+            elif self.mouse.canGoDown() and not self.isVisited:
+                self.path.append([self.mouse.x, self.mouse.y])
+                # self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
+                self.mouse.goDown()
+            else: # if no gradient available, then backtrack
+                if len(self.path) != 0:
+                    x, y = self.path.pop()
+                    if x < self.mouse.x:
+                        self.mouse.goLeft()
+                    elif x > self.mouse.x:
+                        self.mouse.goRight()
+                    elif y < self.mouse.y:
+                        self.mouse.goUp()
+                    elif y > self.mouse.y:
+                        self.mouse.goDown()
+                else:
+                    self.isBack = True
 
         sleep(0.5)
 
