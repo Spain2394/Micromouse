@@ -219,14 +219,10 @@ class StrategyTestRendezvous(Strategy):
     def go(self):
         self.mouse.senseWalls()
         print(self.mouse.getCurrentCell().getWhichIsWall())
-
         sendData = {'x': self.mouse.x, 'y': self.mouse.y, 'up': not self.mouse.canGoUp(
         ), 'down': not self.mouse.canGoDown(), 'left': not self.mouse.canGoLeft(), 'right': not self.mouse.canGoRight()}
-
         self.network.sendStringData(sendData)
-
         recvData = self.network.retrieveData()
-
         while recvData:
             otherMap = recvData
             cell = self.mouse.mazeMap.getCell(otherMap['x'], otherMap['y'])
