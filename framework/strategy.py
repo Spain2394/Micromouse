@@ -234,6 +234,8 @@ class StrategyTestRendezvous(Strategy):
         for bots in self.neighbors_states:
             dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
             dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
+            print("dx: %s"%dx)
+            print("dy: %s"%dx)
 
             if abs(dx_temp) > abs(self.dx):
                 self.dx = dx_temp
@@ -247,8 +249,6 @@ class StrategyTestRendezvous(Strategy):
 
             if abs(self.dx) > abs(self.dy):return x_Dir
             else: return y_Dir
-
-
 
     def go(self):
         self.mouse.senseWalls()
