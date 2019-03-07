@@ -244,7 +244,7 @@ class StrategyTestRendezvous(Strategy):
 
             elif abs(dy_temp) > abs(self.dy):
                 self.dy = dx_temp
-                if self.dy < 0: y_Dir = "UP"
+                if self.dy < 0: y_Dir = "UP" # opposite to intuition
                 else: y_Dir = "DOWN"
 
 
