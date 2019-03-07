@@ -238,6 +238,7 @@ class StrategyTestRendezvous(Strategy):
             if otherMap['right']:
                 self.mouse.mazeMap.setCellRightAsWall(cell)
             recvData = self.network.retrieveData()
+            sleep(0.1)
 
 
         if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x - 1][self.mouse.y]:
