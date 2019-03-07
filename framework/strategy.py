@@ -253,7 +253,7 @@ class StrategyTestRendezvous(Strategy):
     def go(self):
         self.mouse.senseWalls()
         print(self.mouse.getCurrentCell().getWhichIsWall())
-        sendData = {'x': self.mouse.x, 'y': self.mouse.y, 'up': not self.mouse.canGoUp(
+        sendData = {'robot':self.whoami, 'x': self.mouse.x, 'y': self.mouse.y, 'up': not self.mouse.canGoUp(
         ), 'down': not self.mouse.canGoDown(), 'left': not self.mouse.canGoLeft(), 'right': not self.mouse.canGoRight()}
         print(sendData)
         print(self.network.sendStringData(sendData))
