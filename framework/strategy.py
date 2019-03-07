@@ -207,6 +207,9 @@ class StrategyTestRendezvous(Strategy):
         # add
         self.mouse = mouse
         self.num_bots = num_bots
+        self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(
+            self.mouse.mazeMap.height)]
+        self.isVisited[self.mouse.x][self.mouse.y] = 1
         for i in range(1, num_bots + 1):
             if initPoint[str(i)] != (self.mouse.x, self.mouse.y):
                 self.neighbors_states[i] = {'robot': i, 'x': initPoint[str(i)][0], 'y': initPoint[str(i)][1]}
