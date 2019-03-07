@@ -290,7 +290,7 @@ class StrategyTestRendezvous(Strategy):
             self.mouse.goLeft()
             # whoami makes more sense with a cool id
             self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-        elif far_bot_dir is "RIGHT" and self.mouse.canGoRight() and (not self.isVisited[self.mouse.x + 1][self.mouse.y] or len(self.path) == 0)]:
+        elif far_bot_dir is "RIGHT" and self.mouse.canGoRight() and (not self.isVisited[self.mouse.x + 1][self.mouse.y] or len(self.path) == 0):
             self.path.append([self.mouse.x,self.mouse.y])
             self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
             self.mouse.goRight()
