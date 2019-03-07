@@ -235,7 +235,7 @@ class StrategyTestRendezvous(Strategy):
             dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
             dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
             print("dx: %s"%dx_temp)
-            print("dy: %s"%dx_temp)
+            print("dy: %s"%dy_temp)
 
             if abs(dx_temp) > abs(self.dx):
                 self.dx = dx_temp
@@ -250,6 +250,7 @@ class StrategyTestRendezvous(Strategy):
         if abs(self.dx) > abs(self.dy):return x_Dir
         else: return y_Dir
 
+
     def go(self):
         self.mouse.senseWalls()
         print(self.mouse.getCurrentCell().getWhichIsWall())
@@ -257,7 +258,9 @@ class StrategyTestRendezvous(Strategy):
         ), 'down': not self.mouse.canGoDown(), 'left': not self.mouse.canGoLeft(), 'right': not self.mouse.canGoRight()}
         print(sendData)
         print(self.network.sendStringData(sendData))
-        sleep(0.01)
+
+        self.process_data(sendData) # get atleast one packet before continuing
+
         recvData = self.network.retrieveData()
         print("recvData: %s"% recvData)
         while recvData:
@@ -275,19 +278,25 @@ class StrategyTestRendezvous(Strategy):
             recvData = self.network.retrieveData()
 
 
+        if recvData != None:
+            self.update_poses()
 
         far_bot_dir = self.check_greatest_distance()
         print(far_bot_dir)
 
         if far_bot_dir is "LEFT" and self.mouse.canGoLeft():
             self.mouse.goLeft()
+            # whoami makes more sense with a cool id
+            self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
         elif far_bot_dir is "RIGHT" and self.mouse.canGoRight():
             self.mouse.goRight()
+            self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
         elif far_bot_dir is "UP" and self.mouse.canGoUp():
-            print("hey UP")
             self.mouse.goUp()
+            self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
         elif far_bot_dir is "DOWN" and self.mouse.canGoDown():
             self.mouse.goLeft()
+            self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
 
         # first see if the bot can go towards gradient
         else:
@@ -295,10 +304,12 @@ class StrategyTestRendezvous(Strategy):
                 self.path.append([self.mouse.x, self.mouse.y])
                 self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
                 self.mouse.goLeft()
+                self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
             elif self.mouse.canGoUp() and not self.isVisited():
                 self.path.append([self.mouse.x, self.mouse.y])
                 self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
                 self.mouse.goUp()
+                self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
             elif self.mouse.canGoRight() and not self.isVisited():
                 self.path.append([self.mouse.x, self.mouse.y])
                 self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
@@ -307,6 +318,7 @@ class StrategyTestRendezvous(Strategy):
                 self.path.append([self.mouse.x, self.mouse.y])
                 self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
                 self.mouse.goDown()
+                self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
             else: # if no gradient available, then backtrack
                 if len(self.path) != 0:
                     x, y = self.path.pop()
