@@ -279,7 +279,7 @@ class StrategyTestRendezvous(Strategy):
             else:
                 self.isBack = True
 
-        sleep(0.5)
+        sleep(0.01)
 
 
             #
