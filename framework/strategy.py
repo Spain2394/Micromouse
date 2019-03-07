@@ -226,7 +226,7 @@ class StrategyTestRendezvous(Strategy):
 
 
 
-    def check_greatest_distance(self,num_bots):
+    def check_greatest_distance(self):
         for bots in self.neighbors_states:
             dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
             dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
