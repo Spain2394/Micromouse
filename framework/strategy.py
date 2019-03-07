@@ -266,7 +266,7 @@ class StrategyTestRendezvous(Strategy):
             self.stop_condition = True
             print("went nowhere")
 
-        sleep(0.1)
+        sleep(0.05)
 
 
             #
