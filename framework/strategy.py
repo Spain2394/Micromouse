@@ -284,23 +284,23 @@ class StrategyTestRendezvous(Strategy):
         print("far bot direction: %s"%far_bot_dir)
 
         #TODO If you want visited to be accurate it needs to be updated here
-        if far_bot_dir is "LEFT" and self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
+        if far_bot_dir is "LEFT" and self.mouse.canGoLeft() and (not self.isVisited[self.mouse.x - 1][self.mouse.y] or len(self.path) == 0):
             self.path.append([self.mouse.x,self.mouse.y])
             self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
             self.mouse.goLeft()
             # whoami makes more sense with a cool id
             self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-        elif far_bot_dir is "RIGHT" and self.mouse.canGoRight() and not self.isVisited[self.mouse.x+1][self.mouse.y]:
+        elif far_bot_dir is "RIGHT" and self.mouse.canGoRight() and (not self.isVisited[self.mouse.x + 1][self.mouse.y] or len(self.path) == 0)]:
             self.path.append([self.mouse.x,self.mouse.y])
             self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
             self.mouse.goRight()
             self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-        elif far_bot_dir is "UP" and self.mouse.canGoUp() and not self.isVisited[self.mouse.x][self.mouse.y-1]:
+        elif far_bot_dir is "UP" and self.mouse.canGoUp() and (not self.isVisited[self.mouse.x][self.mouse.y - 1] or len(self.path) == 0):
             self.path.append([self.mouse.x,self.mouse.y])
             self.isVisited[self.mouse.x][self.mouse.y-1] = 1
             self.mouse.goUp()
             self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-        elif far_bot_dir is "DOWN" and self.mouse.canGoDown() and not self.isVisited[self.mouse.x][self.mouse.y+1]:
+        elif far_bot_dir is "DOWN" and self.mouse.canGoDown() and (not self.isVisited[self.mouse.x][self.mouse.y + 1] or len(self.path) == 0):
             self.path.append([self.mouse.x,self.mouse.y])
             self.isVisited[self.mouse.x][self.mouse.y+1] = 1
             self.mouse.goDown()
@@ -341,7 +341,7 @@ class StrategyTestRendezvous(Strategy):
                         self.mouse.goDown()
                 else:
                     self.isBack = True
-                    
+
         if len(self.path) > 10: self.path = self.path[1:]
 
         sleep(0.5)
