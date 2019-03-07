@@ -341,6 +341,8 @@ class StrategyTestRendezvous(Strategy):
                         self.mouse.goDown()
                 else:
                     self.isBack = True
+                    
+        if len(self.path) > 10: self.path = self.path[1:]
 
         sleep(0.5)
 
