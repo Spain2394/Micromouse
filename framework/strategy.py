@@ -224,6 +224,27 @@ class StrategyTestRendezvous(Strategy):
         return self.isBack
 
 
+
+
+    def check_greatest_distance(self,num_bots):
+        for bots in self.neighbors_states:
+            dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
+            dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
+
+            if abs(dx_temp) > abs(self.dx):
+                self.dx = dx_temp
+                if self.dx < 0: return "LEFT"
+                return "RIGHT"
+
+            elif abs(dy_temp) > abs(self.dy):
+                self.dy = dx_temp
+                if self.dy < 0: return "DOWN"
+                return "RIGHT"
+
+
+
+
+
     def go(self):
         self.mouse.senseWalls()
         print(self.mouse.getCurrentCell().getWhichIsWall())
@@ -249,19 +270,21 @@ class StrategyTestRendezvous(Strategy):
 
 
 
-        if self.mouse.canGoLeft():
+        far_bot_dir = self.check_greatest_distance()
+        # first see if the bot can go towards gradient
+        if self.mouse.canGoLeft() and far_bot_dir is "LEFT":
             self.path.append([self.mouse.x, self.mouse.y])
             # self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
             self.mouse.goLeft()
-        elif self.mouse.canGoUp():
+        elif self.mouse.canGoUp() and far_bot_dir is "UP":
             self.path.append([self.mouse.x, self.mouse.y])
             # self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
             self.mouse.goUp()
-        elif self.mouse.canGoRight():
+        elif self.mouse.canGoRight() and far_bot_dir is "RIGHT":
             self.path.append([self.mouse.x, self.mouse.y])
             # self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
             self.mouse.goRight()
-        elif self.mouse.canGoDown():
+        elif self.mouse.canGoDown() and far_bot_dir is "DOWN":
             self.path.append([self.mouse.x, self.mouse.y])
             # self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
             self.mouse.goDown()
