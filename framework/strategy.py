@@ -299,6 +299,8 @@ class StrategyTestRendezvous(Strategy):
 
         # first see if the bot can go towards gradient
         else:
+            print("in the last section")
+            print("ca go left:(%,%) " %(self.mouse.canGoUp(), not self.isVisited()))
             if self.mouse.canGoLeft() and not self.isVisited():
                 self.path.append([self.mouse.x, self.mouse.y])
                 self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
