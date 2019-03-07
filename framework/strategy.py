@@ -271,6 +271,7 @@ class StrategyTestRendezvous(Strategy):
 
 
         far_bot_dir = self.check_greatest_distance()
+        print(far_bot_dir)
         # first see if the bot can go towards gradient
         if self.mouse.canGoLeft() and far_bot_dir is "LEFT":
             self.path.append([self.mouse.x, self.mouse.y])
