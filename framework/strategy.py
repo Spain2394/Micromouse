@@ -305,42 +305,21 @@ class StrategyTestRendezvous(Strategy):
             self.isVisited[self.mouse.x][self.mouse.y+1] = 1
             self.mouse.goDown()
             self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-
         # first see if the bot can go towards gradient
-        else:
-            print("in the last section")
-            if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
-                self.path.append([self.mouse.x, self.mouse.y])
-                self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
-                self.mouse.goLeft()
-                self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-            elif self.mouse.canGoUp() and not self.isVisited[self.mouse.x][self.mouse.y-1]:
-                self.path.append([self.mouse.x, self.mouse.y])
-                self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
-                self.mouse.goUp()
-                self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-            elif self.mouse.canGoRight() and not self.isVisited[self.mouse.x+1][self.mouse.y]:
-                self.path.append([self.mouse.x, self.mouse.y])
-                self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
-                self.mouse.goRight()
-            elif self.mouse.canGoDown() and not self.isVisited[self.mouse.x][self.mouse.y-1]:
-                self.path.append([self.mouse.x, self.mouse.y])
-                self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
-                self.mouse.goDown()
-                self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-            else: # if no gradient available, then backtrack
-                if len(self.path) != 0:
-                    x, y = self.path.pop()
-                    if x < self.mouse.x:
-                        self.mouse.goLeft()
-                    elif x > self.mouse.x:
-                        self.mouse.goRight()
-                    elif y < self.mouse.y:
-                        self.mouse.goUp()
-                    elif y > self.mouse.y:
-                        self.mouse.goDown()
-                else:
-                    self.isBack = True
+
+        else: # if no gradient available, then backtrack
+            if len(self.path) != 0:
+                x, y = self.path.pop()
+                if x < self.mouse.x:
+                    self.mouse.goLeft()
+                elif x > self.mouse.x:
+                    self.mouse.goRight()
+                elif y < self.mouse.y:
+                    self.mouse.goUp()
+                elif y > self.mouse.y:
+                    self.mouse.goDown()
+            else:
+                self.isBack = True
 
         sleep(0.5)
 
