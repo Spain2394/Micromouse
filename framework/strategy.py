@@ -120,6 +120,7 @@ class StrategyTestMultiDFS(Strategy):
     network = None
 
     def __init__(self, mouse):
+        print("hello")
         self.mouse = mouse
         self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(
             self.mouse.mazeMap.height)]
