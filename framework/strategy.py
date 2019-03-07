@@ -192,7 +192,7 @@ class StrategyTestRendezvous(Strategy):
     network = None
     neighbors_states = {}
     topological_neighbors = []
-    num_bots = 0
+
     stop_condition = False
     whoami = -1
     dx = -1.0
