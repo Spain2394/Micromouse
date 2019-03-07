@@ -242,10 +242,11 @@ class StrategyTestRendezvous(Strategy):
 
             elif abs(dy_temp) > abs(self.dy):
                 self.dy = dx_temp
-                if self.dy < 0: x_Dir = "DOWN"
+                if self.dy < 0: y_Dir = "DOWN"
                 y_Dir = "UP"
 
-            if abs(self.dx) > abs(self.dy):return delta_p
+            if abs(self.dx) > abs(self.dy):return x_Dir
+            else: return y_Dir
 
 
 
