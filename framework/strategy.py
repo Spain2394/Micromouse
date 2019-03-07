@@ -259,7 +259,6 @@ class StrategyTestRendezvous(Strategy):
         print(sendData)
         print(self.network.sendStringData(sendData))
 
-        self.process_data(sendData) # get atleast one packet before continuing
 
         recvData = self.network.retrieveData()
         print("recvData: %s"% recvData)
