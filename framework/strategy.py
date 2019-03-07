@@ -263,10 +263,13 @@ class StrategyTestRendezvous(Strategy):
 
         recvData = self.network.retrieveData()
         print("recvData: %s"% recvData)
+        # one packet at a time
         while recvData:
+
             otherMap = recvData
             cell = self.mouse.mazeMap.getCell(otherMap['x'], otherMap['y'])
             self.isVisited[otherMap['x']][otherMap['y']] = 1
+            self.neighbors_states['robot'] = {'robot':sendData['robot'], 'x': sendData['x'], 'y': sendData['y']} # update neighbors_states as received
             if otherMap['up']:
                 self.mouse.mazeMap.setCellUpAsWall(cell)
             if otherMap['down']:
@@ -276,10 +279,6 @@ class StrategyTestRendezvous(Strategy):
             if otherMap['right']:
                 self.mouse.mazeMap.setCellRightAsWall(cell)
             recvData = self.network.retrieveData()
-
-
-        if recvData != None:
-            self.update_poses()
 
         far_bot_dir = self.check_greatest_distance()
         print(far_bot_dir)
