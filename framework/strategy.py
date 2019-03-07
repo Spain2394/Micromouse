@@ -303,7 +303,6 @@ class StrategyTestRendezvous(Strategy):
         else:
             print("in the last section")
             print(self.mouse.canGoUp())
-            print(self.isVisited())
             if self.mouse.canGoLeft() and not self.isVisited():
                 self.path.append([self.mouse.x, self.mouse.y])
                 self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
