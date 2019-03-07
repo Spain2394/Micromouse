@@ -224,12 +224,10 @@ class StrategyTestRendezvous(Strategy):
         return self.isBack
 
 
-
-
     def check_greatest_distance(self):
-        x_Dir = None
-        y_Dir = None
-
+        x_Dir = -1
+        y_Dir = -1
+        print("I'm in")
 
         for bots in self.neighbors_states:
             dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
