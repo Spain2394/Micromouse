@@ -225,8 +225,8 @@ class StrategyTestRendezvous(Strategy):
 
 
     def check_greatest_distance(self):
-        x_Dir = -1
-        y_Dir = -1
+        x_Dir = None
+        y_Dir = None
         print("I'm in")
 
         for bots in self.neighbors_states:
@@ -247,7 +247,7 @@ class StrategyTestRendezvous(Strategy):
 
 
         if abs(self.dx) > abs(self.dy):return x_Dir
-        elif abs(self.dx) == abs(self.dy):return y_Dir # just make up defualt when tie
+        # elif abs(self.dx) == abs(self.dy):return y_Dir # just make up defualt when tie
         else: return y_Dir
 
 
