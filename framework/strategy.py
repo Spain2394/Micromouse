@@ -245,8 +245,8 @@ class StrategyTestRendezvous(Strategy):
                 if self.dy < 0: y_Dir = "DOWN"
                 else: y_Dir = "UP"
 
-            if abs(self.dx) > abs(self.dy):return x_Dir
-            else: return y_Dir
+        if abs(self.dx) > abs(self.dy):return x_Dir
+        else: return y_Dir
 
     def go(self):
         self.mouse.senseWalls()
