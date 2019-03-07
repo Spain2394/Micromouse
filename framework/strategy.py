@@ -139,7 +139,7 @@ class StrategyTestMultiDFS(Strategy):
         ), 'down': not self.mouse.canGoDown(), 'left': not self.mouse.canGoLeft(), 'right': not self.mouse.canGoRight()}
         print(self.network.sendStringData(sendData))
         recvData = self.network.retrieveData()
-        print("recvData%s"%recvData)
+        print("recvData%s: "%recvData)
 
         while recvData:
             otherMap = recvData
