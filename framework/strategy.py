@@ -289,19 +289,19 @@ class StrategyTestRendezvous(Strategy):
         else:
             if self.mouse.canGoLeft() and not self.isVisited() :
                 self.path.append([self.mouse.x, self.mouse.y])
-                # self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
+                self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
                 self.mouse.goLeft()
             elif self.mouse.canGoUp() and not self.isVisited():
                 self.path.append([self.mouse.x, self.mouse.y])
-                # self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
+                self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
                 self.mouse.goUp()
             elif self.mouse.canGoRight() and not self.isVisited():
                 self.path.append([self.mouse.x, self.mouse.y])
-                # self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
+                self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
                 self.mouse.goRight()
             elif self.mouse.canGoDown() and not self.isVisited:
                 self.path.append([self.mouse.x, self.mouse.y])
-                # self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
+                self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
                 self.mouse.goDown()
             else: # if no gradient available, then backtrack
                 if len(self.path) != 0:
