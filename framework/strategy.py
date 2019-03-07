@@ -197,6 +197,7 @@ class StrategyTestRendezvous(Strategy):
     whoami = -1
     dx = -1.0
     dy = -1.0
+    isBack = False
 
 
     def __init__(self, mouse, num_bots, initPoint):
@@ -213,7 +214,7 @@ class StrategyTestRendezvous(Strategy):
         self.network.startReceiveThread()
 
     def checkFinished(self):
-        return self.stop_condition
+        return self.isBack
 
 
     def go(self):
@@ -223,6 +224,7 @@ class StrategyTestRendezvous(Strategy):
         ), 'down': not self.mouse.canGoDown(), 'left': not self.mouse.canGoLeft(), 'right': not self.mouse.canGoRight()}
         self.network.sendStringData(sendData)
         recvData = self.network.retrieveData()
+        print("recvData: %s", recvData)
         while recvData:
             otherMap = recvData
             cell = self.mouse.mazeMap.getCell(otherMap['x'], otherMap['y'])
@@ -236,6 +238,7 @@ class StrategyTestRendezvous(Strategy):
             if otherMap['right']:
                 self.mouse.mazeMap.setCellRightAsWall(cell)
             recvData = self.network.retrieveData()
+
 
         if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x - 1][self.mouse.y]:
             self.path.append([self.mouse.x, self.mouse.y])
