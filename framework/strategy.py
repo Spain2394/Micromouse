@@ -247,7 +247,9 @@ class StrategyTestRendezvous(Strategy):
                 if self.dy < 0: y_Dir = "DOWN"
                 else: y_Dir = "UP"
 
+
         if abs(self.dx) > abs(self.dy):return x_Dir
+        elif abs(self.dx) == abs(self.dy):return y_Dir # just make up defualt when tie
         else: return y_Dir
 
 
@@ -300,7 +302,8 @@ class StrategyTestRendezvous(Strategy):
         # first see if the bot can go towards gradient
         else:
             print("in the last section")
-            print("can go left:(%s,%s) " %(self.mouse.canGoUp(), not self.isVisited()))
+            print(self.mouse.canGoUp())
+            print(self.isVisited())
             if self.mouse.canGoLeft() and not self.isVisited():
                 self.path.append([self.mouse.x, self.mouse.y])
                 self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
