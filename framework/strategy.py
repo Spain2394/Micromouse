@@ -281,7 +281,7 @@ class StrategyTestRendezvous(Strategy):
             recvData = self.network.retrieveData()
 
         far_bot_dir = self.check_greatest_distance()
-        print(far_bot_dir)
+        print("far bot direction: %s"%sfar_bot_dir)
 
         if far_bot_dir is "LEFT" and self.mouse.canGoLeft():
             self.mouse.goLeft()
