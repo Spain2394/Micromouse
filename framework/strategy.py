@@ -232,8 +232,8 @@ class StrategyTestRendezvous(Strategy):
         for bots in self.neighbors_states:
             dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
             dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
-            print("dx: %s"%dx)
-            print("dy: %s"%dx)
+            print("dx: %s"%dx_temp)
+            print("dy: %s"%dx_temp)
 
             if abs(dx_temp) > abs(self.dx):
                 self.dx = dx_temp
