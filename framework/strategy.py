@@ -288,7 +288,7 @@ class StrategyTestRendezvous(Strategy):
             self.path.append([self.mouse.x, self.mouse.y])
             # self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
             self.mouse.goDown()
-        else:
+        else: # if no gradient available, then backtrack
             if len(self.path) != 0:
                 x, y = self.path.pop()
                 if x < self.mouse.x:
