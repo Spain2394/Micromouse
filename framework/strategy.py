@@ -281,6 +281,7 @@ class StrategyTestRendezvous(Strategy):
         elif far_bot_dir is "RIGHT" and self.mouse.canGoRight():
             self.mouse.goRight()
         elif far_bot_dir is "UP" and self.mouse.canGoUp():
+            print("hey UP")
             self.mouse.goUp()
         elif far_bot_dir is "DOWN" and self.mouse.canGoDown():
             self.mouse.goLeft()
