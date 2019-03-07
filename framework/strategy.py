@@ -269,7 +269,7 @@ class StrategyTestRendezvous(Strategy):
             otherMap = recvData
             cell = self.mouse.mazeMap.getCell(otherMap['x'], otherMap['y'])
             self.isVisited[otherMap['x']][otherMap['y']] = 1
-            self.neighbors_states['robot'] = {'robot':sendData['robot'], 'x': sendData['x'], 'y': sendData['y']} # update neighbors_states as received
+            self.neighbors_states[sendData['robot']] = {'robot':sendData['robot'], 'x': sendData['x'], 'y': sendData['y']} # update neighbors_states as received
             print(self.neighbors_states['robot']) # update neighbors_states as received)
             if otherMap['up']:
                 self.mouse.mazeMap.setCellUpAsWall(cell)
