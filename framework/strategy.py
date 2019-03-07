@@ -203,8 +203,6 @@ class StrategyTestRendezvous(Strategy):
     isBack = False
 
     # define number of robots
-
-
     def __init__(self, mouse, initPoint):
         # add
         self.mouse = mouse
@@ -287,17 +285,25 @@ class StrategyTestRendezvous(Strategy):
 
         #TODO If you want visited to be accurate it needs to be updated here
         if far_bot_dir is "LEFT" and self.mouse.canGoLeft():
+            self.path.append([self.mouse.x,self.mouse.y])
+            self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
             self.mouse.goLeft()
             # whoami makes more sense with a cool id
             self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
         elif far_bot_dir is "RIGHT" and self.mouse.canGoRight():
+            self.path.append([self.mouse.x,self.mouse.y])
+            self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
             self.mouse.goRight()
             self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
         elif far_bot_dir is "UP" and self.mouse.canGoUp():
+            self.path.append([self.mouse.x,self.mouse.y])
+            self.isVisited[self.mouse.x][self.mouse.y-1] = 1
             self.mouse.goUp()
             self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
         elif far_bot_dir is "DOWN" and self.mouse.canGoDown():
-            self.mouse.goLeft()
+            self.path.append([self.mouse.x,self.mouse.y])
+            self.isVisited[self.mouse.x][self.mouse.y+1] = 1
+            self.mouse.goDown()
             self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
 
         # first see if the bot can go towards gradient
