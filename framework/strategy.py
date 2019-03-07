@@ -215,19 +215,19 @@ class StrategyTestRendezvous(Strategy):
     def checkFinished(self):
         return self.stop_condition
 
+
     def go(self):
         self.mouse.senseWalls()
         print(self.mouse.getCurrentCell().getWhichIsWall())
+
         sendData = {'x': self.mouse.x, 'y': self.mouse.y, 'up': not self.mouse.canGoUp(
         ), 'down': not self.mouse.canGoDown(), 'left': not self.mouse.canGoLeft(), 'right': not self.mouse.canGoRight()}
-        print(sendData)
 
         self.network.sendStringData(sendData)
+
         recvData = self.network.retrieveData()
-        print(recvData)
 
         while recvData:
-            print("got into the loop%s"%recvData)
             otherMap = recvData
             cell = self.mouse.mazeMap.getCell(otherMap['x'], otherMap['y'])
             self.isVisited[otherMap['x']][otherMap['y']] = 1
@@ -245,28 +245,33 @@ class StrategyTestRendezvous(Strategy):
             self.path.append([self.mouse.x, self.mouse.y])
             self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
             self.mouse.goLeft()
-            print("went left")
         elif self.mouse.canGoUp() and not self.isVisited[self.mouse.x][self.mouse.y - 1]:
             self.path.append([self.mouse.x, self.mouse.y])
             self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
             self.mouse.goUp()
-            print("went up")
         elif self.mouse.canGoRight() and not self.isVisited[self.mouse.x + 1][self.mouse.y]:
             self.path.append([self.mouse.x, self.mouse.y])
             self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
             self.mouse.goRight()
-            print("went right")
         elif self.mouse.canGoDown() and not self.isVisited[self.mouse.x][self.mouse.y + 1]:
             self.path.append([self.mouse.x, self.mouse.y])
             self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
             self.mouse.goDown()
-            print("went down")
-
         else:
-            self.stop_condition = True
-            print("went nowhere")
+            if len(self.path) != 0:
+                x, y = self.path.pop()
+                if x < self.mouse.x:
+                    self.mouse.goLeft()
+                elif x > self.mouse.x:
+                    self.mouse.goRight()
+                elif y < self.mouse.y:
+                    self.mouse.goUp()
+                elif y > self.mouse.y:
+                    self.mouse.goDown()
+            else:
+                self.isBack = True
 
-        sleep(0.05)
+        sleep(0.5)
 
 
             #
