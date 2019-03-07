@@ -249,21 +249,21 @@ class StrategyTestRendezvous(Strategy):
 
 
 
-        if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x - 1][self.mouse.y]:
+        if self.mouse.canGoLeft():
             self.path.append([self.mouse.x, self.mouse.y])
-            self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
+            # self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
             self.mouse.goLeft()
-        elif self.mouse.canGoUp() and not self.isVisited[self.mouse.x][self.mouse.y - 1]:
+        elif self.mouse.canGoUp():
             self.path.append([self.mouse.x, self.mouse.y])
-            self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
+            # self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
             self.mouse.goUp()
-        elif self.mouse.canGoRight() and not self.isVisited[self.mouse.x + 1][self.mouse.y]:
+        elif self.mouse.canGoRight():
             self.path.append([self.mouse.x, self.mouse.y])
-            self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
+            # self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
             self.mouse.goRight()
-        elif self.mouse.canGoDown() and not self.isVisited[self.mouse.x][self.mouse.y + 1]:
+        elif self.mouse.canGoDown():
             self.path.append([self.mouse.x, self.mouse.y])
-            self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
+            # self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
             self.mouse.goDown()
         else:
             if len(self.path) != 0:
@@ -279,7 +279,7 @@ class StrategyTestRendezvous(Strategy):
             else:
                 self.isBack = True
 
-        sleep(0.01)
+        sleep(0.5)
 
 
             #
