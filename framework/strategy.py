@@ -248,12 +248,13 @@ class StrategyTestRendezvous(Strategy):
 
 
     def check_priority(self, dx_list, dy_list):
-        N = len(dx_list, dy_list)
+        N = len(dx_list)
         dx_list.sort() # make sure you are comparing only the smallest values
         dy_list.sort()
         priority = []
         trash = []
         #TODO come up with a second order priority
+        print("check priority")
         for i in range(N):
             # go for closest
             if dx_list[i] < dy_list[i]:
@@ -265,6 +266,7 @@ class StrategyTestRendezvous(Strategy):
                 if dy_list[i] < 0: priority.append('D')
                 else: priority.append('U')
 
+        print("returning: %s"% priority)
         return priority
 
 
