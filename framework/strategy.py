@@ -296,10 +296,7 @@ class StrategyTestRendezvous(Strategy):
 
 
         self.dx,self.dy = self.check_greatest_distance()
-
         print(self.dx)
-
-
         print(self.dy)
         # print("far bot direction: %s,%s"%(dx[0],dy[0]))
 
