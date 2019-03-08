@@ -336,7 +336,7 @@ class StrategyTestRendezvous(Strategy):
         #TODO If you want visited to be accurate it needs to be updated here
         # priority positions
         moved = False
-
+        r = 0
         while not moved and r < len(priority):
             if self.mouse.canGoLeft() and priority[r] is 'L' and not self.isVisited[self.mouse.x-1][self.mouse.y]:
                 self.path.append([self.mouse.x,self.mouse.y])
