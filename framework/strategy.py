@@ -231,7 +231,6 @@ class StrategyTestRendezvous(Strategy):
 
         shortest_path_list_x = []
         shortest_path_list_y = []
-        order = []
         print("I'm in")
 
         for bots in self.neighbors_states:
@@ -246,6 +245,36 @@ class StrategyTestRendezvous(Strategy):
         # shortest_path_list_y.sort()
         print("%s,%s"%(shortest_path_list_x,shortest_path_list_y))
         return shortest_path_list_x, shortest_path_list_y
+
+
+    def check_priority(self, dx_list, dy_list):
+        N = len(dx_list, dy_list)
+        dx_list.sort() # make sure you are comparing only the smallest values
+        dy_list.sort()
+        priority = []
+        trash = []
+        #TODO come up with a second order priority
+        for i in range(N):
+            # go for closest
+            if dx_list[i] < dy_list[i]:
+                if dx_list[i] < 0:
+                    priority.append('L')
+                else: priority.append('R')
+
+            else:
+                if dy_list[i] < 0: priority.append('D')
+                else: priority.append('U')
+
+        return priority
+
+
+
+
+
+
+
+
+
 
 
             # smallest number
@@ -302,7 +331,9 @@ class StrategyTestRendezvous(Strategy):
         # print("far bot direction: %s,%s"%(dx[0],dy[0]))
 
         #TODO If you want visited to be accurate it needs to be updated here
+        # priority positions
         moved = False
+        r = 0
         while not moved:
             if self.mouse.canGoLeft() and self.dx[0] < 0 and not self.isVisited[self.mouse.x-1][self.mouse.y]:
                 self.path.append([self.mouse.x,self.mouse.y])
@@ -327,6 +358,8 @@ class StrategyTestRendezvous(Strategy):
                 self.isVisited[self.mouse.x][self.mouse.y+1] = 1
                 self.mouse.goDown()
                 self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
+
+            r +=1  # update prioritys
 
         # If still not moved 1. moved where available
         # 2. trace steps
