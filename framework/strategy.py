@@ -266,6 +266,8 @@ class StrategyTestRendezvous(Strategy):
                 if dy_list[i] < 0: priority.append('D')
                 else: priority.append('U')
 
+            priority.sort()
+
         print("returning: %s"% priority)
         return priority
 
