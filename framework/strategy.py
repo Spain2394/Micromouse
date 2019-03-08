@@ -281,7 +281,7 @@ class StrategyTestRendezvous(Strategy):
         follow_him = -1
         distance = 100 # some big number
         temp = 0
-
+        print("made it into distance_to_near_neigh")
         for bots in self.neighbors_states:
             print("made it into distance_to_near_neigh")
             if bots != self.whoami:
@@ -370,6 +370,9 @@ class StrategyTestRendezvous(Strategy):
 
         a = []
         b = []
+        distance = 0
+        robot_pose = 0
+
         self.dx,self.dy = self.check_greatest_distance()
 
         print(self.dx)
@@ -377,7 +380,7 @@ class StrategyTestRendezvous(Strategy):
         a,b = self.dx, self.dy
         priority = self.check_priority(a, b)
         closest_neighbor_distance = self.distance_to_you()
-        self.distance_to_near_neigh()
+        distance, robot_pose = self.distance_to_near_neigh()
 
         print(priority)
 
