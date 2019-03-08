@@ -238,8 +238,8 @@ class StrategyTestRendezvous(Strategy):
         for bots in self.neighbors_states:
             dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
             dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
-            shortest_path_list_x.append(dx)
-            shortest_path_list_x.append(dy)
+            shortest_path_list_x.append(dx_temp)
+            shortest_path_list_y.append(dy_temp)
             print("dx: %s"%dx_temp)
             print("dy: %s"%dy_temp)
 
