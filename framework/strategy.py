@@ -292,7 +292,7 @@ class StrategyTestRendezvous(Strategy):
             recvData = self.network.retrieveData()
 
         dx,dy = self.check_greatest_distance()
-        print("far bot direction: %s"%far_bot_dir)
+        print("far bot direction: %s,%s"%(dx,dy))
 
         #TODO If you want visited to be accurate it needs to be updated here
         if self.mouse.canGoLeft() and dx[0] < 0:
