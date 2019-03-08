@@ -333,8 +333,8 @@ class StrategyTestRendezvous(Strategy):
         #TODO If you want visited to be accurate it needs to be updated here
         # priority positions
         moved = False
-        r = 0
-        while not moved:
+        r = 4
+        while not moved and r < 4:
             if self.mouse.canGoLeft() and self.dx[0] < 0 and not self.isVisited[self.mouse.x-1][self.mouse.y]:
                 self.path.append([self.mouse.x,self.mouse.y])
                 self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
@@ -353,12 +353,14 @@ class StrategyTestRendezvous(Strategy):
                 self.isVisited[self.mouse.x][self.mouse.y-1] = 1
                 self.mouse.goUp()
                 self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
+                moved = True
             elif self.mouse.canGoDown() and self.dy[0] < 0 and not self.isVisited[self.mouse.x][self.mouse.y+1]:
                 self.path.append([self.mouse.x,self.mouse.y])
                 self.isVisited[self.mouse.x][self.mouse.y+1] = 1
                 self.mouse.goDown()
                 self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-
+                moved = True
+            
             r +=1  # update prioritys
 
         # If still not moved 1. moved where available
