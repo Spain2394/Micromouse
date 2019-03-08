@@ -297,7 +297,7 @@ class StrategyTestRendezvous(Strategy):
                     distance = temp
                     follow_him = bots
 
-            return distance,follow_him
+        return distance,follow_him
 
 
 
@@ -380,7 +380,7 @@ class StrategyTestRendezvous(Strategy):
         a,b = self.dx, self.dy
         priority = self.check_priority(a, b)
         closest_neighbor_distance = self.distance_to_you()
-        distance, robot_pose = self.distance_to_near_neigh()
+        distance, near_robot = self.distance_to_near_neigh()
 
         print(priority)
 
