@@ -234,12 +234,14 @@ class StrategyTestRendezvous(Strategy):
         print("I'm in")
 
         for bots in self.neighbors_states:
-            dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
-            dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
-            shortest_path_list_x.append(dx_temp)
-            shortest_path_list_y.append(dy_temp)
-            print("dx: %s"%dx_temp)
-            print("dy: %s"%dy_temp)
+            if bots != self.whoami:
+                dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
+                dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
+                shortest_path_list_x.append(dx_temp)
+                shortest_path_list_y.append(dy_temp)
+
+                print("dx: %s"%dx_temp)
+                print("dy: %s"%dy_temp)
 
         # shortest_path_list_x.sort()
         # shortest_path_list_y.sort()
@@ -257,19 +259,65 @@ class StrategyTestRendezvous(Strategy):
         print("check priority")
         for i in range(N):
             # go for closest
-            if dx_list[i] > dy_list[i]:
+            if i == self.whoami:
+                continue
+
+            if dx_list[i] < dy_list[i]:
                 if dx_list[i] < 0:
                     priority.append('L')
                 else: priority.append('R')
 
             else:
-                if dy_list[i] > 0: priority.append('D')
+                if dy_list[i] < 0: priority.append('D')
                 else: priority.append('U')
-
-            # priority.sort()
 
         print("returning: %s"% priority)
         return priority
+
+    def distance_to_near_neigh(self):
+        dx_temp = 0
+        dy_temp = 0
+        # closest_bot = {}
+        follow_him = -1
+        distance = 100 # some big number
+        temp = 0
+
+        for bots in self.neighbors_states:
+            print("made it into distance_to_near_neigh")
+            if bots != self.whoami:
+                dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
+                dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
+            else:
+                dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
+                dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
+
+                temp = (dx_temp**dx_temp + dy_temp**dy_temp)**(1/2)
+
+                if temp < distance:
+                    distance = temp
+                    follow_him = bots
+            return distance,follow_him
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # def distance_to_you(self):
+    #     distance = -1
+
+
+
+        #
 
             # smallest number
         #     if abs(dx_temp) < abs(self.dx):
@@ -327,6 +375,9 @@ class StrategyTestRendezvous(Strategy):
         print(self.dy)
         a,b = self.dx, self.dy
         priority = self.check_priority(a, b)
+        closest_neighbor_distance = self.distance_to_you()
+        self.distance_to_near_neigh()
+
         print(priority)
 
         # print("far bot direction: %s,%s"%(dx[0],dy[0]))
