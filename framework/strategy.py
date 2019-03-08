@@ -373,16 +373,19 @@ class StrategyTestRendezvous(Strategy):
         distance = 0
         robot_pose = 0
 
-        self.dx,self.dy = self.check_greatest_distance()
+        self.dx,self.dy = self.check_greatest_distance() # tug from furthest bot
 
         print(self.dx)
         print(self.dy)
+        print("priority%s"%priority)
         a,b = self.dx, self.dy
-        priority = self.check_priority(a, b)
-        closest_neighbor_distance = self.distance_to_you()
-        distance, near_robot = self.distance_to_near_neigh()
+        priority = self.check_priority(a, b) # go through top tugs from nearby bots
+        distance, near_robot = self.distance_to_near_neigh() #
+        print("distance to enemy: %s"%distance)
+        print("near_robot: %s"%near_robot)
 
-        print(priority)
+
+
 
         # print("far bot direction: %s,%s"%(dx[0],dy[0]))
 
