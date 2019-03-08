@@ -243,8 +243,9 @@ class StrategyTestRendezvous(Strategy):
             print("dx: %s"%dx_temp)
             print("dy: %s"%dy_temp)
 
-        # shortest_path_list_x.sort()
-        # shortest_path_list_y.sort()
+
+        shortest_path_list_x.sort()
+        shortest_path_list_y.sort()
         print("%s,%s"%(shortest_path_list_x,shortest_path_list_y))
         return shortest_path_list_x, shortest_path_list_y
 
@@ -306,7 +307,9 @@ class StrategyTestRendezvous(Strategy):
 
         #TODO If you want visited to be accurate it needs to be updated here
         moved = False
+        r = 0
         while not moved:
+            r+=1
             if self.mouse.canGoLeft() and self.dx[0] < 0 and not self.isVisited[self.mouse.x-1][self.mouse.y]:
                 self.path.append([self.mouse.x,self.mouse.y])
                 self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
