@@ -317,6 +317,8 @@ class StrategyTestRendezvous(Strategy):
             recvData = self.network.retrieveData()
 
 
+        a = []
+        b = []
         self.dx,self.dy = self.check_greatest_distance()
 
         print(self.dx)
