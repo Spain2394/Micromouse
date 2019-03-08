@@ -227,9 +227,6 @@ class StrategyTestRendezvous(Strategy):
     def check_greatest_distance(self):
         x_Dir = None
         y_Dir = None
-        weight_a = 5
-        weight_b = 2
-        weight_c = 1
 
         shortest_path_list_x = []
         shortest_path_list_y = []
