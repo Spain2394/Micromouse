@@ -244,8 +244,8 @@ class StrategyTestRendezvous(Strategy):
             print("dy: %s"%dy_temp)
 
 
-        shortest_path_list_x.sort()
-        shortest_path_list_y.sort()
+        # shortest_path_list_x.sort()
+        # shortest_path_list_y.sort()
         print("%s,%s"%(shortest_path_list_x,shortest_path_list_y))
         return shortest_path_list_x, shortest_path_list_y
 
