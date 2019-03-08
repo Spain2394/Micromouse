@@ -298,7 +298,8 @@ class StrategyTestRendezvous(Strategy):
         self.dx,self.dy = self.check_greatest_distance()
 
         print(self.dx)
-        
+
+
         print(self.dy)
         # print("far bot direction: %s,%s"%(dx[0],dy[0]))
 
@@ -352,12 +353,16 @@ class StrategyTestRendezvous(Strategy):
                     x, y = self.path.pop()
                     if x < self.mouse.x:
                         self.mouse.goLeft()
+                        self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
                     elif x > self.mouse.x:
                         self.mouse.goRight()
+                        self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
                     elif y < self.mouse.y:
                         self.mouse.goUp()
+                        self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
                     elif y > self.mouse.y:
                         self.mouse.goDown()
+                        self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
                 else:
                     self.isBack = True
             # if len(self.path)
