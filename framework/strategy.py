@@ -363,12 +363,16 @@ class StrategyTestRendezvous(Strategy):
                 x, y = self.path.pop()
                 if x < self.mouse.x:
                     self.mouse.goLeft()
+                    states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
                 elif x > self.mouse.x:
                     self.mouse.goRight()
+                    states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
                 elif y < self.mouse.y:
                     self.mouse.goUp()
+                    states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
                 elif y > self.mouse.y:
                     self.mouse.goDown()
+                    states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
             else:
                 self.isBack = True
             # if len(self.path)
