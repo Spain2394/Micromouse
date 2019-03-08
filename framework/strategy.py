@@ -295,6 +295,9 @@ class StrategyTestRendezvous(Strategy):
             recvData = self.network.retrieveData()
 
         self.dx,self.dy = self.check_greatest_distance()
+        if self.iterations > 20:
+            self.dx.sort()
+            self.dy.sort()
         print(self.dx)
         print(self.dy)
         # print("far bot direction: %s,%s"%(dx[0],dy[0]))
