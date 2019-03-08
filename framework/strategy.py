@@ -231,6 +231,7 @@ class StrategyTestRendezvous(Strategy):
 
         shortest_path_list_x = []
         shortest_path_list_y = []
+        order = []
         print("I'm in")
 
         for bots in self.neighbors_states:
@@ -241,8 +242,8 @@ class StrategyTestRendezvous(Strategy):
             print("dx: %s"%dx_temp)
             print("dy: %s"%dy_temp)
 
-        # shortest_path_list_x.sort()
-        # shortest_path_list_y.sort()
+        shortest_path_list_x.sort()
+        shortest_path_list_y.sort()
         print("%s,%s"%(shortest_path_list_x,shortest_path_list_y))
         return shortest_path_list_x, shortest_path_list_y
 
