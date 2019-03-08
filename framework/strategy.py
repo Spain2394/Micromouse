@@ -341,7 +341,7 @@ class StrategyTestRendezvous(Strategy):
                 else:
                     self.isBack = True
 
-        if len(self.path) < 10: self.path = self.path[1:]
+        # if len(self.path) < 10: self.path = self.path[1:]
 
         sleep(0.5)
 
