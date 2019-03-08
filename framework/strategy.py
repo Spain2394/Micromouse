@@ -324,7 +324,7 @@ class StrategyTestRendezvous(Strategy):
         print(self.dx)
         print(self.dy)
         a,b = self.dx, self.dy
-        priority = check_priority(a, b)
+        priority = self.check_priority(a, b)
         print(priority)
 
         # print("far bot direction: %s,%s"%(dx[0],dy[0]))
