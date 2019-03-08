@@ -269,16 +269,6 @@ class StrategyTestRendezvous(Strategy):
         print("returning: %s"% priority)
         return priority
 
-
-
-
-
-
-
-
-
-
-
             # smallest number
         #     if abs(dx_temp) < abs(self.dx):
         #         self.dx = dx_temp
@@ -331,6 +321,7 @@ class StrategyTestRendezvous(Strategy):
 
         print(self.dx)
         print(self.dy)
+        a,b = self.dx, self.dy
         priority = check_priority(self.dx,self.dy)
         print(priority)
 
