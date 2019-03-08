@@ -243,8 +243,10 @@ class StrategyTestRendezvous(Strategy):
             print("dx: %s"%dx_temp)
             print("dy: %s"%dy_temp)
 
-        print("return%s, %s"%(shortest_path_list_x.sort(),shortest_path_list_y.sort()))
-        return shortest_path_list_x.sort(), shortest_path_list_y.sort()
+        shortest_path_list_x.sort()
+        shortest_path_list_y.sort()
+        # print("return%s, %s"%(shortest_path_list_x.sort(),shortest_path_list_y.sort()))
+        return shortest_path_list_x, shortest_path_list_y
 
 
             # smallest number
