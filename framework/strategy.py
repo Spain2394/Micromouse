@@ -246,7 +246,7 @@ class StrategyTestRendezvous(Strategy):
 
         # shortest_path_list_x.sort()
         # shortest_path_list_y.sort()
-        order.append()
+        # order.append()
 
         print("%s,%s"%(shortest_path_list_x,shortest_path_list_y))
         return shortest_path_list_x, shortest_path_list_y
