@@ -297,7 +297,7 @@ class StrategyTestRendezvous(Strategy):
         self.dx,self.dy = self.check_greatest_distance()
         print(self.dx)
         print(self.dy)
-        print("far bot direction: %s,%s"%(dx[0],dy[0]))
+        # print("far bot direction: %s,%s"%(dx[0],dy[0]))
 
         #TODO If you want visited to be accurate it needs to be updated here
         if self.mouse.canGoLeft() and self.dx[0] < 0:
