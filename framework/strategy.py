@@ -312,12 +312,12 @@ class StrategyTestRendezvous(Strategy):
         # first see if the bot can go towards gradient
         else:
             print("in the last section")
-            if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
+            if self.mouse.canGoLeft():
                 self.path.append([self.mouse.x, self.mouse.y])
                 self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
                 self.mouse.goLeft()
                 self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-            elif self.mouse.canGoUp() and not self.isVisited[self.mouse.x][self.mouse.y-1]:
+            elif self.mouse.canGoUp():
                 self.path.append([self.mouse.x, self.mouse.y])
                 self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
                 self.mouse.goUp()
@@ -326,7 +326,7 @@ class StrategyTestRendezvous(Strategy):
                 self.path.append([self.mouse.x, self.mouse.y])
                 self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
                 self.mouse.goRight()
-            elif self.mouse.canGoDown() and not self.isVisited[self.mouse.x][self.mouse.y+1]:
+            elif self.mouse.canGoDown():
                 self.path.append([self.mouse.x, self.mouse.y])
                 self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
                 self.mouse.goDown()
