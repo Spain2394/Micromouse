@@ -230,29 +230,37 @@ class StrategyTestRendezvous(Strategy):
         weight_a = 5
         weight_b = 2
         weight_c = 1
+
+        shortest_path_list_x = []
+        shortest_path_list_y = []
         print("I'm in")
 
         for bots in self.neighbors_states:
             dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
             dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
+            shortest_path_list_x.append(dx)
+            shortest_path_list_x.append(dy)
             print("dx: %s"%dx_temp)
             print("dy: %s"%dy_temp)
 
+        return shortest_path_list_x.sort(), shortest_path_list_y.sort()
+
+
             # smallest number
-            if abs(dx_temp) < abs(self.dx):
-                self.dx = dx_temp
-                if self.dx < 0: x_Dir = "LEFT"
-                else: x_Dir = "RIGHT"
-
-            elif abs(dy_temp) < abs(self.dy):
-                self.dy = dx_temp
-                if self.dy < 0: y_Dir = "UP" # opposite to intuition
-                else: y_Dir = "DOWN"
-
-
-        if abs(self.dx) < abs(self.dy):return x_Dir
-        # elif abs(self.dx) == abs(self.dy):return y_Dir # just make up defualt when tie
-        else: return y_Dir
+        #     if abs(dx_temp) < abs(self.dx):
+        #         self.dx = dx_temp
+        #         if self.dx < 0: x_Dir = "LEFT"
+        #         else: x_Dir = "RIGHT"
+        #
+        #     elif abs(dy_temp) < abs(self.dy):
+        #         self.dy = dx_temp
+        #         if self.dy < 0: y_Dir = "UP" # opposite to intuition
+        #         else: y_Dir = "DOWN"
+        #
+        #
+        # if abs(self.dx) < abs(self.dy):return x_Dir
+        # # elif abs(self.dx) == abs(self.dy):return y_Dir # just make up defualt when tie
+        # else: return y_Dir
 
     def go(self):
         self.mouse.senseWalls()
@@ -283,27 +291,27 @@ class StrategyTestRendezvous(Strategy):
                 self.mouse.mazeMap.setCellRightAsWall(cell)
             recvData = self.network.retrieveData()
 
-        far_bot_dir = self.check_greatest_distance()
+        dx,dy = self.check_greatest_distance()
         print("far bot direction: %s"%far_bot_dir)
 
         #TODO If you want visited to be accurate it needs to be updated here
-        if far_bot_dir is "LEFT" and self.mouse.canGoLeft():
+        if self.mouse.canGoLeft() and dx[0] < 0:
             self.path.append([self.mouse.x,self.mouse.y])
             self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
             self.mouse.goLeft()
             # whoami makes more sense with a cool id
             self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-        elif far_bot_dir is "RIGHT" and self.mouse.canGoRight():
+        elif self.mouse.canGoRight() and dx[0] > 0:
             self.path.append([self.mouse.x,self.mouse.y])
             self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
             self.mouse.goRight()
             self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-        elif far_bot_dir is "UP" and self.mouse.canGoUp():
+        elif self.mouse.canGoUp() and dy[0] > 0:
             self.path.append([self.mouse.x,self.mouse.y])
             self.isVisited[self.mouse.x][self.mouse.y-1] = 1
             self.mouse.goUp()
             self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-        elif far_bot_dir is "DOWN" and self.mouse.canGoDown():
+        elif self.mouse.canGoDown() and dy[0] < 0:
             self.path.append([self.mouse.x,self.mouse.y])
             self.isVisited[self.mouse.x][self.mouse.y+1] = 1
             self.mouse.goDown()
