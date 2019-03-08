@@ -329,7 +329,6 @@ class StrategyTestRendezvous(Strategy):
                 self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
             else: # if no gradient available, then backtrack
                 if len(self.path) != 0:
-                    print("path" ,s self.path)
                     x, y = self.path.pop()
                     if x < self.mouse.x:
                         self.mouse.goLeft()
