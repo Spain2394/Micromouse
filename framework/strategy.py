@@ -296,6 +296,7 @@ class StrategyTestRendezvous(Strategy):
                 if temp < distance:
                     distance = temp
                     follow_him = bots
+
             return distance,follow_him
 
 
