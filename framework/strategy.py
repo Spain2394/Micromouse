@@ -246,6 +246,7 @@ class StrategyTestRendezvous(Strategy):
 
         # shortest_path_list_x.sort()
         # shortest_path_list_y.sort()
+        order.append()
 
         print("%s,%s"%(shortest_path_list_x,shortest_path_list_y))
         return shortest_path_list_x, shortest_path_list_y
@@ -311,26 +312,26 @@ class StrategyTestRendezvous(Strategy):
         r = 0
         while not moved:
             r+=1
-            if self.mouse.canGoLeft() and self.dx[r] < 0 and not self.isVisited[self.mouse.x-1][self.mouse.y]:
+            if self.mouse.canGoLeft() and self.dx[0] < 0 and not self.isVisited[self.mouse.x-1][self.mouse.y]:
                 self.path.append([self.mouse.x,self.mouse.y])
                 self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
                 self.mouse.goLeft()
                 moved = True
                 # whoami makes more sense with a cool id
                 self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-            elif self.mouse.canGoRight() and self.dx[r] > 0 and not self.isVisited[self.mouse.x+1][self.mouse.y]:
+            elif self.mouse.canGoRight() and self.dx[0] > 0 and not self.isVisited[self.mouse.x+1][self.mouse.y]:
                 self.path.append([self.mouse.x,self.mouse.y])
                 self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
                 self.mouse.goRight()
                 self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
                 move = True
-            elif self.mouse.canGoUp() and self.dy[r] > 0 and not self.isVisited[self.mouse.x][self.mouse.y-1]:
+            elif self.mouse.canGoUp() and self.dy[0] > 0 and not self.isVisited[self.mouse.x][self.mouse.y-1]:
                 self.path.append([self.mouse.x,self.mouse.y])
                 self.isVisited[self.mouse.x][self.mouse.y-1] = 1
                 self.mouse.goUp()
                 self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
                 moved = True
-            elif self.mouse.canGoDown() and self.dy[r] < 0 and not self.isVisited[self.mouse.x][self.mouse.y+1]:
+            elif self.mouse.canGoDown() and self.dy[0] < 0 and not self.isVisited[self.mouse.x][self.mouse.y+1]:
                 self.path.append([self.mouse.x,self.mouse.y])
                 self.isVisited[self.mouse.x][self.mouse.y+1] = 1
                 self.mouse.goDown()
@@ -338,44 +339,49 @@ class StrategyTestRendezvous(Strategy):
                 moved = True
 
             # first see if the bot can go towards gradient
-        print("in the last section")
-        if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
-            self.path.append([self.mouse.x, self.mouse.y])
-            self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
-            self.mouse.goLeft()
-            self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-        elif self.mouse.canGoUp() and not self.isVisited[self.mouse.x][self.mouse.y-1]:
-            self.path.append([self.mouse.x, self.mouse.y])
-            self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
-            self.mouse.goUp()
-            self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-        elif self.mouse.canGoRight() and not self.isVisited[self.mouse.x+1][self.mouse.y]:
-            self.path.append([self.mouse.x, self.mouse.y])
-            self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
-            self.mouse.goRight()
-        elif self.mouse.canGoDown() and not self.isVisited[self.mouse.x][self.mouse.y+1]:
-            self.path.append([self.mouse.x, self.mouse.y])
-            self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
-            self.mouse.goDown()
-            self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-        else: # if no gradient available, then backtrack
-            if len(self.path) !=0:
-                x, y = self.path.pop()
-                if x < self.mouse.x:
-                    self.mouse.goLeft()
-                    states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-                elif x > self.mouse.x:
-                    self.mouse.goRight()
-                    states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-                elif y < self.mouse.y:
-                    self.mouse.goUp()
-                    states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-                elif y > self.mouse.y:
-                    self.mouse.goDown()
-                    states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
             else:
-                self.isBack = True
-            # if len(self.path)
+                print("in the last section")
+                if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
+                    self.path.append([self.mouse.x, self.mouse.y])
+                    self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
+                    self.mouse.goLeft()
+                    self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
+                    moved = True
+                elif self.mouse.canGoUp() and not self.isVisited[self.mouse.x][self.mouse.y-1]:
+                    self.path.append([self.mouse.x, self.mouse.y])
+                    self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
+                    self.mouse.goUp()
+                    self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
+                    moved = True
+                elif self.mouse.canGoRight() and not self.isVisited[self.mouse.x+1][self.mouse.y]:
+                    self.path.append([self.mouse.x, self.mouse.y])
+                    self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
+                    self.mouse.goRight()
+                    moved = True
+                elif self.mouse.canGoDown() and not self.isVisited[self.mouse.x][self.mouse.y+1]:
+                    self.path.append([self.mouse.x, self.mouse.y])
+                    self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
+                    self.mouse.goDown()
+                    self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
+                    moved = True
+                else: # if no gradient available, then backtrack
+                    if len(self.path) !=0:
+                        x, y = self.path.pop()
+                        if x < self.mouse.x:
+                            self.mouse.goLeft()
+                            moved = True
+                        elif x > self.mouse.x:
+                            self.mouse.goRight()
+                            moved = True
+                        elif y < self.mouse.y:
+                            self.mouse.goUp()
+                            moved = True
+                        elif y > self.mouse.y:
+                            self.mouse.goDown()
+                            moved = True
+                    else:
+                        self.isBack = True
+                # if len(self.path)
 
         # if len(self.path) < 10: self.path = self.path[1:]
 
