@@ -296,8 +296,8 @@ class StrategyTestRendezvous(Strategy):
 
         self.dx,self.dy = self.check_greatest_distance()
         if self.iterations > 20:
-            self.dx.sort()
-            self.dy.sort()
+            self.dx.reverse()
+            self.dy.reverse()
         print(self.dx)
         print(self.dy)
         # print("far bot direction: %s,%s"%(dx[0],dy[0]))
