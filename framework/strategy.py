@@ -326,41 +326,44 @@ class StrategyTestRendezvous(Strategy):
 
 
         self.dx,self.dy = self.check_greatest_distance()
+
         print(self.dx)
         print(self.dy)
+        priority = check_priority(self.dx,self.dy)
+
         # print("far bot direction: %s,%s"%(dx[0],dy[0]))
 
         #TODO If you want visited to be accurate it needs to be updated here
         # priority positions
         moved = False
-        r = 4
-        while not moved and r < 4:
-            if self.mouse.canGoLeft() and self.dx[0] < 0 and not self.isVisited[self.mouse.x-1][self.mouse.y]:
+
+        while not moved and r < len(priority):
+            if self.mouse.canGoLeft() and priority[r] is 'L' and not self.isVisited[self.mouse.x-1][self.mouse.y]:
                 self.path.append([self.mouse.x,self.mouse.y])
                 self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
                 self.mouse.goLeft()
                 moved = True
                 # whoami makes more sense with a cool id
                 self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-            elif self.mouse.canGoRight() and self.dx[0] > 0 and not self.isVisited[self.mouse.x+1][self.mouse.y]:
+            elif self.mouse.canGoRight() and priority[r] is 'R' and not self.isVisited[self.mouse.x+1][self.mouse.y]:
                 self.path.append([self.mouse.x,self.mouse.y])
                 self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
                 self.mouse.goRight()
                 self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
                 moved = True
-            elif self.mouse.canGoUp() and self.dy[0] > 0 and not self.isVisited[self.mouse.x][self.mouse.y-1]:
+            elif self.mouse.canGoUp() and priority[r] is 'U' and not self.isVisited[self.mouse.x][self.mouse.y-1]:
                 self.path.append([self.mouse.x,self.mouse.y])
                 self.isVisited[self.mouse.x][self.mouse.y-1] = 1
                 self.mouse.goUp()
                 self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
                 moved = True
-            elif self.mouse.canGoDown() and self.dy[0] < 0 and not self.isVisited[self.mouse.x][self.mouse.y+1]:
+            elif self.mouse.canGoDown() and priority[r] is 'D' and not self.isVisited[self.mouse.x][self.mouse.y+1]:
                 self.path.append([self.mouse.x,self.mouse.y])
                 self.isVisited[self.mouse.x][self.mouse.y+1] = 1
                 self.mouse.goDown()
                 self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
                 moved = True
-            
+
             r +=1  # update prioritys
 
         # If still not moved 1. moved where available
@@ -404,6 +407,7 @@ class StrategyTestRendezvous(Strategy):
                         self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
                 else:
                     self.isBack = True
+
             # if len(self.path)
 
         # if len(self.path) < 10: self.path = self.path[1:]
