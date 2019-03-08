@@ -295,7 +295,7 @@ class StrategyTestRendezvous(Strategy):
             recvData = self.network.retrieveData()
 
         self.dx,self.dy = self.check_greatest_distance()
-        if self.iterations > 20:
+        if self.iterations % 20 == 0:
             self.dx.reverse()
             self.dy.reverse()
         print(self.dx)
