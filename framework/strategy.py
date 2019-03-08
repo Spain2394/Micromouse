@@ -340,6 +340,7 @@ class StrategyTestRendezvous(Strategy):
                         self.mouse.goDown()
                 else:
                     self.isBack = True
+        if len(self.path) < 15: self.path[1:]
 
         # if len(self.path) < 10: self.path = self.path[1:]
 
