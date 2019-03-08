@@ -281,9 +281,9 @@ class StrategyTestRendezvous(Strategy):
         follow_him = -1
         distance = 100 # some big number
         temp = 0
-        print("made it into distance_to_near_neigh")
+        print("made it into distance_to_near_neigh 1")
         for bots in self.neighbors_states:
-            print("made it into distance_to_near_neigh")
+            print("made it into distance_to_near_neigh 1")
             if bots != self.whoami:
                 dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
 
@@ -294,7 +294,7 @@ class StrategyTestRendezvous(Strategy):
                 if temp < distance:
                     distance = temp
                     follow_him = bots
-                    
+
             else:continue
 
         return distance,follow_him
