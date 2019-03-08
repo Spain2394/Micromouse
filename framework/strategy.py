@@ -300,23 +300,23 @@ class StrategyTestRendezvous(Strategy):
         # print("far bot direction: %s,%s"%(dx[0],dy[0]))
 
         #TODO If you want visited to be accurate it needs to be updated here
-        if self.mouse.canGoLeft() and self.dx[0] < 0:
+        if self.mouse.canGoLeft() and self.dx[0] < 0 and not self.isVisited[self.mouse.x-1][self.mouse.y]:
             self.path.append([self.mouse.x,self.mouse.y])
             self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
             self.mouse.goLeft()
             # whoami makes more sense with a cool id
             self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-        elif self.mouse.canGoRight() and self.dx[0] > 0:
+        elif self.mouse.canGoRight() and self.dx[0] > 0 and not self.isVisited[self.mouse.x+1][self.mouse.y]:
             self.path.append([self.mouse.x,self.mouse.y])
             self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
             self.mouse.goRight()
             self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-        elif self.mouse.canGoUp() and self.dy[0] > 0:
+        elif self.mouse.canGoUp() and self.dy[0] > 0 and not self.isVisited[self.mouse.x][self.mouse.y-1]:
             self.path.append([self.mouse.x,self.mouse.y])
             self.isVisited[self.mouse.x][self.mouse.y-1] = 1
             self.mouse.goUp()
             self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y}
-        elif self.mouse.canGoDown() and self.dy[0] < 0:
+        elif self.mouse.canGoDown() and self.dy[0] < 0 and not self.isVisited[self.mouse.x][self.mouse.y+1]:
             self.path.append([self.mouse.x,self.mouse.y])
             self.isVisited[self.mouse.x][self.mouse.y+1] = 1
             self.mouse.goDown()
