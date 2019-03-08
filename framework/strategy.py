@@ -257,16 +257,16 @@ class StrategyTestRendezvous(Strategy):
         print("check priority")
         for i in range(N):
             # go for closest
-            if dx_list[i] < dy_list[i]:
+            if dx_list[i] > dy_list[i]:
                 if dx_list[i] < 0:
                     priority.append('L')
                 else: priority.append('R')
 
             else:
-                if dy_list[i] < 0: priority.append('D')
+                if dy_list[i] > 0: priority.append('D')
                 else: priority.append('U')
 
-            priority.sort()
+            # priority.sort()
 
         print("returning: %s"% priority)
         return priority
