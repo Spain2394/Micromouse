@@ -227,6 +227,9 @@ class StrategyTestRendezvous(Strategy):
     def check_greatest_distance(self):
         x_Dir = None
         y_Dir = None
+        weight_a = 5
+        weight_b = 2
+        weight_c = 1
         print("I'm in")
 
         for bots in self.neighbors_states:
@@ -235,18 +238,19 @@ class StrategyTestRendezvous(Strategy):
             print("dx: %s"%dx_temp)
             print("dy: %s"%dy_temp)
 
-            if abs(dx_temp) > abs(self.dx):
+            # smallest number
+            if abs(dx_temp) < abs(self.dx):
                 self.dx = dx_temp
                 if self.dx < 0: x_Dir = "LEFT"
                 else: x_Dir = "RIGHT"
 
-            elif abs(dy_temp) > abs(self.dy):
+            elif abs(dy_temp) < abs(self.dy):
                 self.dy = dx_temp
                 if self.dy < 0: y_Dir = "UP" # opposite to intuition
                 else: y_Dir = "DOWN"
 
 
-        if abs(self.dx) > abs(self.dy):return x_Dir
+        if abs(self.dx) < abs(self.dy):return x_Dir
         # elif abs(self.dx) == abs(self.dy):return y_Dir # just make up defualt when tie
         else: return y_Dir
 
@@ -340,7 +344,6 @@ class StrategyTestRendezvous(Strategy):
                         self.mouse.goDown()
                 else:
                     self.isBack = True
-        if len(self.path) < 15: self.path[1:]
 
         # if len(self.path) < 10: self.path = self.path[1:]
 
