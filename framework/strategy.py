@@ -290,12 +290,15 @@ class StrategyTestRendezvous(Strategy):
 
                 dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
 
-                temp = (dx_temp**dx_temp + dy_temp**dy_temp)**(1/2)
+                temp_distance = (dx_temp**dx_temp + dy_temp**dy_temp)**(1/2)
 
-                if temp < distance:
-                    distance = temp
+                print("temp%s"%distance)
+                print("distance%s"%distance)
+
+                if temp_distance < distance:
+                    distance = temp_distance
                     follow_him = bots
-                    print("distance%s"%distance)
+
 
             else:continue
 
