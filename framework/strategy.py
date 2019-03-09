@@ -420,7 +420,7 @@ class StrategyTestRendezvous(Strategy):
         # priority positions
         moved = False
         r = 0
-        original_priority = 0
+        original_priority = None
         # maybe when the distance is less than 10 greater than 2: tow
         if distance < distance_thresh:
             print("distance passed: %s"%distance)
@@ -437,7 +437,7 @@ class StrategyTestRendezvous(Strategy):
                 priority[0] = 'U'
             elif self.neighbors_states[near_robot]['direction'] is 'UP':
                 priority[0] = 'D'
-            print("MY PRIORITY:%s" priority[0])
+            print("MY PRIORITY:%s" %priority[0])
 
         if distance < 2:
             # stop, this will likely form pairs
