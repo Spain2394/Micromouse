@@ -511,7 +511,7 @@ class StrategyTestRendezvous(Strategy):
                         self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'DOWN'}
                 else:
                     self.isBack = True
-            if len(self.path) > self.maxPathLength: self.path = self.path[1:]
+        if len(self.path) > self.maxPathLength: self.path = self.path[1:]
 
         sleep(0.5)
 
