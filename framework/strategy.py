@@ -299,6 +299,8 @@ class StrategyTestRendezvous(Strategy):
 
             else:continue
 
+        print("distance: %s"%distance)
+        print("following_him: %s"%follow_him)
         return distance,follow_him
 
 
