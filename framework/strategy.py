@@ -295,6 +295,7 @@ class StrategyTestRendezvous(Strategy):
                 if temp < distance:
                     distance = temp
                     follow_him = bots
+                    print("distance%s"%distance)
 
             else:continue
 
