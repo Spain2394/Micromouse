@@ -390,13 +390,16 @@ class StrategyTestRendezvous(Strategy):
             # priority_temp = priority[0]
             if self.neighbors_states[near_robot]['direction'][0] == 'R':
                 priority[0] = 'L'
+                print('L')
             elif self.neighbors_states[near_robot]['direction'][0] == 'L':
                 priority[0] = 'R'
+                print('L')
             elif self.neighbors_states[near_robot]['direction'][0] == 'U':
                 priority[0] = 'D'
+                print('L')
             elif self.neighbors_states[near_robot]['direction'][0] == 'D':
                 priority[0] = 'U'
-            print(priority)
+                print('L')
 
         while not moved and r < len(priority):
             if self.mouse.canGoLeft() and priority[r] is 'L' and not self.isVisited[self.mouse.x-1][self.mouse.y]:
