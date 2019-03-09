@@ -336,7 +336,7 @@ class StrategyTestRendezvous(Strategy):
         self.mouse.senseWalls()
         print(self.mouse.getCurrentCell().getWhichIsWall())
         sendData = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y, 'up': not self.mouse.canGoUp(
-        ), 'down': not self.mouse.canGoDown(), 'left': not self.mouse.canGoLeft(), 'right': not self.mouse.canGoRight()}
+        ), 'down': not self.mouse.canGoDown(), 'left': not self.mouse.canGoLeft(), 'right': not self.mouse.canGoRight(), 'direction':self.mouse.direction}
         print(sendData)
         print(self.network.sendStringData(sendData))
 
@@ -349,7 +349,7 @@ class StrategyTestRendezvous(Strategy):
             otherMap = recvData
             cell = self.mouse.mazeMap.getCell(otherMap['x'], otherMap['y'])
             self.isVisited[otherMap['x']][otherMap['y']] = 1
-            self.neighbors_states[otherMap['robot']] = {'robot':otherMap['robot'], 'x': otherMap['x'], 'y': otherMap['y']} # update neighbors_states as received
+            self.neighbors_states[otherMap['robot']] = {'robot':otherMap['robot'], 'x': otherMap['x'], 'y': otherMap['y'], 'direction':self.mouse.direction} # update neighbors_states as received
             print(self.neighbors_states[otherMap['robot']]) # update neighbors_states as received)
             if otherMap['up']:
                 self.mouse.mazeMap.setCellUpAsWall(cell)
@@ -390,7 +390,7 @@ class StrategyTestRendezvous(Strategy):
             print("near robot%s"%near_robot)
             # priority_temp = priority[0]
             print(priority[0])
-            print(self.neighbors_states[near_robot]['x'])
+            print(self.neighbors_states[near_robot]['direction'])
             # print(self.neighbors_states[near_robot]['direction'])
             # if self.neighbors_states[near_robot]['direction'][0] is 'R':
             #     priority[0] = 'L'
