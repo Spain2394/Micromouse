@@ -202,12 +202,13 @@ class StrategyTestRendezvous(Strategy):
     dy = []
     isBack = False
     iterations = 0
+    num_bots = -1
 
     # define number of robots
     def __init__(self, mouse, initPoint,num_bots):
         # add
         self.mouse = mouse
-        num_bots = len(initPoint)
+        self.num_bots = num_bots
         self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(
             self.mouse.mazeMap.height)]
         self.isVisited[self.mouse.x][self.mouse.y] = 1
