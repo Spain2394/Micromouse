@@ -391,6 +391,7 @@ class StrategyTestRendezvous(Strategy):
             # priority_temp = priority[0]
             print(priority[0])
             print(self.neighbors_states[near_robot]['direction'])
+            priority[0] = self.neighbors_states[near_robot]['direction'][0]
             # print(self.neighbors_states[near_robot]['direction'])
             # if self.neighbors_states[near_robot]['direction'][0] is 'R':
             #     priority[0] = 'L'
