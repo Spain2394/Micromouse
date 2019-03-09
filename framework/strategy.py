@@ -254,7 +254,7 @@ class StrategyTestRendezvous(Strategy):
     def check_priority(self, dx_list, dy_list):
         N = len(dx_list)
         dx_list.sort() # make sure you are comparing only the smallest values
-        dy_list.sort()
+        dy_list.sort() # dx and dy are already least -> greatest
         priority = []
         trash = []
         #TODO come up with a second order priority
@@ -264,6 +264,9 @@ class StrategyTestRendezvous(Strategy):
             if i == self.whoami:
                 continue
 
+            # the priority will be based on largest distance,
+            # dx represents robot i's position
+            #
             if dx_list[i] < dy_list[i]:
                 if dx_list[i] < 0:
                     priority.append('L')
@@ -272,6 +275,7 @@ class StrategyTestRendezvous(Strategy):
             else:
                 if dy_list[i] < 0: priority.append('D')
                 else: priority.append('U')
+
 
         print("returning: %s"% priority)
         return priority
