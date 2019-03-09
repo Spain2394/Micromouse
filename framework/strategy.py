@@ -394,6 +394,7 @@ class StrategyTestRendezvous(Strategy):
             print("near robot%s"%near_robot)
             # priority_temp = priority[0]
             print("priority 1: %s"%priority[0])
+            priority[0] =
         if distance < 2:
             # stop, this will likely form pairs
             self.isBack = True
