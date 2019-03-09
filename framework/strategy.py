@@ -366,7 +366,7 @@ class StrategyTestRendezvous(Strategy):
         b = []
         distance = 0
         robot_pose = 0
-        distance_thresh = 2 # change me
+        distance_thresh = 3 # change me
         priority = []
 
         self.dx,self.dy = self.check_greatest_distance() # tug from furthest bot
@@ -387,9 +387,9 @@ class StrategyTestRendezvous(Strategy):
         # maybe when the distance is less than 10 greater than 2: tow
         if distance < distance_thresh:
             print("distance passed: %s"%distance)
-            priority_temp = priority[1]
-            priority[1] = self.neighbors_states[near_robot]['direction'][0]
-            priority[2] = priority_temp
+            priority_temp = priority[0]
+            priority[0] = self.neighbors_states[near_robot]['direction'][0]
+            priority[1] = priority_temp
 
 
 
