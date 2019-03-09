@@ -253,6 +253,8 @@ class StrategyTestRendezvous(Strategy):
 
     def check_priority(self, dx_list, dy_list):
         N = len(dx_list)
+        # priority will be based on 1. weighted distance
+        #
         dx_list.sort() # make sure you are comparing only the smallest values
         dy_list.sort() # dx and dy are already least -> greatest
         priority = []
@@ -263,7 +265,6 @@ class StrategyTestRendezvous(Strategy):
             # go for closest
             if i == self.whoami:
                 continue
-
             # the priority will be based on largest distance,
             # dx represents robot i's position
             #
