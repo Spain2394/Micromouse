@@ -388,13 +388,14 @@ class StrategyTestRendezvous(Strategy):
         if distance < distance_thresh:
             print("distance passed: %s"%distance)
             # priority_temp = priority[0]
-            if self.neighbors_states[near_robot]['direction'][0] == 'R':
+            print(self.neighbors_states[near_robot]['direction'][0])
+            if self.neighbors_states[near_robot]['direction'][0] is 'R':
                 priority[0] = 'L'
                 print('L')
-            elif self.neighbors_states[near_robot]['direction'][0] == 'L':
+            elif self.neighbors_states[near_robot]['direction'][0] is 'L':
                 priority[0] = 'R'
                 print('L')
-            elif self.neighbors_states[near_robot]['direction'][0] == 'U':
+            elif self.neighbors_states[near_robot]['direction'][0] is 'U':
                 priority[0] = 'D'
                 print('L')
             elif self.neighbors_states[near_robot]['direction'][0] == 'D':
@@ -402,26 +403,26 @@ class StrategyTestRendezvous(Strategy):
                 print('L')
 
         while not moved and r < len(priority):
-            if self.mouse.canGoLeft() and priority[r] is 'L' and not self.isVisited[self.mouse.x-1][self.mouse.y]:
+            if self.mouse.canGoLeft() and priority[r] is 'L':
                 self.path.append([self.mouse.x,self.mouse.y])
                 self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
                 self.mouse.goLeft()
                 self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'LEFT'}
                 moved = True
                 # whoami makes more sense with a cool id
-            elif self.mouse.canGoRight() and priority[r] is 'R' and not self.isVisited[self.mouse.x+1][self.mouse.y]:
+            elif self.mouse.canGoRight() and priority[r] is 'R':
                 self.path.append([self.mouse.x,self.mouse.y])
                 self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
                 self.mouse.goRight()
                 self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'RIGHT'}
                 moved = True
-            elif self.mouse.canGoUp() and priority[r] is 'U' and not self.isVisited[self.mouse.x][self.mouse.y-1]:
+            elif self.mouse.canGoUp() and priority[r] is 'U':
                 self.path.append([self.mouse.x,self.mouse.y])
                 self.isVisited[self.mouse.x][self.mouse.y-1] = 1
                 self.mouse.goUp()
                 self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'UP'}
                 moved = True
-            elif self.mouse.canGoDown() and priority[r] is 'D' and not self.isVisited[self.mouse.x][self.mouse.y+1]:
+            elif self.mouse.canGoDown() and priority[r] is 'D':
                 self.path.append([self.mouse.x,self.mouse.y])
                 self.isVisited[self.mouse.x][self.mouse.y+1] = 1
                 self.mouse.goDown()
@@ -472,10 +473,6 @@ class StrategyTestRendezvous(Strategy):
                         self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'DOWN'}
                 else:
                     self.isBack = True
-
-            # if len(self.path)
-
-        # if len(self.path) < 10: self.path = self.path[1:]
 
         sleep(0.5)
 
