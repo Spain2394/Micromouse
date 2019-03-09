@@ -366,7 +366,7 @@ class StrategyTestRendezvous(Strategy):
         b = []
         distance = 0
         robot_pose = 0
-        distance_thresh = 10 # change me
+        distance_thresh = 3 # change me
 
         self.dx,self.dy = self.check_greatest_distance() # tug from furthest bot
 
