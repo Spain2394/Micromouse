@@ -426,8 +426,14 @@ class StrategyTestRendezvous(Strategy):
             print("near robot%s"%near_robot)
             # priority_temp = priority[0]
             print("priority 1: %s"%priority[0])
-            if self.neighbors_states[]
-            priority[0] = self.neighbors_states[near_robot]['direction'][0]
+            if self.neighbors_states[near_robot]['direction'] is 'RIGHT':
+                priority[0] = 'L'
+            elif self.neighbors_states[near_robot]['direction'] is 'LEFT':
+                priority[0] = 'R'
+            elif self.neighbors_states[near_robot]['direction'] is 'DOWN':
+                priority[0] = 'U'
+            elif self.neighbors_states[near_robot]['direction'] is 'UP':
+                priority[0] = 'D'
 
         if distance < 2:
             # stop, this will likely form pairs
