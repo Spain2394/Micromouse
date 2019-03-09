@@ -203,7 +203,7 @@ class StrategyTestRendezvous(Strategy):
     isBack = False
     iterations = 0
     num_bots = -1
-    starting_point = []
+    starting_point = ()
 
     # define number of robots
     def __init__(self, mouse, initPoint,num_bots):
