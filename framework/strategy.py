@@ -203,6 +203,7 @@ class StrategyTestRendezvous(Strategy):
     isBack = False
     iterations = 0
     num_bots = -1
+    starting_pose = ()
 
     # define number of robots
     def __init__(self, mouse, initPoint,num_bots):
@@ -219,6 +220,7 @@ class StrategyTestRendezvous(Strategy):
             else:
                 self.whoami = i
                 print("whoami:%s"%self.whoami)
+        self.starting_pose = initPoint[self.whoami]
         self.network = NetworkInterface()
         self.network.initSocket()
         self.network.startReceiveThread()
@@ -334,6 +336,12 @@ class StrategyTestRendezvous(Strategy):
         # # elif abs(self.dx) == abs(self.dy):return y_Dir # just make up defualt when tie
         # else: return y_Dir
 
+    # def find_best_move(self,goal):
+    #     # goal = furthest robot position?
+    #     g = 0
+    #     h =
+
+
     def go(self):
         self.iterations +=1
         print("ITER: %s"%self.iterations)
@@ -394,7 +402,7 @@ class StrategyTestRendezvous(Strategy):
             print("near robot%s"%near_robot)
             # priority_temp = priority[0]
             print("priority 1: %s"%priority[0])
-    
+
         if distance < 2:
             # stop, this will likely form pairs
             self.isBack = True
