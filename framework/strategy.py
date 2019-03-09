@@ -286,6 +286,7 @@ class StrategyTestRendezvous(Strategy):
         print("made it into distance_to_near_neigh 1")
         for bots in range(1,self.num_bots+1):
             print("made it into distance_to_near_neigh 2")
+            print("bots%s"%bots)
             if bots == self.whoami:
                 continue
             else:
