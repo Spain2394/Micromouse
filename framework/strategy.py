@@ -370,7 +370,7 @@ class StrategyTestRendezvous(Strategy):
         b = []
         distance = 0
         robot_pose = 0
-        distance_thresh = 3 # change me
+        distance_thresh = 5 # change me
         priority = []
 
         self.dx,self.dy = self.check_greatest_distance() # tug from furthest bot
@@ -394,7 +394,7 @@ class StrategyTestRendezvous(Strategy):
             print("near robot%s"%near_robot)
             # priority_temp = priority[0]
             print("priority 1: %s"%priority[0])
-        if distance < 1:
+        if distance < 2:
             # stop, this will likely form pairs
             self.isBack = True
 
