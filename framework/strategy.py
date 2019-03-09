@@ -285,7 +285,9 @@ class StrategyTestRendezvous(Strategy):
         print("made it into distance_to_near_neigh 1")
         for bots in range(1,self.num_bots+1):
             print("made it into distance_to_near_neigh 2")
-            if bots != self.whoami:
+            if bots = self.whoami:
+                continue
+            else:
                 dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
 
                 dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
@@ -298,9 +300,7 @@ class StrategyTestRendezvous(Strategy):
                 if temp_distance < distance:
                     distance = temp_distance
                     follow_him = bots
-
-
-            else:continue
+                    
 
         print("distance: %s"%distance)
         print("following_him: %s"%follow_him)
