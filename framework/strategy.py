@@ -203,6 +203,7 @@ class StrategyTestRendezvous(Strategy):
     isBack = False
     iterations = 0
     num_bots = -1
+    starting_point = []
 
     # define number of robots
     def __init__(self, mouse, initPoint,num_bots):
@@ -219,12 +220,22 @@ class StrategyTestRendezvous(Strategy):
             else:
                 self.whoami = i
                 print("whoami:%s"%self.whoami)
+        self.starting_point = initPoint[self.whoami] # give me a tuple back
         self.network = NetworkInterface()
         self.network.initSocket()
         self.network.startReceiveThread()
 
     def checkFinished(self):
         return self.isBack
+
+
+    def BestMove(self):
+        g = 0
+        h = (self.mouse.x,self.mouse.y)
+        f = g+h
+        goal_reached = False
+        open = [(f,h,g,start)]
+
 
 
     def check_greatest_distance(self):
