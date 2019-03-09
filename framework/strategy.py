@@ -366,7 +366,7 @@ class StrategyTestRendezvous(Strategy):
         b = []
         distance = 0
         robot_pose = 0
-        distance_thresh = 10# change me
+        distance_thresh = 3 # change me
         priority = []
 
         self.dx,self.dy = self.check_greatest_distance() # tug from furthest bot
@@ -390,6 +390,7 @@ class StrategyTestRendezvous(Strategy):
             print("near robot%s"%near_robot)
             # priority_temp = priority[0]
             print(priority[0])
+            print(self.neighbors_states[near_robot])
             # print(self.neighbors_states[near_robot]['direction'])
             # if self.neighbors_states[near_robot]['direction'][0] is 'R':
             #     priority[0] = 'L'
@@ -405,7 +406,6 @@ class StrategyTestRendezvous(Strategy):
             #     print('L')
 
         while not moved and r < len(priority):
-            print("looped")
             if self.mouse.canGoLeft() and priority[r] is 'L' and not self.isVisited[self.mouse.x-1][self.mouse.y]:
                 self.path.append([self.mouse.x,self.mouse.y])
                 self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
