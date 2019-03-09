@@ -222,7 +222,7 @@ class StrategyTestRendezvous(Strategy):
                 self.whoami = i
                 print("whoami:%s"%self.whoami)
 
-        self.starting_pose = [initPoint[str(self.whoami)][0],initPoint[str(self.whoami)][1]]
+        self.starting_pose = initPoint[str(self.whoami)]
         self.network = NetworkInterface()
         self.network.initSocket()
         self.network.startReceiveThread()
