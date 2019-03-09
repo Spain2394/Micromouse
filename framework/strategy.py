@@ -387,6 +387,7 @@ class StrategyTestRendezvous(Strategy):
         # maybe when the distance is less than 10 greater than 2: tow
         if distance < distance_thresh:
             print("distance passed: %s"%distance)
+            print("near robot%s"%near_robot)
             # priority_temp = priority[0]
             print(self.neighbors_states[near_robot]['direction'][0])
             if self.neighbors_states[near_robot]['direction'][0] == 'R':
