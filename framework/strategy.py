@@ -230,7 +230,6 @@ class StrategyTestRendezvous(Strategy):
     def checkFinished(self):
         return self.isBack
 
-
     def check_greatest_distance(self):
         x_Dir = None
         y_Dir = None
@@ -291,6 +290,9 @@ class StrategyTestRendezvous(Strategy):
         follow_him = -1
         distance = 100 # some big number
         temp_distance = 0
+        cost = 2
+
+
         print("made it into distance_to_near_neigh 1")
         for bots in range(1,self.num_bots+1):
             print("made it into distance_to_near_neigh 2")
@@ -342,6 +344,13 @@ class StrategyTestRendezvous(Strategy):
     #     # goal = furthest robot position?
     #     g = 0
     #     h =
+
+    # def find_best_move(self,target):
+    #     g = 0
+    #     h = self.starting_pose
+    #     f = g + h
+    #     open = [(f,h,g,)]
+
 
 
     def go(self):
