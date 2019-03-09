@@ -398,7 +398,7 @@ class StrategyTestRendezvous(Strategy):
                 priority[0] = 'U'
 
 
-        print("my priority is: %s"%priority[0])
+        print(priority[0])
 
             # priority[1] = priority_temp
 
