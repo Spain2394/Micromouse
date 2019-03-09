@@ -253,7 +253,6 @@ class StrategyTestRendezvous(Strategy):
 
     def check_priority(self, dx_list, dy_list):
         N = len(dx_list)
-        # priority will be based 
         dx_list.sort() # make sure you are comparing only the smallest values
         dy_list.sort() # dx and dy are already least -> greatest
         priority = []
@@ -395,7 +394,7 @@ class StrategyTestRendezvous(Strategy):
             print("near robot%s"%near_robot)
             # priority_temp = priority[0]
             print("priority 1: %s"%priority[0])
-            priority[0] =
+    
         if distance < 2:
             # stop, this will likely form pairs
             self.isBack = True
