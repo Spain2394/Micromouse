@@ -229,12 +229,12 @@ class StrategyTestRendezvous(Strategy):
         return self.isBack
 
 
-    def BestMove(self):
-        g = 0
-        h = (self.mouse.x,self.mouse.y)
-        f = g+h
-        goal_reached = False
-        open = [(f,h,g,start)]
+    # def BestMove(self):
+    #     g = 0
+    #     h = (self.mouse.x,self.mouse.y)
+    #     f = g+h
+    #     goal_reached = False
+    #     open = [(f,h,g,start)]
 
 
 
