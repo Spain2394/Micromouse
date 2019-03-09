@@ -373,6 +373,7 @@ class StrategyTestRendezvous(Strategy):
         b = []
         distance = 0
         robot_pose = 0
+        thresh
 
         self.dx,self.dy = self.check_greatest_distance() # tug from furthest bot
 
@@ -385,9 +386,6 @@ class StrategyTestRendezvous(Strategy):
         distance, near_robot = self.distance_to_near_neigh() #
         print("distance to enemy: %s"%distance)
         print("near_robot: %s"%near_robot)
-
-
-
 
         # print("far bot direction: %s,%s"%(dx[0],dy[0]))
 
