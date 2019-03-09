@@ -214,7 +214,7 @@ class StrategyTestRendezvous(Strategy):
         self.isVisited[self.mouse.x][self.mouse.y] = 1
         for i in range(1, num_bots + 1):
             if initPoint[str(i)] != (self.mouse.x, self.mouse.y):
-                self.neighbors_states[i] = {'robot': i, 'x': initPoint[str(i)][0], 'y': initPoint[str(i)][1],'direction':'UP'}
+                self.neighbors_states[i] = {'robot': i, 'x': initPoint[str(i)][0], 'y': initPoint[str(i)][1], 'direction':'UP'}
                 print(self.neighbors_states[i])
             else:
                 self.whoami = i
