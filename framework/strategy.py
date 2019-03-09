@@ -282,7 +282,7 @@ class StrategyTestRendezvous(Strategy):
         # closest_bot = {}
         follow_him = -1
         distance = 100 # some big number
-        temp = 0
+        temp_distance = 0
         print("made it into distance_to_near_neigh 1")
         for bots in range(1,self.num_bots+1):
             print("made it into distance_to_near_neigh 2")
