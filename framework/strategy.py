@@ -366,6 +366,7 @@ class StrategyTestRendezvous(Strategy):
         b = []
         distance = 0
         robot_pose = 0
+        distance_thresh = 10 # change me
 
         self.dx,self.dy = self.check_greatest_distance() # tug from furthest bot
 
@@ -376,15 +377,16 @@ class StrategyTestRendezvous(Strategy):
         priority = self.check_priority(a, b) # go through top tugs from nearby bots
         print("priority%s"%priority)
         distance, near_robot = self.distance_to_near_neigh() #
-        print("distance to enemy: %s"%distance)
-        print("near_robot: %s"%near_robot)
-
         # print("far bot direction: %s,%s"%(dx[0],dy[0]))
 
         #TODO If you want visited to be accurate it needs to be updated here
         # priority positions
         moved = False
         r = 0
+        if distance < distance_thresh:
+            priority[1] = 'L' if (self.neighbors_states[near_robot]['x'] - self.mouse.x) < 0 else 'R'
+            priority[2] = 'D' if (self.neighbors_states[near_robot]['y'] - self.mouse.y) < 0 else 'U'
+
         while not moved and r < len(priority):
             if self.mouse.canGoLeft() and priority[r] is 'L' and not self.isVisited[self.mouse.x-1][self.mouse.y]:
                 self.path.append([self.mouse.x,self.mouse.y])
