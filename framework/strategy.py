@@ -420,11 +420,14 @@ class StrategyTestRendezvous(Strategy):
         # priority positions
         moved = False
         r = 0
+        original_priority = 0
         # maybe when the distance is less than 10 greater than 2: tow
         if distance < distance_thresh:
             print("distance passed: %s"%distance)
             print("near robot%s"%near_robot)
             # priority_temp = priority[0]
+            original_priority = priority[0]
+            priority[1] = original_priority
             print("priority 1: %s"%priority[0])
             if self.neighbors_states[near_robot]['direction'] is 'RIGHT':
                 priority[0] = 'L'
