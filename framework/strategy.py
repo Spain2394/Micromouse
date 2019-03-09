@@ -204,7 +204,7 @@ class StrategyTestRendezvous(Strategy):
     iterations = 0
     num_bots = -1
     # starting_pose = ()
-    starting_pose = []
+    starting_pose = ()
 
     # define number of robots
     def __init__(self, mouse, initPoint,num_bots):
@@ -222,7 +222,7 @@ class StrategyTestRendezvous(Strategy):
                 self.whoami = i
                 print("whoami:%s"%self.whoami)
 
-        self.starting_pose = [initPoint[self.whoami][0],initPoint[self.whoami][1]]
+        self.starting_pose = [initPoint[str(self.whoami)][0],initPoint[str(self.whoami)][1]]
         self.network = NetworkInterface()
         self.network.initSocket()
         self.network.startReceiveThread()
