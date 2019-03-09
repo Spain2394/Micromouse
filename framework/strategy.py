@@ -300,19 +300,6 @@ class StrategyTestRendezvous(Strategy):
         return distance,follow_him
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     # def distance_to_you(self):
     #     distance = -1
 
