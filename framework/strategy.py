@@ -302,6 +302,7 @@ class StrategyTestRendezvous(Strategy):
                     print("distance: %s"%distance)
                     print("following_him: %s"%follow_him)
 
+        print("distance: %s"%distance)
         return distance,follow_him
 
 
