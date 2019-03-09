@@ -385,7 +385,7 @@ class StrategyTestRendezvous(Strategy):
         moved = False
         r = 0
         # maybe when the distance is less than 10 greater than 2: tow
-        if distance < distance_thresh:
+        if distance < distance_thresh and distance > 2:
             print("distance passed: %s"%distance)
             print("near robot%s"%near_robot)
             # priority_temp = priority[0]
@@ -405,6 +405,10 @@ class StrategyTestRendezvous(Strategy):
             elif self.neighbors_states[near_robot]['direction'][0] is 'D':
                 priority[0] = 'U'
                 print('L')
+        elif direction < 2:
+            priority[0] = self.neighbors_states[near_robot]['direction'][0]
+
+
 
         while not moved and r < len(priority):
             if self.mouse.canGoLeft() and priority[r] is 'L' and not self.isVisited[self.mouse.x-1][self.mouse.y]:
