@@ -388,7 +388,15 @@ class StrategyTestRendezvous(Strategy):
         if distance < distance_thresh:
             print("distance passed: %s"%distance)
             # priority_temp = priority[0]
-            priority[0] = self.neighbors_states[near_robot]['direction'][0]
+            if self.neighbors_states[near_robot]['direction'][0] is 'R':
+                priority[0] = 'L'
+            elif self.neighbors_states[near_robot]['direction'][0] is 'L':
+                priority[0] = 'R'
+            elif self.neighbors_states[near_robot]['direction'][0] is 'U':
+                priority[0] = 'D'
+            elif self.neighbors_states[near_robot]['direction'][0] is 'D':
+                priority[0] = 'U'
+
             # priority[1] = priority_temp
 
 
