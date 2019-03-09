@@ -435,7 +435,7 @@ class StrategyTestRendezvous(Strategy):
             elif self.neighbors_states[near_robot]['direction'] is 'UP':
                 priority[0] = 'D'
 
-        if distance < 2:
+        if distance < 1:
             # stop, this will likely form pairs
             self.isBack = True
 
