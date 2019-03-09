@@ -204,10 +204,10 @@ class StrategyTestRendezvous(Strategy):
     iterations = 0
 
     # define number of robots
-    def __init__(self, mouse, initPoint, num_bots):
+    def __init__(self, mouse, initPoint,num_bots):
         # add
         self.mouse = mouse
-        # num_bots = len(initPoint)
+        num_bots = len(initPoint)
         self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(
             self.mouse.mazeMap.height)]
         self.isVisited[self.mouse.x][self.mouse.y] = 1
@@ -283,7 +283,7 @@ class StrategyTestRendezvous(Strategy):
         temp = 0
         print("made it into distance_to_near_neigh 1")
         for bots in range(1,self.num_bots+1):
-            print("made it into distance_to_near_neigh 2")
+            print("made it into distance_to_near_neigh 1")
             if bots != self.whoami:
                 dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
 
