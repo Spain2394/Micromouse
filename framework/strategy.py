@@ -295,16 +295,12 @@ class StrategyTestRendezvous(Strategy):
 
                 temp_distance = (dx_temp**dx_temp + dy_temp**dy_temp)**(1/2)
 
-                print("temp%s"%distance)
-                print("distance%s"%distance)
-
                 if temp_distance < distance:
                     distance = temp_distance
                     follow_him = bots
+                    print("distance: %s"%distance)
+                    print("following_him: %s"%follow_him)
 
-
-        print("distance: %s"%distance)
-        print("following_him: %s"%follow_him)
         return distance,follow_him
 
 
