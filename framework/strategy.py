@@ -202,17 +202,16 @@ class StrategyTestRendezvous(Strategy):
     dy = []
     isBack = False
     iterations = 0
-    num_bots = -1
 
     # define number of robots
-    def __init__(self, mouse, initPoint):
+    def __init__(self, mouse, initPoint, num_bots):
         # add
         self.mouse = mouse
         # num_bots = len(initPoint)
         self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(
             self.mouse.mazeMap.height)]
         self.isVisited[self.mouse.x][self.mouse.y] = 1
-        for i in range(1, self.num_bots + 1):
+        for i in range(1, num_bots + 1):
             if initPoint[str(i)] != (self.mouse.x, self.mouse.y):
                 self.neighbors_states[i] = {'robot': i, 'x': initPoint[str(i)][0], 'y': initPoint[str(i)][1]}
                 print(self.neighbors_states[i])
@@ -373,7 +372,6 @@ class StrategyTestRendezvous(Strategy):
         b = []
         distance = 0
         robot_pose = 0
-        thresh
 
         self.dx,self.dy = self.check_greatest_distance() # tug from furthest bot
 
@@ -386,6 +384,9 @@ class StrategyTestRendezvous(Strategy):
         distance, near_robot = self.distance_to_near_neigh() #
         print("distance to enemy: %s"%distance)
         print("near_robot: %s"%near_robot)
+
+
+
 
         # print("far bot direction: %s,%s"%(dx[0],dy[0]))
 
