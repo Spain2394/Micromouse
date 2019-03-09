@@ -396,6 +396,7 @@ class StrategyTestRendezvous(Strategy):
                 priority[0] = 'D'
             elif self.neighbors_states[near_robot]['direction'][0] is 'D':
                 priority[0] = 'U'
+            print("my priority is:%s"%priority[0])
 
             # priority[1] = priority_temp
 
