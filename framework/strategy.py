@@ -203,7 +203,6 @@ class StrategyTestRendezvous(Strategy):
     isBack = False
     iterations = 0
     num_bots = -1
-    starting_point = ()
 
     # define number of robots
     def __init__(self, mouse, initPoint,num_bots):
@@ -220,22 +219,12 @@ class StrategyTestRendezvous(Strategy):
             else:
                 self.whoami = i
                 print("whoami:%s"%self.whoami)
-        self.starting_point = initPoint[self.whoami] # give me a tuple back
         self.network = NetworkInterface()
         self.network.initSocket()
         self.network.startReceiveThread()
 
     def checkFinished(self):
         return self.isBack
-
-
-    # def BestMove(self):
-    #     g = 0
-    #     h = (self.mouse.x,self.mouse.y)
-    #     f = g+h
-    #     goal_reached = False
-    #     open = [(f,h,g,start)]
-
 
 
     def check_greatest_distance(self):
@@ -264,8 +253,7 @@ class StrategyTestRendezvous(Strategy):
 
     def check_priority(self, dx_list, dy_list):
         N = len(dx_list)
-        # priority will be based on 1. weighted distance
-        #
+        # priority will be based 
         dx_list.sort() # make sure you are comparing only the smallest values
         dy_list.sort() # dx and dy are already least -> greatest
         priority = []
@@ -276,6 +264,7 @@ class StrategyTestRendezvous(Strategy):
             # go for closest
             if i == self.whoami:
                 continue
+
             # the priority will be based on largest distance,
             # dx represents robot i's position
             #
@@ -406,6 +395,7 @@ class StrategyTestRendezvous(Strategy):
             print("near robot%s"%near_robot)
             # priority_temp = priority[0]
             print("priority 1: %s"%priority[0])
+            priority[0] =
         if distance < 2:
             # stop, this will likely form pairs
             self.isBack = True
