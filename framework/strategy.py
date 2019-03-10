@@ -4,7 +4,7 @@
 
 from task import Strategy, NetworkInterface
 from time import sleep
-from math import *
+import math
 
 
 class StrategyTestProgress(Strategy):
@@ -383,8 +383,8 @@ class StrategyTestRendezvous(Strategy):
             if dy_temp > dy: dy = dy_temp
 
         print("out of centroid loop")
-        # weighted_x = math.floor(((dx/dy)*(self.mouse.x + dx))/2)
-        # weighted_y = math.floor(((dy/dx)*(self.mouse.y + dy))/2)
+        weighted_x = math.floor(((dx/dy)*(self.mouse.x + dx))/2)
+        weighted_y = math.floor(((dy/dx)*(self.mouse.y + dy))/2)
         print("weighted_x: ",weighted_x)
 
         centroid = (weighted_x, weighted_y)
