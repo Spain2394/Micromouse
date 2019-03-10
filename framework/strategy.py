@@ -194,7 +194,7 @@ class StrategyTestRendezvous(Strategy):
     isVisited = []
     path = []
     network = None
-    neighbors_states = {}
+    neighbors_states = {} # group states including self
     topological_neighbors = []
 
     stop_condition = False
@@ -219,12 +219,11 @@ class StrategyTestRendezvous(Strategy):
             self.mouse.mazeMap.height)]
         self.isVisited[self.mouse.x][self.mouse.y] = 1
         for i in range(1, num_bots + 1):
-            if initPoint[str(i)] != (self.mouse.x, self.mouse.y):
-                self.neighbors_states[i] = {'robot': i, 'x': initPoint[str(i)][0], 'y': initPoint[str(i)][1], 'direction':'UP'}
-                print(self.neighbors_states[i])
-            else:
+            if initPoint[str(i)] == (self.mouse.x, self.mouse.y):
                 self.whoami = i
-                # print("whoami:%s"%self.whoami)
+            self.neighbors_states[i] = {'robot': i, 'x': initPoint[str(i)][0], 'y': initPoint[str(i)][1], 'direction':'UP'}
+            # print(self.neighbors_states[i])
+            # print("whoami:%s"%self.whoami)
 
         self.starting_pose = initPoint[str(self.whoami)]
         self.network = NetworkInterface()
