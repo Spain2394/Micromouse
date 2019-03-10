@@ -443,7 +443,8 @@ class StrategyTestRendezvous(Strategy):
 
         group_centroid = ()
         self.centroid = self.Centroid()
-        # group_centroid = self.GroupCentroid()
+        group_centroid = self.GroupCentroid()
+        print("group centroid", group_centroid)
 
         if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
             self.path.append([self.mouse.x, self.mouse.y])
