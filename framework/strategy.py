@@ -364,7 +364,7 @@ class StrategyTestRendezvous(Strategy):
     #     f = g + h
     #     open = [(f,h,g,)]
 
-    def getGoodMoved(self):
+    # def getGoodMoved(self):
         # going straiht is good
         # go towards target
         # target defined by centroid
