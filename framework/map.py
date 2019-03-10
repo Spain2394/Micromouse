@@ -50,9 +50,10 @@ class Cell:
 		return whichIsWall
 
 	# addition
+	# take mouse cell and mouse direction 
 	def getNoWall(self,direction):
 		noWall = {}
-		noWall = {'Up':self.hasUpWall,'Down':self.hasDownWall,'Right':self.hasRightWall,'Left':self.hasLeftWall}
+		noWall = {'UP':self.hasUpWall,'DOWN':self.hasDownWall,'RIGHT':self.hasRightWall,'LEFT':self.hasLeftWall}
 		return noWall[direction]
 
 class Map:
