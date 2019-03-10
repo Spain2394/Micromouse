@@ -381,7 +381,7 @@ class StrategyTestRendezvous(Strategy):
             if dy_temp > dy: dy = dy_temp
 
         print("centroid: %s"%centroid)
-        centroid = (((dx/dy)* (self.mouse.x + dx)),(dy/dx) * (self.mouse.y + dy))
+        centroid = ((dx/dy)* (self.mouse.x + dx),(dy/dx) * (self.mouse.y + dy))
 
 
 
