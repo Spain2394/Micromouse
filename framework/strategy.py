@@ -422,6 +422,7 @@ class StrategyTestRendezvous(Strategy):
         # how long can mouse go in direction,
         print("got into distance to cell")
         move_dir = {'Up': [0,-1],'Down': [0,1],'Left': [-1,0],'Right': [1,0]}
+        print(move_dir)
         current_cell = list(cell) # copy the current cell of robot
         check = True
         # mazemap allows me to get cell object which cas getWhichIsWall
