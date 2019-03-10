@@ -423,6 +423,7 @@ class StrategyTestRendezvous(Strategy):
         print("got into distance to cell")
         print("cellx:",cell.x)
         print("celly:",cell.y)
+        open_distance = 0
         move_dir = {'Up': [0,-1],'Down': [0,1],'Left': [-1,0],'Right': [1,0]}
         print(move_dir)
         current_cell = (cell.x,cell.y) # copy the current cell of robot
@@ -433,11 +434,11 @@ class StrategyTestRendezvous(Strategy):
         print (self.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(direction))
         while check:
             if self.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(direction):
-                distance +=1
+                open_distance +=1
                 current_cell[0] = move_dir[direction][0]
                 current_cell[1] = move_dir[direction][1]
             else: check = False
-        return distance
+        return open_distance
 
 
     def go(self):
