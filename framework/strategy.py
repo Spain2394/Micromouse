@@ -441,6 +441,7 @@ class StrategyTestRendezvous(Strategy):
 
         if distance < 1:
             # stop, this will likely form pairs
+            # trail your neighbot
             if near_robot > self.whoami:
                 priority[0] = self.neighbors_states[near_robot]['direction'][0]
             # self.isBack = True
