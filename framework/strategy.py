@@ -400,26 +400,29 @@ class StrategyTestRendezvous(Strategy):
     def GroupCentroid(self):
         area = 0
         group_centroid = ()
-        weights = 0
-        dx = 0
-        dy = 0
-        dx_temp = 0
-        dy_temp = 0
-        weighted_x = 0
-        weighted_y = 0
-
+        sumCx = 0
+        sumCy = 0
+        sumAc = 0
+        lstP = []
 
         print("centroid function")
-        for bot in self.neighbors_states:
-            dx_temp = abs(self.neighbors_states[bot]['x']-self.mouse.x)
-            dy_temp = abs(self.neighbors_states[bot]['y']-self.mouse.y)
-            if dx_temp > dx: dx = dx_temp
-            if dy_temp > dy: dy = dy_temp
+        for bot in range(1,num_bots):
+            lstP[i] = self.neighbors_states[i]
+            cX = (lstP[i]['x']+lstP[i+1]['x'])*(lstP[i]['x']*lstP[i+1]['x']-lstP[i+1]['x']*lstP[i]['x'])
+            cY = (lstP[i]['y']+lstP[i+1]['y'])*(lstP[i]['y']*lstP[i+1]['y']-lstP[i+1]['y']*lstP[i]['y'])
+            pA = (lstP[i]['x']*lstP[i+1]['y'])-(lstP[i+1]['x']*lstP[i]['y'])
+            sumCx+=cX
+            sumCy+=cY
+            sumAc+=pA
+            print(cX,cY,pA)
+        ar = sumAc/2.0
+        print(ar)
+        centr = ((1.0/(6.0*ar))*sumCx,(1.0/(6.0*ar))*sumCy)
+        return centr
 
-        print("out of centroid loop")
-        weighted_x = math.floor(((dx/dy)*(self.mouse.x + dx))/2)
-        weighted_y = math.floor(((dy/dx)*(self.mouse.y + dy))/2)
-        print("weighted_x: ",weighted_x)
+
+
+        print("weighted_x: (%s,%s)"%(weighted_x,weighted_x))
 
         group_centroid = (weighted_x, weighted_y)
         return group_centroid
