@@ -420,14 +420,6 @@ class StrategyTestRendezvous(Strategy):
         centr = ((1.0/(6.0*ar))*sumCx,(1.0/(6.0*ar))*sumCy)
         return centr
 
-
-
-        print("weighted_x: (%s,%s)"%(weighted_x,weighted_x))
-
-        group_centroid = (weighted_x, weighted_y)
-        return group_centroid
-
-
     def go(self):
         self.iterations +=1
         print("ITER: %s"%self.iterations)
@@ -459,7 +451,10 @@ class StrategyTestRendezvous(Strategy):
                 self.mouse.mazeMap.setCellRightAsWall(cell)
             recvData = self.network.retrieveData()
 
+
+        group_centroid = ()
         self.centroid = self.Centroid()
+        group_centroid = self.GroupCentroid()
 
         if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
             self.path.append([self.mouse.x, self.mouse.y])
