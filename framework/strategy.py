@@ -303,7 +303,7 @@ class StrategyTestRendezvous(Strategy):
         follow_him = -1
         distance = 100 # some big number
         temp_distance = 0
-        cost = 2
+        cost = 5
 
 
         print("made it into distance_to_near_neigh 1")
