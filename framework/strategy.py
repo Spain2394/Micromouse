@@ -397,17 +397,12 @@ class StrategyTestRendezvous(Strategy):
         return centroid
 
     def GroupCentroid(self):
-        area = 0
         group_centroid = ()
         sumCx = 0
         sumCy = 0
         sumAc = 0
         lstP = self.neighbors_states.copy() # copy the neighbors_states
-        cX = 0
-        cY = 0
-        ar = 0
-        centr = ()
-        pA = 0
+
 
         print("group centroid function")
         for i in range(1,self.num_bots): # one less than total number vertices
@@ -416,7 +411,6 @@ class StrategyTestRendezvous(Strategy):
             # print(lstP[i]['x'])
             # print(self.num_bots)
             # print(lstP[i+1]['x'])
-
             cX = (lstP[i]['x']+lstP[i+1]['x'])*(lstP[i]['x']*lstP[i+1]['x']-lstP[i+1]['x']*lstP[i]['x'])
             cY = (lstP[i]['y']+lstP[i+1]['y'])*(lstP[i]['y']*lstP[i+1]['y']-lstP[i+1]['y']*lstP[i]['y'])
             pA = (lstP[i]['x']*lstP[i+1]['y'])-(lstP[i+1]['x']*lstP[i]['y'])
