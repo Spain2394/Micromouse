@@ -411,8 +411,8 @@ class StrategyTestRendezvous(Strategy):
             # print(lstP[i]['x'])
             # print(self.num_bots)
             # print(lstP[i+1]['x'])
-            cX = (lstP[i]['x']+lstP[i+1]['x'])*(lstP[i]['x']*lstP[i+1]['x']-lstP[i+1]['x']*lstP[i]['x'])
-            cY = (lstP[i]['y']+lstP[i+1]['y'])*(lstP[i]['y']*lstP[i+1]['y']-lstP[i+1]['y']*lstP[i]['y'])
+            cX = (lstP[i]['x']+lstP[i+1]['x'])*(lstP[i]['x']*lstP[i+1]['y']-lstP[i+1]['x']*lstP[i]['y'])
+            cY = (lstP[i]['y']+lstP[i+1]['y'])*(lstP[i]['x']*lstP[i+1]['y']-lstP[i+1]['x']*lstP[i]['y'])
             pA = (lstP[i]['x']*lstP[i+1]['y'])-(lstP[i+1]['x']*lstP[i]['y'])
             print("pA%s"%pA)
             sumCx+=cX
