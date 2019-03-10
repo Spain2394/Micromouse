@@ -424,13 +424,12 @@ class StrategyTestRendezvous(Strategy):
         print("cellx:",cell.x)
         print("celly:",cell.y)
         open_distance = 0
-        move_dir = {'Up': [0,-1],'Down': [0,1],'Left': [-1,0],'Right': [1,0],
-        'UP': [0,-1],'DOWN': [0,1],'LEFT': [-1,0],'RIGHT': [1,0]}
+        move_dir = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
         print(move_dir)
         current_cell = (cell.x,cell.y) # copy the current cell of robot
         print(current_cell)
         check = True
-        print('direction: ',direction)
+        print('direction: ',direction[0])
         # mazemap allows me to get cell object which cas getWhichIsWall
         print (self.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(direction))
         while check:
