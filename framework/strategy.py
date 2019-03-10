@@ -422,16 +422,13 @@ class StrategyTestRendezvous(Strategy):
         # how long can mouse go in direction,
         open_distance = 0
         move_dir = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
-        print(move_dir)
-        current_cell = cell.copy() # copy the current cell of robot
-        print(current_cell)
         check = True
-        print('direction: ',direction[0])
-        dir = direction[0]
+        current_cell = cell
+        print(current_cell)
         # mazemap allows me to get cell object which cas getWhichIsWall
-        print (self.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(dir))
+        # print (self.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(dir))
         while check:
-            if self.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(dir):
+            if self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(dir):
                 print("in the conditional")
                 open_distance +=1
                 current_cell[0] += move_dir[dir][0]
@@ -474,7 +471,7 @@ class StrategyTestRendezvous(Strategy):
 
         group_centroid = ()
         distance = 0
-        cell = self.mazeMap.getCell(self.mouse.x,self.mouse.y)
+        cell = self.mouse.mazeMap.getCell(self.mouse.x,self.mouse.y)
         direction = self.mouse.direction
 
         self.centroid = self.Centroid()
