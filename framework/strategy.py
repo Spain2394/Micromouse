@@ -224,7 +224,7 @@ class StrategyTestRendezvous(Strategy):
                 print(self.neighbors_states[i])
             else:
                 self.whoami = i
-                print("whoami:%s"%self.whoami)
+                # print("whoami:%s"%self.whoami)
 
         self.starting_pose = initPoint[str(self.whoami)]
         self.network = NetworkInterface()
@@ -262,12 +262,8 @@ class StrategyTestRendezvous(Strategy):
                 shortest_path_list_x.append(dx_temp)
                 shortest_path_list_y.append(dy_temp)
 
-                print("dx: %s"%dx_temp)
-                print("dy: %s"%dy_temp)
-
         # shortest_path_list_x.sort()
         # shortest_path_list_y.sort()
-        print("%s,%s"%(shortest_path_list_x,shortest_path_list_y))
         return shortest_path_list_x, shortest_path_list_y
 
 
@@ -278,7 +274,7 @@ class StrategyTestRendezvous(Strategy):
         priority = []
         trash = []
         #TODO come up with a second order priority
-        print("check priority")
+        # print("check priority")
         for i in range(N):
             # go for closest
             if i == self.whoami:
@@ -297,7 +293,7 @@ class StrategyTestRendezvous(Strategy):
                 else: priority.append('U')
 
 
-        print("returning: %s"% priority)
+        # print("returning: %s"% priority)
         return priority
 
     def distance_to_near_neigh(self):
@@ -400,7 +396,7 @@ class StrategyTestRendezvous(Strategy):
         sendData = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y, 'up': not self.mouse.canGoUp(
         ), 'down': not self.mouse.canGoDown(), 'left': not self.mouse.canGoLeft(), 'right': not self.mouse.canGoRight(), 'direction':self.mouse.direction}
         print(sendData)
-        print(self.network.sendStringData(sendData))
+        # print(self.network.sendStringData(sendData))
 
 
         recvData = self.network.retrieveData()
@@ -423,7 +419,7 @@ class StrategyTestRendezvous(Strategy):
                 self.mouse.mazeMap.setCellRightAsWall(cell)
             recvData = self.network.retrieveData()
 
-        # self.centroid = self.Centroid()
+        self.centroid = self.Centroid()
 
         if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
             self.path.append([self.mouse.x, self.mouse.y])
