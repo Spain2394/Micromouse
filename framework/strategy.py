@@ -370,7 +370,7 @@ class StrategyTestRendezvous(Strategy):
         # target defined by centroid
 
 
-    def centroid(self):
+    def Centroid(self):
         area = 0
         centroid = ()
         weights = 0
@@ -459,7 +459,7 @@ class StrategyTestRendezvous(Strategy):
                 self.mouse.mazeMap.setCellRightAsWall(cell)
             recvData = self.network.retrieveData()
 
-        self.centroid = self.centroid()
+        self.centroid = self.Centroid()
 
         if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
             self.path.append([self.mouse.x, self.mouse.y])
