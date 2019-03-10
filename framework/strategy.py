@@ -308,10 +308,10 @@ class StrategyTestRendezvous(Strategy):
         cost = 5
 
 
-        print("made it into distance_to_near_neigh 1")
+        # print("made it into distance_to_near_neigh 1")
         for bots in range(1,self.num_bots+1):
-            print("made it into distance_to_near_neigh 2")
-            print("bots%s"%bots)
+            # print("made it into distance_to_near_neigh 2")
+            # print("bots%s"%bots)
             if bots == self.whoami:
                 continue
             else:
@@ -320,15 +320,15 @@ class StrategyTestRendezvous(Strategy):
                 dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
 
                 temp_distance = (dx_temp*dx_temp + dy_temp*dy_temp)**(1/2)
-                print("temp_distance: %s"%temp_distance)
+                # print("temp_distance: %s"%temp_distance)
 
                 if temp_distance < distance:
                     distance = temp_distance
                     follow_him = bots
-                    print("distance: %s"%distance)
-                    print("following_him: %s"%follow_him)
+                    # print("distance: %s"%distance)
+                    # print("following_him: %s"%follow_him)
 
-        print("final distance: %s"%distance)
+        # print("final distance: %s"%distance)
         return distance,follow_him
 
 
@@ -384,17 +384,17 @@ class StrategyTestRendezvous(Strategy):
         weighted_y = 0
 
 
-        print("centroid function")
+        # print("centroid function")
         for bot in self.neighbors_states:
             dx_temp = abs(self.neighbors_states[bot]['x']-self.mouse.x)
             dy_temp = abs(self.neighbors_states[bot]['y']-self.mouse.y)
             if dx_temp > dx: dx = dx_temp
             if dy_temp > dy: dy = dy_temp
 
-        print("out of centroid loop")
+        # print("out of centroid loop")
         weighted_x = math.floor(((dx/dy)*(self.mouse.x + dx))/2)
         weighted_y = math.floor(((dy/dx)*(self.mouse.y + dy))/2)
-        print("weighted_x: ",weighted_x)
+        # print("weighted_x: ",weighted_x)
 
         centroid = (weighted_x, weighted_y)
         return centroid
@@ -438,10 +438,10 @@ class StrategyTestRendezvous(Strategy):
         while check:
             if current_cell[0] >= 0 and current_cell[1] >=0 and current_cell[0] < width and current_cell[1] < height:
                 if self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(dir):
-                    print("in the conditional")
+                    # print("in the conditional")
                     open_distance +=1
                     current_cell[0] += move_dir[dir][0]
-                    print("current_cell_0:",current_cell[0])
+                    # print("current_cell_0:",current_cell[0])
                     current_cell[1] += move_dir[dir][1]
                 else: check = False
             else: check = False
@@ -450,7 +450,7 @@ class StrategyTestRendezvous(Strategy):
 
     def go(self):
         self.iterations +=1
-        print("ITER: %s"%self.iterations)
+        # print("ITER: %s"%self.iterations)
         self.mouse.senseWalls()
         print(self.mouse.getCurrentCell().getWhichIsWall())
         sendData = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y, 'up': not self.mouse.canGoUp(
@@ -460,7 +460,7 @@ class StrategyTestRendezvous(Strategy):
 
 
         recvData = self.network.retrieveData()
-        print("recvData: %s"% recvData)
+        # print("recvData: %s"% recvData)
         # one packet at a time
         while recvData:
 
@@ -468,7 +468,7 @@ class StrategyTestRendezvous(Strategy):
             cell = self.mouse.mazeMap.getCell(otherMap['x'], otherMap['y'])
             self.isVisited[otherMap['x']][otherMap['y']] = 1
             self.neighbors_states[otherMap['robot']] = {'robot':otherMap['robot'], 'x': otherMap['x'], 'y': otherMap['y'], 'direction':self.mouse.direction} # update neighbors_states as received
-            print(self.neighbors_states[otherMap['robot']]) # update neighbors_states as received)
+            # print(self.neighbors_states[otherMap['robot']]) # update neighbors_states as received)
             if otherMap['up']:
                 self.mouse.mazeMap.setCellUpAsWall(cell)
             if otherMap['down']:
