@@ -429,13 +429,13 @@ class StrategyTestRendezvous(Strategy):
             original_priority = priority[0]
             priority[1] = original_priority
             print("priority 1: %s"%priority[0])
-            if self.neighbors_states[near_robot]['direction'] is 'RIGHT':
+            if self.neighbors_states[near_robot]['direction'] is 'LEFT':
                 priority[0] = 'L'
-            elif self.neighbors_states[near_robot]['direction'] is 'LEFT':
+            elif self.neighbors_states[near_robot]['direction'] is 'RIGHT':
                 priority[0] = 'R'
-            elif self.neighbors_states[near_robot]['direction'] is 'DOWN':
-                priority[0] = 'U'
             elif self.neighbors_states[near_robot]['direction'] is 'UP':
+                priority[0] = 'U'
+            elif self.neighbors_states[near_robot]['direction'] is 'DOWN':
                 priority[0] = 'D'
             print("MY PRIORITY:%s" %priority[0])
 
