@@ -364,7 +364,13 @@ class StrategyTestRendezvous(Strategy):
     #     f = g + h
     #     open = [(f,h,g,)]
 
-    def GroupCentroid(self):
+    def getGoodMoved(self):
+        # going straiht is good
+        # go towards target
+        # target defined by centroid
+
+
+    def robotCentroid(self):
         area = 0
         centroid = ()
         weights = 0
@@ -374,6 +380,7 @@ class StrategyTestRendezvous(Strategy):
         dy_temp = 0
         weighted_x = 0
         weighted_y = 0
+
 
         print("centroid function")
         for bot in self.neighbors_states:
@@ -389,6 +396,33 @@ class StrategyTestRendezvous(Strategy):
 
         centroid = (weighted_x, weighted_y)
         return centroid
+
+    def GroupCentroid(self):
+        area = 0
+        group_centroid = ()
+        weights = 0
+        dx = 0
+        dy = 0
+        dx_temp = 0
+        dy_temp = 0
+        weighted_x = 0
+        weighted_y = 0
+
+
+        print("centroid function")
+        for bot in self.neighbors_states:
+            dx_temp = abs(self.neighbors_states[bot]['x']-self.mouse.x)
+            dy_temp = abs(self.neighbors_states[bot]['y']-self.mouse.y)
+            if dx_temp > dx: dx = dx_temp
+            if dy_temp > dy: dy = dy_temp
+
+        print("out of centroid loop")
+        weighted_x = math.floor(((dx/dy)*(self.mouse.x + dx))/2)
+        weighted_y = math.floor(((dy/dx)*(self.mouse.y + dy))/2)
+        print("weighted_x: ",weighted_x)
+
+        group_centroid = (weighted_x, weighted_y)
+        return group_centroid
 
 
     def go(self):
