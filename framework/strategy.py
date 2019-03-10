@@ -431,6 +431,7 @@ class StrategyTestRendezvous(Strategy):
 
         height = self.mouse.mazeMap.height
         width = self.mouse.mazeMap.width
+        print(height)
 
         print(self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(dir))
 
@@ -443,6 +444,7 @@ class StrategyTestRendezvous(Strategy):
                     print("current_cell_0:",current_cell[0])
                     current_cell[1] += move_dir[dir][1]
                 else: check = False
+            else: check = False
         return open_distance
 
 
