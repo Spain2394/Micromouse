@@ -413,6 +413,7 @@ class StrategyTestRendezvous(Strategy):
         print("group centroid function")
         for i in range(1,self.num_bots): # one less than total number vertices
             print("in centroid loop")
+            print(lstP)
             print(lstP[i]['x'])
             print(self.num_bots)
             print(lstP[i+1]['x'])
