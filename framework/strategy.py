@@ -382,7 +382,7 @@ class StrategyTestRendezvous(Strategy):
             if dy_temp > dy: dy = dy_temp
 
         weighted_x = math.floor(((dx/dy)*(self.mouse.x + dx))/2)
-        weighted_y = math.floor(((dy/dx)*(self.mouse.x + dy))/2)
+        weighted_y = math.floor(((dy/dx)*(self.mouse.y + dy))/2)
 
         centroid = (weighted_x, weighted_y)
         return centroid
