@@ -52,7 +52,7 @@ class Cell:
 	# addition
 	def getNoWall(self,direction):
 		noWall = {}
-		noWall = {'Up':self.hasLeftWall,'Down':self.hasDownWall,'Right':self.hasRightWall,'Left':self.hasLeftWall}
+		noWall = {'Up':self.hasUpWall,'Down':self.hasDownWall,'Right':self.hasRightWall,'Left':self.hasLeftWall}
 		return noWall[direction]
 
 class Map:
