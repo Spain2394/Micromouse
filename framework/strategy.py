@@ -437,8 +437,8 @@ class StrategyTestRendezvous(Strategy):
             if self.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(dir):
                 print("in the conditional")
                 open_distance +=1
-                current_cell[0] += move_dir[direction][0]
-                current_cell[1] += move_dir[direction][1]
+                current_cell[0] += move_dir[dir][0]
+                current_cell[1] += move_dir[dir][1]
             else: check = False
         return open_distance
 
