@@ -420,11 +420,13 @@ class StrategyTestRendezvous(Strategy):
 
     def distance_to_wall(self,cell,direction):
         # how long can mouse go in direction,
+        check = True
         open_distance = 0
         move_dir = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
-        check = True
+        
         current_cell = cell
         print(current_cell)
+        dir = direction
         # mazemap allows me to get cell object which cas getWhichIsWall
         # print (self.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(dir))
         while check:
