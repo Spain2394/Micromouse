@@ -410,6 +410,7 @@ class StrategyTestRendezvous(Strategy):
             cX = (lstP[i]['x']+lstP[i+1]['x'])*(lstP[i]['x']*lstP[i+1]['x']-lstP[i+1]['x']*lstP[i]['x'])
             cY = (lstP[i]['y']+lstP[i+1]['y'])*(lstP[i]['y']*lstP[i+1]['y']-lstP[i+1]['y']*lstP[i]['y'])
             pA = (lstP[i]['x']*lstP[i+1]['y'])-(lstP[i+1]['x']*lstP[i]['y'])
+            print("pA:",pA)
             sumCx+=cX
             sumCy+=cY
             sumAc+=pA
