@@ -405,7 +405,7 @@ class StrategyTestRendezvous(Strategy):
         sumAc = 0
         lstP = self.neighbors_states.copy() # copy the neighbors_states
         print("group centroid function")
-        for bot in range(1,self.number): # one less than total number vertices
+        for bot in range(1,self.num_bots): # one less than total number vertices
             print("in centroid loop")
             cX = (lstP[i]['x']+lstP[i+1]['x'])*(lstP[i]['x']*lstP[i+1]['x']-lstP[i+1]['x']*lstP[i]['x'])
             cY = (lstP[i]['y']+lstP[i+1]['y'])*(lstP[i]['y']*lstP[i+1]['y']-lstP[i+1]['y']*lstP[i]['y'])
