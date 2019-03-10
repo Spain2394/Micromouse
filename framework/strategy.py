@@ -428,6 +428,7 @@ class StrategyTestRendezvous(Strategy):
         current_cell = (cell.x,cell.y) # copy the current cell of robot
         print(current_cell)
         check = True
+        print('direction: ',direction)
         # mazemap allows me to get cell object which cas getWhichIsWall
         print (self.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(direction))
         while check:
