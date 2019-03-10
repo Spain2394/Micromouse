@@ -14,7 +14,7 @@ mazeMap = Map(16, 16)
 mazeMap.readFromFile('/home/parallels/Micromouse/mazes/2012japan-ef.txt') # load map
 micromouse = Micromouse(mazeMap)
 index = gethostname()[1:]
-initPoint = {'1':(6,12), '2':(6,10), '3':(0,15), '4':(15,15)} # 4 robot initial positions
+initPoint = {'1':(6,12), '2':(6,10), '3':(3,15), '4':(15,15)} # 4 robot initial positions
 # initPoint = {'1': (0,0)}
 num_bots = len(initPoint)
 micromouse.setMotorController(COREController(index, initPoint[index], '10.0.0.254'))
