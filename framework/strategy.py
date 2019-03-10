@@ -375,12 +375,14 @@ class StrategyTestRendezvous(Strategy):
         weighted_x = 0
         weighted_y = 0
 
+        print("centroid function")
         for bot in self.neighbors_states:
             dx_temp = abs(self.neighbors_states[bot]['x']-self.mouse.x)
             dy_temp = abs(self.neighbors_states[bot]['y']-self.mouse.y)
             if dx_temp > dx: dx = dx_temp
             if dy_temp > dy: dy = dy_temp
 
+        print("out of centroid loop")
         weighted_x = math.floor(((dx/dy)*(self.mouse.x + dx))/2)
         weighted_y = math.floor(((dy/dx)*(self.mouse.y + dy))/2)
 
