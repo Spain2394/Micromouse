@@ -402,29 +402,11 @@ class StrategyTestRendezvous(Strategy):
         sumCy = 0
         sumAc = 0
         lstP = self.neighbors_states.copy() # copy the neighbors_states
-
-
-        print("group centroid function")
-        for i in range(1,self.num_bots +1): # go through all the robot vertices
-            print("in centroid loop")
-            # print(lstP)
-            # print(lstP[i]['x'])
-            # print(self.num_bots)
-            # print(lstP[i+1]['x'])
-            cX = (lstP[i]['x']+lstP[i+1]['x'])*(lstP[i]['x']*lstP[i+1]['y']-lstP[i+1]['x']*lstP[i]['y'])
-            cY = (lstP[i]['y']+lstP[i+1]['y'])*(lstP[i]['x']*lstP[i+1]['y']-lstP[i+1]['x']*lstP[i]['y'])
-            pA = (lstP[i]['x']*lstP[i+1]['y'])-(lstP[i+1]['x']*lstP[i]['y'])
-            print("pA%s"%pA)
-            sumCx+=cX
-            sumCy+=cY
-            sumAc+=pA
-            print(cX,cY,pA)
-
-        ar = sumAc/2.0
-        print(ar)
-        centr = ((1.0/(6.0*ar))*sumCx,(1.0/(6.0*ar))*sumCy)
-        print("group centroid:",centr)
-        return centr
+        for i in range(1,self.num_bots+1):
+            sumCx += lstP[i]['x']
+            sumCy += lstP[i]['y']
+        group_centroid = ((math.ceil(sumCx/self.num_bots),math.floor(sumCy/self.num_bots))
+        return group_centroid
 
     def go(self):
         self.iterations +=1
