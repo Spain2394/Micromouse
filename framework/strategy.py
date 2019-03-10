@@ -420,9 +420,8 @@ class StrategyTestRendezvous(Strategy):
 
     def distance_to_wall(self,cell,direction):
         # how long can mouse go in direction,
-        print("got into distance to cell")
-        print("cellx:",cell.x)
-        print("celly:",cell.y)
+
+        current_cell = None
         open_distance = 0
         move_dir = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
         print(move_dir)
