@@ -424,7 +424,8 @@ class StrategyTestRendezvous(Strategy):
         print("cellx:",cell.x)
         print("celly:",cell.y)
         open_distance = 0
-        move_dir = {'Up': [0,-1],'Down': [0,1],'Left': [-1,0],'Right': [1,0]}
+        move_dir = {'Up': [0,-1],'Down': [0,1],'Left': [-1,0],'Right': [1,0],
+        'UP': [0,-1],'DOWN': [0,1],'LEFT': [-1,0],'RIGHT': [1,0]}
         print(move_dir)
         current_cell = (cell.x,cell.y) # copy the current cell of robot
         print(current_cell)
