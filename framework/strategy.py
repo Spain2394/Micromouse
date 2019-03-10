@@ -439,7 +439,7 @@ class StrategyTestRendezvous(Strategy):
                 priority[0] = 'D'
             print("MY PRIORITY:%s" %priority[0])
 
-        if distance < 1:
+        if distance < 2:
             # stop, this will likely form pairs
             self.isBack = True
 
