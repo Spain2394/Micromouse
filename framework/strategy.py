@@ -4,6 +4,7 @@
 
 from task import Strategy, NetworkInterface
 from time import sleep
+from math import *
 
 
 class StrategyTestProgress(Strategy):
@@ -368,35 +369,27 @@ class StrategyTestRendezvous(Strategy):
     #     open = [(f,h,g,)]
 
     def Centroid(self):
+        area = 0
         centroid = ()
         weights = 0
         dx = 0
         dy = 0
         dx_temp = 0
         dy_temp = 0
+        weighted_x = 0
+        weighted_y = 0
+
         for bot in self.neighbors_states:
             dx_temp = abs(self.neighbors_states[bot]['x']-self.mouse.x)
             dy_temp = abs(self.neighbors_states[bot]['y']-self.mouse.y)
             if dx_temp > dx: dx = dx_temp
             if dy_temp > dy: dy = dy_temp
 
-        print("centroid: %s"%centroid)
-        centroid = ((dx/dy)* (self.mouse.x + dx),(dy/dx) * (self.mouse.y + dy))
+        weighted_x = (dx/dy)*(self.mouse.x + dx)
+        weighted_y = (dy/dx)*(self.mouse.x + dy)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        centroid = math.floor(weighted_x/2, weighted_y/2)
+        return centroid
 
 
     def go(self):
@@ -478,7 +471,7 @@ class StrategyTestRendezvous(Strategy):
             else:
                 self.isBack = True
 
-            sleep(0.5)
+        sleep(0.5)
 
 
             #
