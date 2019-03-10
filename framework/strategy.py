@@ -405,7 +405,7 @@ class StrategyTestRendezvous(Strategy):
 
 
         print("group centroid function")
-        for i in range(1,self.num_bots): # one less than total number vertices
+        for i in range(1,self.num_bots +1): # go through all the robot vertices
             print("in centroid loop")
             # print(lstP)
             # print(lstP[i]['x'])
@@ -419,6 +419,7 @@ class StrategyTestRendezvous(Strategy):
             sumCy+=cY
             sumAc+=pA
             print(cX,cY,pA)
+
         ar = sumAc/2.0
         print(ar)
         centr = ((1.0/(6.0*ar))*sumCx,(1.0/(6.0*ar))*sumCy)
