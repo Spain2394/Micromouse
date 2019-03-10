@@ -424,11 +424,11 @@ class StrategyTestRendezvous(Strategy):
         open_distance = 0
         move_dir = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
 
-        current_cell = (cell.x,cell.y)
+        current_cell = (cell.x,cell.y) # almost there
         print(current_cell)
         dir = direction
-        # mazemap allows me to get cell object which cas getWhichIsWall
-        # print (self.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(dir))
+        print(self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]))
+        
         while check:
             if self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(dir):
                 print("in the conditional")
