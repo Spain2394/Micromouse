@@ -424,6 +424,7 @@ class StrategyTestRendezvous(Strategy):
         move_dir = {'Up': [0,-1],'Down': [0,1],'Left': [-1,0],'Right': [1,0]}
         print(move_dir)
         current_cell = list(cell) # copy the current cell of robot
+        print(current_cell)
         check = True
         # mazemap allows me to get cell object which cas getWhichIsWall
 
