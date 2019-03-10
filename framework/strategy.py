@@ -421,8 +421,8 @@ class StrategyTestRendezvous(Strategy):
     def distance_to_wall(self,cell,direction):
         # how long can mouse go in direction,
         print("got into distance to cell")
-        print("cellx:",cell[0])
-        print("celly:",cell[1])
+        print("cellx:",cell.x)
+        print("celly:",cell.y)
         move_dir = {'Up': [0,-1],'Down': [0,1],'Left': [-1,0],'Right': [1,0]}
         print(move_dir)
         current_cell = list(cell) # copy the current cell of robot
