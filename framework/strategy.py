@@ -435,6 +435,7 @@ class StrategyTestRendezvous(Strategy):
                 print("in the conditional")
                 open_distance +=1
                 current_cell[0] += move_dir[dir][0]
+                print("current_cell_0:",current_cell[0])
                 current_cell[1] += move_dir[dir][1]
             else: check = False
         return open_distance
