@@ -423,8 +423,8 @@ class StrategyTestRendezvous(Strategy):
         check = True
         open_distance = 0
         move_dir = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
-        
-        current_cell = cell
+
+        current_cell = (cell.x,cell.y)
         print(current_cell)
         dir = direction
         # mazemap allows me to get cell object which cas getWhichIsWall
