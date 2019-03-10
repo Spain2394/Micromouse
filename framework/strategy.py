@@ -3,6 +3,7 @@
 # Author: Zhiwei Luo
 
 from task import Strategy, NetworkInterface
+from map import Map
 from time import sleep
 import math
 
@@ -207,11 +208,13 @@ class StrategyTestRendezvous(Strategy):
     # starting_pose = ()
     starting_pose = ()
     centroid = ()
+    mazeMap = None
 
 
     # define number of robots
     def __init__(self, mouse, initPoint,num_bots,mazeMap):
         # add
+        self.mazeMap = mazeMap
         self.mouse = mouse
         self.num_bots = num_bots
         self.centroid = (mazeMap.width,mazeMap.height)
@@ -409,6 +412,28 @@ class StrategyTestRendezvous(Strategy):
         group_centroid = (math.ceil(sumCx/self.num_bots),math.ceil(sumCy/self.num_bots))
         return group_centroid
 
+    # def BestMove(self,utility,maze):
+    #     direction = ['Up','Down','Left','Right']
+    #
+    #
+    #     return(direction_best, movement_best,state_next_best,reward_max)
+
+    def distance_to_wall(self,cell,direction):
+        # how long can mouse go in direction,
+        move_dir = {'Up': [0,-1],'Down': [0,1],'Left': [-1,0],'Right': [1,0]}
+        current_cell = list(cell) # copy the current cell of robot
+        check = True
+        # mazemap allows me to get cell object which cas getWhichIsWall
+
+        while check:
+            if self.mazeMap.getCell(current_cell[0],current_cell[1]).getWhichIsWall() is not direction:
+                distance +=1
+                current_cell[0] = move_dir[direction][0]
+                current_cell[1] = move_dir[direction][1]
+            else: check = False
+        return distance
+
+
     def go(self):
         self.iterations +=1
         print("ITER: %s"%self.iterations)
@@ -442,9 +467,16 @@ class StrategyTestRendezvous(Strategy):
 
 
         group_centroid = ()
+        distance = 0
+        cell = self.mouse.getCurrentCell()
+        direction = self.mouse.direction
+
         self.centroid = self.Centroid()
         group_centroid = self.GroupCentroid()
         print("group centroid", group_centroid)
+        distance = self.distance_to_wall(cell,direction)
+        print("distance to wall: ", distance)
+
 
         if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
             self.path.append([self.mouse.x, self.mouse.y])
