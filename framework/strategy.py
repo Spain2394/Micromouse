@@ -404,8 +404,7 @@ class StrategyTestRendezvous(Strategy):
         sumCy = 0
         sumAc = 0
         lstP = []
-
-        print("centroid function")
+        print("group centroid function")
         for bot in range(1,num_bots):
             lstP[i] = self.neighbors_states[i]
             cX = (lstP[i]['x']+lstP[i+1]['x'])*(lstP[i]['x']*lstP[i+1]['x']-lstP[i+1]['x']*lstP[i]['x'])
@@ -418,6 +417,7 @@ class StrategyTestRendezvous(Strategy):
         ar = sumAc/2.0
         print(ar)
         centr = ((1.0/(6.0*ar))*sumCx,(1.0/(6.0*ar))*sumCy)
+        print("group centroid:",centr)
         return centr
 
     def go(self):
