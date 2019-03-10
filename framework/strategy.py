@@ -205,12 +205,15 @@ class StrategyTestRendezvous(Strategy):
     num_bots = -1
     # starting_pose = ()
     starting_pose = ()
+    centroid = ()
+
 
     # define number of robots
-    def __init__(self, mouse, initPoint,num_bots):
+    def __init__(self, mouse, initPoint,num_bots,mazeMap):
         # add
         self.mouse = mouse
         self.num_bots = num_bots
+        self.centroid = (mazeMap[0],mazeMap[1])
         self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(
             self.mouse.mazeMap.height)]
         self.isVisited[self.mouse.x][self.mouse.y] = 1
@@ -364,6 +367,36 @@ class StrategyTestRendezvous(Strategy):
     #     f = g + h
     #     open = [(f,h,g,)]
 
+    def Centroid(self):
+        centroid = ()
+        weights = 0
+        dx = 0
+        dy = 0
+        dx_temp = 0
+        dy_temp = 0
+        for bot in self.neighbors_states:
+            dx_temp = abs(self.neighbors_states[bot]['x']-self.mouse.x)
+            dy_temp = abs(self.neighbors_states[bot]['y']-self.mouse.y)
+            if dx_temp > dx: dx = dx_temp
+            if dy_temp > dy: dy = dy_temp
+
+        print("centroid: %s"%centroid)
+        centroid = (((dx/dy)* (self.mouse.x + dx)),(dy/dx) * (self.mouse.y + dy))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     def go(self):
@@ -396,6 +429,8 @@ class StrategyTestRendezvous(Strategy):
             if otherMap['right']:
                 self.mouse.mazeMap.setCellRightAsWall(cell)
             recvData = self.network.retrieveData()
+
+        self.centroid = self.Centroid()
 
         if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
             self.path.append([self.mouse.x, self.mouse.y])
