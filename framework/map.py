@@ -49,6 +49,12 @@ class Cell:
 
 		return whichIsWall
 
+	# addition
+	def getNoWall(self,direction):
+		noWall = {}
+		noWall = {'Up':self.hasLeftWall,'Down':self.hasDownWall,'Right':self.hasRightWall,'Left':self.hasLeftWall}
+		return noWall[direction]
+
 class Map:
 	height = 0
 	width = 0
@@ -148,4 +154,3 @@ class Map:
 		for i in range(self.height):
 			for j in range(self.width):
 				self.getCell(i, j).setAllAsNoWall()
-

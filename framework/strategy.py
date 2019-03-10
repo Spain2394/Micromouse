@@ -429,9 +429,9 @@ class StrategyTestRendezvous(Strategy):
         print(current_cell)
         check = True
         # mazemap allows me to get cell object which cas getWhichIsWall
-        print (self.mazeMap.getCell(current_cell[0],current_cell[1]).getWhichIsWall())
+        print (self.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(direction))
         while check:
-            if self.mazeMap.getCell(current_cell[0],current_cell[1]).getWhichIsWall() is not direction:
+            if self.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(direction):
                 distance +=1
                 current_cell[0] = move_dir[direction][0]
                 current_cell[1] = move_dir[direction][1]
