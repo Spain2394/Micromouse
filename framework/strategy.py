@@ -428,16 +428,21 @@ class StrategyTestRendezvous(Strategy):
         print(current_cell)
         print(current_cell[0],current_cell[1])
         dir = direction[0]
+
+        height = self.mouse.mazeMap.height
+        width = self.mouse.mazeMap.width
+
         print(self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(dir))
 
         while check:
-            if self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(dir):
-                print("in the conditional")
-                open_distance +=1
-                current_cell[0] += move_dir[dir][0]
-                print("current_cell_0:",current_cell[0])
-                current_cell[1] += move_dir[dir][1]
-            else: check = False
+            if current_cell[0] >= 0 and current_cell[1] >=0 and current_cell[0] < width and current_cell[1] < height:
+                if self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(dir):
+                    print("in the conditional")
+                    open_distance +=1
+                    current_cell[0] += move_dir[dir][0]
+                    print("current_cell_0:",current_cell[0])
+                    current_cell[1] += move_dir[dir][1]
+                else: check = False
         return open_distance
 
 
