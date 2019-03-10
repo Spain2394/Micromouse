@@ -396,17 +396,18 @@ class StrategyTestRendezvous(Strategy):
         centroid = (weighted_x, weighted_y)
         return centroid
 
-    # def GroupCentroid(self):
-    #     group_centroid = ()
-    #     sumCx = 0
-    #     sumCy = 0
-    #     sumAc = 0
-    #     lstP = self.neighbors_states.copy() # copy the neighbors_states
-    #     for i in range(1,self.num_bots+1):
-    #         sumCx += lstP[i]['x']
-    #         sumCy += lstP[i]['y']
-    #     group_centroid = ((math.ceil(sumCx/self.num_bots),math.floor(sumCy/self.num_bots))
-    #     return group_centroid
+    def GroupCentroid(self):
+        group_centroid = ()
+        sumCx = 0
+        sumCy = 0
+        sumAc = 0
+        lstP = self.neighbors_states.copy() # copy the neighbors_states
+        for i in range(1,self.num_bots+1):
+            sumCx += lstP[i]['x']
+            sumCy += lstP[i]['y']
+
+        group_centroid = (math.ceil(sumCx/self.num_bots),math.ceil(sumCy/self.num_bots))
+        return group_centroid
 
     def go(self):
         self.iterations +=1
