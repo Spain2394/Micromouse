@@ -426,8 +426,9 @@ class StrategyTestRendezvous(Strategy):
 
         current_cell = [cell.x,cell.y] # almost there
         print(current_cell)
+        print(current_cell[0],current_cell[1])
         dir = direction
-        print(self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(dir))
+        print(self.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(dir))
 
         while check:
             if self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(dir):
