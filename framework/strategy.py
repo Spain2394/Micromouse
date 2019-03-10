@@ -414,7 +414,8 @@ class StrategyTestRendezvous(Strategy):
         for i in range(1,self.num_bots): # one less than total number vertices
             print("in centroid loop")
             print(lstP[i]['x'])
-            
+            print(lstP[i+1]['x'])
+
             cX = (lstP[i]['x']+lstP[i+1]['x'])*(lstP[i]['x']*lstP[i+1]['x']-lstP[i+1]['x']*lstP[i]['x'])
             cY = (lstP[i]['y']+lstP[i+1]['y'])*(lstP[i]['y']*lstP[i+1]['y']-lstP[i+1]['y']*lstP[i]['y'])
             pA = (lstP[i]['x']*lstP[i+1]['y'])-(lstP[i+1]['x']*lstP[i]['y'])
