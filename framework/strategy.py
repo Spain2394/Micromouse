@@ -502,8 +502,9 @@ class StrategyTestRendezvous(Strategy):
         print("distance to wall: ", distance)
         # print("final cost: ", self.cost(goal))
         print("(x,y)",(self.mouse.x, self.mouse.y))
-
-        print("open:", open = self.cost(goal))
+        open = self.cost(goal)
+        # print("open:", open = self.cost(goal))
+        print(open)
         # print(self.cost()) # print me a cost function
 
 
