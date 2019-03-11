@@ -558,7 +558,7 @@ class StrategyTestRendezvous(Strategy):
                     delta = direction[d]
                     next_state = (state[0] + delta[0], state[1] + delta[1])
                     next_cost = cost + 1 if my_dir is d else 2
-                    print("next_cost", nex_cost)
+                    print("next_cost", next_cost)
                     # cost g2 will be higher if direction is changed
                     # cost includes distance to target
                     open.append((next_cost,next_state,d)) # you will only include costs, states
