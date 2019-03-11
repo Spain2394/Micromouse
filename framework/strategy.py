@@ -495,34 +495,34 @@ class StrategyTestRendezvous(Strategy):
 
         return(direction_best, movement_best,state_next_best,reward_max)
 
-    # def distance_to_wall(self,cell,direction):
-    #     # how long can mouse go in direction,
-    #     check = True
-    #     open_distance = 0
-    #     move_dir = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
-    #
-    #     current_cell = [cell.x,cell.y] # almost there
-    #     print(current_cell)
-    #     print(current_cell[0],current_cell[1])
-    #     dir = direction[0]
-    #
-    #     height = self.mouse.mazeMap.height
-    #     width = self.mouse.mazeMap.width
-    #     print(height)
-    #
-    #     print(self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getIsThereWall(dir))
-    #
-    #     while check:
-    #         if current_cell[0] >= 0 and current_cell[1] >=0 and current_cell[0] < width and current_cell[1] < height:
-    #             if self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getIsThereWall(dir):
-    #                 # print("in the conditional")
-    #                 open_distance +=1
-    #                 current_cell[0] += move_dir[dir][0]
-    #                 # print("current_cell_0:",current_cell[0])
-    #                 current_cell[1] += move_dir[dir][1]
-    #             else: check = False
-    #         else: check = False
-    #     return open_distance
+    def distance_to_wall(self,cell,direction):
+        # how long can mouse go in direction,
+        check = True
+        open_distance = 0
+        move_dir = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
+
+        current_cell = [cell.x,cell.y] # almost there
+        print(current_cell)
+        print(current_cell[0],current_cell[1])
+        dir = direction[0]
+
+        height = self.mouse.mazeMap.height
+        width = self.mouse.mazeMap.width
+        print(height)
+
+        print(self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getIsThereWall(dir))
+
+        while check:
+            if current_cell[0] >= 0 and current_cell[1] >=0 and current_cell[0] < width and current_cell[1] < height:
+                if self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getIsThereWall(dir):
+                    # print("in the conditional")
+                    open_distance +=1
+                    current_cell[0] += move_dir[dir][0]
+                    # print("current_cell_0:",current_cell[0])
+                    current_cell[1] += move_dir[dir][1]
+                else: check = False
+            else: check = False
+        return open_distance
 
     # def getBestMove(self,utility,state,destination,movements):
     #
