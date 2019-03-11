@@ -403,7 +403,7 @@ class StrategyTestRendezvous(Strategy):
                     current_cell[1] += move_dir[dir][1]
                 else: check = False
             else: check = False
-        print("cells after distance calc: (%s,%s)", (cell.x,cell.y))
+        print("cells after distance calc: (%s,%s)"% (cell.x,cell.y))
         print('--------------------------------')
         return open_distance
 
@@ -503,6 +503,7 @@ class StrategyTestRendezvous(Strategy):
         # priority such that low is bad,
         priority = beta*gradient + alpha/(straight_line+epsilon) # the gradient gets the state is good
         # print("pri:",priority)
+        print("priority: %s"%priority)
         print('----------------------------')
         return priority
 
