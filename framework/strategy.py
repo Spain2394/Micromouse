@@ -512,7 +512,7 @@ class StrategyTestRendezvous(Strategy):
 
         trials = 10
         # go based on priority towards goal
-        for trial in trials:
+        for trial in range(trials):
             # x = open[trial][1][0]
             # y = open[trial][1][1]
             print(open[trial][2])
