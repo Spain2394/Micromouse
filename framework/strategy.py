@@ -406,15 +406,15 @@ class StrategyTestRendezvous(Strategy):
         my_dir = 'U'  #
         moves = []
         state = (self.mouse.x,self.mouse.y)
-        cost = 0 # some very high cost
+        cost = 100 # some very high cost
         isGoal = False
         gamma = 0.01 # cost is lower when distance is longer
 
         open = [(cost,state,my_dir)] # some constants a start point and an end point
 
-        while len(open) < 20: # give me 20 good points
+        while len(open) < 20 and len(open) > 0: # give me 20 good points
             print("in the loop")
-            item = open.pop(0)
+            item = open.pop(0) # pop appended item
 
             cost = item[0]
             state = item[1]
