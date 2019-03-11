@@ -423,6 +423,7 @@ class StrategyTestRendezvous(Strategy):
 
             # self.isBack = True
             if state is goal:
+                print("state = goal")
                 goal = True
                 break
 
