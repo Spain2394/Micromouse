@@ -495,6 +495,7 @@ class StrategyTestRendezvous(Strategy):
 
         # priority such that low is bad,
         priority = beta*gradient + alpha/(straight_lin+epsilon) # the gradient gets the state is good
+        print("pri:",priority)
         return priority
 
     def go(self):
