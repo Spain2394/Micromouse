@@ -477,7 +477,7 @@ class StrategyTestRendezvous(Strategy):
         print('PRIORITY')
         print('----------------------------')
         x,y = state[0],state[1]
-        print(x,y)
+        # print(x,y)
         alpha = 1.0 # weight for going in a straight line
         beta = 2 # weight for going towards gradient
         epsilon = 0.01
@@ -489,7 +489,7 @@ class StrategyTestRendezvous(Strategy):
         gradient = 0
         priority = 0
         cell = self.mouse.mazeMap.getCell(x,y)
-        print("priority getCell: ", cell)
+        print("priority getCell: ", cell.x,cell.y)
         # print(cell.x,cell.y)
         # print('D',d)
 
