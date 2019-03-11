@@ -224,7 +224,7 @@ class StrategyTestRendezvous(Strategy):
             self.mouse.mazeMap.height)]
         self.isVisited[self.mouse.x][self.mouse.y] = 1
         prin("made it past initialization")
-        for i in range(1, num_bots + 1):
+        for i in range(1, self.num_bots + 1):
             if initPoint[str(i)] == (self.mouse.x, self.mouse.y):
                 self.whoami = i
             self.neighbors_states[i] = {'robot': i, 'x': initPoint[str(i)][0], 'y': initPoint[str(i)][1], 'direction':'UP'}

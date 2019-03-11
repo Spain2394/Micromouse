@@ -20,7 +20,7 @@ num_bots = len(initPoint)
 micromouse.setMotorController(COREController(index, initPoint[index], '10.0.0.254'))
 micromouse.setInitPoint(initPoint[index][0], initPoint[index][1])
 # micromouse.addTask(StrategyTestMultiDFS(micromouse))
-print("broken task")
+print("broken task below")
 micromouse.addTask(StrategyTestRendezvous(micromouse, initPoint, num_bots,mazeMap))
 print("after initialization")
 # num bots
