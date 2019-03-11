@@ -428,7 +428,7 @@ class StrategyTestRendezvous(Strategy):
         open = [(priority,cost,state,my_dir)] # some constants a start point and an end point
         open_2 = [(priority,cost,state,my_dir)]
 
-        while len(open) > 0: # give me 20 good points
+        while len(open) > 10: # give me 20 good points
             # print("in the loop")
             item = open.pop(0) # pop appended item
             # open_2.pop(0)
@@ -517,7 +517,7 @@ class StrategyTestRendezvous(Strategy):
         # priority *= cost
         print("priority: %s"%priority)
         print('----------------------------')
-        return priority
+        return (1/priority)
 
 
     def go(self):
