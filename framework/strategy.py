@@ -513,7 +513,8 @@ class StrategyTestRendezvous(Strategy):
         trials = 10
         # go based on priority towards goal
         for trial in trials:
-            x,y = open[trial][1][0], open[trial][1][1]
+            # x = open[trial][1][0]
+            # y = open[trial][1][1]
             dir = open[trial][2]
             if dir is 'L':
                 self.path.append([self.mouse.x, self.mouse.y])
