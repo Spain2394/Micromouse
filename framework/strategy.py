@@ -448,22 +448,6 @@ class StrategyTestRendezvous(Strategy):
         # elif abs(self.dx) == abs(self.dy):return y_Dir # just make up defualt when tie
         else: return y_Dir
 
-    # def find_best_move(self,goal):
-    #     # goal = furthest robot position?
-    #     g = 0
-    #     h =
-
-    # def find_best_move(self,target):
-    #     g = 0
-    #     h = self.starting_pose
-    #     f = g + h
-    #     open = [(f,h,g,)]
-
-    # def getGoodMoved(self):
-        # going straiht is good
-        # go towards target
-        # target defined by centroid
-
 
     def Centroid(self):
         area = 0
