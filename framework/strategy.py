@@ -451,11 +451,11 @@ class StrategyTestRendezvous(Strategy):
                 print(self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d))
                 if self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d) == False: # while mouse can move in some direction
 
-                    print("state %s, good for direction:%s "%state,d)
+                    print("state %s, good for direction:%s "%(state,d))
                     delta = direction_list[d]
                     next_state = (state[0] + delta[0], state[1] + delta[1])
                     next_cost = cost + 1 if my_dir is d else 2
-                    ("state priority: ", next_state)
+                    ("state update:%s, in direction%s"% (next_state,d))
                     priority = self.priority(next_state,d)
                     # my_dir = d # update direction
                     # next_cost = self.distance_to_wall()
@@ -474,6 +474,8 @@ class StrategyTestRendezvous(Strategy):
 
     def priority(self,state,d):
         # print("in priority")
+        print('PRIORITY')
+        print('----------------------------')
         x,y = state[0],state[1]
         print(x,y)
         alpha = 1.0 # weight for going in a straight line
@@ -500,7 +502,9 @@ class StrategyTestRendezvous(Strategy):
         # priority such that low is bad,
         priority = beta*gradient + alpha/(straight_line+epsilon) # the gradient gets the state is good
         # print("pri:",priority)
+        print('----------------------------')
         return priority
+
 
     def go(self):
         # print("GO")
