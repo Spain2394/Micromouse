@@ -449,7 +449,7 @@ class StrategyTestRendezvous(Strategy):
 
                     # and directions that work
         print("Returning..")
-        open.sort() #
+        # open.sort() #
         print(open)
         # print("open sort: %s" %open[0])
         return open
