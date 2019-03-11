@@ -273,10 +273,10 @@ class StrategyTestRendezvous(Strategy):
             recvData = self.network.retrieveData()
 
 
-        # group_centroid = ()
-        # distance = 0
-        # cell = self.mouse.mazeMap.getCell(self.mouse.x,self.mouse.y)
-        # direction = self.mouse.direction
+        group_centroid = ()
+        distance = 0
+        cell = self.mouse.mazeMap.getCell(self.mouse.x,self.mouse.y)
+        direction = self.mouse.direction
         #
         # self.centroid = self.Centroid()
         # group_centroid = self.GroupCentroid()
