@@ -487,7 +487,8 @@ class StrategyTestRendezvous(Strategy):
 
         straight_line = self.distance_to_wall(cell,d)
         print(straight_line)
-        gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
+        centroid = self.GroupCentroid()
+        # gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
         print(gradient)
 
         # priority such that low is bad,
