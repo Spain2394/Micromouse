@@ -422,6 +422,8 @@ class StrategyTestRendezvous(Strategy):
             print(cost,state,my_dir)
 
             # self.isBack = True
+            print("state = ", state)
+            print("goal = ", goal)
             if state is goal:
                 print("state = goal")
                 isGoal = True
