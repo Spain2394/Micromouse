@@ -350,7 +350,7 @@ class StrategyTestRendezvous(Strategy):
             if bots != self.whoami:
                 dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
                 dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
-    
+
                 if dy_temp < 0 and self.mouse.direction is not 'DOWN':
                     dy_temp *= cost
                 elif dy_temp > 0 and self.mouse.direction is not 'UP':
@@ -398,38 +398,38 @@ class StrategyTestRendezvous(Strategy):
     # #     # print("returning: %s"% priority)
     # #     return priority
     #
-    # def distance_to_near_neigh(self):
-    #     dx_temp = 0
-    #     dy_temp = 0
-    #     # closest_bot = {}
-    #     follow_him = -1
-    #     distance = 100 # some big number
-    #     temp_distance = 0
-    #     cost = 5
-    #
-    #
-    #     # print("made it into distance_to_near_neigh 1")
-    #     for bots in range(1,self.num_bots+1):
-    #         # print("made it into distance_to_near_neigh 2")
-    #         # print("bots%s"%bots)
-    #         if bots == self.whoami:
-    #             continue
-    #         else:
-    #             dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
-    #
-    #             dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
-    #
-    #             temp_distance = (dx_temp*dx_temp + dy_temp*dy_temp)**(1/2)
-    #             # print("temp_distance: %s"%temp_distance)
-    #
-    #             if temp_distance < distance:
-    #                 distance = temp_distance
-    #                 follow_him = bots
-    #                 # print("distance: %s"%distance)
-    #                 # print("following_him: %s"%follow_him)
-    #
-    #     # print("final distance: %s"%distance)
-    #     return distance,follow_him
+    def distance_to_near_neigh(self):
+        dx_temp = 0
+        dy_temp = 0
+        # closest_bot = {}
+        follow_him = -1
+        distance = 100 # some big number
+        temp_distance = 0
+        cost = 5
+
+
+        # print("made it into distance_to_near_neigh 1")
+        for bots in range(1,self.num_bots+1):
+            # print("made it into distance_to_near_neigh 2")
+            # print("bots%s"%bots)
+            if bots == self.whoami:
+                continue
+            else:
+                dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
+
+                dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
+
+                temp_distance = (dx_temp*dx_temp + dy_temp*dy_temp)**(1/2)
+                # print("temp_distance: %s"%temp_distance)
+
+                if temp_distance < distance:
+                    distance = temp_distance
+                    follow_him = bots
+                    # print("distance: %s"%distance)
+                    # print("following_him: %s"%follow_him)
+
+        # print("final distance: %s"%distance)
+        return distance,follow_him
 
 
     # def distance_to_you(self):
