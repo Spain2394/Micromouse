@@ -54,7 +54,7 @@ class Cell:
 	def getIsThereWall(self,direction):
 		noWall = {}
 
-		if len(direction) > 0:
+		if len(direction) > 1 or len(direction) <= 0:
 			print("error direction should be in form U,D,L,R")
 			return None
 
