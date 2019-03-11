@@ -465,6 +465,7 @@ class StrategyTestRendezvous(Strategy):
     def priority(self,state,d):
         print("in priority")
         x,y = state[0],state[1]
+        print(x,y)
         alpha = 1 # weight for going in a straight line
         beta = 2 # weight for going towards gradient
         # zeta = 2 # weight for shortest path
@@ -475,7 +476,7 @@ class StrategyTestRendezvous(Strategy):
         gradient = 0
         priority = 0
 
-        straight_line = self.distance_to_wall(self.mouse.mazeMap.getCell(x,y))
+        straight_line = self.distance_to_wall(self.mouse.mazeMap.getCell(x,y),d)
         gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
 
         # priority such that low is bad,
