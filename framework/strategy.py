@@ -426,7 +426,7 @@ class StrategyTestRendezvous(Strategy):
         # hasBeen[state[0]][state[1]] = 1
 
         open = [(priority,cost,state,my_dir)] # some constants a start point and an end point
-        open_2 = [(priority,cost,state,my_dir)]
+        # open_2 = [(priority,cost,state,my_dir)]
 
         while len(open) < 10: # give me 20 good points
             # print("in the loop")
@@ -517,7 +517,7 @@ class StrategyTestRendezvous(Strategy):
         # priority *= cost
         print("priority: %s"%priority)
         print('----------------------------')
-        return (1/priority)
+        return (priority)
 
 
     def go(self):
