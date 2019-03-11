@@ -557,6 +557,7 @@ class StrategyTestRendezvous(Strategy):
                 if self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d) == False: # while mouse can move in some direction
                     print("got in if ")
                     delta = direction[d]
+                    print(delta)
                     next_state = (state[0] + delta[0], state[1] + delta[1])
                     next_cost = cost + 1 if my_dir is d else 2
                     print("next_cost", next_cost)
