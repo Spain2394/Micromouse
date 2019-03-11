@@ -414,7 +414,7 @@ class StrategyTestRendezvous(Strategy):
         while len(open) < 10:
             print("in the loop")
             item = open.pop(0)
-            print(item)
+
 
             cost = item[0]
             state = item[1]
