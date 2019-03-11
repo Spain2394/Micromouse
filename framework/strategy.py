@@ -431,7 +431,7 @@ class StrategyTestRendezvous(Strategy):
         while len(open) < 5 and len(open) > 0: # give me 20 good points
             # print("in the loop")
             item = open.pop(0) # pop appended item
-            open_2.pop(0)
+            # open_2.pop(0)
 
             priority = item[0]
             cost = item[1]
@@ -466,7 +466,7 @@ class StrategyTestRendezvous(Strategy):
                     print("state update: %s, in direction: %s"% (next_state,d))
                     priority = self.priority(next_state,d)
                     open.append((priority,next_cost,next_state,d)) # you will only include costs, states
-                    open_2.append((priority,next_cost,next_state,d))
+                    # open_2.append((priority,next_cost,next_state,d))
                     # hasBeen[next_state[0]][next_state[1]] = 1
                     # my_dir = d # update direction
                     # next_cost = self.distance_to_wall()
@@ -481,7 +481,7 @@ class StrategyTestRendezvous(Strategy):
         # print(open)
         # print("open sort: %s" %open[0])
         # open.sort() # sorting based on cost only helps if they are in order
-        return open_2
+        return open
 
 
     def priority(self,state,d):
