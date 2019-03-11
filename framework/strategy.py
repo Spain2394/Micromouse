@@ -6,6 +6,7 @@ from task import Strategy, NetworkInterface
 from map import Map
 from time import sleep
 import math
+import numpy as np
 
 
 class StrategyTestProgress(Strategy):
@@ -241,7 +242,6 @@ class StrategyTestRendezvous(Strategy):
         y_Dir = None
         cost = 2
 
-
         shortest_path_list_x = []
         shortest_path_list_y = []
         print("I'm in")
@@ -433,11 +433,11 @@ class StrategyTestRendezvous(Strategy):
         width = self.mouse.mazeMap.width
         print(height)
 
-        print(self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(dir))
+        print(self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getIsThereWall(dir))
 
         while check:
             if current_cell[0] >= 0 and current_cell[1] >=0 and current_cell[0] < width and current_cell[1] < height:
-                if self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getNoWall(dir):
+                if self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getIsThereWall(dir):
                     # print("in the conditional")
                     open_distance +=1
                     current_cell[0] += move_dir[dir][0]
@@ -446,6 +446,108 @@ class StrategyTestRendezvous(Strategy):
                 else: check = False
             else: check = False
         return open_distance
+
+    # def getBestMove(self,utility,state,destination,movements):
+    #
+    #     directions = {'UP','DOWN','LEFT','RIGHT'}
+    #
+    #     distance_dict = dic()
+    #     state_next = state
+    #     reward_max = utility[tuple(state_next)]
+    #     direction_best = 'UP'
+    #     movement_best = 0
+    #     state_next_best = state_next[:]
+    #
+    #     for direction in directions:
+    #         distance_dict[direction] = self.distance_to_wall(state,direction)
+    #
+    #     for direction in directions:
+    #         for movement in movements:
+    #             if direction is 'UP':
+    #                 state_next = [state[0], state[1]+min(distance_dict['UP'],movement)]
+    #             elif direction is 'DOWN':
+    #                 state_next = [state[0], state[1]- min(distance_dict['DOWN'],movement)]
+    #             elif direction is 'RIGHT':
+    #                 state_next = [state[0], state[1]- min(distance_dict['RIGHT'],movement)]
+    #             elif direction is 'LEFT':
+    #                 state_next = [state[0], state[1]- min(distance_dict['LEFT'],movement)]
+    #             if utility[tuple(state_next)] > reward_max:
+    #                 reward_max = utility[tuple(state_next)]
+    #                 direction_best = direction
+    #                 movement_best = movement
+    #                 state_next_best = state_next[:]
+    #
+    #     return (direction_best,movement_best,state_next_best, reward_max)
+
+    # def cost(destinations,movements):
+    #     directions = {'U','D','L','R'}
+    #     height = self.mouse.mazeMap.height
+    #     width = self.mouse.mazeMap.width
+    #     utility = []
+    #     utility = [[0 for i in range(width)] for j in range(height)]
+    #     reward = [[-1 for i in range(width)] for j in range(height)]
+    #     gamma = 0.95
+    #     walls_on_all_sides = False
+    #
+    #     for x in range(width):
+    #         for y in range(height):
+    #             for direction in directions:
+    #                 if self.mouse.getCell(x,y).getNoWall(direction) == True:
+    #                     walls_on_all_sides = True
+    #                 else: walls_on_all_sides = False
+    #             if walls_on_all_sides: reward[x,y] = (-5*height*width)
+    #
+    #
+    #     # supposed to be a list of targets
+    #     for destination in destinations:
+    #         reward[destination.x][destination.y] = 5 * height * width
+    #
+    #     utility_updated = utility.copy()
+    #     convergence_thresh = 00001 * (width * height)
+    #     utility_difference = 0.1
+    #
+    #
+    #     while utility_difference > convergence_thresh:
+    #         for x in range(width):
+    #             for y in range(height):
+    #                 utility_updated[x][y] = reward[x][y] + gamma * best_action(state = [x,y], utility, destination = destinations, movements)[3]
+    #         # utility_difference = (utility_updated - utility)
+    #     return utility
+
+    def cost(self):
+        # lets get good direction, movement pairs
+
+        direction_list = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
+        my_dir = 'U'  #
+        moves = []
+        state = (self.mouse.x,self.mouse.y)
+        cost = 1000 # some very high cost
+
+        open = [(cost,state,my_dir)] # some constants a start point and an end point
+
+        while len(open) > 0:
+            item = open.pop()
+
+            cost = item[0]
+            state = item[1]
+            my_dir = item[2]
+
+            # score each direction based on the number of cells that they can go straight,
+            # and if they wouldn't have to change direction
+            # you get back cells at which the robot can move from current state
+            # and the weight associated with that state
+            for d in direction_list:
+                if self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d) == False: # while mouse can move in some direction
+                    delta = direction[d]
+                    next_state = (state[0] + delta[0], state[1] + delta[1])
+                    next_cost = cost + 1 if my_dir is d else 2
+                    # cost g2 will be higher if direction is changed
+                    # cost includes distance to target
+                    open.append((nex_cost,next_state,d)) # you will only include costs, states
+                    # and directions that work
+        open.sort() #
+        print("open sort: %s" %open[0])
+        return open
 
 
     def go(self):
@@ -490,6 +592,9 @@ class StrategyTestRendezvous(Strategy):
         print("group centroid", group_centroid)
         distance = self.distance_to_wall(cell,direction)
         print("distance to wall: ", distance)
+        print("cost: ")
+        print(self.cost()) # print me a cost function
+
 
 
         if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
