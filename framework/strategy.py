@@ -6,7 +6,7 @@ from task import Strategy, NetworkInterface
 # from map import Map
 from time import sleep
 import math
-import numpy as np
+# import numpy as np
 
 
 class StrategyTestProgress(Strategy):
