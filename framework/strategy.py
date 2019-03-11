@@ -463,6 +463,7 @@ class StrategyTestRendezvous(Strategy):
 
 
     def priority(self,state,d):
+        print("in priority")
         x,y = state[0],state[1]
         alpha = 1 # weight for going in a straight line
         beta = 2 # weight for going towards gradient
