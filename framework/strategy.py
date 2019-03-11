@@ -471,12 +471,13 @@ class StrategyTestRendezvous(Strategy):
                     # cost includes distance to target
 
             open.sort() # the best option will be the next tested
+        # open.sort()
         print('---------------------------------------------------')
         # print("Returning..")
         # open.sort() #
         # print(open)
         # print("open sort: %s" %open[0])
-        open.sort() # sorting based on cost only helps if they are in order
+        # open.sort() # sorting based on cost only helps if they are in order
         return open
 
 
