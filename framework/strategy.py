@@ -480,6 +480,7 @@ class StrategyTestRendezvous(Strategy):
         priority = 0
         cell = self.mouse.mazeMap.getCell(x,y)
         print(cell.x,cell.y)
+        print('D',d)
 
         # straight_line = self.distance_to_wall(self.mouse.mazeMap.getCell(x,y),d)
         print(straight_line)
