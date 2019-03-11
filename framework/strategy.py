@@ -553,6 +553,7 @@ class StrategyTestRendezvous(Strategy):
             # and the weight associated with that state
             for d in direction_list:
                 print("in direction list loop")
+                print(self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d))
                 if self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d) == False: # while mouse can move in some direction
                     delta = direction[d]
                     next_state = (state[0] + delta[0], state[1] + delta[1])
