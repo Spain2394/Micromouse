@@ -489,7 +489,7 @@ class StrategyTestRendezvous(Strategy):
         gradient = 0
         priority = 0
         cell = self.mouse.mazeMap.getCell(x,y)
-        print("priority getCell: ", cell.x,cell.y)
+        print("priority getCell: (%s,%s)"% (cell.x,cell.y))
         # print(cell.x,cell.y)
         # print('D',d)
 
