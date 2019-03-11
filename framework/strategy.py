@@ -461,7 +461,7 @@ class StrategyTestRendezvous(Strategy):
                     next_state = (state[0] + delta[0], state[1] + delta[1])
                     if hasBeen[next_state[0]][next_state[1]] == 0:
                         next_cost = cost + 1 if my_dir is d else 2
-                        ("state update:%s, in direction: %s"% (next_state,d))
+                        print("state update: %s, in direction: %s"% (next_state,d))
                         priority = self.priority(next_state,d)
                         open.append((priority,next_cost,next_state,d)) # you will only include costs, states
                         hasBeen[next_state[0]][next_state[1]] = 1
