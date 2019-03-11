@@ -422,8 +422,8 @@ class StrategyTestRendezvous(Strategy):
         priority = 0
 
         # self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(self.mouse.mazeMap.height)]
-        hasBeen = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(self.mouse.mazeMap.height)]
-        hasBeen[state[0]][state[1]] = 1
+        # hasBeen = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(self.mouse.mazeMap.height)]
+        # hasBeen[state[0]][state[1]] = 1
 
         open = [(priority,cost,state,my_dir)] # some constants a start point and an end point
 
@@ -435,7 +435,7 @@ class StrategyTestRendezvous(Strategy):
             cost = item[1]
             state = item[2]
             my_dir = item[3]
-            print("(p,c,s,d):",(priority,cost,state,my_dir))
+            print("(p,c,s,d): ",(priority,cost,state,my_dir))
             # print(priority,cost,state,my_dir)
 
             # self.isBack = True
@@ -459,12 +459,12 @@ class StrategyTestRendezvous(Strategy):
                     print("state %s, good for direction: %s"%(state,d))
                     delta = direction_list[d]
                     next_state = (state[0] + delta[0], state[1] + delta[1])
-                    if hasBeen[next_state[0]][next_state[1]] == 0:
-                        next_cost = cost + 1 if my_dir is d else 2
-                        print("state update: %s, in direction: %s"% (next_state,d))
-                        priority = self.priority(next_state,d)
-                        open.append((priority,next_cost,next_state,d)) # you will only include costs, states
-                        hasBeen[next_state[0]][next_state[1]] = 1
+                    # if hasBeen[next_state[0]][next_state[1]] == 0:
+                    next_cost = cost + 1 if my_dir is d else 2
+                    print("state update: %s, in direction: %s"% (next_state,d))
+                    priority = self.priority(next_state,d)
+                    open.append((priority,next_cost,next_state,d)) # you will only include costs, states
+                    # hasBeen[next_state[0]][next_state[1]] = 1
                     # my_dir = d # update direction
                     # next_cost = self.distance_to_wall()
                     # cost g2 will be higher if direction is changed
