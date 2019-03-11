@@ -125,8 +125,7 @@ class StrategyTestMultiDFS(Strategy):
     def __init__(self, mouse):
         print("hello")
         self.mouse = mouse
-        self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(
-            self.mouse.mazeMap.height)]
+        self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(self.mouse.mazeMap.height)]
         self.isVisited[self.mouse.x][self.mouse.y] = 1
         self.network = NetworkInterface()
         self.network.initSocket()
