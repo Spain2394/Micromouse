@@ -505,7 +505,7 @@ class StrategyTestRendezvous(Strategy):
         # print("sl:",straight_line)
         # centroid = self.GroupCentroid()
         gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
-        print(gradient)
+        # print(gradient)
 
         # priority such that low is bad,
         priority = beta*gradient + alpha/(straight_line+epsilon) # the gradient gets the state is good
