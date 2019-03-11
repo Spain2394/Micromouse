@@ -540,16 +540,19 @@ class StrategyTestRendezvous(Strategy):
         while len(open) > 0:
             print("in the loop")
             item = open.pop()
+            print(item)
 
             cost = item[0]
             state = item[1]
             my_dir = item[2]
+            print(cost,state,my_dir)
 
             # score each direction based on the number of cells that they can go straight,
             # and if they wouldn't have to change direction
             # you get back cells at which the robot can move from current state
             # and the weight associated with that state
             for d in direction_list:
+                print("in direction list loop")
                 if self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d) == False: # while mouse can move in some direction
                     delta = direction[d]
                     next_state = (state[0] + delta[0], state[1] + delta[1])
