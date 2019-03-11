@@ -451,7 +451,7 @@ class StrategyTestRendezvous(Strategy):
         # open.sort() #
         # print(open)
         # print("open sort: %s" %open[0])
-        open.sort()
+        open.sort() # sort based on cost
         return open
 
     def go(self):
@@ -499,6 +499,7 @@ class StrategyTestRendezvous(Strategy):
         # distance = self.distance_to_wall(cell,direction)
         print("distance to wall: ", distance)
         print("final cost: ", self.cost(goal))
+        print("(x,y)",(self.mouse.x, self.mouse.y))
         # print(self.cost()) # print me a cost function
 
 
