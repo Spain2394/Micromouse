@@ -337,36 +337,36 @@ class StrategyTestRendezvous(Strategy):
         sleep(0.5)
 
 
-    # def check_greatest_distance(self):
-    #     x_Dir = None
-    #     y_Dir = None
-    #     cost = 2
-    #
-    #     shortest_path_list_x = []
-    #     shortest_path_list_y = []
-    #     print("I'm in")
-    #
-    #     for bots in self.neighbors_states:
-    #         if bots != self.whoami:
-    #             dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
-    #             dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
-    #
-    #             if dy_temp < 0 and self.mouse.direction is not 'DOWN':
-    #                 dy_temp *= cost
-    #             elif dy_temp > 0 and self.mouse.direction is not 'UP':
-    #                 dy_temp *= cost
-    #
-    #             if dx_temp < 0 and self.mouse.direction is not 'LEFT':
-    #                 dx_temp *= cost
-    #             elif dx_temp > 0 and self.mouse.direction is not 'RIGHT':
-    #                 dx_temp *= cost
-    #
-    #             shortest_path_list_x.append(dx_temp)
-    #             shortest_path_list_y.append(dy_temp)
-    #
-    #     # shortest_path_list_x.sort()
-    #     # shortest_path_list_y.sort()
-    #     return shortest_path_list_x, shortest_path_list_y
+    def check_greatest_distance(self):
+        x_Dir = None
+        y_Dir = None
+        cost = 2
+
+        shortest_path_list_x = []
+        shortest_path_list_y = []
+        print("I'm in")
+
+        for bots in self.neighbors_states:
+            if bots != self.whoami:
+                dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
+                dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
+    
+                if dy_temp < 0 and self.mouse.direction is not 'DOWN':
+                    dy_temp *= cost
+                elif dy_temp > 0 and self.mouse.direction is not 'UP':
+                    dy_temp *= cost
+
+                if dx_temp < 0 and self.mouse.direction is not 'LEFT':
+                    dx_temp *= cost
+                elif dx_temp > 0 and self.mouse.direction is not 'RIGHT':
+                    dx_temp *= cost
+
+                shortest_path_list_x.append(dx_temp)
+                shortest_path_list_y.append(dy_temp)
+
+        # shortest_path_list_x.sort()
+        # shortest_path_list_y.sort()
+        return shortest_path_list_x, shortest_path_list_y
 
 
     # # def check_priority(self, dx_list, dy_list):
