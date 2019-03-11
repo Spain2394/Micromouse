@@ -238,6 +238,8 @@ class StrategyTestRendezvous(Strategy):
 
     def checkFinished(self):
         return self.isBack
+
+
     def distance_to_near_neigh(self):
         dx_temp = 0
         dy_temp = 0
@@ -419,6 +421,7 @@ class StrategyTestRendezvous(Strategy):
             my_dir = item[2]
             print(cost,state,my_dir)
 
+            # self.isBack = True
             if state is goal:
                 goal = True
                 break
