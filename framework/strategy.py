@@ -424,7 +424,7 @@ class StrategyTestRendezvous(Strategy):
             # self.isBack = True
             print("state = ", state)
             print("goal = ", goal)
-            if state is goal:
+            if state == goal:
                 print("state = goal")
                 isGoal = True
                 break
