@@ -218,7 +218,7 @@ class StrategyTestRendezvous(Strategy):
         # self.mazeMap = mazeMap
         self.mouse = mouse
         self.num_bots = num_bots
-        # self.centroid = (self.mouse.mazeMap.width,self.mouse.mazeMap.height) #
+        self.centroid = (self.mouse.mazeMap.width,self.mouse.mazeMap.height) #
         self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(self.mouse.mazeMap.height)]
         # print(self.isVisited)
         self.isVisited[self.mouse.x][self.mouse.y] = 1
