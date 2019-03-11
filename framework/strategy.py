@@ -319,6 +319,7 @@ class StrategyTestRendezvous(Strategy):
         return centroid
 
     def GroupCentroid(self):
+        print("grou centroid")
         group_centroid = ()
         sumCx = 0
         sumCy = 0
