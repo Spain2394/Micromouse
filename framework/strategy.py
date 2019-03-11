@@ -444,7 +444,9 @@ class StrategyTestRendezvous(Strategy):
                     # cost g2 will be higher if direction is changed
                     # cost includes distance to target
                     open.append((next_cost,next_state,d)) # you will only include costs, states
+
                     # and directions that work
+        print("Returning..")
         open.sort() #
         print("open sort: %s" %open[0])
         return open
@@ -493,7 +495,7 @@ class StrategyTestRendezvous(Strategy):
         print("group centroid", group_centroid)
         # distance = self.distance_to_wall(cell,direction)
         print("distance to wall: ", distance)
-        print("cost: ", self.cost(goal)[0])
+        print("final cost of element 0: ", self.cost(goal)[0])
         # print(self.cost()) # print me a cost function
 
 
