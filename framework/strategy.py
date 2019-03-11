@@ -214,6 +214,7 @@ class StrategyTestRendezvous(Strategy):
 
     # define number of robots
     def __init__(self, mouse, initPoint,num_bots,mazeMap):
+        print("INTIA")
         # add
         self.mazeMap = mazeMap
         self.mouse = mouse
