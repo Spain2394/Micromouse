@@ -528,7 +528,7 @@ class StrategyTestRendezvous(Strategy):
 
     def cost(self):
         # lets get good direction, movement pairs
-
+        print("cost")
         direction_list = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
         my_dir = 'U'  #
         moves = []
