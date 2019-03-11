@@ -220,9 +220,9 @@ class StrategyTestRendezvous(Strategy):
         self.num_bots = num_bots
         # self.centroid = (self.mouse.mazeMap.width,self.mouse.mazeMap.height) #
         self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(self.mouse.mazeMap.height)]
-        print(self.isVisited)
+        # print(self.isVisited)
         self.isVisited[self.mouse.x][self.mouse.y] = 1
-        prin("made it past initialization")
+        print("made it past initialization")
         for i in range(1, self.num_bots + 1):
             if initPoint[str(i)] == (self.mouse.x, self.mouse.y):
                 self.whoami = i
