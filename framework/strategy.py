@@ -412,7 +412,7 @@ class StrategyTestRendezvous(Strategy):
 
         open = [(cost,state,my_dir)] # some constants a start point and an end point
 
-        while len(open) < 10:
+        while len(open) < 20: # give me 20 good points
             print("in the loop")
             item = open.pop(0)
 
@@ -495,8 +495,9 @@ class StrategyTestRendezvous(Strategy):
         distance = 0
         cell = self.mouse.mazeMap.getCell(self.mouse.x,self.mouse.y)
         direction = self.mouse.direction
-        goal = (0,1)
         group_centroid = self.GroupCentroid()
+        goal = group_centroid
+        moves = [0,1,2,3]
 
         print("group centroid", group_centroid)
         # distance = self.distance_to_wall(cell,direction)
@@ -508,7 +509,10 @@ class StrategyTestRendezvous(Strategy):
         print(open)
         # print(self.cost()) # print me a cost function
 
-    
+        # trials = 3
+        # for move in moves:
+        #     if open
+
 
         if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
             self.path.append([self.mouse.x, self.mouse.y])
