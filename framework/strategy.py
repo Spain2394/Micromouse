@@ -382,16 +382,16 @@ class StrategyTestRendezvous(Strategy):
         print('--------------------------------')
         print("cells before distance calc: (%s,%s)"% (cell.x,cell.y))
         current_cell = [cell.x,cell.y] # are we modifying current cell?? if so make a copy
-        print(current_cell)
-        print(current_cell[0],current_cell[1])
+        # print(current_cell)
+        # print(current_cell[0],current_cell[1])
         dir = direction[0]
-        print(dir)
+        # print(dir)
 
         height = self.mouse.mazeMap.height
         width = self.mouse.mazeMap.width
-        print(height)
+        # print(height)
 
-        print(self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getIsThereWall(dir))
+        # print(self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getIsThereWall(dir))
 
         while check:
             if current_cell[0] >= 0 and current_cell[1] >=0 and current_cell[0] < width and current_cell[1] < height:
