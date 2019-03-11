@@ -468,6 +468,7 @@ class StrategyTestRendezvous(Strategy):
         print(x,y)
         alpha = 1 # weight for going in a straight line
         beta = 2 # weight for going towards gradient
+        epsilon = 0.01
         # zeta = 2 # weight for shortest path
         # when the state is good the priority is low
 
@@ -480,7 +481,7 @@ class StrategyTestRendezvous(Strategy):
         gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
 
         # priority such that low is bad,
-        priority = beta/gradient + alpha/straight_lin # the gradient gets the state is good
+        priority = beta/gradient + alpha/(straight_lin+epsilon) # the gradient gets the state is good
         return priority
 
     def go(self):
