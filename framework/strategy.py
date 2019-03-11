@@ -514,7 +514,7 @@ class StrategyTestRendezvous(Strategy):
         # go based on priority towards goal
         for trial in trials:
             x,y = open[trial][1][0], open[trial][1][1]
-            dir = open[trial][1]
+            dir = open[trial][2]
             if dir is 'L':
                 self.path.append([self.mouse.x, self.mouse.y])
                 self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
