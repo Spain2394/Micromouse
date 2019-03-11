@@ -21,7 +21,8 @@ micromouse.setMotorController(COREController(index, initPoint[index], '10.0.0.25
 micromouse.setInitPoint(initPoint[index][0], initPoint[index][1])
 # micromouse.addTask(StrategyTestMultiDFS(micromouse))
 print("broken task below")
-micromouse.addTask(StrategyTestRendezvous(micromouse, initPoint, num_bots,mazeMap))
+# micromouse.addTask(StrategyTestRendezvous(micromouse, initPoint, num_bots,mazeMap))
+micromouse.addTask(StrategyTestRendezvous(micromouse, initPoint, num_bots))
 print("after initialization")
 # num bots
 micromouse.run()

@@ -209,17 +209,17 @@ class StrategyTestRendezvous(Strategy):
     # starting_pose = ()
     starting_pose = ()
     centroid = ()
-    mazeMap = None
+    # mazeMap = None
 
 
     # define number of robots
-    def __init__(self, mouse, initPoint, num_bots, mazeMap):
+    def __init__(self, mouse, initPoint, num_bots):
         print("INTIA")
         # add
         self.mazeMap = mazeMap
         self.mouse = mouse
         self.num_bots = num_bots
-        self.centroid = (self.mouse.mazeMap.width,self.mazeMap.height) #
+        self.centroid = (self.mouse.mazeMap.width,self.mouse.mazeMap.height) #
         self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(
             self.mouse.mazeMap.height)]
         self.isVisited[self.mouse.x][self.mouse.y] = 1
@@ -278,7 +278,7 @@ class StrategyTestRendezvous(Strategy):
     # #     dy_list.sort() # dx and dy are already least -> greatest
     # #     priority = []
     # #     trash = []
-    # #     #TODO come up with a second order priority
+    # #      come up with a second order priority
     # #     # print("check priority")
     # #     for i in range(N):
     # #         # go for closest
