@@ -473,7 +473,7 @@ class StrategyTestRendezvous(Strategy):
         print("in priority")
         x,y = state[0],state[1]
         print(x,y)
-        alpha = 1 # weight for going in a straight line
+        alpha = 1.0 # weight for going in a straight line
         beta = 2 # weight for going towards gradient
         epsilon = 0.01
         # zeta = 2 # weight for shortest path
