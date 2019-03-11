@@ -409,17 +409,19 @@ class StrategyTestRendezvous(Strategy):
         cost = 100 # some very high cost
         isGoal = False
         gamma = 0.01 # cost is lower when distance is longer
+        priority = 0
 
-        open = [(cost,state,my_dir)] # some constants a start point and an end point
+        open = [(priority,cost,state,my_dir)] # some constants a start point and an end point
 
         while len(open) < 20 and len(open) > 0: # give me 20 good points
             print("in the loop")
             item = open.pop(0) # pop appended item
 
-            cost = item[0]
-            state = item[1]
-            my_dir = item[2]
-            print(cost,state,my_dir)
+            priority = item[0]
+            cost = item[1]
+            state = item[2]
+            my_dir = item[3]
+            print(priority,cost,state,my_dir)
 
             # self.isBack = True
             print("state = ", state)
@@ -444,20 +446,40 @@ class StrategyTestRendezvous(Strategy):
 
                     next_state = (state[0] + delta[0], state[1] + delta[1])
                     next_cost = cost + 1 if my_dir is d else 2
-                    my_dir = d # update direction
+                    priority = self.priority(next_state,d)
+                    # my_dir = d # update direction
                     # next_cost = self.distance_to_wall()
                     # cost g2 will be higher if direction is changed
                     # cost includes distance to target
-                    open.append((next_cost,next_state,d)) # you will only include costs, states
-            # open.sort()
+                    open.append((priority,next_cost,next_state,d)) # you will only include costs, states
+            open.sort() # the best option will be the next tested
 
-                    # and directions that work
         print("Returning..")
         # open.sort() #
         # print(open)
         # print("open sort: %s" %open[0])
         open.sort() # sorting based on cost only helps if they are in order
         return open
+
+
+    def priority(self,state,d):
+        x,y = state[0],state[1]
+        alpha = 1 # weight for going in a straight line
+        beta = 2 # weight for going towards gradient
+        # zeta = 2 # weight for shortest path
+        # when the state is good the priority is low
+
+        straight_line = 0
+        shortest_distance = 0
+        gradient = 0
+        priority = 0
+
+        straight_line = self.distance_to_wall(self.mouse.mazeMap.getCell(x,y))
+        gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
+
+        # priority such that low is bad,
+        priority = beta/gradient + alpha/straight_lin # the gradient gets the state is good
+        return priority
 
     def go(self):
         print("GO")
@@ -512,6 +534,7 @@ class StrategyTestRendezvous(Strategy):
         # print(self.cost()) # print me a cost function
         moved = False
 
+        # still check is visited
         # trials = 10
         # # go based on priority towards goal
         # for trial in range(trials):
