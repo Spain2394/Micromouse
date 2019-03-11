@@ -478,6 +478,7 @@ class StrategyTestRendezvous(Strategy):
         priority = 0
 
         straight_line = self.distance_to_wall(self.mouse.mazeMap.getCell(x,y),d)
+        print(straight_line)
         gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
 
         # priority such that low is bad,
