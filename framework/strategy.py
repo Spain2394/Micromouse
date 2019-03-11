@@ -238,6 +238,207 @@ class StrategyTestRendezvous(Strategy):
 
     def checkFinished(self):
         return self.isBack
+    def distance_to_near_neigh(self):
+        dx_temp = 0
+        dy_temp = 0
+        # closest_bot = {}
+        follow_him = -1
+        distance = 100 # some big number
+        temp_distance = 0
+        cost = 5
+
+
+        # print("made it into distance_to_near_neigh 1")
+        for bots in range(1,self.num_bots+1):
+            # print("made it into distance_to_near_neigh 2")
+            # print("bots%s"%bots)
+            if bots == self.whoami:
+                continue
+            else:
+                dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
+
+                dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
+
+                temp_distance = (dx_temp*dx_temp + dy_temp*dy_temp)**(1/2)
+                # print("temp_distance: %s"%temp_distance)
+
+                if temp_distance < distance:
+                    distance = temp_distance
+                    follow_him = bots
+                    # print("distance: %s"%distance)
+                    # print("following_him: %s"%follow_him)
+
+        # print("final distance: %s"%distance)
+        return distance,follow_him
+
+
+    def distance_to_you(self):
+        distance = -1
+        if abs(dx_temp) < abs(self.dx):
+            self.dx = dx_temp
+            if self.dx < 0: x_Dir = "LEFT"
+            else: x_Dir = "RIGHT"
+
+        elif abs(dy_temp) < abs(self.dy):
+            self.dy = dx_temp
+            if self.dy < 0: y_Dir = "UP" # opposite to intuition
+            else: y_Dir = "DOWN"
+
+        if abs(self.dx) < abs(self.dy):return x_Dir
+        # elif abs(self.dx) == abs(self.dy):return y_Dir # just make up defualt when tie
+        else: return y_Dir
+
+
+    def Centroid(self):
+        area = 0
+        centroid = ()
+        weights = 0
+        dx = 0
+        dy = 0
+        dx_temp = 0
+        dy_temp = 0
+        weighted_x = 0
+        weighted_y = 0
+
+
+        # print("centroid function")
+        for bot in self.neighbors_states:
+            dx_temp = abs(self.neighbors_states[bot]['x']-self.mouse.x)
+            dy_temp = abs(self.neighbors_states[bot]['y']-self.mouse.y)
+            if dx_temp > dx: dx = dx_temp
+            if dy_temp > dy: dy = dy_temp
+
+        # print("out of centroid loop")
+        weighted_x = math.floor(((dx/dy)*(self.mouse.x + dx))/2)
+        weighted_y = math.floor(((dy/dx)*(self.mouse.y + dy))/2)
+        # print("weighted_x: ",weighted_x)
+
+        centroid = (weighted_x, weighted_y)
+        return centroid
+
+    def GroupCentroid(self):
+        group_centroid = ()
+        sumCx = 0
+        sumCy = 0
+        sumAc = 0
+        lstP = self.neighbors_states.copy() # copy the neighbors_states
+        for i in range(1,self.num_bots+1):
+            sumCx += lstP[i]['x']
+            sumCy += lstP[i]['y']
+
+        group_centroid = (math.ceil(sumCx/self.num_bots),math.ceil(sumCy/self.num_bots))
+        return group_centroid
+
+    def BestMove(self,utility,maze):
+        direction = ['Up','Down','Left','Right']
+
+
+        return(direction_best, movement_best,state_next_best,reward_max)
+
+        
+    def check_greatest_distance(self):
+        x_Dir = None
+        y_Dir = None
+        cost = 2
+
+        shortest_path_list_x = []
+        shortest_path_list_y = []
+        print("I'm in")
+
+        for bots in self.neighbors_states:
+            if bots != self.whoami:
+                dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
+                dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
+
+                if dy_temp < 0 and self.mouse.direction is not 'DOWN':
+                    dy_temp *= cost
+                elif dy_temp > 0 and self.mouse.direction is not 'UP':
+                    dy_temp *= cost
+
+                if dx_temp < 0 and self.mouse.direction is not 'LEFT':
+                    dx_temp *= cost
+                elif dx_temp > 0 and self.mouse.direction is not 'RIGHT':
+                    dx_temp *= cost
+
+                shortest_path_list_x.append(dx_temp)
+                shortest_path_list_y.append(dy_temp)
+
+        # shortest_path_list_x.sort()
+        # shortest_path_list_y.sort()
+        return shortest_path_list_x, shortest_path_list_y
+
+    def distance_to_wall(self,cell,direction):
+        # how long can mouse go in direction,
+        check = True
+        open_distance = 0
+        move_dir = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
+
+        current_cell = [cell.x,cell.y] # almost there
+        print(current_cell)
+        print(current_cell[0],current_cell[1])
+        dir = direction[0]
+
+        height = self.mouse.mazeMap.height
+        width = self.mouse.mazeMap.width
+        print(height)
+
+        print(self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getIsThereWall(dir))
+
+        while check:
+            if current_cell[0] >= 0 and current_cell[1] >=0 and current_cell[0] < width and current_cell[1] < height:
+                if self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getIsThereWall(dir):
+                    # print("in the conditional")
+                    open_distance +=1
+                    current_cell[0] += move_dir[dir][0]
+                    # print("current_cell_0:",current_cell[0])
+                    current_cell[1] += move_dir[dir][1]
+                else: check = False
+            else: check = False
+        return open_distance
+
+
+    def cost(self,goal):
+        # lets get good direction, movement pairs
+        print("cost")
+        direction_list = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
+        my_dir = 'U'  #
+        moves = []
+        state = (self.mouse.x,self.mouse.y)
+        cost = 0 # some very high cost
+
+        open = [(cost,state,my_dir)] # some constants a start point and an end point
+        print("first open: ", open)
+        while len(open) > 0:
+            print("in the loop")
+            item = open.pop(0)
+            print(item)
+
+            cost = item[0]
+            state = item[1]
+            my_dir = item[2]
+            print(cost,state,my_dir)
+
+            # score each direction based on the number of cells that they can go straight,
+            # and if they wouldn't have to change direction
+            # you get back cells at which the robot can move from current state
+            # and the weight associated with that state
+            for d in direction_list:
+                print("in direction list loop")
+                print(self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d))
+                if self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d) == False: # while mouse can move in some direction
+                    print("got in if ")
+                    delta = direction_list[d]
+                    print(delta)
+                    next_state = (state[0] + delta[0], state[1] + delta[1])
+                    next_cost = cost + 1 if my_dir is d else 2
+                    print("next_cost", next_cost)
+                    # cost g2 will be higher if direction is changed
+                    # cost includes distance to target
+                    open.append((next_cost,next_state,d)) # you will only include costs, states
+                    # and directions that work
+        open.sort() #
+        print("open sort: %s" %open[0])
+        return open
 
     def go(self):
         print("GO")
@@ -337,38 +538,6 @@ class StrategyTestRendezvous(Strategy):
         sleep(0.5)
 
 
-    def check_greatest_distance(self):
-        x_Dir = None
-        y_Dir = None
-        cost = 2
-
-        shortest_path_list_x = []
-        shortest_path_list_y = []
-        print("I'm in")
-
-        for bots in self.neighbors_states:
-            if bots != self.whoami:
-                dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
-                dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
-
-                if dy_temp < 0 and self.mouse.direction is not 'DOWN':
-                    dy_temp *= cost
-                elif dy_temp > 0 and self.mouse.direction is not 'UP':
-                    dy_temp *= cost
-
-                if dx_temp < 0 and self.mouse.direction is not 'LEFT':
-                    dx_temp *= cost
-                elif dx_temp > 0 and self.mouse.direction is not 'RIGHT':
-                    dx_temp *= cost
-
-                shortest_path_list_x.append(dx_temp)
-                shortest_path_list_y.append(dy_temp)
-
-        # shortest_path_list_x.sort()
-        # shortest_path_list_y.sort()
-        return shortest_path_list_x, shortest_path_list_y
-
-
     # # def check_priority(self, dx_list, dy_list):
     # #     N = len(dx_list)
     # #     dx_list.sort() # make sure you are comparing only the smallest values
@@ -398,176 +567,7 @@ class StrategyTestRendezvous(Strategy):
     # #     # print("returning: %s"% priority)
     # #     return priority
     #
-    def distance_to_near_neigh(self):
-        dx_temp = 0
-        dy_temp = 0
-        # closest_bot = {}
-        follow_him = -1
-        distance = 100 # some big number
-        temp_distance = 0
-        cost = 5
 
-
-        # print("made it into distance_to_near_neigh 1")
-        for bots in range(1,self.num_bots+1):
-            # print("made it into distance_to_near_neigh 2")
-            # print("bots%s"%bots)
-            if bots == self.whoami:
-                continue
-            else:
-                dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
-
-                dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
-
-                temp_distance = (dx_temp*dx_temp + dy_temp*dy_temp)**(1/2)
-                # print("temp_distance: %s"%temp_distance)
-
-                if temp_distance < distance:
-                    distance = temp_distance
-                    follow_him = bots
-                    # print("distance: %s"%distance)
-                    # print("following_him: %s"%follow_him)
-
-        # print("final distance: %s"%distance)
-        return distance,follow_him
-
-
-    def distance_to_you(self):
-        distance = -1
-        if abs(dx_temp) < abs(self.dx):
-            self.dx = dx_temp
-            if self.dx < 0: x_Dir = "LEFT"
-            else: x_Dir = "RIGHT"
-
-        elif abs(dy_temp) < abs(self.dy):
-            self.dy = dx_temp
-            if self.dy < 0: y_Dir = "UP" # opposite to intuition
-            else: y_Dir = "DOWN"
-
-        if abs(self.dx) < abs(self.dy):return x_Dir
-        # elif abs(self.dx) == abs(self.dy):return y_Dir # just make up defualt when tie
-        else: return y_Dir
-
-
-    def Centroid(self):
-        area = 0
-        centroid = ()
-        weights = 0
-        dx = 0
-        dy = 0
-        dx_temp = 0
-        dy_temp = 0
-        weighted_x = 0
-        weighted_y = 0
-
-
-        # print("centroid function")
-        for bot in self.neighbors_states:
-            dx_temp = abs(self.neighbors_states[bot]['x']-self.mouse.x)
-            dy_temp = abs(self.neighbors_states[bot]['y']-self.mouse.y)
-            if dx_temp > dx: dx = dx_temp
-            if dy_temp > dy: dy = dy_temp
-
-        # print("out of centroid loop")
-        weighted_x = math.floor(((dx/dy)*(self.mouse.x + dx))/2)
-        weighted_y = math.floor(((dy/dx)*(self.mouse.y + dy))/2)
-        # print("weighted_x: ",weighted_x)
-
-        centroid = (weighted_x, weighted_y)
-        return centroid
-
-    def GroupCentroid(self):
-        group_centroid = ()
-        sumCx = 0
-        sumCy = 0
-        sumAc = 0
-        lstP = self.neighbors_states.copy() # copy the neighbors_states
-        for i in range(1,self.num_bots+1):
-            sumCx += lstP[i]['x']
-            sumCy += lstP[i]['y']
-
-        group_centroid = (math.ceil(sumCx/self.num_bots),math.ceil(sumCy/self.num_bots))
-        return group_centroid
-
-    def BestMove(self,utility,maze):
-        direction = ['Up','Down','Left','Right']
-
-
-        return(direction_best, movement_best,state_next_best,reward_max)
-
-    def distance_to_wall(self,cell,direction):
-        # how long can mouse go in direction,
-        check = True
-        open_distance = 0
-        move_dir = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
-
-        current_cell = [cell.x,cell.y] # almost there
-        print(current_cell)
-        print(current_cell[0],current_cell[1])
-        dir = direction[0]
-
-        height = self.mouse.mazeMap.height
-        width = self.mouse.mazeMap.width
-        print(height)
-
-        print(self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getIsThereWall(dir))
-
-        while check:
-            if current_cell[0] >= 0 and current_cell[1] >=0 and current_cell[0] < width and current_cell[1] < height:
-                if self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getIsThereWall(dir):
-                    # print("in the conditional")
-                    open_distance +=1
-                    current_cell[0] += move_dir[dir][0]
-                    # print("current_cell_0:",current_cell[0])
-                    current_cell[1] += move_dir[dir][1]
-                else: check = False
-            else: check = False
-        return open_distance
-
-
-
-    def cost(self):
-        # lets get good direction, movement pairs
-        print("cost")
-        direction_list = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
-        my_dir = 'U'  #
-        moves = []
-        state = (self.mouse.x,self.mouse.y)
-        cost = 0 # some very high cost
-
-        open = [(cost,state,my_dir)] # some constants a start point and an end point
-        print("first open: ", open)
-        while len(open) > 0:
-            print("in the loop")
-            item = open.pop()
-            print(item)
-
-            cost = item[0]
-            state = item[1]
-            my_dir = item[2]
-            print(cost,state,my_dir)
-
-            # score each direction based on the number of cells that they can go straight,
-            # and if they wouldn't have to change direction
-            # you get back cells at which the robot can move from current state
-            # and the weight associated with that state
-            for d in direction_list:
-                print("in direction list loop")
-                print(self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d))
-                if self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d) == False: # while mouse can move in some direction
-                    print("got in if ")
-                    delta = direction_list[d]
-                    print(delta)
-                    next_state = (state[0] + delta[0], state[1] + delta[1])
-                    next_cost = cost + 1 if my_dir is d else 2
-                    print("next_cost", next_cost)
-                    # cost g2 will be higher if direction is changed
-                    # cost includes distance to target
-                    open.append((next_cost,next_state,d)) # you will only include costs, states
-                    # and directions that work
-        open.sort() #
-        print("open sort: %s" %open[0])
-        return open
 
 
     # def getBestMove(self,utility,state,destination,movements):
