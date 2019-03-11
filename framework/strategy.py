@@ -521,7 +521,7 @@ class StrategyTestRendezvous(Strategy):
         my_dir = 'U'  #
         moves = []
         state = (self.mouse.x,self.mouse.y)
-        cost = 1000 # some very high cost
+        cost = -1 # some very high cost
 
         open = [(cost,state,my_dir)] # some constants a start point and an end point
 
