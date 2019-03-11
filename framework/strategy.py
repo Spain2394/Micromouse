@@ -335,7 +335,7 @@ class StrategyTestRendezvous(Strategy):
 
         return(direction_best, movement_best,state_next_best,reward_max)
 
-        
+
     def check_greatest_distance(self):
         x_Dir = None
         y_Dir = None
@@ -405,6 +405,7 @@ class StrategyTestRendezvous(Strategy):
         moves = []
         state = (self.mouse.x,self.mouse.y)
         cost = 0 # some very high cost
+        goal = False
 
         open = [(cost,state,my_dir)] # some constants a start point and an end point
         print("first open: ", open)
@@ -417,6 +418,10 @@ class StrategyTestRendezvous(Strategy):
             state = item[1]
             my_dir = item[2]
             print(cost,state,my_dir)
+
+            if state is goal:
+                goal = True
+                break
 
             # score each direction based on the number of cells that they can go straight,
             # and if they wouldn't have to change direction
@@ -478,13 +483,13 @@ class StrategyTestRendezvous(Strategy):
         distance = 0
         cell = self.mouse.mazeMap.getCell(self.mouse.x,self.mouse.y)
         direction = self.mouse.direction
-
-        # self.centroid = self.Centroid()
+        goal = (8,8)
         group_centroid = self.GroupCentroid()
+
         print("group centroid", group_centroid)
         # distance = self.distance_to_wall(cell,direction)
         print("distance to wall: ", distance)
-        print("cost: ", self.cost()[0])
+        print("cost: ", self.cost(goal)[0])
         # print(self.cost()) # print me a cost function
 
 
