@@ -478,8 +478,10 @@ class StrategyTestRendezvous(Strategy):
         shortest_distance = 0
         gradient = 0
         priority = 0
+        cell = self.mouse.mazeMap.getCell(x,y)
+        print(cell.x,cell.y)
 
-        straight_line = self.distance_to_wall(self.mouse.mazeMap.getCell(x,y),d)
+        # straight_line = self.distance_to_wall(self.mouse.mazeMap.getCell(x,y),d)
         print(straight_line)
         gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
         print(gradient)
