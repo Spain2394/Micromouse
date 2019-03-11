@@ -593,7 +593,7 @@ class StrategyTestRendezvous(Strategy):
         distance = self.distance_to_wall(cell,direction)
         print("distance to wall: ", distance)
         print("cost: ")
-        print(self.cost()) # print me a cost function
+        # print(self.cost()) # print me a cost function
 
 
 
