@@ -565,6 +565,7 @@ class StrategyTestRendezvous(Strategy):
         # print("recvData: %s"% recvData)
         # one packet at a time
         while recvData:
+            print("recieving data")
 
             otherMap = recvData
             cell = self.mouse.mazeMap.getCell(otherMap['x'], otherMap['y'])
