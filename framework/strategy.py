@@ -375,7 +375,7 @@ class StrategyTestRendezvous(Strategy):
         open_distance = 0
         move_dir = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
 
-        current_cell = [cell.x,cell.y] # almost there
+        current_cell = [cell.x.copy(),cell.y.copy()] # are we modifying current cell?? if so make a copy
         print(current_cell)
         print(current_cell[0],current_cell[1])
         dir = direction[0]
@@ -414,7 +414,6 @@ class StrategyTestRendezvous(Strategy):
         while len(open) < 10:
             print("in the loop")
             item = open.pop(0)
-
 
             cost = item[0]
             state = item[1]
