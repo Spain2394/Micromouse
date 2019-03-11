@@ -380,7 +380,7 @@ class StrategyTestRendezvous(Strategy):
 
         # print("cells:")
         print('--------------------------------')
-        print("cells before:", cell.x,cell.y)
+        print("cells before distance calc: (%s,%s)"% (cell.x,cell.y))
         current_cell = [cell.x,cell.y] # are we modifying current cell?? if so make a copy
         print(current_cell)
         print(current_cell[0],current_cell[1])
@@ -403,7 +403,7 @@ class StrategyTestRendezvous(Strategy):
                     current_cell[1] += move_dir[dir][1]
                 else: check = False
             else: check = False
-        print("cells after distance calc:", cell.x,cell.y)
+        print("cells after distance calc: (%s,%s)", (cell.x,cell.y))
         print('--------------------------------')
         return open_distance
 
@@ -451,11 +451,11 @@ class StrategyTestRendezvous(Strategy):
                 print(self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d))
                 if self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d) == False: # while mouse can move in some direction
 
-                    print("state %s, good for direction:%s "%(state,d))
+                    print("state %s, good for direction: %s"%(state,d))
                     delta = direction_list[d]
                     next_state = (state[0] + delta[0], state[1] + delta[1])
                     next_cost = cost + 1 if my_dir is d else 2
-                    ("state update:%s, in direction%s"% (next_state,d))
+                    ("state update:%s, in direction: %s"% (next_state,d))
                     priority = self.priority(next_state,d)
                     # my_dir = d # update direction
                     # next_cost = self.distance_to_wall()
@@ -463,7 +463,7 @@ class StrategyTestRendezvous(Strategy):
                     # cost includes distance to target
                     open.append((priority,next_cost,next_state,d)) # you will only include costs, states
             open.sort() # the best option will be the next tested
-        print('--------------------------------------')
+        print('---------------------------------------------------')
         # print("Returning..")
         # open.sort() #
         # print(open)
