@@ -444,18 +444,19 @@ class StrategyTestRendezvous(Strategy):
 
                     next_state = (state[0] + delta[0], state[1] + delta[1])
                     next_cost = cost + 1 if my_dir is d else 2
-
+                    my_dir = d # update direction
                     # next_cost = self.distance_to_wall()
                     # cost g2 will be higher if direction is changed
                     # cost includes distance to target
                     open.append((next_cost,next_state,d)) # you will only include costs, states
+            open.sort()
 
                     # and directions that work
         print("Returning..")
         # open.sort() #
         # print(open)
         # print("open sort: %s" %open[0])
-        open.sort() # sort based on cost
+        open.sort() # sorting based on cost only helps if they are in order
         return open
 
     def go(self):
