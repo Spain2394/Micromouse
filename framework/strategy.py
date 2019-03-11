@@ -408,6 +408,7 @@ class StrategyTestRendezvous(Strategy):
         state = (self.mouse.x,self.mouse.y)
         cost = 0 # some very high cost
         isGoal = False
+        # gamma = 0.01 # cost is lower when distance is longer
 
         open = [(cost,state,my_dir)] # some constants a start point and an end point
 
@@ -442,6 +443,7 @@ class StrategyTestRendezvous(Strategy):
                     next_state = (state[0] + delta[0], state[1] + delta[1])
                     next_cost = cost + 1 if my_dir is d else 2
 
+                    next_cost = self.distance_to_wall()
                     # cost g2 will be higher if direction is changed
                     # cost includes distance to target
                     open.append((next_cost,next_state,d)) # you will only include costs, states
@@ -494,14 +496,17 @@ class StrategyTestRendezvous(Strategy):
         direction = self.mouse.direction
         goal = (8,8)
         group_centroid = self.GroupCentroid()
+        open = []
+        moves = [0,1,2,3] # can move 0, 1, 2 or 3 positions
 
         print("group centroid", group_centroid)
         # distance = self.distance_to_wall(cell,direction)
         print("distance to wall: ", distance)
-        print("final cost: ", self.cost(goal))
+        # print("final cost: ", open = self.cost(goal))
+        open = self.cost(goal)
+        print("final cost: ", open)
         print("(x,y)",(self.mouse.x, self.mouse.y))
         # print(self.cost()) # print me a cost function
-
 
 
         if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
