@@ -319,7 +319,7 @@ class StrategyTestRendezvous(Strategy):
         return centroid
 
     def GroupCentroid(self):
-        print("grou centroid")
+        # print("grou centroid")
         group_centroid = ()
         sumCx = 0
         sumCy = 0
@@ -330,7 +330,7 @@ class StrategyTestRendezvous(Strategy):
             sumCy += lstP[i]['y']
 
         group_centroid = (math.ceil(sumCx/self.num_bots),math.ceil(sumCy/self.num_bots))
-        print("group_centroid:", group_centroid)
+        # print("group_centroid:", group_centroid)
         return group_centroid
 
     def BestMove(self,utility,maze):
@@ -347,7 +347,7 @@ class StrategyTestRendezvous(Strategy):
 
         shortest_path_list_x = []
         shortest_path_list_y = []
-        print("I'm in")
+        # print("I'm in")
 
         for bots in self.neighbors_states:
             if bots != self.whoami:
@@ -373,13 +373,14 @@ class StrategyTestRendezvous(Strategy):
 
     def distance_to_wall(self,cell,direction):
         # how long can mouse go in direction,
-        print("distance to wall")
+        # print("distance to wall")
         check = True
         open_distance = 0
         move_dir = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
 
-        print("cells:")
-        print(cell.x,cell.y)
+        # print("cells:")
+        print('--------------------------------')
+        print("cells before:", cell.x,cell.y)
         current_cell = [cell.x,cell.y] # are we modifying current cell?? if so make a copy
         print(current_cell)
         print(current_cell[0],current_cell[1])
@@ -402,13 +403,15 @@ class StrategyTestRendezvous(Strategy):
                     current_cell[1] += move_dir[dir][1]
                 else: check = False
             else: check = False
-            print("cells:", cell.x,cell.y)
+        print("cells after distance calc:", cell.x,cell.y)
+        print('--------------------------------')
         return open_distance
 
 
     def cost(self,goal):
         # lets get good direction, movement pairs
-        print("cost")
+        print("COMPUTE COST")
+        print("--------------------------------------------------------")
         direction_list = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
         my_dir = 'U'  #
         moves = []
@@ -420,8 +423,8 @@ class StrategyTestRendezvous(Strategy):
 
         open = [(priority,cost,state,my_dir)] # some constants a start point and an end point
 
-        while len(open) < 20 and len(open) > 0: # give me 20 good points
-            print("in the loop")
+        while len(open) < 5 and len(open) > 0: # give me 20 good points
+            # print("in the loop")
             item = open.pop(0) # pop appended item
 
             priority = item[0]
@@ -431,8 +434,8 @@ class StrategyTestRendezvous(Strategy):
             print(priority,cost,state,my_dir)
 
             # self.isBack = True
-            print("state = ", state)
-            print("goal = ", goal)
+            # print("state = ", state)
+            # print("goal = ", goal)
             if state == goal:
                 print("state = goal")
                 isGoal = True
@@ -444,15 +447,15 @@ class StrategyTestRendezvous(Strategy):
             # you get back cells at which the robot can move from current state
             # and the weight associated with that state
             for d in direction_list:
-                print("in direction list loop")
 
                 print(self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d))
                 if self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d) == False: # while mouse can move in some direction
 
+                    print("state %s, good for direction:%s "%state,d)
                     delta = direction_list[d]
-
                     next_state = (state[0] + delta[0], state[1] + delta[1])
                     next_cost = cost + 1 if my_dir is d else 2
+                    ("state priority: ", next_state)
                     priority = self.priority(next_state,d)
                     # my_dir = d # update direction
                     # next_cost = self.distance_to_wall()
@@ -460,8 +463,8 @@ class StrategyTestRendezvous(Strategy):
                     # cost includes distance to target
                     open.append((priority,next_cost,next_state,d)) # you will only include costs, states
             open.sort() # the best option will be the next tested
-
-        print("Returning..")
+        print('--------------------------------------')
+        # print("Returning..")
         # open.sort() #
         # print(open)
         # print("open sort: %s" %open[0])
@@ -484,18 +487,19 @@ class StrategyTestRendezvous(Strategy):
         gradient = 0
         priority = 0
         cell = self.mouse.mazeMap.getCell(x,y)
+        print("priority geCell: ", cell)
         print(cell.x,cell.y)
-        print('D',d)
+        # print('D',d)
 
         straight_line = self.distance_to_wall(cell,d)
-        print("sl:",straight_line)
-        centroid = self.GroupCentroid()
+        # print("sl:",straight_line)
+        # centroid = self.GroupCentroid()
         gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
         print(gradient)
 
         # priority such that low is bad,
         priority = beta*gradient + alpha/(straight_line+epsilon) # the gradient gets the state is good
-        print("pri:",priority)
+        # print("pri:",priority)
         return priority
 
     def go(self):
