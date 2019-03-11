@@ -450,8 +450,9 @@ class StrategyTestRendezvous(Strategy):
                     # and directions that work
         print("Returning..")
         # open.sort() #
-        print(open)
+        # print(open)
         # print("open sort: %s" %open[0])
+        open.sort()
         return open
 
     def go(self):
