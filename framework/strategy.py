@@ -426,10 +426,12 @@ class StrategyTestRendezvous(Strategy):
         # hasBeen[state[0]][state[1]] = 1
 
         open = [(priority,cost,state,my_dir)] # some constants a start point and an end point
+        open_2 = [(priority,cost,state,my_dir)]
 
         while len(open) < 5 and len(open) > 0: # give me 20 good points
             # print("in the loop")
             item = open.pop(0) # pop appended item
+            open_2.pop(0)
 
             priority = item[0]
             cost = item[1]
@@ -464,6 +466,7 @@ class StrategyTestRendezvous(Strategy):
                     print("state update: %s, in direction: %s"% (next_state,d))
                     priority = self.priority(next_state,d)
                     open.append((priority,next_cost,next_state,d)) # you will only include costs, states
+                    open_2.append((priority,next_cost,next_state,d))
                     # hasBeen[next_state[0]][next_state[1]] = 1
                     # my_dir = d # update direction
                     # next_cost = self.distance_to_wall()
