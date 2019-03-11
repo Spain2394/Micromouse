@@ -376,6 +376,7 @@ class StrategyTestRendezvous(Strategy):
         open_distance = 0
         move_dir = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
 
+        print("cells:")
         print(cell.x,cell.y)
         current_cell = [cell.x.copy(),cell.y.copy()] # are we modifying current cell?? if so make a copy
         print(current_cell)
@@ -482,7 +483,7 @@ class StrategyTestRendezvous(Strategy):
         print(cell.x,cell.y)
         print('D',d)
 
-        # straight_line = self.distance_to_wall(self.mouse.mazeMap.getCell(x,y),d)
+        straight_line = self.distance_to_wall(cell,d)
         print(straight_line)
         gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
         print(gradient)
