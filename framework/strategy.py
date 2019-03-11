@@ -407,10 +407,10 @@ class StrategyTestRendezvous(Strategy):
         moves = []
         state = (self.mouse.x,self.mouse.y)
         cost = 0 # some very high cost
-        goal = False
+        isGoal = False
 
         open = [(cost,state,my_dir)] # some constants a start point and an end point
-        print("first open: ", open)
+
         while len(open) > 0:
             print("in the loop")
             item = open.pop(0)
@@ -424,7 +424,7 @@ class StrategyTestRendezvous(Strategy):
             # self.isBack = True
             if state is goal:
                 print("state = goal")
-                goal = True
+                isGoal = True
                 break
 
             # score each direction based on the number of cells that they can go straight,
@@ -435,12 +435,12 @@ class StrategyTestRendezvous(Strategy):
                 print("in direction list loop")
                 print(self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d))
                 if self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d) == False: # while mouse can move in some direction
-                    print("got in if ")
+
                     delta = direction_list[d]
-                    print(delta)
+
                     next_state = (state[0] + delta[0], state[1] + delta[1])
                     next_cost = cost + 1 if my_dir is d else 2
-                    print("next_cost", next_cost)
+
                     # cost g2 will be higher if direction is changed
                     # cost includes distance to target
                     open.append((next_cost,next_state,d)) # you will only include costs, states
