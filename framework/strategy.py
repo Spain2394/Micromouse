@@ -382,6 +382,7 @@ class StrategyTestRendezvous(Strategy):
         print(current_cell)
         print(current_cell[0],current_cell[1])
         dir = direction[0]
+        print(dir)
 
         height = self.mouse.mazeMap.height
         width = self.mouse.mazeMap.width
