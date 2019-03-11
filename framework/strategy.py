@@ -233,6 +233,7 @@ class StrategyTestRendezvous(Strategy):
         self.network = NetworkInterface()
         self.network.initSocket()
         self.network.startReceiveThread()
+        print("network start receive thread")
 
     def checkFinished(self):
         return self.isBack
@@ -551,6 +552,7 @@ class StrategyTestRendezvous(Strategy):
 
 
     def go(self):
+        print("GO")
         self.iterations +=1
         # print("ITER: %s"%self.iterations)
         self.mouse.senseWalls()
