@@ -588,17 +588,17 @@ class StrategyTestRendezvous(Strategy):
             recvData = self.network.retrieveData()
 
 
-        group_centroid = ()
-        distance = 0
-        cell = self.mouse.mazeMap.getCell(self.mouse.x,self.mouse.y)
-        direction = self.mouse.direction
-
-        self.centroid = self.Centroid()
-        group_centroid = self.GroupCentroid()
-        print("group centroid", group_centroid)
-        # distance = self.distance_to_wall(cell,direction)
-        print("distance to wall: ", distance)
-        print("cost: ")
+        # group_centroid = ()
+        # distance = 0
+        # cell = self.mouse.mazeMap.getCell(self.mouse.x,self.mouse.y)
+        # direction = self.mouse.direction
+        #
+        # self.centroid = self.Centroid()
+        # group_centroid = self.GroupCentroid()
+        # print("group centroid", group_centroid)
+        # # distance = self.distance_to_wall(cell,direction)
+        # print("distance to wall: ", distance)
+        # print("cost: ")
         # print(self.cost()) # print me a cost function
 
 
