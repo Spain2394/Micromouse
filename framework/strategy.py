@@ -512,37 +512,37 @@ class StrategyTestRendezvous(Strategy):
         # print(self.cost()) # print me a cost function
         moved = False
 
-        trials = 10
-        # go based on priority towards goal
-        for trial in range(trials):
-            # x = open[trial][1][0]
-            # y = open[trial][1][1]
-            # print(open[trial][2])
-            dir = open[trial][2]
-            if dir is 'L':
-                self.path.append([self.mouse.x, self.mouse.y])
-                self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
-                self.mouse.goLeft()
-                self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'LEFT'}
-                moved = True
-            if dir is 'U':
-                self.path.append([self.mouse.x, self.mouse.y])
-                self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
-                self.mouse.goUp()
-                self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'UP'}
-                moved = True
-            if dir is 'R':
-                self.path.append([self.mouse.x, self.mouse.y])
-                self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
-                self.mouse.goRight()
-                self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'RIGHT'}
-                moved = True
-            if dir is 'D':
-                self.path.append([self.mouse.x, self.mouse.y])
-                self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
-                self.mouse.goDown()
-                self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'DOWN'}
-                moved = True
+        # trials = 10
+        # # go based on priority towards goal
+        # for trial in range(trials):
+        #     # x = open[trial][1][0]
+        #     # y = open[trial][1][1]
+        #     # print(open[trial][2])
+        #     dir = open[trial][2]
+        #     if dir is 'L':
+        #         self.path.append([self.mouse.x, self.mouse.y])
+        #         self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
+        #         self.mouse.goLeft()
+        #         self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'LEFT'}
+        #         moved = True
+        #     if dir is 'U':
+        #         self.path.append([self.mouse.x, self.mouse.y])
+        #         self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
+        #         self.mouse.goUp()
+        #         self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'UP'}
+        #         moved = True
+        #     if dir is 'R':
+        #         self.path.append([self.mouse.x, self.mouse.y])
+        #         self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
+        #         self.mouse.goRight()
+        #         self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'RIGHT'}
+        #         moved = True
+        #     if dir is 'D':
+        #         self.path.append([self.mouse.x, self.mouse.y])
+        #         self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
+        #         self.mouse.goDown()
+        #         self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'DOWN'}
+        #         moved = True
 
         if moved == False:
             if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
