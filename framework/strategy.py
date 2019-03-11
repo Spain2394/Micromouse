@@ -473,7 +473,7 @@ class StrategyTestRendezvous(Strategy):
 
 
     def priority(self,state,d):
-        print("in priority")
+        # print("in priority")
         x,y = state[0],state[1]
         print(x,y)
         alpha = 1.0 # weight for going in a straight line
@@ -487,8 +487,8 @@ class StrategyTestRendezvous(Strategy):
         gradient = 0
         priority = 0
         cell = self.mouse.mazeMap.getCell(x,y)
-        print("priority geCell: ", cell)
-        print(cell.x,cell.y)
+        print("priority getCell: ", cell)
+        # print(cell.x,cell.y)
         # print('D',d)
 
         straight_line = self.distance_to_wall(cell,d)
@@ -503,7 +503,7 @@ class StrategyTestRendezvous(Strategy):
         return priority
 
     def go(self):
-        print("GO")
+        # print("GO")
         self.iterations +=1
         # print("ITER: %s"%self.iterations)
         self.mouse.senseWalls()
@@ -548,7 +548,7 @@ class StrategyTestRendezvous(Strategy):
         # distance = self.distance_to_wall(cell,direction)
         print("distance to wall: ", distance)
         # print("final cost: ", self.cost(goal))
-        print("(x,y)",(self.mouse.x, self.mouse.y))
+        # print("(x,y)",(self.mouse.x, self.mouse.y))
         open = self.cost(goal)
         # print("open:", open = self.cost(goal))
         print(open)
