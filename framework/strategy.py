@@ -431,6 +431,7 @@ class StrategyTestRendezvous(Strategy):
             cost = item[1]
             state = item[2]
             my_dir = item[3]
+            print("(p,c,s,d):")
             print(priority,cost,state,my_dir)
 
             # self.isBack = True
@@ -448,7 +449,7 @@ class StrategyTestRendezvous(Strategy):
             # and the weight associated with that state
             for d in direction_list:
 
-                print(self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d))
+                # print(self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d))
                 if self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d) == False: # while mouse can move in some direction
 
                     print("state %s, good for direction: %s"%(state,d))
