@@ -500,8 +500,10 @@ class StrategyTestRendezvous(Strategy):
         print("group centroid", group_centroid)
         # distance = self.distance_to_wall(cell,direction)
         print("distance to wall: ", distance)
-        print("final cost: ", self.cost(goal))
+        # print("final cost: ", self.cost(goal))
         print("(x,y)",(self.mouse.x, self.mouse.y))
+
+        print("open:", open = self.cost(goal))
         # print(self.cost()) # print me a cost function
 
 
