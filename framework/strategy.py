@@ -378,7 +378,7 @@ class StrategyTestRendezvous(Strategy):
 
         print("cells:")
         print(cell.x,cell.y)
-        current_cell = [cell.x.copy(),cell.y.copy()] # are we modifying current cell?? if so make a copy
+        current_cell = [cell.x,cell.y] # are we modifying current cell?? if so make a copy
         print(current_cell)
         print(current_cell[0],current_cell[1])
         dir = direction[0]
@@ -399,6 +399,7 @@ class StrategyTestRendezvous(Strategy):
                     current_cell[1] += move_dir[dir][1]
                 else: check = False
             else: check = False
+            print("cells:", cell.x,cell.y)
         return open_distance
 
 
