@@ -552,6 +552,7 @@ class StrategyTestRendezvous(Strategy):
 
 
     def go(self):
+        
         print("GO")
         self.iterations +=1
         # print("ITER: %s"%self.iterations)
