@@ -524,6 +524,44 @@ class StrategyTestRendezvous(Strategy):
             else: check = False
         return open_distance
 
+
+
+    def cost(self):
+        # lets get good direction, movement pairs
+
+        direction_list = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
+        my_dir = 'U'  #
+        moves = []
+        state = (self.mouse.x,self.mouse.y)
+        cost = -1 # some very high cost
+
+        open = [(cost,state,my_dir)] # some constants a start point and an end point
+
+        while len(open) > 0:
+            item = open.pop()
+
+            cost = item[0]
+            state = item[1]
+            my_dir = item[2]
+
+            # score each direction based on the number of cells that they can go straight,
+            # and if they wouldn't have to change direction
+            # you get back cells at which the robot can move from current state
+            # and the weight associated with that state
+            for d in direction_list:
+                if self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d) == False: # while mouse can move in some direction
+                    delta = direction[d]
+                    next_state = (state[0] + delta[0], state[1] + delta[1])
+                    next_cost = cost + 1 if my_dir is d else 2
+                    # cost g2 will be higher if direction is changed
+                    # cost includes distance to target
+                    open.append((nex_cost,next_state,d)) # you will only include costs, states
+                    # and directions that work
+        open.sort() #
+        print("open sort: %s" %open[0])
+        return open
+
+
     # def getBestMove(self,utility,state,destination,movements):
     #
     #     directions = {'UP','DOWN','LEFT','RIGHT'}
@@ -591,40 +629,6 @@ class StrategyTestRendezvous(Strategy):
     #         # utility_difference = (utility_updated - utility)
     #     return utility
 
-    # def cost(self):
-    #     # lets get good direction, movement pairs
-    #
-    #     direction_list = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
-    #     my_dir = 'U'  #
-    #     moves = []
-    #     state = (self.mouse.x,self.mouse.y)
-    #     cost = -1 # some very high cost
-    #
-    #     open = [(cost,state,my_dir)] # some constants a start point and an end point
-    #
-    #     while len(open) > 0:
-    #         item = open.pop()
-    #
-    #         cost = item[0]
-    #         state = item[1]
-    #         my_dir = item[2]
-    #
-    #         # score each direction based on the number of cells that they can go straight,
-    #         # and if they wouldn't have to change direction
-    #         # you get back cells at which the robot can move from current state
-    #         # and the weight associated with that state
-    #         for d in direction_list:
-    #             if self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d) == False: # while mouse can move in some direction
-    #                 delta = direction[d]
-    #                 next_state = (state[0] + delta[0], state[1] + delta[1])
-    #                 next_cost = cost + 1 if my_dir is d else 2
-    #                 # cost g2 will be higher if direction is changed
-    #                 # cost includes distance to target
-    #                 open.append((nex_cost,next_state,d)) # you will only include costs, states
-    #                 # and directions that work
-    #     open.sort() #
-    #     print("open sort: %s" %open[0])
-    #     return open
 
 
 
