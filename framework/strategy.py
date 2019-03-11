@@ -411,7 +411,7 @@ class StrategyTestRendezvous(Strategy):
 
         open = [(cost,state,my_dir)] # some constants a start point and an end point
 
-        while len(open) > 0:
+        while len(open) > 10:
             print("in the loop")
             item = open.pop(0)
             print(item)
