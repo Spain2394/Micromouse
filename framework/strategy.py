@@ -449,7 +449,7 @@ class StrategyTestRendezvous(Strategy):
                     # cost g2 will be higher if direction is changed
                     # cost includes distance to target
                     open.append((next_cost,next_state,d)) # you will only include costs, states
-            open.sort()
+            # open.sort()
 
                     # and directions that work
         print("Returning..")
