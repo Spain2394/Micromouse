@@ -51,15 +51,15 @@ class Cell:
 
 	# addition
 	# take mouse cell and mouse direction
-	# def getIsThereWall(self,direction):
-	# 	noWall = {}
-	#
-	# 	if len(direction) > 0:
-	# 		print("error direction should be in form U,D,L,R")
-	# 		return None
-	#
-	# 	noWall = {'U':self.hasUpWall,'D':self.hasDownWall,'R':self.hasRightWall,'L':self.hasLeftWall}
-	# 	return noWall[direction]
+	def getIsThereWall(self,direction):
+		noWall = {}
+
+		if len(direction) > 0:
+			print("error direction should be in form U,D,L,R")
+			return None
+
+		noWall = {'U':self.hasUpWall,'D':self.hasDownWall,'R':self.hasRightWall,'L':self.hasLeftWall}
+		return noWall[direction]
 
 class Map:
 	height = 0
