@@ -421,6 +421,10 @@ class StrategyTestRendezvous(Strategy):
         gamma = 0.01 # cost is lower when distance is longer
         priority = 0
 
+        # self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(self.mouse.mazeMap.height)]
+        hasBeen = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(self.mouse.mazeMap.height)]
+        hasBeen[state[0]][state[1]] = 1
+
         open = [(priority,cost,state,my_dir)] # some constants a start point and an end point
 
         while len(open) < 5 and len(open) > 0: # give me 20 good points
@@ -455,14 +459,17 @@ class StrategyTestRendezvous(Strategy):
                     print("state %s, good for direction: %s"%(state,d))
                     delta = direction_list[d]
                     next_state = (state[0] + delta[0], state[1] + delta[1])
-                    next_cost = cost + 1 if my_dir is d else 2
-                    ("state update:%s, in direction: %s"% (next_state,d))
-                    priority = self.priority(next_state,d)
+                    if hasBeen[next_state[0]][next_state[1]] == 0:
+                        next_cost = cost + 1 if my_dir is d else 2
+                        ("state update:%s, in direction: %s"% (next_state,d))
+                        priority = self.priority(next_state,d)
+                        open.append((priority,next_cost,next_state,d)) # you will only include costs, states
+                        hasBeen[next_state[0]][next_state[1]] = 1
                     # my_dir = d # update direction
                     # next_cost = self.distance_to_wall()
                     # cost g2 will be higher if direction is changed
                     # cost includes distance to target
-                    open.append((priority,next_cost,next_state,d)) # you will only include costs, states
+
             open.sort() # the best option will be the next tested
         print('---------------------------------------------------')
         # print("Returning..")
