@@ -215,7 +215,7 @@ class StrategyTestRendezvous(Strategy):
     def __init__(self, mouse, initPoint, num_bots):
         print("INTIA")
         # add
-        self.mazeMap = mazeMap
+        # self.mazeMap = mazeMap
         self.mouse = mouse
         self.num_bots = num_bots
         self.centroid = (self.mouse.mazeMap.width,self.mouse.mazeMap.height) #
