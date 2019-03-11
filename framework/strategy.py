@@ -481,7 +481,7 @@ class StrategyTestRendezvous(Strategy):
         # print(open)
         # print("open sort: %s" %open[0])
         # open.sort() # sorting based on cost only helps if they are in order
-        return open
+        return open_2
 
 
     def priority(self,state,d):
