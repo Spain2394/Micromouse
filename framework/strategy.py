@@ -597,6 +597,7 @@ class StrategyTestRendezvous(Strategy):
             # d.sort()
         d.sort()
         print(d)
+        print(d[0])
         # b.sort()
         # b.sort()
         # self.sort(b)
