@@ -631,21 +631,25 @@ class StrategyTestRendezvous(Strategy):
                 print("(x,y:)",(x,y))
 
                 if self.mouse.x < x and self.mouse.canGoRight():
+                    self.path.append([self.mouse.x, self.mouse.y])
                     self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
                     self.mouse.goRight()
                     moved = True
                     print("RIGHT")
                 elif self.mouse.x > x and self.mouse.canGoLeft():
+                    self.path.append([self.mouse.x, self.mouse.y])
                     self.isVisited[self.mouse.x-1][self.mouse.y] = 1
                     self.mouse.goLeft()
                     moved = True
                     print("LEFT")
-                if self.mouse.y > y and self.mouse.canGoUp():
+                elif self.mouse.y > y and self.mouse.canGoUp():
+                    self.path.append([self.mouse.x, self.mouse.y])
                     self.isVisited[self.mouse.x][self.mouse.y-1] = 1
                     self.mouse.goUp()
                     moved = True
                     print("UP")
                 elif self.mouse.y < y and self.mouse.canGoDown():
+                    self.path.append([self.mouse.x, self.mouse.y])
                     self.isVisited[self.mouse.x][self.mouse.y+1] = 1
                     self.mouse.goDown()
                     moved = True
