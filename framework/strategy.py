@@ -601,14 +601,33 @@ class StrategyTestRendezvous(Strategy):
         # b.sort()
         # self.sort(b)
         print(type(b))
+        moved = False
 
         print('--------------------------------')
 
+        direction_set = {}
         for items in d:
             x,y = items[1]
+            direction = items[2]
             if self.isVisited[x][y] == 0:
                 print("(x,y:)",(x,y))
-                self.isVisited[x][y] = 1
+
+                if self.mouse.x < x:
+                     self.mouse.goRight()
+                     self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
+                     moved = True
+                elif self.mouse.x > x:
+                    self.mouse.goLeft()
+                    self.isVisited[self.mouse.x -1][self.mouse.y] = 1
+                    moved = True
+                if self.mouse.y < y:
+                    self.mouse.goUp()
+                    self.isVisited[self.mouse.x][self.mouse.y-1] = 1
+                    moved = True
+                elif self.mouse.y < y:
+                    self.mouse.goDown()
+                    self.isVisited[self.mouse.x][self.mouse.y+1] = 1
+                    moved = True
 
         print("--------------------------------")
 
@@ -636,8 +655,7 @@ class StrategyTestRendezvous(Strategy):
             # print(sorted(a[1:])
             # print(a)
             # a = list()
-        print('-------------------')
-        moved = False
+
             # print(items[1:].sort())
             # for move in moves:
 
