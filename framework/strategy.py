@@ -577,7 +577,7 @@ class StrategyTestRendezvous(Strategy):
         print('--------------------')
         open.sort()
         a = open.pop()
-        # a.sort()
+        a.sort()
         # print(a)
         # a = list()
         print('--------------------')
