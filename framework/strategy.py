@@ -578,6 +578,7 @@ class StrategyTestRendezvous(Strategy):
 
         action = self.cost(goal)
         print(action)
+        moved  = False
 
         i =0
         # first best move
