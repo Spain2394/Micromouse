@@ -588,8 +588,6 @@ class StrategyTestRendezvous(Strategy):
             items.sort() # sort based on cost
             print("sort")
 
-            print("item sorted by cost: ", items.sort())
-
             x = items[2][0]
             y = items[2][1]
 
