@@ -614,8 +614,8 @@ class StrategyTestRendezvous(Strategy):
                 break
             print(d[i])
             best_move = d[i]
-            x,y = best_move[i]
-            direction = best_move[i]
+            x,y = best_move[1]
+            direction = best_move[2]
             print(best_move)
             print(x)
 
