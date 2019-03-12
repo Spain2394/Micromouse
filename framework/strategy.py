@@ -419,7 +419,7 @@ class StrategyTestRendezvous(Strategy):
         cost = 100 # some very high cost
         isGoal = False
         gamma = 0.01 # cost is lower when distance is longer
-        priority = 0
+        expense = 0
 
         # self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(self.mouse.mazeMap.height)]
         # hasBeen = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(self.mouse.mazeMap.height)]
@@ -433,7 +433,7 @@ class StrategyTestRendezvous(Strategy):
             item = open.pop(0) # pop appended item
             # open_2.pop(0)
 
-            priority = item[0]
+            expense = item[0]
             cost = item[1]
             state = item[2]
             my_dir = item[3]
@@ -464,8 +464,8 @@ class StrategyTestRendezvous(Strategy):
                     # if hasBeen[next_state[0]][next_state[1]] == 0:
                     next_cost = cost + 1 if my_dir is d else 2
                     print("state update: %s, in direction: %s"% (next_state,d))
-                    priority = abs(self.priority(next_state,d) - cost)
-                    open.append((priority,next_cost,next_state,d)) # you will only include costs, states
+                    expense = self.priority(next_state,d) + cost
+                    open.append((expense,next_cost,next_state,d)) # you will only include costs, states
                     # open_2.append((priority,next_cost,next_state,d))
                     # hasBeen[next_state[0]][next_state[1]] = 1
                     # my_dir = d # update direction
@@ -490,7 +490,7 @@ class StrategyTestRendezvous(Strategy):
         print('----------------------------')
         x,y = state[0],state[1]
         # print(x,y)
-        alpha = 1.0 # weight for going in a straight line
+        alpha = 8 # weight for going in a straight line
         beta = 2 # weight for going towards gradient
         epsilon = 0.01
         # zeta = 2 # weight for shortest path
@@ -499,25 +499,19 @@ class StrategyTestRendezvous(Strategy):
         straight_line = 0
         shortest_distance = 0
         gradient = 0
-        priority = 0
+        expense = 0
         cell = self.mouse.mazeMap.getCell(x,y)
         print("priority getCell: (%s,%s)"% (cell.x,cell.y))
         # print(cell.x,cell.y)
         # print('D',d)
 
         straight_line = self.distance_to_wall(cell,d)
-        # print("sl:",straight_line)
-        # centroid = self.GroupCentroid()
         gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
-        # print(gradient)
+        expense = beta*gradient + 1/(alpha*straight_line+epsilon) # the gradient gets the state is good
 
-        # priority such that low is bad,
-        priority = beta*(gradient) + alpha/(straight_line+epsilon) # the gradient gets the state is good
-        # print("pri:",priority)
-        # priority *= cost
-        print("priority: %s"%priority)
+        print("priority: %s"%expense)
         print('----------------------------')
-        return (priority)
+        return expense
 
 
     def go(self):
@@ -571,51 +565,19 @@ class StrategyTestRendezvous(Strategy):
         print("group centroid", group_centroid)
         # distance = self.distance_to_wall(cell,direction)
         print("distance to wall: ", distance)
-        # print("final cost: ", self.cost(goal))
-        # print("(x,y)",(self.mouse.x, self.mouse.y))
         open = self.cost(goal)
-        a =0
-        b = 0
-        c = 0
-        d = [(a,b,c)]
+
+
         print(open)
-        x,y = 0,0
-        # print("open:", open = self.cost(goal))
-        # print(self.cost()) # print me a cost function
-        print('--------------------')
-        open.sort()
-        d.pop()
-        for i in range(10):
-            state = open.pop()
-            a = state[1]
-            b = state[2]
-            c = state[3]
-            x,y = b[0],b[1]
-
-            print("My point:(%s,%s): "%(self.mouse.x,self.mouse.y))
-            d.append((state[1],state[2],state[3]))
-            # d.sort()
-        d.sort()
-        print(d)
-        print(d[0])
-        # b.sort()
-        # b.sort()
-        # self.sort(b)
-        print(type(b))
-        moved = False
-
-        print('--------------------------------')
 
         i =0
         # first best move
-        for items in d:
+        for items in open:
             print("IN")
-            if i == len(d):
+            if i == len(open):
                 break
-            # print(d[i])
-            # best_move = d[i]
-            x,y = items[1]
-            direction = items[2]
+            x,y = items[2]
+            direction = items[3]
 
             print("best move: ", (x,y))
             # print(x)
