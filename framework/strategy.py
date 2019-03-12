@@ -594,7 +594,7 @@ class StrategyTestRendezvous(Strategy):
             # b.sort()
             # a.sort()
             # b = list(a[1:])
-            print(a)
+            # print(a)/
 
             # print(sorted(a[1:])
             # print(a)
