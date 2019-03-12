@@ -584,7 +584,7 @@ class StrategyTestRendezvous(Strategy):
         print('--------------------')
         # open.sort()
         d.pop()
-        for i in range(4):
+        for i in range(5):
             state = open.pop()
             a = state[1]
             b = state[2]
@@ -592,7 +592,7 @@ class StrategyTestRendezvous(Strategy):
 
             d.append((state[1],state[2],state[3]))
             # d.sort()
-        print(d)
+        print(d.sort())
         # b.sort()
         # b.sort()
         # self.sort(b)
