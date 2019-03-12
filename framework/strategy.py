@@ -664,18 +664,22 @@ class StrategyTestRendezvous(Strategy):
                 x, y = self.path.pop()
                 if x < self.mouse.x:
                     self.mouse.goLeft()
+                    self.isVisited[self.mouse.x][self.mouse.y] = 0 # reset
                     self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'LEFT'}
                     moved = True
                 elif x > self.mouse.x:
                     self.mouse.goRight()
+                    self.isVisited[self.mouse.x][self.mouse.y] = 0
                     self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'RIGHT'}
                     moved = True
                 elif y < self.mouse.y:
                     self.mouse.goUp()
+                    self.isVisited[self.mouse.x][self.mouse.y] = 0
                     self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'UP'}
                     moved = True
                 elif y > self.mouse.y:
                     self.mouse.goDown()
+                    self.isVisited[self.mouse.x][self.mouse.y] = 0
                     self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'DOWN'}
                     moved = True
             else:
