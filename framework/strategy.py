@@ -493,6 +493,7 @@ class StrategyTestRendezvous(Strategy):
         # print(x,y)
         alpha = 8 # weight for going in a straight line
         beta = 2 # weight for going towards gradient
+        zeta = 2
         epsilon = 0.01
         # zeta = 2 # weight for shortest path
         # when the state is good the priority is low
@@ -503,12 +504,14 @@ class StrategyTestRendezvous(Strategy):
         expense = 0
         cell = self.mouse.mazeMap.getCell(x,y)
         print("priority getCell: (%s,%s)"% (cell.x,cell.y))
+        dx = abs(self.mouse.x - x)
+        dy = abs(self.mouse.y - y)
         # print(cell.x,cell.y)
         # print('D',d)
 
         straight_line = self.distance_to_wall(cell,d)
         gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
-        expense = beta*gradient + 1/(alpha*straight_line+epsilon) # the gradient gets the state is good
+        expense = beta*gradient + 1/(alpha*straight_line+epsilon)+dx+dy # the gradient gets the state is good
 
         print("priority: %s"%expense)
         print('----------------------------')
