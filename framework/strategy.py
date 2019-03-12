@@ -582,6 +582,7 @@ class StrategyTestRendezvous(Strategy):
             a = open.pop()
             b = list(a[1:])
             print(type(b))
+            b.sort()
             # b.sort()
             print("b: ",b)
             # b.sort()
