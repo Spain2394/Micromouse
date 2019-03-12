@@ -612,14 +612,15 @@ class StrategyTestRendezvous(Strategy):
             print("IN")
             if i == len(d):
                 break
-            print(d[i])
+            # print(d[i])
             best_move = d[i]
             x,y = best_move[1]
             direction = best_move[2]
-            print(best_move)
-            print(x)
+            # print(best_move)
+            # print(x)
 
             if self.isVisited[x][y] == 0: # may be some confusion here if not continuos
+                print("haven't visited:")
                 print("(x,y:)",(x,y))
 
                 if self.mouse.x < x and self.mouse.canGoRight():
