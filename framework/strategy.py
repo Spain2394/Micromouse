@@ -575,7 +575,7 @@ class StrategyTestRendezvous(Strategy):
         # print("open:", open = self.cost(goal))
         # print(self.cost()) # print me a cost function
         open.sort()
-        a = list(open.pop())
+        # a = list(open.pop())
         # a.sort()
         moved = False
 
@@ -583,7 +583,11 @@ class StrategyTestRendezvous(Strategy):
         print('-----------------------------')
         print('Try open function')
         while len(open) > 0:
-            items = open.pop()# grab the first set of points
+            a = list(open.pop())# grab the first set of points
+            a.sort()
+            print(a)
+
+
             # a = list(items[1:])
             # a.sort()
             # print(a)
