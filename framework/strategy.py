@@ -422,16 +422,14 @@ class StrategyTestRendezvous(Strategy):
         expense = 0
 
         # self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(self.mouse.mazeMap.height)]
-        # hasBeen = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(self.mouse.mazeMap.height)]
-        # hasBeen[state[0]][state[1]] = 1
-
+        hasBeen = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(self.mouse.mazeMap.height)]
+        takeAction = []
+        hasBeen[state[0]][state[1]] = 1 # has been at initial location
         open = [(expense,cost,state,my_dir)] # some constants a start point and an end point
         # open_2 = [(priority,cost,state,my_dir)]
 
         while len(open) < 10 and len(open) >0: # give me 20 good points
-            # print("in the loop")
             item = open.pop(0) # pop appended item
-            # open_2.pop(0)
             print("LOOP")
 
             expense = item[0]
@@ -454,19 +452,25 @@ class StrategyTestRendezvous(Strategy):
             # and if they wouldn't have to change direction
             # you get back cells at which the robot can move from current state
             # and the weight associated with that state
+            counter = 0
             for d in direction_list:
 
                 # print(self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d))
                 if self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d) == False: # while mouse can move in some direction
+                    counter +=1
+
 
                     print("state %s, good for direction: %s"%(state,d))
                     delta = direction_list[d]
                     next_state = (state[0] + delta[0], state[1] + delta[1])
-                    # if hasBeen[next_state[0]][next_state[1]] == 0:
-                    next_cost = cost + 1 if my_dir is d else 2
-                    print("state update: %s, in direction: %s"% (next_state,d))
-                    expense = self.priority(next_state,d) + cost
-                    open.append((expense,next_cost,next_state,d)) # you will only include costs, states
+                    if hasBeen[next_state[0]][next_state[1]] == 0:
+                        next_cost = cost + 1 if my_dir is d else 2
+                        print("state update: %s, in direction: %s"% (next_state,d))
+                        expense = self.priority(next_state,d) + cost
+                        takeAction.append(next_state,d)
+                        hasBeen[next_state[0]][next_state[1]] = 1 # you have been here
+
+                        open.append((expense,next_cost,next_state,d)) # you will only include costs, states
                     # open_2.append((priority,next_cost,next_state,d))
                     # hasBeen[next_state[0]][next_state[1]] = 1
                     # my_dir = d # update direction
@@ -474,7 +478,7 @@ class StrategyTestRendezvous(Strategy):
                     # cost g2 will be higher if direction is changed
                     # cost includes distance to target
 
-            open.sort() # the best option will be the next tested
+            return takeAction
         # open.sort()
         print('---------------------------------------------------')
         # print("Returning..")
@@ -531,7 +535,6 @@ class StrategyTestRendezvous(Strategy):
         print(sendData)
         # print(self.network.sendStringData(sendData))
 
-
         recvData = self.network.retrieveData()
         # print("recvData: %s"% recvData)
         # one packet at a time
@@ -572,18 +575,17 @@ class StrategyTestRendezvous(Strategy):
         # distance = self.distance_to_wall(cell,direction)
         print("distance to wall: ", distance)
 
-        open = self.cost(goal)
-
-        print(open)
+        action = self.cost(goal)
+        print(action)
 
         i =0
         # first best move
-        for items in open:
+        for moves in action:
             print("IN")
             if i == len(open):
                 break
-            x,y = items[2]
-            direction = items[3]
+            x,y = moves[0]
+            direction = moves[1]
 
             print("best move: ", (x,y))
             print("currently position:: ",(self.mouse.x,self.mouse.y))
