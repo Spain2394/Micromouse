@@ -584,11 +584,7 @@ class StrategyTestRendezvous(Strategy):
         while len(open) > 0:
             items = open.pop() # grab the first set of points
             print(items)
-
-
-            print("items:%s"%items)
             # for move in moves:
-
 
         print('-----------------------------')
         print('Try run function')
