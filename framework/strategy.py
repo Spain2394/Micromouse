@@ -584,7 +584,7 @@ class StrategyTestRendezvous(Strategy):
         print('-----------------------------')
         print('Try open function')
         while len(open) > 0:
-            a = list(open.pop())# grab the first set of points
+            a = open.pop()# grab the first set of points
             a.sort()
             print(a)
 
