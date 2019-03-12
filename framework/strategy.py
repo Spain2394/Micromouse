@@ -605,31 +605,31 @@ class StrategyTestRendezvous(Strategy):
 
         print('--------------------------------')
 
-        direction_set = {}
-        for items in d:
-            x,y = items[1]
-            direction = items[2]
-            if self.isVisited[x][y] == 0:
-                print("(x,y:)",(x,y))
-
-                if self.mouse.x < x:
-                     self.mouse.goRight()
-                     self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
-                     moved = True
-                elif self.mouse.x > x:
-                    self.mouse.goLeft()
-                    self.isVisited[self.mouse.x -1][self.mouse.y] = 1
-                    moved = True
-                if self.mouse.y < y:
-                    self.mouse.goUp()
-                    self.isVisited[self.mouse.x][self.mouse.y-1] = 1
-                    moved = True
-                elif self.mouse.y < y:
-                    self.mouse.goDown()
-                    self.isVisited[self.mouse.x][self.mouse.y+1] = 1
-                    moved = True
-
-        print("--------------------------------")
+        # best_move = d.pop()
+        # x,y = items[1]
+        # direction = items[2]
+        # if self.isVisited[x][y] == 0:
+        #     print("(x,y:)",(x,y))
+        #
+        #     if self.mouse.x < x:
+        #          self.mouse.goRight()
+        #          self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
+        #          moved = True
+        #     elif self.mouse.x > x:
+        #         self.mouse.goLeft()
+        #         self.isVisited[self.mouse.x -1][self.mouse.y] = 1
+        #         moved = True
+        #     if self.mouse.y < y:
+        #         self.mouse.goUp()
+        #         self.isVisited[self.mouse.x][self.mouse.y-1] = 1
+        #         moved = True
+        #     elif self.mouse.y < y:
+        #         self.mouse.goDown()
+        #         self.isVisited[self.mouse.x][self.mouse.y+1] = 1
+        #         moved = True
+        # sleep(0.05)
+        #
+        # print("--------------------------------")
 
 
 
