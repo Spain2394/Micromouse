@@ -590,6 +590,7 @@ class StrategyTestRendezvous(Strategy):
             b = state[2]
             c = state[3]
 
+            print("My point:(%s,%s): "%(self.mouse.x,self.mouse.y))
             d.append((state[1],state[2],state[3]))
             # d.sort()
         d.sort()
