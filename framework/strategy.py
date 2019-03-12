@@ -576,7 +576,7 @@ class StrategyTestRendezvous(Strategy):
         # print(self.cost()) # print me a cost function
         print('--------------------')
         open.sort()
-        a = open.pop()
+        a = list(open.pop())
         a.sort()
         # print(a)
         # a = list()
