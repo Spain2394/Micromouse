@@ -617,7 +617,7 @@ class StrategyTestRendezvous(Strategy):
             x,y = best_move[1]
             direction = best_move[2]
 
-            print("best move: ", best_move)
+            print("best move: ", (x,y))
             # print(x)
 
             if self.isVisited[x][y] == 0: # may be some confusion here if not continuos
