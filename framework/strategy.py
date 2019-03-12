@@ -535,6 +535,8 @@ class StrategyTestRendezvous(Strategy):
         recvData = self.network.retrieveData()
         # print("recvData: %s"% recvData)
         # one packet at a time
+    # def sort(self,list):
+
 
 
         while recvData:
@@ -578,7 +580,8 @@ class StrategyTestRendezvous(Strategy):
         print('--------------------')
         open.sort()
         a = open.pop()
-        b = list(a[1:])
+        b = list(a)
+        # self.sort(b)
         print(type(b))
         # b.sort()
         # # b.sort()
