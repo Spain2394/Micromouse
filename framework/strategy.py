@@ -582,7 +582,7 @@ class StrategyTestRendezvous(Strategy):
         for items in open:
             # for move in moves:
             items.pop(0) # pop off priority
-            item.sort()
+            items.sort()
             print("item sorted by cost: ", items.sort())
 
             x = items[2][0]
