@@ -577,6 +577,7 @@ class StrategyTestRendezvous(Strategy):
         open.sort()
         a = tuple(open.pop())
         # a.sort()
+        a.sort()
         moved = False
 
         print("D ", len(open))
