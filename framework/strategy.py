@@ -468,7 +468,7 @@ class StrategyTestRendezvous(Strategy):
                         print("state update: %s, in direction: %s"% (next_state,d))
                         expense = self.priority(next_state,d) + cost
                         print("error")
-                        takeAction.append([next_state,d])
+                        takeAction.append((next_state,d))
                         hasBeen[next_state[0]][next_state[1]] = 1 # you have been here
 
                         open.append((expense,next_cost,next_state,d)) # you will only include costs, states
@@ -583,7 +583,7 @@ class StrategyTestRendezvous(Strategy):
         # first best move
         for moves in action:
             print("IN")
-            if i == len(open):
+            if i == len(action):
                 break
             x,y = moves[0]
             direction = moves[1]
@@ -630,7 +630,7 @@ class StrategyTestRendezvous(Strategy):
         # # b.sort()
         # print("b: ",b)
 
-        # while len(open)> 0:
+        # while len(action)> 0:
         #     a = open.pop()
         #     b = list(a[1:])
         #     print(type(b))
