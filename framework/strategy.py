@@ -535,6 +535,8 @@ class StrategyTestRendezvous(Strategy):
         recvData = self.network.retrieveData()
         # print("recvData: %s"% recvData)
         # one packet at a time
+
+
         while recvData:
             print("recieving data")
 
@@ -562,6 +564,7 @@ class StrategyTestRendezvous(Strategy):
         goal = group_centroid
         moves = [0,1,2,3]
 
+        print("initialize run")
         print("group centroid", group_centroid)
         # distance = self.distance_to_wall(cell,direction)
         print("distance to wall: ", distance)
@@ -572,6 +575,24 @@ class StrategyTestRendezvous(Strategy):
         print(open)
         # print(self.cost()) # print me a cost function
         moved = False
+
+        print('-----------------------------')
+        print('Try open function')
+        for items in open:
+            # for move in moves:
+            items.pop(0) # pop off priority
+            item.sort()
+            print("item sorted by cost: ", items.sort())
+
+            x,y = items[2]
+            direction = items[3]
+
+        print('-----------------------------')
+        print('Try run function')
+
+
+
+
 
         # still check is visited
         # trials = 10
