@@ -585,7 +585,7 @@ class StrategyTestRendezvous(Strategy):
         print('--------------------')
         open.sort() ###
         d.pop()
-        for i in range(10):
+        for i in range(5):
             state = open.pop()
             a = state[1]
             b = state[2]
@@ -683,7 +683,7 @@ class StrategyTestRendezvous(Strategy):
             # if self.path
             i+=1
             print('+1')
-            sleep(0.05)
+        sleep(0.5)
 
 
         # if self.mouse.isVisited
