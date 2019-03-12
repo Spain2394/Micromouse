@@ -622,7 +622,9 @@ class StrategyTestRendezvous(Strategy):
             dx = abs(self.mouse.x - x)
             dy = abs(self.mouse.y - y)
 
-            if dx > 0 and dy > 0: continue #look for another point
+            if dx > 0 and dy > 0:
+                i+=1
+                continue #look for another point
 
             if self.isVisited[x][y] == 0: # may be some confusion here if not continuos
                 print("haven't visited:")
