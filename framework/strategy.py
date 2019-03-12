@@ -583,17 +583,12 @@ class StrategyTestRendezvous(Strategy):
         print('Try open function')
         while len(open) > 0:
             items = open.pop() # grab the first set of points
+            print(items)
+
+
             print("items:%s"%items)
             # for move in moves:
-            print("pop")
-            items.pop(0) # remove priority sort based on cost
-            items.sort() # sort based on cost
-            print("sort")
 
-            x = items[2][0]
-            y = items[2][1]
-
-            direction = items[3]
 
         print('-----------------------------')
         print('Try run function')
