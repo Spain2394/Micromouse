@@ -467,6 +467,7 @@ class StrategyTestRendezvous(Strategy):
                         next_cost = cost + 1 if my_dir is d else 2
                         print("state update: %s, in direction: %s"% (next_state,d))
                         expense = self.priority(next_state,d) + cost
+                        print("error")
                         takeAction.append([next_state,d])
                         hasBeen[next_state[0]][next_state[1]] = 1 # you have been here
 
