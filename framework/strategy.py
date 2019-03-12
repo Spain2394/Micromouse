@@ -606,7 +606,7 @@ class StrategyTestRendezvous(Strategy):
 
         for items in d:
             x,y = items[1]
-            if self.isVisited[x][y] = 0:
+            if self.isVisited[x][y] == 0:
                 print("(x,y:)",(x,y))
 
         print("--------------------------------")
