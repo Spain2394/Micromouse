@@ -602,7 +602,7 @@ class StrategyTestRendezvous(Strategy):
         # self.sort(b)
         print(type(b))
 
-        for items in b:
+        for items in d:
             x,y = items[1]
 
 
