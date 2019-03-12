@@ -491,7 +491,7 @@ class StrategyTestRendezvous(Strategy):
         print('----------------------------')
         x,y = state[0],state[1]
         # print(x,y)
-        alpha = 8 # weight for going in a straight line
+        alpha = 10 # weight for going in a straight line
         beta = 2 # weight for going towards gradient
         zeta = 1
         epsilon = 0.01
@@ -511,7 +511,7 @@ class StrategyTestRendezvous(Strategy):
 
         straight_line = self.distance_to_wall(cell,d)
         gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
-        expense = beta*gradient + 1/(alpha*straight_line+epsilon)+zeta *(dx+dy) # the gradient gets the state is good
+        expense = beta*gradient + 1/(alpha*straight_line+epsilon)
 
         print("priority: %s"%expense)
         print('----------------------------')
