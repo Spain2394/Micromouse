@@ -606,28 +606,33 @@ class StrategyTestRendezvous(Strategy):
 
         print('--------------------------------')
 
-        best_move = d[0]
-        x,y = best_move[1]
-        direction = best_move[2]
-        if self.isVisited[x][y] == 0:
-            print("(x,y:)",(x,y))
+        i =0
+        # first best move
+        while moved == False:
+            best_move = d[i]
+            x,y = best_move[i]
+            direction = best_move[i]
 
-            if self.mouse.x < x and self.mouse.canGoRight():
-                 self.mouse.goRight()
-                 self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
-                 moved = True
-            elif self.mouse.x > x and self.mouse.canGoLefts:
-                self.mouse.goLeft()
-                self.isVisited[self.mouse.x-1][self.mouse.y] = 1
-                moved = True
-            if self.mouse.y < y and self.mouse.canGoUp():
-                self.mouse.goUp()
-                self.isVisited[self.mouse.x][self.mouse.y-1] = 1
-                moved = True
-            elif self.mouse.y < y and self.mouse.canGoDown():
-                self.mouse.goDown()
-                self.isVisited[self.mouse.x][self.mouse.y+1] = 1
-                moved = True
+            if self.isVisited[x][y] == 0: # may be some confusion here if not continuos
+                print("(x,y:)",(x,y))
+
+                if self.mouse.x < x and self.mouse.canGoRight():
+                     self.mouse.goRight()
+                     self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
+                     moved = True
+                elif self.mouse.x > x and self.mouse.canGoLefts:
+                    self.mouse.goLeft()
+                    self.isVisited[self.mouse.x-1][self.mouse.y] = 1
+                    moved = True
+                if self.mouse.y < y and self.mouse.canGoUp():
+                    self.mouse.goUp()
+                    self.isVisited[self.mouse.x][self.mouse.y-1] = 1
+                    moved = True
+                elif self.mouse.y < y and self.mouse.canGoDown():
+                    self.mouse.goDown()
+                    self.isVisited[self.mouse.x][self.mouse.y+1] = 1
+                    moved = True
+            i+=1
         sleep(0.05)
 
         print("--------------------------------")
