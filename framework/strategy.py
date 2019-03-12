@@ -432,6 +432,7 @@ class StrategyTestRendezvous(Strategy):
             # print("in the loop")
             item = open.pop(0) # pop appended item
             # open_2.pop(0)
+            print("LOOP")
 
             expense = item[0]
             cost = item[1]
