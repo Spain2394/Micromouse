@@ -463,12 +463,12 @@ class StrategyTestRendezvous(Strategy):
                     print("state %s, good for direction: %s"%(state,d))
                     delta = direction_list[d]
                     next_state = (state[0] + delta[0], state[1] + delta[1])
-                    if hasBeen[next_state[0]][next_state[1]] == 0:
+                    if hasBeen[next_state[0]][next_state[1]] == 0: # hasn't been
                         next_cost = cost + 1 if my_dir is d else 2
                         print("state update: %s, in direction: %s"% (next_state,d))
                         expense = self.priority(next_state,d) + cost
-                        print("error")
-                        takeAction.append((next_state,d))
+                        # print("error")
+                        takeAction.append([next_state,d])
                         hasBeen[next_state[0]][next_state[1]] = 1 # you have been here
 
                         open.append((expense,next_cost,next_state,d)) # you will only include costs, states
