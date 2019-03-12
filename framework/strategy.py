@@ -592,7 +592,8 @@ class StrategyTestRendezvous(Strategy):
 
             d.append((state[1],state[2],state[3]))
             # d.sort()
-        print(d.sort())
+        d.sort()
+        print(d)
         # b.sort()
         # b.sort()
         # self.sort(b)
