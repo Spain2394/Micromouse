@@ -577,7 +577,7 @@ class StrategyTestRendezvous(Strategy):
         a =0
         b = 0
         c = 0
-        b = [(a,b,c)]
+        d = [(a,b,c)]
         print(open)
         # print("open:", open = self.cost(goal))
         # print(self.cost()) # print me a cost function
@@ -587,9 +587,9 @@ class StrategyTestRendezvous(Strategy):
         a = state[1]
         b = state[2]
         c = state[3]
-        b.append((state[1],state[2],state[3]))
+        d.append((state[1],state[2],state[3]))
         # b = list((a[1:]))
-        print(b)
+        print(d)
         # b.sort()
         # b.sort()
         # self.sort(b)
