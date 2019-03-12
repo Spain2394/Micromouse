@@ -650,6 +650,7 @@ class StrategyTestRendezvous(Strategy):
                     self.mouse.goDown()
                     moved = True
                     print("DOWN")
+                # if self.path
             i+=1
         sleep(0.05)
 
@@ -674,6 +675,7 @@ class StrategyTestRendezvous(Strategy):
                 self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'DOWN'}
                 moved = True
         else:
+            print("back")
             self.isBack = True
         sleep(0.5)
 
