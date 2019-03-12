@@ -587,6 +587,7 @@ class StrategyTestRendezvous(Strategy):
         a = state[1]
         b = state[2]
         c = state[3]
+        d.pop(0)
         d.append((state[1],state[2],state[3]))
         # b = list((a[1:]))
         print(d)
