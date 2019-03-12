@@ -579,6 +579,7 @@ class StrategyTestRendezvous(Strategy):
         c = 0
         d = [(a,b,c)]
         print(open)
+        x,y = 0,0
         # print("open:", open = self.cost(goal))
         # print(self.cost()) # print me a cost function
         print('--------------------')
@@ -600,6 +601,10 @@ class StrategyTestRendezvous(Strategy):
         # b.sort()
         # self.sort(b)
         print(type(b))
+
+        for items in b:
+            print(b)
+
 
 
         # if self.mouse.isVisited
