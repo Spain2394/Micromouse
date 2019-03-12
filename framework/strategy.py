@@ -603,7 +603,8 @@ class StrategyTestRendezvous(Strategy):
         print(type(b))
 
         for items in b:
-            print(b)
+            x,y = items[2]
+            
 
 
 
