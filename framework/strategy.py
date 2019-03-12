@@ -585,7 +585,7 @@ class StrategyTestRendezvous(Strategy):
         print('--------------------')
         open.sort()
         d.pop()
-        for i in range(10):
+        for i in len(d):
             state = open.pop()
             a = state[1]
             b = state[2]
