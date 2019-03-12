@@ -589,6 +589,7 @@ class StrategyTestRendezvous(Strategy):
             a = state[1]
             b = state[2]
             c = state[3]
+            x,y = b[0],b[1]
 
             print("My point:(%s,%s): "%(self.mouse.x,self.mouse.y))
             d.append((state[1],state[2],state[3]))
@@ -599,6 +600,9 @@ class StrategyTestRendezvous(Strategy):
         # b.sort()
         # self.sort(b)
         print(type(b))
+
+
+        # if self.mouse.isVisited
         # b.sort()
         # # b.sort()
         # print("b: ",b)
@@ -655,6 +659,7 @@ class StrategyTestRendezvous(Strategy):
         #         self.mouse.goDown()
         #         self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'DOWN'}
         #         moved = True
+
 
         if moved == False:
             if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
