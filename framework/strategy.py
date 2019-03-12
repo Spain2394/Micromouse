@@ -584,6 +584,9 @@ class StrategyTestRendezvous(Strategy):
         print('--------------------')
         # open.sort()
         state = open.pop()
+        a = state[1]
+        b = state[2]
+        c = state[3]
         b.append((state[1],state[2],state[3]))
         # b = list((a[1:]))
         print(b)
