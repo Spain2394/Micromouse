@@ -633,7 +633,7 @@ class StrategyTestRendezvous(Strategy):
                     self.isVisited[self.mouse.x-1][self.mouse.y] = 1
                     moved = True
                     print("LEFT")
-                if self.mouse.y < y and self.mouse.canGoUp():
+                if self.mouse.y > y and self.mouse.canGoUp():
                     self.mouse.goUp()
                     self.isVisited[self.mouse.x][self.mouse.y-1] = 1
                     moved = True
