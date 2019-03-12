@@ -588,6 +588,8 @@ class StrategyTestRendezvous(Strategy):
             x,y = moves[0]
             print(moves[0])
             direction = moves[1]
+            print(x)
+            print(y)
 
             print("best move: ", (x,y))
             print("currently position:: ",(self.mouse.x,self.mouse.y))
