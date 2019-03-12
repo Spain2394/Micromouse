@@ -577,7 +577,7 @@ class StrategyTestRendezvous(Strategy):
         open.sort()
         # a = list(open.pop())
         # a.sort()
-        a = list()
+        # a = list()
         moved = False
 
         print("D ", len(open))
