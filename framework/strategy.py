@@ -575,6 +575,7 @@ class StrategyTestRendezvous(Strategy):
         # print("open:", open = self.cost(goal))
         # print(self.cost()) # print me a cost function
         open.sort()
+        a = tuple(open.pop())
         moved = False
 
         print("D ", len(open))
