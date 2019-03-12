@@ -581,7 +581,7 @@ class StrategyTestRendezvous(Strategy):
         print("D ", len(open))
         print('-----------------------------')
         print('Try open function')
-        while len(open) > 2:
+        while len(open) > 0:
             items = open.pop() # grab the first set of points
             # items.pop()
             items.sort()
