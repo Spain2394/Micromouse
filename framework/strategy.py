@@ -578,6 +578,7 @@ class StrategyTestRendezvous(Strategy):
         # print(self.cost()) # print me a cost function
         moved = False
 
+        print("D ", len(open))
         print('-----------------------------')
         print('Try open function')
         while len(open) > 0:
