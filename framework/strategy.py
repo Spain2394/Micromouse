@@ -654,7 +654,7 @@ class StrategyTestRendezvous(Strategy):
                     self.mouse.goDown()
                     moved = True
                     print("DOWN")
-                else:
+                else:    
                     if len(self.path) !=0:
                         x, y = self.path.pop()
                         if x < self.mouse.x:
