@@ -583,14 +583,15 @@ class StrategyTestRendezvous(Strategy):
         # print(self.cost()) # print me a cost function
         print('--------------------')
         # open.sort()
-        while len(open) > 0:
+        while len(open) > 2:
             state = open.pop()
             a = state[1]
             b = state[2]
             c = state[3]
             d.pop(0)
             d.append((state[1],state[2],state[3]))
-            print(d.sort())
+            d.sort()
+            print(d)
         # b.sort()
         # b.sort()
         # self.sort(b)
