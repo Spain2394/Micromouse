@@ -464,7 +464,7 @@ class StrategyTestRendezvous(Strategy):
                     # if hasBeen[next_state[0]][next_state[1]] == 0:
                     next_cost = cost + 1 if my_dir is d else 2
                     print("state update: %s, in direction: %s"% (next_state,d))
-                    priority = self.priority(next_state,d) + cost
+                    priority = abs(self.priority(next_state,d) - cost)
                     open.append((priority,next_cost,next_state,d)) # you will only include costs, states
                     # open_2.append((priority,next_cost,next_state,d))
                     # hasBeen[next_state[0]][next_state[1]] = 1
@@ -512,7 +512,7 @@ class StrategyTestRendezvous(Strategy):
         # print(gradient)
 
         # priority such that low is bad,
-        priority = beta/(gradient+epsilon) + alpha*(straight_line) # the gradient gets the state is good
+        priority = beta*(gradient+epsilon) + alpha/(straight_line) # the gradient gets the state is good
         # print("pri:",priority)
         # priority *= cost
         print("priority: %s"%priority)
