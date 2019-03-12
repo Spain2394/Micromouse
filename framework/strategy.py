@@ -612,12 +612,12 @@ class StrategyTestRendezvous(Strategy):
             print("IN")
             if i == len(d):
                 break
-
+            print(d[i])
             best_move = d[i]
             x,y = best_move[i]
             direction = best_move[i]
             print(best_move)
-            print(x,y)
+            print(x)
 
             if self.isVisited[x][y] == 0: # may be some confusion here if not continuos
                 print("(x,y:)",(x,y))
