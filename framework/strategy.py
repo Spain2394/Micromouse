@@ -577,14 +577,13 @@ class StrategyTestRendezvous(Strategy):
         print('--------------------')
         open.sort()
 
-
         while len(open)> 0:
             a = open.pop()
 
             print(a)
             # print(a)
             # a = list()
-            print('--------------------')
+        print('--------------------')
         moved = False
             # print(items[1:].sort())
             # for move in moves:
