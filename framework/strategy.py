@@ -580,8 +580,8 @@ class StrategyTestRendezvous(Strategy):
         print('--------------------')
         # open.sort()
         a = open.pop()
-        b = a
-        b.sort()
+        b = list(a)
+        # b.sort()
         # self.sort(b)
         print(type(b))
         # b.sort()
