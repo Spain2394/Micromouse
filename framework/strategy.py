@@ -583,7 +583,7 @@ class StrategyTestRendezvous(Strategy):
         # print("open:", open = self.cost(goal))
         # print(self.cost()) # print me a cost function
         print('--------------------')
-        # open.sort() ###
+        open.sort() ###
         d.pop()
         for i in range(len(open)):
             state = open.pop()
@@ -595,7 +595,7 @@ class StrategyTestRendezvous(Strategy):
             print("My point:(%s,%s): "%(self.mouse.x,self.mouse.y))
             d.append((state[1],state[2],state[3]))
             # d.sort()
-        d.sort()
+        # d.sort()
         print(d)
         print(d[0])
         # b.sort()
