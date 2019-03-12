@@ -655,7 +655,7 @@ class StrategyTestRendezvous(Strategy):
                 moved = True
                 print("DOWN")
             # if self.path
-            # i+=1
+            i+=1
         sleep(0.05)
 
         print("--------------------------------")
