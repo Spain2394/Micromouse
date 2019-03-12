@@ -425,7 +425,7 @@ class StrategyTestRendezvous(Strategy):
         # hasBeen = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(self.mouse.mazeMap.height)]
         # hasBeen[state[0]][state[1]] = 1
 
-        open = [(priority,cost,state,my_dir)] # some constants a start point and an end point
+        open = [(expense,cost,state,my_dir)] # some constants a start point and an end point
         # open_2 = [(priority,cost,state,my_dir)]
 
         while len(open) < 10: # give me 20 good points
@@ -566,7 +566,6 @@ class StrategyTestRendezvous(Strategy):
         # distance = self.distance_to_wall(cell,direction)
         print("distance to wall: ", distance)
         open = self.cost(goal)
-
 
         print(open)
 
