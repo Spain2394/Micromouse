@@ -683,7 +683,7 @@ class StrategyTestRendezvous(Strategy):
             # if self.path
             i+=1
             print('+1')
-        sleep(0.05)
+    sleep(0.05)
 
         # if self.mouse.isVisited
         # b.sort()
