@@ -576,11 +576,15 @@ class StrategyTestRendezvous(Strategy):
         # print(self.cost()) # print me a cost function
         print('--------------------')
         open.sort()
-        a = open.pop()
-        print(a)
-        # print(a)
-        # a = list()
-        print('--------------------')
+
+
+        for len(open)> 0:
+            a = open.pop()
+
+            print(a)
+            # print(a)
+            # a = list()
+            print('--------------------')
         moved = False
             # print(items[1:].sort())
             # for move in moves:
