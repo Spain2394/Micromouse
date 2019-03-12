@@ -438,7 +438,7 @@ class StrategyTestRendezvous(Strategy):
             cost = item[1]
             state = item[2]
             my_dir = item[3]
-            print("(p,c,s,d): ",(priority,cost,state,my_dir))
+            print("(p,c,s,d): ",(expense,cost,state,my_dir))
             # print(priority,cost,state,my_dir)
 
             # self.isBack = True
