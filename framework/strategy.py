@@ -574,38 +574,16 @@ class StrategyTestRendezvous(Strategy):
         open = self.cost(goal)
         # print("open:", open = self.cost(goal))
         # print(self.cost()) # print me a cost function
+        print('--------------------')
         open.sort()
-        # a = list(open.pop())
-        # a.sort()
+        a = list(open.pop())
+        a.sort()
+        print(a)
         # a = list()
+        print('--------------------')
         moved = False
-
-        print("D ", len(open))
-        print('-----------------------------')
-        print('Try open function')
-        while len(open) > 0:
-            a = open.pop()# grab the first set of points
-            a.sort()
-            print(a)
-
-
-            # a = list(items[1:])
-            # a.sort()
-            # print(a)
-            # items.pop()
-            # a = list(items[1:])
-            # a.sort()
-            print(items[1:])
-
             # print(items[1:].sort())
             # for move in moves:
-
-        print('-----------------------------')
-        print('Try run function')
-
-
-
-
 
         # still check is visited
         # trials = 10
