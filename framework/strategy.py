@@ -681,7 +681,8 @@ class StrategyTestRendezvous(Strategy):
                         print("back")
                         self.isBack = True
             # if self.path
-            i+=1    
+            i+=1
+            print('+1')
         sleep(0.05)
 
         # if self.mouse.isVisited
