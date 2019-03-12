@@ -579,8 +579,10 @@ class StrategyTestRendezvous(Strategy):
 
         while len(open)> 0:
             a = open.pop()
-            a = (a[1:])
+            b = list(a)
+            b.sort()
             # a.sort()
+            # b = list(a[1:])
             print(a)
 
             # print(sorted(a[1:])
