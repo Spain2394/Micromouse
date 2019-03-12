@@ -574,7 +574,10 @@ class StrategyTestRendezvous(Strategy):
         # print("final cost: ", self.cost(goal))
         # print("(x,y)",(self.mouse.x, self.mouse.y))
         open = self.cost(goal)
-        # b = list()
+        a =0
+        b = 0
+        c = 0
+        b = [(a,b,c)]
         print(open)
         # print("open:", open = self.cost(goal))
         # print(self.cost()) # print me a cost function
