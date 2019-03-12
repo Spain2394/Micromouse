@@ -602,8 +602,14 @@ class StrategyTestRendezvous(Strategy):
         # self.sort(b)
         print(type(b))
 
+        print('--------------------------------')
+
         for items in d:
             x,y = items[1]
+            if self.isVisited[x][y] = 0:
+                print("(x,y:)"x,y)
+
+        print("--------------------------------")
 
 
 
