@@ -573,16 +573,15 @@ class StrategyTestRendezvous(Strategy):
         # print("(x,y)",(self.mouse.x, self.mouse.y))
         open = self.cost(goal)
         # print("open:", open = self.cost(goal))
-        print(open.pop())
-        print(open)
         # print(self.cost()) # print me a cost function
+        open.sort()
         moved = False
 
         print("D ", len(open))
         print('-----------------------------')
         print('Try open function')
         while len(open) > 0:
-            items = open.pop().sort() # grab the first set of points
+            items = open.pop()# grab the first set of points
             # a = list(items[1:])
             # a.sort()
             # print(a)
