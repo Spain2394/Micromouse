@@ -609,9 +609,10 @@ class StrategyTestRendezvous(Strategy):
         i =0
         # first best move
         while moved == False:
+            print("IN")
             if i == len(d):
                 break
-                
+
             best_move = d[i]
             x,y = best_move[i]
             direction = best_move[i]
