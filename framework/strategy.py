@@ -569,6 +569,7 @@ class StrategyTestRendezvous(Strategy):
         print("group centroid", group_centroid)
         # distance = self.distance_to_wall(cell,direction)
         print("distance to wall: ", distance)
+
         open = self.cost(goal)
 
         print(open)
@@ -583,6 +584,7 @@ class StrategyTestRendezvous(Strategy):
             direction = items[3]
 
             print("best move: ", (x,y))
+            print("currently position:: ",(self.mouse.x,self.mouse.y))
             # print(x)
 
             if self.isVisited[x][y] == 0: # may be some confusion here if not continuos
