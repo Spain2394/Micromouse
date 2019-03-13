@@ -587,6 +587,8 @@ class StrategyTestRendezvous(Strategy):
         # first best move
         for moves in action:
 
+            if self.isBack == True: break
+
             if moved == True: break
 
             print("IN")
@@ -698,7 +700,7 @@ class StrategyTestRendezvous(Strategy):
         #         moved = True
 
 
-        if moved == False:
+        if moved == False and self.isBack == False:
             print("bottom loop")
             if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
                 self.path.append([self.mouse.x, self.mouse.y])
