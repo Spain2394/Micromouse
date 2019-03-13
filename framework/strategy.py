@@ -562,7 +562,8 @@ class StrategyTestRendezvous(Strategy):
         direction = self.mouse.direction
         group_centroid = self.GroupCentroid()
         distance,near_bot  = self.distance_to_near_neigh()
-        goal = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
+        # goal = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
+        goal = self.GroupCentroid()
 
         moves = [0,1,2,3]
 
