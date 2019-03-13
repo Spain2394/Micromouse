@@ -587,10 +587,10 @@ class StrategyTestRendezvous(Strategy):
         # distance = self.distance_to_wall(cell,direction)
         print("distance to wall: ", distance)
 
-        near_bot = distance_to_near_neigh
         action = self.cost(goal)
         distance, near_bot = self.distance_to_near_neigh()
         goal = (self.neighbors_states['x'],self.neighbors_states['y'])
+        action = self.cost(goal)
         if self.isBack: return self.isBack
 
         moved = False
