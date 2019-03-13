@@ -10,7 +10,7 @@ from controller import COREController
 from socket import *
 import time
 
-
+tic = time.time()
 mazeMap = Map(16, 16)
 mazeMap.readFromFile('/home/parallels/Micromouse/mazes/2012japan-ef.txt') # load map
 micromouse = Micromouse(mazeMap)
@@ -26,7 +26,8 @@ micromouse.addTask(StrategyTestRendezvous(micromouse, initPoint, num_bots))
 # micromouse.addTask(StrategyTestRendezvous(micromouse, initPoint, num_bots))
 print("after initialization")
 # num bots
-tic = time.time()
+
+print("t",tic)
 micromouse.run()
 toc = time.time()
 time = int(toc - tic)
