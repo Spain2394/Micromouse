@@ -576,7 +576,7 @@ class StrategyTestRendezvous(Strategy):
         cell = self.mouse.mazeMap.getCell(self.mouse.x,self.mouse.y)
         direction = self.mouse.direction
         group_centroid = self.GroupCentroid()
-        goal = (8,8)
+        goal = (3,11)
         moves = [0,1,2,3]
 
 
