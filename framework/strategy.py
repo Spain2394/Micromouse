@@ -551,7 +551,6 @@ class StrategyTestRendezvous(Strategy):
     # def sort(self,list):
 
 
-
         while recvData:
             print("recieving data")
 
