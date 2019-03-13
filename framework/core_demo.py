@@ -30,3 +30,4 @@ tick = time.time()
 micromouse.run()
 toc = time.time()
 time = toc - tic
+print("time(s):", time)
