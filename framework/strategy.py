@@ -520,7 +520,7 @@ class StrategyTestRendezvous(Strategy):
         gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
         print("gradient", gradient)
         # expense = (beta*gradient + 1/(alpha*straight_line+epsilon)) + energy
-        expense = (10*(gradient+epsilon)+ 10 * energy)
+        expense = ((gradient+epsilon)+ 10 * energy)
 
 
         print("priority: %s"%expense)
