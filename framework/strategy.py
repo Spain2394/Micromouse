@@ -614,6 +614,7 @@ class StrategyTestRendezvous(Strategy):
                 print("haven't visited:")
                 print("(x,y) ",(x,y))
 
+                print(self.mouse.mazeMap.getWhichIsWall())
                 if self.mouse.x < x and self.mouse.canGoRight():
                     self.path.append([self.mouse.x, self.mouse.y])
                     self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
