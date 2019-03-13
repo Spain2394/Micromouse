@@ -578,6 +578,7 @@ class StrategyTestRendezvous(Strategy):
         moves = [0,1,2,3]
 
         print('-----------------------------')
+        print("GOAL:",goal)
         print("initialize run:")
         print("group centroid", group_centroid)
         # distance = self.distance_to_wall(cell,direction)
