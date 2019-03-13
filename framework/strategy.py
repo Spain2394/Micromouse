@@ -596,6 +596,7 @@ class StrategyTestRendezvous(Strategy):
         # print("distance to wall: ", distance)
 
         moved = False
+        threshold = 3
         # i =0
         # first best move
         print("action list: ", action)
@@ -620,7 +621,7 @@ class StrategyTestRendezvous(Strategy):
             # print(x)
 
             print("Visited = ", self.isVisited[x][y])
-            if True: # may be some confusion here if not continuos
+            if self.isVisited[x][y] == 0: # may be some confusion here if not continuos
                 print("haven't visited:")
                 print("(x,y) ",(x,y))
 
