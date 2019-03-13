@@ -442,11 +442,11 @@ class StrategyTestRendezvous(Strategy):
             # self.isBack = True
             # print("state = ", state)
             # print("goal = ", goal)
-            if state == goal:
-                print("state = goal")
-                # isGoal = True
-                # self.isBack = True
-                break
+            # if state == goal:
+            #     print("state = goal")
+            #     # isGoal = True
+            #     # self.isBack = True
+            #     break
 
             # score each direction based on the number of cells that they can go straight,
             # and if they wouldn't have to change direction
