@@ -590,7 +590,7 @@ class StrategyTestRendezvous(Strategy):
         action = self.cost(goal)
         if self.isBack: return self.isBack
 
-        moved  = False
+        moved = False
         # i =0
         # first best move
         print("action list: ", action)
