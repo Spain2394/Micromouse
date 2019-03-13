@@ -560,15 +560,15 @@ class StrategyTestRendezvous(Strategy):
             self.isVisited[otherMap['x']][otherMap['y']] = 1
             self.neighbors_states[otherMap['robot']] = {'robot':otherMap['robot'], 'x': otherMap['x'], 'y': otherMap['y'], 'direction':self.mouse.direction} # update neighbors_states as received
             print(self.neighbors_states[otherMap['robot']]) # update neighbors_states as received)
-            if otherMap['up']:
-                self.mouse.mazeMap.setCellUpAsWall(cell)
-            if otherMap['down']:
-                self.mouse.mazeMap.setCellDownAsWall(cell)
-            if otherMap['left']:
-                self.mouse.mazeMap.setCellLeftAsWall(cell)
-            if otherMap['right']:
-                self.mouse.mazeMap.setCellRightAsWall(cell)
-            recvData = self.network.retrieveData()
+            # if otherMap['up']:
+            #     self.mouse.mazeMap.setCellUpAsWall(cell)
+            # if otherMap['down']:
+            #     self.mouse.mazeMap.setCellDownAsWall(cell)
+            # if otherMap['left']:
+            #     self.mouse.mazeMap.setCellLeftAsWall(cell)
+            # if otherMap['right']:
+            #     self.mouse.mazeMap.setCellRightAsWall(cell)
+            # recvData = self.network.retrieveData()
 
 
         group_centroid = ()
