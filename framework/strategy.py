@@ -472,22 +472,22 @@ class StrategyTestRendezvous(Strategy):
                         hasBeen[next_state[0]][next_state[1]] = 1 # you have been here
 
                         open.append((expense,next_cost,next_state,d)) # you will only include costs, states
+                    open.sort() # sort based on low
                     # open_2.append((priority,next_cost,next_state,d))
                     # hasBeen[next_state[0]][next_state[1]] = 1
                     # my_dir = d # update direction
                     # next_cost = self.distance_to_wall()
                     # cost g2 will be higher if direction is changed
                     # cost includes distance to target
-
+            print('---------------------------------------------------')
             return takeAction
         # open.sort()
-        print('---------------------------------------------------')
         # print("Returning..")
         # open.sort() #
         # print(open)
         # print("open sort: %s" %open[0])
         # open.sort() # sorting based on cost only helps if they are in order
-        return open
+        # return open
 
 
     def priority(self,state,d):
@@ -520,7 +520,7 @@ class StrategyTestRendezvous(Strategy):
         gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
         print("gradient", gradient)
         # expense = (beta*gradient + 1/(alpha*straight_line+epsilon)) + energy
-        expense = (beta*(gradient)+ 10 * energy)
+        expense = (beta/(gradient+epsilon)+ 10 * energy)
 
 
         print("priority: %s"%expense)
