@@ -520,6 +520,7 @@ class StrategyTestRendezvous(Strategy):
 
         # expense = (beta*(gradient+epsilon)+ 10 * energy)
         expense = gradient/2 +5*energy
+        print("expense: ",expense)
 
 
         print("priority: %s"%expense)
