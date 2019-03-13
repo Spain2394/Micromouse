@@ -521,8 +521,8 @@ class StrategyTestRendezvous(Strategy):
         print("gradient", gradient)
         # expense = (beta*gradient + 1/(alpha*straight_line+epsilon)) + energy
 
-        expense = (beta*(gradient+epsilon)+ 10 * energy)
-        # expense = gradient/2
+        # expense = (beta*(gradient+epsilon)+ 10 * energy)
+        expense = gradient/2
         # expense = gradient/2 +5*energy
         print("expense: ",expense)
 
