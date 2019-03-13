@@ -593,6 +593,8 @@ class StrategyTestRendezvous(Strategy):
         moved  = False
         # i =0
         # first best move
+
+        threshold = 3 # you can revisit if less than 3 steps from target
         print("action list: ", action)
         for moves in action:
             print("move_list:", moves)
@@ -613,7 +615,7 @@ class StrategyTestRendezvous(Strategy):
             # print(x)
 
             print("Visited = ", self.isVisited[x][y])
-            if self.isVisited[x][y] == 0: # may be some confusion here if not continuos
+            if self.isVisited[x][y] == 0 or distance < threshold: # may be some confusion here if not continuos
                 print("haven't visited:")
                 print("(x,y) ",(x,y))
 
