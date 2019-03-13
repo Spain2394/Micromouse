@@ -481,9 +481,7 @@ class StrategyTestRendezvous(Strategy):
                     # cost g2 will be higher if direction is changed
                     # cost includes distance to target
             print('---------------------------------------------------')
-            print("ya")
-            return open
-            # return takeAction
+            return takeAction
         # open.sort()
         # print("Returning..")
         # open.sort() #
@@ -544,14 +542,15 @@ class StrategyTestRendezvous(Strategy):
         sendData = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y, 'up': not self.mouse.canGoUp(
         ), 'down': not self.mouse.canGoDown(), 'left': not self.mouse.canGoLeft(), 'right': not self.mouse.canGoRight(), 'direction':self.mouse.direction}
         print(sendData)
-        self.network.sendStringData(sendData)
+        # print(self.network.sendStringData(sendData))
+
         recvData = self.network.retrieveData()
         # print("recvData: %s"% recvData)
         # one packet at a time
     # def sort(self,list):
 
 
-        print(recvData)
+
         while recvData:
             print("recieving data")
 
@@ -576,29 +575,20 @@ class StrategyTestRendezvous(Strategy):
         cell = self.mouse.mazeMap.getCell(self.mouse.x,self.mouse.y)
         direction = self.mouse.direction
         group_centroid = self.GroupCentroid()
-        goal = (8,8)
+        goal = (1,3)
         moves = [0,1,2,3]
-
-
-        action = self.cost(goal)
-        distance, near_bot = self.distance_to_near_neigh()
-        print("neighbors_states: ", self.neighbors_states)
-        goal = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
-        goal = (3,3)
-        action = self.cost(goal)
-        # if self.isBack: return self.isBack
 
         print('-----------------------------')
         print("GOAL:",goal)
-        print("to bot: ",near_bot)
         print("initialize run:")
         print("group centroid", group_centroid)
-        print('-----------------------------')
         # distance = self.distance_to_wall(cell,direction)
-        # print("distance to wall: ", distance)
+        print("distance to wall: ", distance)
 
-        moved = False
-        threshold = 3
+        action = self.cost(goal)
+        if self.isBack: return self.isBack
+
+        moved  = False
         # i =0
         # first best move
         print("action list: ", action)
@@ -607,22 +597,14 @@ class StrategyTestRendezvous(Strategy):
 
             if moved == True: break
 
-            # self.checkFinished()
-            # if self.isBack
-
             print("IN")
             # if i == len(action):
             #     break
-            x,y = moves[2]
-            print(moves[2])
-            direction = moves[3]
+            x,y = moves[0]
+            print(moves[0])
+            direction = moves[1]
             print(x)
             print(y)
-
-            if (x,y) == goal:
-                print("STATE == GOAL")
-                self.isBack = True
-                self.checkFinished()
 
             print("best move: ", (x,y))
             print("currently position:: ",(self.mouse.x,self.mouse.y))
