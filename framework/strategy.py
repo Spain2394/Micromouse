@@ -431,30 +431,13 @@ class StrategyTestRendezvous(Strategy):
 
         while len(open) < 5 and len(open) >0: # give me 20 good points
             item = open.pop(0) # pop appended item
-            print("LOOP")
 
             expense = item[0]
             cost = item[1]
             state = item[2]
             my_dir = item[3]
-            print("(p,c,s,d): ",(expense,cost,state,my_dir))
-            # print(priority,cost,state,my_dir)
-
-            # self.isBack = True
-            # print("state = ", state)
-            # print("goal = ", goal)
-            # if state == goal:
-            #     # print("state = goal")
-            #     # isGoal = True
-            #     # self.isBack = True
-            #     drive =
-            #     break
-
-            # score each direction based on the number of cells that they can go straight,
-            # and if they wouldn't have to change direction
-            # you get back cells at which the robot can move from current state
-            # and the weight associated with that state
             counter = 0
+
             for d in direction_list:
 
                 # print(self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d))
@@ -586,16 +569,21 @@ class StrategyTestRendezvous(Strategy):
         # distance = self.distance_to_wall(cell,direction)
         print("distance to wall: ", distance)
 
+
         action = self.cost(goal)
         if self.isBack: return self.isBack
-
-        moved  = False
+        moved = False
         # i =0
         # first best move
 
         threshold = 3 # you can revisit if less than 3 steps from target
         print("action list: ", action)
         for moves in action:
+
+            action = self.cost(goal)
+            if self.isBack: return self.isBack
+
+
             print("move_list:", moves)
 
             if moved == True: break
