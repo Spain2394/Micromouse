@@ -606,6 +606,8 @@ class StrategyTestRendezvous(Strategy):
 
             if moved == True: break
 
+            self.checkFinished()
+
             print("IN")
             # if i == len(action):
             #     break
@@ -620,7 +622,7 @@ class StrategyTestRendezvous(Strategy):
             # print(x)
 
             print("Visited = ", self.isVisited[x][y])
-            if self.isVisited[x][y] == 0 or self.isBack: # may be some confusion here if not continuos
+            if self.isVisited[x][y] == 0: # may be some confusion here if not continuos
                 print("haven't visited:")
                 print("(x,y) ",(x,y))
 
