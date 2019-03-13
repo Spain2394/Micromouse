@@ -520,7 +520,7 @@ class StrategyTestRendezvous(Strategy):
         gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
         print("gradient", gradient)
         # expense = (beta*gradient + 1/(alpha*straight_line+epsilon)) + energy
-        expense = (beta/(gradient+epsilon) + 10 * energy)
+        expense = (beta/(gradient+epsilon)+ 10 * energy)
 
 
         print("priority: %s"%expense)
@@ -586,8 +586,6 @@ class StrategyTestRendezvous(Strategy):
         i =0
         # first best move
         for moves in action:
-
-            if self.isBack == True: break
 
             if moved == True: break
 
@@ -700,7 +698,7 @@ class StrategyTestRendezvous(Strategy):
         #         moved = True
 
 
-        if moved == False and self.isBack == False:
+        if moved == False:
             print("bottom loop")
             if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
                 self.path.append([self.mouse.x, self.mouse.y])
