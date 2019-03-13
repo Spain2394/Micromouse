@@ -544,11 +544,12 @@ class StrategyTestRendezvous(Strategy):
         sendData = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y, 'up': not self.mouse.canGoUp(
         ), 'down': not self.mouse.canGoDown(), 'left': not self.mouse.canGoLeft(), 'right': not self.mouse.canGoRight(), 'direction':self.mouse.direction}
         print(sendData)
-        self.network.sendStringData(sendData)
+        # self.network.sendStringData(sendData)
         recvData = self.network.retrieveData()
         # print("recvData: %s"% recvData)
         # one packet at a time
     # def sort(self,list):
+
 
 
         while recvData:
@@ -556,17 +557,17 @@ class StrategyTestRendezvous(Strategy):
 
             otherMap = recvData
             cell = self.mouse.mazeMap.getCell(otherMap['x'], otherMap['y'])
-            self.isVisited[otherMap['x']][otherMap['y']] = 1
+            # self.isVisited[otherMap['x']][otherMap['y']] = 1
             self.neighbors_states[otherMap['robot']] = {'robot':otherMap['robot'], 'x': otherMap['x'], 'y': otherMap['y'], 'direction':self.mouse.direction} # update neighbors_states as received
             print(self.neighbors_states[otherMap['robot']]) # update neighbors_states as received)
-            # if otherMap['up']:
-            #     self.mouse.mazeMap.setCellUpAsWall(cell)
-            # if otherMap['down']:
-            #     self.mouse.mazeMap.setCellDownAsWall(cell)
-            # if otherMap['left']:
-            #     self.mouse.mazeMap.setCellLeftAsWall(cell)
-            # if otherMap['right']:
-            #     self.mouse.mazeMap.setCellRightAsWall(cell)
+            if otherMap['up']:
+                self.mouse.mazeMap.setCellUpAsWall(cell)
+            if otherMap['down']:
+                self.mouse.mazeMap.setCellDownAsWall(cell)
+            if otherMap['left']:
+                self.mouse.mazeMap.setCellLeftAsWall(cell)
+            if otherMap['right']:
+                self.mouse.mazeMap.setCellRightAsWall(cell)
             recvData = self.network.retrieveData()
 
 
