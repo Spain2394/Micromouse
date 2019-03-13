@@ -591,6 +591,7 @@ class StrategyTestRendezvous(Strategy):
         moved  = False
         # i =0
         # first best move
+        print("action list: ", action)
         for moves in action:
             print("move_list:", moves)
 
