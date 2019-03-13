@@ -618,6 +618,8 @@ class StrategyTestRendezvous(Strategy):
             print(x)
             print(y)
 
+            if (x,y) == goal: print("STATE == GOAL")
+
             print("best move: ", (x,y))
             print("currently position:: ",(self.mouse.x,self.mouse.y))
             # print(x)
