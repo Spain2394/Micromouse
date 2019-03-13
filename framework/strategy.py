@@ -550,11 +550,8 @@ class StrategyTestRendezvous(Strategy):
         # one packet at a time
     # def sort(self,list):
 
-
-
         while recvData:
             print("recieving data")
-
             otherMap = recvData
             cell = self.mouse.mazeMap.getCell(otherMap['x'], otherMap['y'])
             # self.isVisited[otherMap['x']][otherMap['y']] = 1
@@ -601,6 +598,7 @@ class StrategyTestRendezvous(Strategy):
 
             if moved == True: break
 
+
             print("IN")
             # if i == len(action):
             #     break
@@ -611,12 +609,16 @@ class StrategyTestRendezvous(Strategy):
             print(y)
 
             print("best move: ", (x,y))
+            if (x,y) == goal:
+                print("state == goal")
+                self.isBack = True
+                self.checkFinished()
             print("currently position:: ",(self.mouse.x,self.mouse.y))
             # print(x)
 
             print("Visited = ", self.isVisited[x][y])
             print("Distance = ", distance)
-            if self.isVisited[x][y] == 0 or distance < threshold: # may be some confusion here if not continuos
+            if self.isVisited[x][y] == 0: # may be some confusion here if not continuos
                 print("haven't visited:")
                 print("(x,y) ",(x,y))
 
