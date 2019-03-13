@@ -518,9 +518,10 @@ class StrategyTestRendezvous(Strategy):
         straight_line = self.distance_to_wall(cell,d)
         print("straight line: ", straight_line)
         gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
+        print("gradient", gradient)
         # expense = (beta*gradient + 1/(alpha*straight_line+epsilon)) + energy
         expense = (beta/gradient + 10 * energy)
-        print("gradient", gradient)
+
 
         print("priority: %s"%expense)
         print('----------------------------')
