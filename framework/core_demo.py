@@ -27,7 +27,7 @@ tic = time.time()
 print(tic)
 micromouse.run()
 toc = time.time()
-print(toc-tic)
+print("time in seconds", (toc-tic))
 # print("time(%s)"%toc-tic)
 # print(toc)
 
