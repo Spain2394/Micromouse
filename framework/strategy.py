@@ -432,12 +432,14 @@ class StrategyTestRendezvous(Strategy):
         while len(open) < 5 and len(open) >0: # give me 20 good points
             item = open.pop(0) # pop appended item
 
+            
             expense = item[0]
             cost = item[1]
             state = item[2]
             my_dir = item[3]
-            counter = 0
+            print("(p,c,s,d): ",(expense,cost,state,my_dir))
 
+            counter = 0
             for d in direction_list:
 
                 # print(self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d))
@@ -559,16 +561,20 @@ class StrategyTestRendezvous(Strategy):
         direction = self.mouse.direction
         group_centroid = self.GroupCentroid()
         distance,near_bot  = self.distance_to_near_neigh()
-
-        # goal = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
+        goal = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
         moves = [0,1,2,3]
 
+        print('-----------------------------')
+        print("GOAL:",goal)
+        print("initialize run:")
+        print("group centroid", group_centroid)
+        # distance = self.distance_to_wall(cell,direction)
+        print("distance to wall: ", distance)
 
-        # action = self.cost(goal)
-        # if goal == (x,y):
-        #     goal
-        # moved = False
 
+        action = self.cost(goal)
+        if self.isBack: return self.isBack
+        moved = False
         # i =0
         # first best move
 
@@ -576,6 +582,15 @@ class StrategyTestRendezvous(Strategy):
         print("action list: ", action)
         for moves in action:
 
+            action = self.cost(goal)
+            if self.isBack: return self.isBack
+
+
+            print("move_list:", moves)
+
+            if moved == True: break
+
+            print("IN")
             # if i == len(action):
             #     break
             x,y = moves[1]
