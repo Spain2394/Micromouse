@@ -620,7 +620,7 @@ class StrategyTestRendezvous(Strategy):
             # print(x)
 
             print("Visited = ", self.isVisited[x][y])
-            if self.isVisited[x][y] == 0: # may be some confusion here if not continuos
+            if True: # may be some confusion here if not continuos
                 print("haven't visited:")
                 print("(x,y) ",(x,y))
 
