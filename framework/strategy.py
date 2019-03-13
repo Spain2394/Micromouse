@@ -458,13 +458,12 @@ class StrategyTestRendezvous(Strategy):
                 # print(self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d))
                 if self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d) == False: # while mouse can move in some direction
                     counter +=1
-
-
+                    
                     print("state %s, good for direction: %s"%(state,d))
                     delta = direction_list[d]
                     next_state = (state[0] + delta[0], state[1] + delta[1])
                     if hasBeen[next_state[0]][next_state[1]] == 0: # hasn't been
-                        next_cost = cost + 1 if my_dir is d else 2
+                        next_cost = cost + 1 if my_dir is d else 2 #
                         print("state update: %s, in direction: %s"% (next_state,d))
                         expense = self.priority(next_state,d,goal) #+cost
                         # print("error")
