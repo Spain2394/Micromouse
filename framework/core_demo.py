@@ -8,6 +8,7 @@ from mouse import Micromouse
 from strategy import StrategyTestRendezvous
 from controller import COREController
 from socket import *
+import time
 
 
 mazeMap = Map(16, 16)
@@ -25,4 +26,7 @@ micromouse.addTask(StrategyTestRendezvous(micromouse, initPoint, num_bots))
 # micromouse.addTask(StrategyTestRendezvous(micromouse, initPoint, num_bots))
 print("after initialization")
 # num bots
+tick = time.time()
 micromouse.run()
+toc = time.time()
+time = toc - tic
