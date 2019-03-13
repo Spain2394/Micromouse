@@ -585,7 +585,7 @@ class StrategyTestRendezvous(Strategy):
         print("neighbors_states: ", self.neighbors_states)
         goal = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
         action = self.cost(goal)
-        if self.isBack: return self.isBack
+        # if self.isBack: return self.isBack
 
         print('-----------------------------')
         print("GOAL:",goal)
