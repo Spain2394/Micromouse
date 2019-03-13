@@ -519,7 +519,7 @@ class StrategyTestRendezvous(Strategy):
         print("straight line: ", straight_line)
         gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
         # expense = (beta*gradient + 1/(alpha*straight_line+epsilon)) + energy
-        expense = (beta/(gradient + epsilon) + 10 * energy)
+        expense = (beta/gradient + 10 * energy)
 
         print("priority: %s"%expense)
         print('----------------------------')
@@ -571,13 +571,12 @@ class StrategyTestRendezvous(Strategy):
         goal = (8,8)
         moves = [0,1,2,3]
 
-        # print('-----------------------------')
-        # print("initialize run:")
+        print('-----------------------------')
+        print("initialize run:")
         print("group centroid", group_centroid)
         # distance = self.distance_to_wall(cell,direction)
-        # print("distance to wall: ", distance)
+        print("distance to wall: ", distance)
 
-        print("get to goal:",goal)
         action = self.cost(goal)
         print(action)
         moved  = False
