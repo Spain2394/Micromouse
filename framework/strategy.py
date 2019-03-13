@@ -208,6 +208,7 @@ class StrategyTestRendezvous(Strategy):
     # starting_pose = ()
     starting_pose = ()
     centroid = ()
+    drive = (None, None)
     # mazeMap = None
 
 
@@ -442,11 +443,12 @@ class StrategyTestRendezvous(Strategy):
             # self.isBack = True
             # print("state = ", state)
             # print("goal = ", goal)
-            if state == goal:
-                print("state = goal")
-                isGoal = True
-                self.isBack = True
-                break
+            # if state == goal:
+            #     # print("state = goal")
+            #     # isGoal = True
+            #     # self.isBack = True
+            #     drive =
+            #     break
 
             # score each direction based on the number of cells that they can go straight,
             # and if they wouldn't have to change direction
@@ -598,7 +600,6 @@ class StrategyTestRendezvous(Strategy):
 
             if moved == True: break
 
-
             print("IN")
             # if i == len(action):
             #     break
@@ -611,11 +612,11 @@ class StrategyTestRendezvous(Strategy):
             print("best move: ", (x,y))
             if (x,y) == goal:
                 print("state == goal")
-                self.isBack = True
-                self.checkFinished()
-            print("currently position:: ",(self.mouse.x,self.mouse.y))
-            # print(x)
+                # self.isBack = True
+                # self.checkFinished()
 
+            print("currently position: ",(self.mouse.x,self.mouse.y))
+            # print(x)
             print("Visited = ", self.isVisited[x][y])
             print("Distance = ", distance)
             if self.isVisited[x][y] == 0: # may be some confusion here if not continuos
