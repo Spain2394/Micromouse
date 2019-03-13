@@ -567,7 +567,7 @@ class StrategyTestRendezvous(Strategy):
             #     self.mouse.mazeMap.setCellLeftAsWall(cell)
             # if otherMap['right']:
             #     self.mouse.mazeMap.setCellRightAsWall(cell)
-            # recvData = self.network.retrieveData()
+            recvData = self.network.retrieveData()
 
 
         group_centroid = ()
