@@ -467,10 +467,12 @@ class StrategyTestRendezvous(Strategy):
                         print("state update: %s, in direction: %s"% (next_state,d))
                         expense = self.priority(next_state,d,goal) #+cost
                         # print("error")
-                        takeAction.append([next_state,d])
+                        takeAction.append([expense,next_state,d])
                         hasBeen[next_state[0]][next_state[1]] = 1 # you have been here
 
                         open.append((expense,next_cost,next_state,d)) # you will only include costs, states
+
+            takeAction.sort()
             open.sort() # sort based on low
             print(open)
                     # open_2.append((priority,next_cost,next_state,d))
