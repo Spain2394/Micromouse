@@ -29,5 +29,5 @@ print("after initialization")
 tick = time.time()
 micromouse.run()
 toc = time.time()
-time = toc - tic
+time = int(toc - tic)
 print("time(s):", time)
