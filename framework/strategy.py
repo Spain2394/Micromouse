@@ -511,11 +511,7 @@ class StrategyTestRendezvous(Strategy):
 
         cell = self.mouse.mazeMap.getCell(x,y)
         print("priority getCell: (%s,%s)"% (cell.x,cell.y))
-        dx = abs(self.mouse.x - x)
-        dy = abs(self.mouse.y - y)
-        # print(cell.x,cell.y)
-        # print('D',d)
-
+    
         straight_line = self.distance_to_wall(cell,d)
         print("straight line: ", straight_line)
         gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
