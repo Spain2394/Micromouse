@@ -607,7 +607,7 @@ class StrategyTestRendezvous(Strategy):
             if moved == True: break
 
             # self.checkFinished()
-            if self.isBack
+            # if self.isBack
 
             print("IN")
             # if i == len(action):
