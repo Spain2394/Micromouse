@@ -497,7 +497,7 @@ class StrategyTestRendezvous(Strategy):
         x,y = state[0],state[1]
         # print(x,y)
         alpha = 10 # weight for going in a straight line
-        beta = 2 # weight for going towards gradient
+        beta = 0.01 # weight for going towards gradient
         zeta = 1
         epsilon = 0.01
         energy = ((self.mouse.x - x)**2 + (self.mouse.y -y)**2)**(1/2)
