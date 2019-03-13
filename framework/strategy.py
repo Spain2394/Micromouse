@@ -553,19 +553,16 @@ class StrategyTestRendezvous(Strategy):
             recvData = self.network.retrieveData()
 
 
-
-        if (self.mouse.x,self.mouse.y) == goal:
-                print("state is goal")
-
-
-
+        group_centroid = ()
+        distance = 0
         cell = self.mouse.mazeMap.getCell(self.mouse.x,self.mouse.y)
         direction = self.mouse.direction
         group_centroid = self.GroupCentroid()
         distance,near_bot  = self.distance_to_near_neigh()
-        goal = self.GroupCentroid()
-        action = self.cost(goal)
+
+        # goal = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
         moves = [0,1,2,3]
+
 
         # action = self.cost(goal)
         # if goal == (x,y):
@@ -573,11 +570,12 @@ class StrategyTestRendezvous(Strategy):
         # moved = False
 
         # i =0
-        # first best moveif (self.mouse.x,self.mouse.y) == goal:
+        # first best move
 
         threshold = 3 # you can revisit if less than 3 steps from target
         print("action list: ", action)
         for moves in action:
+
             # if i == len(action):
             #     break
             x,y = moves[1]
