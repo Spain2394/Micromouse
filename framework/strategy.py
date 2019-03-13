@@ -580,18 +580,19 @@ class StrategyTestRendezvous(Strategy):
         goal = (8,8)
         moves = [0,1,2,3]
 
-        print('-----------------------------')
-        print("GOAL:",goal)
-        print("initialize run:")
-        print("group centroid", group_centroid)
-        # distance = self.distance_to_wall(cell,direction)
-        print("distance to wall: ", distance)
 
         action = self.cost(goal)
         distance, near_bot = self.distance_to_near_neigh()
         goal = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
         action = self.cost(goal)
         if self.isBack: return self.isBack
+
+        print('-----------------------------')
+        print("GOAL:",goal)
+        print("initialize run:")
+        print("group centroid", group_centroid)
+        # distance = self.distance_to_wall(cell,direction)
+        print("distance to wall: ", distance)
 
         moved = False
         # i =0
