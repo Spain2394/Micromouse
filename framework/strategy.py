@@ -472,7 +472,7 @@ class StrategyTestRendezvous(Strategy):
                         hasBeen[next_state[0]][next_state[1]] = 1 # you have been here
 
                         open.append((expense,next_cost,next_state,d)) # you will only include costs, states
-                open.sort() # sort based on low
+            open.sort() # sort based on low
                     # open_2.append((priority,next_cost,next_state,d))
                     # hasBeen[next_state[0]][next_state[1]] = 1
                     # my_dir = d # update direction
