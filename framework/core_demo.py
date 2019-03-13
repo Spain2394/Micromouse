@@ -26,7 +26,7 @@ micromouse.addTask(StrategyTestRendezvous(micromouse, initPoint, num_bots))
 # micromouse.addTask(StrategyTestRendezvous(micromouse, initPoint, num_bots))
 print("after initialization")
 # num bots
-tick = time.time()
+tic = time.time()
 micromouse.run()
 toc = time.time()
 time = int(toc - tic)
