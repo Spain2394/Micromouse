@@ -482,7 +482,7 @@ class StrategyTestRendezvous(Strategy):
                     # cost includes distance to target
             print('---------------------------------------------------')
             # return takeAction
-            return open
+            return takeAction
         # open.sort()
         # print("Returning..")
         # open.sort() #
