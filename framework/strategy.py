@@ -473,6 +473,7 @@ class StrategyTestRendezvous(Strategy):
 
                         open.append((expense,next_cost,next_state,d)) # you will only include costs, states
             open.sort() # sort based on low
+            print(open.sort())
                     # open_2.append((priority,next_cost,next_state,d))
                     # hasBeen[next_state[0]][next_state[1]] = 1
                     # my_dir = d # update direction
