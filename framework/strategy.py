@@ -481,7 +481,8 @@ class StrategyTestRendezvous(Strategy):
                     # cost g2 will be higher if direction is changed
                     # cost includes distance to target
             print('---------------------------------------------------')
-            return takeAction
+            # return takeAction
+            return open
         # open.sort()
         # print("Returning..")
         # open.sort() #
@@ -600,9 +601,9 @@ class StrategyTestRendezvous(Strategy):
             print("IN")
             # if i == len(action):
             #     break
-            x,y = moves[0]
-            print(moves[0])
-            direction = moves[1]
+            x,y = moves[2]
+            print(moves[2])
+            direction = moves[3]
             print(x)
             print(y)
 
