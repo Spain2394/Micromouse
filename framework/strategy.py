@@ -588,10 +588,12 @@ class StrategyTestRendezvous(Strategy):
 
         print('-----------------------------')
         print("GOAL:",goal)
+        print("to bot: ",near_bot)
         print("initialize run:")
         print("group centroid", group_centroid)
+        print('-----------------------------')
         # distance = self.distance_to_wall(cell,direction)
-        print("distance to wall: ", distance)
+        # print("distance to wall: ", distance)
 
         moved = False
         # i =0
