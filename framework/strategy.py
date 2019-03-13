@@ -581,6 +581,7 @@ class StrategyTestRendezvous(Strategy):
 
         action = self.cost(goal)
         if self.isBack: return self.isBack
+        
         print(action)
         moved  = False
 
