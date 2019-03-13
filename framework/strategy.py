@@ -466,7 +466,7 @@ class StrategyTestRendezvous(Strategy):
                     if hasBeen[next_state[0]][next_state[1]] == 0: # hasn't been
                         next_cost = cost + 1 if my_dir is d else 2
                         print("state update: %s, in direction: %s"% (next_state,d))
-                        expense = self.priority(next_state, d) #+cost
+                        expense = self.priority(next_state,d,goal) #+cost
                         # print("error")
                         takeAction.append([next_state,d])
                         hasBeen[next_state[0]][next_state[1]] = 1 # you have been here
@@ -490,8 +490,9 @@ class StrategyTestRendezvous(Strategy):
         # return open
 
 
-    def priority(self,state,d):
+    def priority(self,state,d,goal):
         # print("in priority")
+        goal_x,goal_y = goal
         print('PRIORITY')
         print('----------------------------')
         x,y = state[0],state[1]
@@ -514,7 +515,9 @@ class StrategyTestRendezvous(Strategy):
 
         straight_line = self.distance_to_wall(cell,d)
         print("straight line: ", straight_line)
-        gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
+        # gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
+        gradient = (((x - goal_x)**2 + (y-goal_y)**2)**(1/2))
+
         print("gradient", gradient)
         # expense = (beta*gradient + 1/(alpha*straight_line+epsilon)) + energy
 
