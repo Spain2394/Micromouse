@@ -688,6 +688,7 @@ class StrategyTestRendezvous(Strategy):
 
 
         if moved == False:
+            print("bottom loop")
             if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
                 self.path.append([self.mouse.x, self.mouse.y])
                 self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
