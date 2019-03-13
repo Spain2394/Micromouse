@@ -497,7 +497,7 @@ class StrategyTestRendezvous(Strategy):
         x,y = state[0],state[1]
         # print(x,y)
         alpha = 10 # weight for going in a straight line
-        beta = 2 # weight for going towards gradient
+        beta = 0.01 # weight for going towards gradient
         zeta = 1
         epsilon = 0.01
         energy = ((self.mouse.x - x)**2 + (self.mouse.y -y)**2)**(1/2)
@@ -508,6 +508,7 @@ class StrategyTestRendezvous(Strategy):
         shortest_distance = 0
         gradient = 0
         expense = 0
+
         cell = self.mouse.mazeMap.getCell(x,y)
         print("priority getCell: (%s,%s)"% (cell.x,cell.y))
         dx = abs(self.mouse.x - x)
@@ -520,7 +521,7 @@ class StrategyTestRendezvous(Strategy):
         gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
         print("gradient", gradient)
         # expense = (beta*gradient + 1/(alpha*straight_line+epsilon)) + energy
-        expense = (1/(gradient+epsilon)+ 10 * energy)
+        expense = (beta* gradient+epsilon)+ 10 * energy)
 
 
         print("priority: %s"%expense)
