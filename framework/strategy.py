@@ -584,7 +584,8 @@ class StrategyTestRendezvous(Strategy):
         # first best move
         for moves in action:
 
-            if moved = True: break
+            if moved == True: break
+
             print("IN")
             if i == len(action):
                 break
