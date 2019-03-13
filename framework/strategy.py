@@ -601,9 +601,9 @@ class StrategyTestRendezvous(Strategy):
             print("IN")
             # if i == len(action):
             #     break
-            x,y = moves[0]
-            print(moves[0])
-            direction = moves[1]
+            x,y = moves[1]
+            print(moves[1])
+            direction = moves[2]
             print(x)
             print(y)
 
