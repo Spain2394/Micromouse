@@ -615,6 +615,7 @@ class StrategyTestRendezvous(Strategy):
             # print(x)
 
             print("Visited = ", self.isVisited[x][y])
+            print("Distance = ", distance)
             if self.isVisited[x][y] == 0 or distance < threshold: # may be some confusion here if not continuos
                 print("haven't visited:")
                 print("(x,y) ",(x,y))
