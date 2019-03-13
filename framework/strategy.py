@@ -580,10 +580,7 @@ class StrategyTestRendezvous(Strategy):
         print("distance to wall: ", distance)
 
         action = self.cost(goal)
-        if self.isBack == False:
-            print(action)
-        else: moved = True
-
+        print(action)
         moved  = False
 
         i =0
