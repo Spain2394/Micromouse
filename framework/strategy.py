@@ -444,9 +444,9 @@ class StrategyTestRendezvous(Strategy):
             # print("goal = ", goal)
             if state == goal:
                 print("state = goal")
-                # isGoal = True
-                # self.isBack = True
-                # break
+                isGoal = True
+                self.isBack = True
+                break
 
             # score each direction based on the number of cells that they can go straight,
             # and if they wouldn't have to change direction
@@ -481,7 +481,7 @@ class StrategyTestRendezvous(Strategy):
                     # cost includes distance to target
             print('---------------------------------------------------')
             # return takeAction
-            return takeAction   
+            return takeAction
         # open.sort()
         # print("Returning..")
         # open.sort() #
