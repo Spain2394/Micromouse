@@ -576,13 +576,13 @@ class StrategyTestRendezvous(Strategy):
         cell = self.mouse.mazeMap.getCell(self.mouse.x,self.mouse.y)
         direction = self.mouse.direction
         group_centroid = self.GroupCentroid()
-        goal = (3,11)
+        goal = (8,8)
         moves = [0,1,2,3]
 
 
         action = self.cost(goal)
-        print("neighbors_states: ", self.neighbors_states)
         distance, near_bot = self.distance_to_near_neigh()
+        print("neighbors_states: ", self.neighbors_states)
         goal = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
         action = self.cost(goal)
         if self.isBack: return self.isBack
