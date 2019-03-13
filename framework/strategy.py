@@ -581,19 +581,17 @@ class StrategyTestRendezvous(Strategy):
 
         action = self.cost(goal)
         if self.isBack: return self.isBack
-        
-        print(action)
-        moved  = False
 
-        i =0
+        moved  = False
+        # i =0
         # first best move
         for moves in action:
 
             if moved == True: break
 
             print("IN")
-            if i == len(action):
-                break
+            # if i == len(action):
+            #     break
             x,y = moves[0]
             print(moves[0])
             direction = moves[1]
@@ -637,7 +635,7 @@ class StrategyTestRendezvous(Strategy):
                     moved = True
                     self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'DOWN'}
                     print("DOWN")
-            i+=1
+            # i+=1
         sleep(0.05)
 
         print("--------------------------------")
