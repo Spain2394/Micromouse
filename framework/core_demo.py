@@ -27,6 +27,6 @@ micromouse.addTask(StrategyTestRendezvous(micromouse, initPoint, num_bots))
 
 micromouse.run()
 toc = time.time()
-print("time(%s)"%toc-tic)
+# print("time(%s)"%toc-tic)
 
 print("-----------END---------------")
