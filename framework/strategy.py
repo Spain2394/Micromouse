@@ -499,7 +499,7 @@ class StrategyTestRendezvous(Strategy):
         alpha = 10 # weight for going in a straight line
         beta = 0.01 # weight for going towards gradient
         zeta = 1
-        epsilon = 0.01
+        epsilon = 0.1
         energy = ((self.mouse.x - x)**2 + (self.mouse.y -y)**2)**(1/2)
         # zeta = 2 # weight for shortest path
         # when the state is good the priority is low
