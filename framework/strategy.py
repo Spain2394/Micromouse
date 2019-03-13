@@ -589,7 +589,7 @@ class StrategyTestRendezvous(Strategy):
 
         action = self.cost(goal)
         distance, near_bot = self.distance_to_near_neigh()
-        goal = (self.neighbors_states['x'],self.neighbors_states['y'])
+        goal = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
         action = self.cost(goal)
         if self.isBack: return self.isBack
 
