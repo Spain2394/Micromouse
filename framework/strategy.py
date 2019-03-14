@@ -529,7 +529,6 @@ class StrategyTestRendezvous(Strategy):
                 self.isBack = False
                 break
             else:
-                print("RENDEZVOUS!")
                 self.isBack = True
 
         if (self.mouse.x,self.mouse.y) == goal:
@@ -548,7 +547,10 @@ class StrategyTestRendezvous(Strategy):
         print("goal: ", goal)
         # get actions based on goal
         action = self.cost(goal)
-        self.checkFinished() # check if finished
+
+        if self.isBack:
+             print("RENDEZVOUS")
+             self.checkFinished() # check if finished
 
         for moves in action: # best action loop
             x,y = moves[1]
