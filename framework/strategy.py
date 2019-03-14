@@ -594,7 +594,7 @@ class StrategyTestRendezvous(Strategy):
         print("--------------------------------")
 
         if moved == False: #backtrack if unable to move by best action
-            if len(self.path) > 15:
+            if len(self.path) != 0:
                 x, y = self.path.pop()
                 if x < self.mouse.x:
                     self.mouse.goLeft()
