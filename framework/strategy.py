@@ -524,12 +524,12 @@ class StrategyTestRendezvous(Strategy):
         if far_distance <= threshold:
             print("distance to far neighbor:", far_distance)
             self.isBack = True
-        for bots in self.neighbors_states:
-            if (self.neighbors_states[bots]['x'],self.neighbors_states[bots]['y']) != goal:
-                self.isBack = False
-                break
-            else:
-                self.isBack = True
+        # for bots in self.neighbors_states:
+        #     if (self.neighbors_states[bots]['x'],self.neighbors_states[bots]['y']) != goal:
+        #         self.isBack = False
+        #         break
+        #     else:
+        #         self.isBack = True
 
         if (self.mouse.x,self.mouse.y) == goal:
             self.switchGoal = True
