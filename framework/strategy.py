@@ -526,7 +526,7 @@ class StrategyTestRendezvous(Strategy):
         cost = 0
         state = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
         direction = self.neighbors_states[near_bot]['direction']
-        
+
         action = [(cost, state, direction)]
         return action
 
