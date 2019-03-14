@@ -558,7 +558,7 @@ class StrategyTestRendezvous(Strategy):
         print(sendData)
         self.network.sendStringData(sendData)
         recvData = self.network.retrieveData()
-    
+
 
         while recvData:
             print("recieving data")
