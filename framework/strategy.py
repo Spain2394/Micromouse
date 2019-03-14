@@ -569,13 +569,14 @@ class StrategyTestRendezvous(Strategy):
         print('-----------------------------')
         self.switchGoal = False
         moved = False
-        threshold = 3
+        threshold = 2
         distance, near_bot  = self.distance_to_near_neigh() # goal begins as near neighbor
         head = True if near_bot > self.whoami else False
         goal = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
-
-
-        # print("asdf")
+        
+        if distance_to_far_neigh <= threshold:
+            print("RENDEZVOUS!")
+            self.isBack = True
         for bots in self.neighbors_states:
             if (self.neighbors_states[bots]['x'],self.neighbors_states[bots]['y']) != goal:
                 self.isBack = False
@@ -585,10 +586,6 @@ class StrategyTestRendezvous(Strategy):
                 self.isBack = True
 
         print("isBack? ",self.isBack)
-
-        if self.isBack:
-            print("GOAL")
-            return self.isBack
 
         if (self.mouse.x,self.mouse.y) == goal:
             self.switchGoal = True
@@ -606,6 +603,7 @@ class StrategyTestRendezvous(Strategy):
         print("goal: ", goal)
         # get actions based on goal
         action = self.cost(goal)
+        self.checkFinished() # check if finished
 
 
         for moves in action: # best action loop
