@@ -594,7 +594,7 @@ class StrategyTestRendezvous(Strategy):
                     moved = True
                     self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'DOWN'}
                     print("DOWN")
-        sleep(0.1)
+        sleep(0.01)
 
         print("--------------------------------")
 
@@ -623,7 +623,7 @@ class StrategyTestRendezvous(Strategy):
                     print("DOWN")
             else:
                 self.isBack = True
-        sleep(0.1)
+        sleep(0.05)
 
 
     # # def check_priority(self, dx_list, dy_list):
