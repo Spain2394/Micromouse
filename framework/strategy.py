@@ -598,14 +598,9 @@ class StrategyTestRendezvous(Strategy):
 
         moved = False
         threshold = 3
-
         distance,near_bot  = self.distance_to_near_neigh()
-
         goal = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
-
         action = self.cost(goal)
-
-        print("action list: ", action)
 
         if self.isBack: return self.isBack
 
@@ -629,6 +624,7 @@ class StrategyTestRendezvous(Strategy):
 
 
             if moved == True: break
+            print("goal: ", goal)
             print("currently position: ",(self.mouse.x,self.mouse.y))
             print("Visited = ", self.isVisited[x][y])
             print("Distance = ", distance)
