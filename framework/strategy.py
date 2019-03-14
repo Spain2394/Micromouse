@@ -539,8 +539,8 @@ class StrategyTestRendezvous(Strategy):
                 print("goal follower")
 
             else:
-                 # far_distance,far_bot = self.distance_to_far_neigh()
-                 # goal = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot]['y'])
+                 far_distance,far_bot = self.distance_to_far_neigh()
+                 goal = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot]['y'])
                  goal = self.group_centroid # try group centroid
                  print("goal: CENTROID")
         else: switchGoal = False
@@ -556,11 +556,10 @@ class StrategyTestRendezvous(Strategy):
 
             if moved == True: break
 
-            if (x,y) == goal:
-                self.switchGoal = True
-                if not head:
-                    x,y = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
-                    self.mouse.direction = direction
+            # if (x,y) == goal:
+            #     self.switchGoal = True
+            #     if not head:
+            #         x,y = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
 
             if self.isVisited[x][y] == 0 or self.switchGoal: # may be some confusion here if not continuos
 
