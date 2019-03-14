@@ -570,6 +570,7 @@ class StrategyTestRendezvous(Strategy):
         moved = False
         threshold = 3
         distance, near_bot  = self.distance_to_near_neigh()
+        head = True if near_bot > self.whoami else False
 
         if self.switchGoal == True and near_bot < self.whoami:
             goal = group_centroid
