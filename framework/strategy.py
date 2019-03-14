@@ -604,7 +604,7 @@ class StrategyTestRendezvous(Strategy):
             print("best move: ", (x,y))
             if (x,y) == goal:
                 print("state == goal")
-                self.isBack = False
+                self.isBack = True
                 self.checkFinished()
                 # self.isBack = True
                 # self.checkFinished()
