@@ -512,7 +512,7 @@ class StrategyTestRendezvous(Strategy):
         group_centroid = self.GroupCentroid()
         print("group centroid: ", group_centroid)
         far_distance,_ = self.distance_to_far_neigh()
-        # self.switchGoal = False
+        self.switchGoal = False
         moved = False
         threshold = 2.5
         distance, near_bot = self.distance_to_near_neigh() # goal begins as near neighbor
@@ -589,7 +589,7 @@ class StrategyTestRendezvous(Strategy):
                     moved = True
                     self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'DOWN'}
                     print("DOWN")
-        sleep(0.05)
+        sleep(0.01)
 
         print("--------------------------------")
 
