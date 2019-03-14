@@ -582,11 +582,12 @@ class StrategyTestRendezvous(Strategy):
 
         # print("asdf")
         for bots in self.neighbors_states:
-            # print("in")
             if (self.neighbors_states[bots]['x'],self.neighbors_states[bots]['y']) != goal:
                 self.isBack = False
                 break
-            else: self.isBack = True
+            else:
+                print("check true")
+                self.isBack = True
 
         if far_distance < 1:
             print("far distance:", far_distance)
