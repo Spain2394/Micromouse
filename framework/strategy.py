@@ -541,8 +541,8 @@ class StrategyTestRendezvous(Strategy):
 
 
         if (self.mouse.x,self.mouse.y) == goal:
-            self.switchGoal = True
             if not head:
+                self.switchGoal = True
                 action = self.follow_it(near_bot)
 
             else:
