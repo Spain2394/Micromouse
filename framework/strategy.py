@@ -599,6 +599,11 @@ class StrategyTestRendezvous(Strategy):
 
             if moved == True: break
 
+            if (x,y) == goal:
+                if near_bot > self.whoami:
+                    x,y = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
+
+
             print("goal: ", goal)
             print("currently position: ",(self.mouse.x,self.mouse.y))
             print("Visited = ", self.isVisited[x][y])
