@@ -521,6 +521,19 @@ class StrategyTestRendezvous(Strategy):
         print('----------------------------')
         return expense
 
+    def follow_it(self, near_bot):
+
+        action = [(cost, state, direction)]
+        cost = 0
+        state = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
+        direction = self.neighbors_states[near_bot]['direction']
+
+        return action
+
+
+
+
+
 
     def go(self):
         # print("GO")
@@ -607,7 +620,9 @@ class StrategyTestRendezvous(Strategy):
                 self.checkFinished()
                 if near_bot > self.whoami:
                      best_direction  = self.neighbors_states[near_bot]['direction']
+                     cost, moves, direction = self.follow_him(near_bot)
 
+                 # self.furthestNeighbor()
 
 
                 # self.isBack = True
