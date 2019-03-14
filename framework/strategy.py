@@ -541,12 +541,10 @@ class StrategyTestRendezvous(Strategy):
         return expense
 
     def follow_it(self, near_bot):
-
         action = [(cost, state, direction)]
         cost = 0
         state = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
         direction = self.neighbors_states[near_bot]['direction']
-
         return action
 
     def go(self):
@@ -560,9 +558,7 @@ class StrategyTestRendezvous(Strategy):
         print(sendData)
         self.network.sendStringData(sendData)
         recvData = self.network.retrieveData()
-        # print("recvData: %s"% recvData)
-        # one packet at a time
-    # def sort(self,list):
+    
 
         while recvData:
             print("recieving data")
