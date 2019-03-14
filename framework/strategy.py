@@ -577,7 +577,10 @@ class StrategyTestRendezvous(Strategy):
         if self.switchGoal == True and near_bot < self.whoami:
             goal = group_centroid
 
-        goal = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
+        else:
+            goal = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
+
+
         action = self.cost(goal)
 
         # print("asdf")
