@@ -577,7 +577,8 @@ class StrategyTestRendezvous(Strategy):
                 # defines group lead
                  best_direction = self.neighbors_states[near_bot]['direction']
                  print("1")
-                 (x,y), direction = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y']), self.neighbors_states[near_bot]['direction']
+                 (x,y) = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
+                 direction = self.neighbors_states[near_bot]['direction']
                  print("near bot: ", near_bot)
 
             else:
