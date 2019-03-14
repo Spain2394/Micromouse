@@ -593,9 +593,6 @@ class StrategyTestRendezvous(Strategy):
 
             if moved == True: break
 
-            print("IN")
-            # if i == len(action):
-            #     break
             x,y = moves[1]
             print(moves[1])
             direction = moves[2]
@@ -608,10 +605,6 @@ class StrategyTestRendezvous(Strategy):
                 if near_bot > self.whoami:
                      best_direction  = self.neighbors_states[near_bot]['direction']
                      cost, (x,y), direction = self.follow_him(near_bot)
-                     # we need this to persist after the first intersection
-                     # need to make goal furthest neighbor
-
-
 
             print("currently position: ",(self.mouse.x,self.mouse.y))
             # print(x)
