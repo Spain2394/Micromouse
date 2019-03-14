@@ -559,6 +559,7 @@ class StrategyTestRendezvous(Strategy):
         group_centroid = ()
         distance = 0
         goal = ()
+        action = ()
         cell = self.mouse.mazeMap.getCell(self.mouse.x,self.mouse.y)
         direction = self.mouse.direction
         group_centroid = self.GroupCentroid()
@@ -571,9 +572,8 @@ class StrategyTestRendezvous(Strategy):
         threshold = 3
         distance, near_bot  = self.distance_to_near_neigh() # goal begins as near neighbor
         head = True if near_bot > self.whoami else False
+        goal = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
 
-        print("goal: ", goal)
-        action = self.cost(goal)
 
         # print("asdf")
         for bots in self.neighbors_states:
@@ -594,16 +594,18 @@ class StrategyTestRendezvous(Strategy):
             self.switchGoal = True
             if not head:
                 action = self.follow_it(near_bot)
+                print("goal follower")
 
             else:
                  distance,far_bot = self.distance_to_far_neigh()
-                 # print("here")
                  goal = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot]['y'])
                  direction = self.neighbors_states[far_bot]['direction']
-                 # print("far bot: ", far_bot)
-                 action = self.cost(goal)
-                 # print("goal :", goal)
+                 print("goal: nearest neighbor")
         else: switchGoal = False
+
+        print("goal: ", goal)
+        # get actions based on goal
+        action = self.cost(goal)
 
 
         for moves in action: # best action loop
