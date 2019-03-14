@@ -600,10 +600,10 @@ class StrategyTestRendezvous(Strategy):
             print(y)
 
             print("best move: ", (x,y))
-            if (x,y) == goal or i  > 0 :
+            if (x,y) == goal:
                 print("state == goal")
                 if near_bot > self.whoami:
-                     best_direction  = self.neighbors_states[near_bot]['direction']
+                     best_direction = self.neighbors_states[near_bot]['direction']
                      cost, (x,y), direction = self.follow_him(near_bot)
 
             print("currently position: ",(self.mouse.x,self.mouse.y))
