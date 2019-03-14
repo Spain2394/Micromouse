@@ -196,6 +196,7 @@ class StrategyTestRendezvous(Strategy):
     network = None
     neighbors_states = {} # group states including self
     topological_neighbors = []
+    switchGoal = True
 
     stop_condition = False
     whoami = -1
@@ -214,8 +215,7 @@ class StrategyTestRendezvous(Strategy):
     # define number of robots
     def __init__(self, mouse, initPoint, num_bots):
         print("INTIA")
-        # add
-        # self.mazeMap = mazeMap
+        self.switchGoal = True
         self.mouse = mouse
         self.num_bots = num_bots
         self.centroid = (self.mouse.mazeMap.width,self.mouse.mazeMap.height) #
@@ -604,7 +604,8 @@ class StrategyTestRendezvous(Strategy):
 
         if self.isBack: return self.isBack
 
-        if (self.mouse.x,self.mouse.y) == goal:
+        if (self.mouse.x,self.mouse.y) == goal or self.switchGoal:
+            self.switchGoal = True
             print("state == goal")
             if near_bot > self.whoami:
                 # defines group lead
