@@ -282,11 +282,9 @@ class StrategyTestRendezvous(Strategy):
         temp_distance = 0
         cost = 5
 
-
         # print("made it into distance_to_near_neigh 1")
         for bots in range(1,self.num_bots+1):
-            # print("made it into distance_to_near_neigh 2")
-            # print("bots%s"%bots)
+
             if bots == self.whoami:
                 continue
             else:
@@ -295,15 +293,11 @@ class StrategyTestRendezvous(Strategy):
                 dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
 
                 temp_distance = (dx_temp*dx_temp + dy_temp*dy_temp)**(1/2)
-                # print("temp_distance: %s"%temp_distance)
 
                 if temp_distance > distance:
                     distance = temp_distance
                     follow_him = bots
-                    # print("distance: %s"%distance)
-                    # print("following_him: %s"%follow_him)
 
-        # print("final distance: %s"%distance)
         return distance,follow_him
 
 
@@ -335,24 +329,19 @@ class StrategyTestRendezvous(Strategy):
         weighted_x = 0
         weighted_y = 0
 
-
-        # print("centroid function")
         for bot in self.neighbors_states:
             dx_temp = abs(self.neighbors_states[bot]['x']-self.mouse.x)
             dy_temp = abs(self.neighbors_states[bot]['y']-self.mouse.y)
             if dx_temp > dx: dx = dx_temp
             if dy_temp > dy: dy = dy_temp
 
-        # print("out of centroid loop")
         weighted_x = math.floor(((dx/dy)*(self.mouse.x + dx))/2)
         weighted_y = math.floor(((dy/dx)*(self.mouse.y + dy))/2)
-        # print("weighted_x: ",weighted_x)
 
         centroid = (weighted_x, weighted_y)
         return centroid
 
     def GroupCentroid(self):
-        # print("grou centroid")
         group_centroid = ()
         sumCx = 0
         sumCy = 0
@@ -363,7 +352,6 @@ class StrategyTestRendezvous(Strategy):
             sumCy += lstP[i]['y']
 
         group_centroid = (math.ceil(sumCx/self.num_bots),math.ceil(sumCy/self.num_bots))
-        # print("group_centroid:", group_centroid)
         return group_centroid
 
     def BestMove(self,utility,maze):
@@ -491,12 +479,6 @@ class StrategyTestRendezvous(Strategy):
             takeAction.sort()
             open.sort() # sort based on low
             print(open)
-                    # open_2.append((priority,next_cost,next_state,d))
-                    # hasBeen[next_state[0]][next_state[1]] = 1
-                    # my_dir = d # update direction
-                    # next_cost = self.distance_to_wall()
-                    # cost g2 will be higher if direction is changed
-                    # cost includes distance to target
             print('---------------------------------------------------')
             # return takeAction
             return takeAction
