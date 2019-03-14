@@ -577,16 +577,14 @@ class StrategyTestRendezvous(Strategy):
         moved = False
         # i =0
         # first best move
+        # if goal is achieved then form a group
+        # wait for a neighbors_states
 
         threshold = 3 # you can revisit if less than 3 steps from target
         print("action list: ", action)
         for moves in action:
-
             action = self.cost(goal)
             if self.isBack: return self.isBack
-
-
-
 
             print("move_list:", moves)
 
