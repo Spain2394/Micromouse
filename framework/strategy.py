@@ -582,11 +582,10 @@ class StrategyTestRendezvous(Strategy):
         print("distance to wall: ", distance)
 
         if (self.mouse.x,self.mouse.y) == goal: print("STATE IS GOAL")
-        
+
         action = self.cost(goal)
         moved = False
         threshold = 3 # you can revisit if less than 3 steps from target
-
 
         print("action list: ", action)
         for moves in action:
@@ -609,8 +608,8 @@ class StrategyTestRendezvous(Strategy):
             print("best move: ", (x,y))
             if (x,y) == goal:
                 print("state == goal")
-                self.isBack = True
-                self.checkFinished()
+                # self.isBack = True
+                # self.checkFinished()
                 if near_bot > self.whoami:
                      best_direction  = self.neighbors_states[near_bot]['direction']
                      cost, (x,y), direction = self.follow_him(near_bot)
