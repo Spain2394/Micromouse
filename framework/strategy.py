@@ -535,8 +535,8 @@ class StrategyTestRendezvous(Strategy):
         goal = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
 
 
-        if far_distance <= threshold:
-            print("distance to far neighbor:", _)
+        if far_distance < threshold:
+            print("distance to far neighbor:", far_distance)
             self.isBack = True
 
 
