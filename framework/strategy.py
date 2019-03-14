@@ -573,7 +573,7 @@ class StrategyTestRendezvous(Strategy):
 
         for bots in neighbors_states:
             print("in")
-            if (self.neighbors_states[bots]['x'],self.neighbors_states['y']) != goal:
+            if (self.neighbors_states[bots]['x'],self.neighbors_states[bots]['y']) != goal:
                 self.isBack = False
                 break
             else: self.isBack = True
