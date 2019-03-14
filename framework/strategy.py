@@ -573,23 +573,23 @@ class StrategyTestRendezvous(Strategy):
 
         if self.isBack: return self.isBack
 
-        if (self.mouse.x,self.mouse.y) == goal:
-            self.switchGoal = True
-            print("state == goal")
-            if near_bot > self.whoami:
-                print(" follower")
-                action = self.follow_it(near_bot)
-                print("far bot: ", near_bot)
-                print("goal :", goal)
-
-            else:
-                 distance,far_bot = self.distance_to_far_neigh()
-                 print("here")
-                 goal = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot]['y'])
-                 direction = self.neighbors_states[far_bot]['direction']
-                 print("far bot: ", far_bot)
-                 action = self.cost(goal)
-                 print("goal :", goal)
+        # if (self.mouse.x,self.mouse.y) == goal:
+        #     self.switchGoal = True
+        #     print("state == goal")
+        #     if near_bot > self.whoami:
+        #         print(" follower")
+        #         action = self.follow_it(near_bot)
+        #         print("far bot: ", near_bot)
+        #         print("goal :", goal)
+        #
+        #     else:
+        #          distance,far_bot = self.distance_to_far_neigh()
+        #          print("here")
+        #          goal = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot]['y'])
+        #          direction = self.neighbors_states[far_bot]['direction']
+        #          print("far bot: ", far_bot)
+        #          action = self.cost(goal)
+        #          print("goal :", goal)
 
 
         for moves in action:
