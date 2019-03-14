@@ -593,6 +593,7 @@ class StrategyTestRendezvous(Strategy):
 
 
         for moves in action:
+            self.switchGoal = False
             #cost = moves[0]
             x,y = moves[1]
             direction = moves[2]
@@ -600,7 +601,7 @@ class StrategyTestRendezvous(Strategy):
             if moved == True: break
 
             if (x,y) == goal:
-                self.switchGoal
+                self.switchGoal = True
                 if near_bot > self.whoami:
                     x,y = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
 
