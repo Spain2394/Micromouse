@@ -603,13 +603,14 @@ class StrategyTestRendezvous(Strategy):
             print(y)
 
             print("best move: ", (x,y))
-            if (x,y) == goal:
+            if (x,y) == goal or i  > 0 :
                 print("state == goal")
-                # self.isBack = True
-                # self.checkFinished()
                 if near_bot > self.whoami:
                      best_direction  = self.neighbors_states[near_bot]['direction']
                      cost, (x,y), direction = self.follow_him(near_bot)
+                     # we need this to persist after the first intersection
+                     # need to make goal furthest neighbor
+
 
 
             print("currently position: ",(self.mouse.x,self.mouse.y))
