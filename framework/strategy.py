@@ -571,7 +571,13 @@ class StrategyTestRendezvous(Strategy):
         goal = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
         action = self.cost(goal)
 
-        if self.isBack: return self.isBack
+        for bots in neighbors_states:
+            if (self.neighbors_states[bots]['x'],self.neighbors_states['y']) != goal:
+                self.isBack = False
+                break
+            else: self.isBack = True
+
+            if self.isBack: return self.isBack
 
         if (self.mouse.x,self.mouse.y) == goal:
             self.switchGoal = True
