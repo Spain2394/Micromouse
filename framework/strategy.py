@@ -243,7 +243,6 @@ class StrategyTestRendezvous(Strategy):
     def distance_to_near_neigh(self):
         dx_temp = 0
         dy_temp = 0
-        # closest_bot = {}
         follow_him = -1
         distance = 100 # some big number
         temp_distance = 0
@@ -257,24 +256,21 @@ class StrategyTestRendezvous(Strategy):
                 dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
 
                 temp_distance = (dx_temp*dx_temp + dy_temp*dy_temp)**(1/2)
-                # print("temp_distance: %s"%temp_distance)
 
                 if temp_distance < distance:
                     distance = temp_distance
                     follow_him = bots
-            
+
         return distance,follow_him
 
     def distance_to_far_neigh(self):
         dx_temp = 0
         dy_temp = 0
-        # closest_bot = {}
         follow_him = -1
         distance = 0 # some small number
         temp_distance = 0
         cost = 5
 
-        # print("made it into distance_to_near_neigh 1")
         for bots in range(1,self.num_bots+1):
 
             if bots == self.whoami:
@@ -291,7 +287,6 @@ class StrategyTestRendezvous(Strategy):
                     follow_him = bots
 
         return distance,follow_him
-
 
     def distance_to_you(self):
         distance = -1
@@ -380,31 +375,20 @@ class StrategyTestRendezvous(Strategy):
                 shortest_path_list_x.append(dx_temp)
                 shortest_path_list_y.append(dy_temp)
 
-        # shortest_path_list_x.sort()
-        # shortest_path_list_y.sort()
         return shortest_path_list_x, shortest_path_list_y
 
     def distance_to_wall(self,cell,direction):
-        # how long can mouse go in direction,
-        # print("distance to wall")
         check = True
         open_distance = 0
         move_dir = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
 
-        # print("cells:")
-        # print('--------------------------------')
-        # print("cells before distance calc: (%s,%s)"% (cell.x,cell.y))
+
         current_cell = [cell.x,cell.y] # are we modifying current cell?? if so make a copy
-        # print(current_cell)
-        # print(current_cell[0],current_cell[1])
         dir = direction[0]
         # print(dir)
 
         height = self.mouse.mazeMap.height
         width = self.mouse.mazeMap.width
-        # print(height)
-
-        # print(self.mouse.mazeMap.getCell(current_cell[0],current_cell[1]).getIsThereWall(dir))
 
         while check:
             if current_cell[0] >= 0 and current_cell[1] >=0 and current_cell[0] < width and current_cell[1] < height:
@@ -416,14 +400,10 @@ class StrategyTestRendezvous(Strategy):
                     current_cell[1] += move_dir[dir][1]
                 else: check = False
             else: check = False
-        # print("cells after distance calc: (%s,%s)"% (cell.x,cell.y))
-        # print('--------------------------------')
         return open_distance
 
-
     def cost(self,goal):
-        # print("COMPUTE COST")
-        # print('--------------------------------')
+
         direction_list = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
         my_dir = 'U'  #
         moves = []
@@ -433,12 +413,10 @@ class StrategyTestRendezvous(Strategy):
         gamma = 0.01 # cost is lower when distance is longer
         expense = 0
 
-        # self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(self.mouse.mazeMap.height)]
         hasBeen = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(self.mouse.mazeMap.height)]
         takeAction = []
         hasBeen[state[0]][state[1]] = 1 # has been at initial location
         open = [(expense,cost,state,my_dir)] # some constants a start point and an end point
-        # open_2 = [(priority,cost,state,my_dir)]
 
         while len(open) < 5 and len(open) >0: # give me 20 good points
             item = open.pop(0) # pop appended item
@@ -447,35 +425,30 @@ class StrategyTestRendezvous(Strategy):
             cost = item[1]
             state = item[2]
             my_dir = item[3]
-            # print("(p,c,s,d): ",(expense,cost,state,my_dir))
 
             counter = 0
             for d in direction_list:
                 if self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d) == False: # while mouse can move in some direction
                     counter +=1
 
-                    # print("state %s, good for direction: %s"%(state,d))
                     delta = direction_list[d]
                     next_state = (state[0] + delta[0], state[1] + delta[1])
                     if hasBeen[next_state[0]][next_state[1]] == 0: # hasn't been
                         next_cost = cost + 1 if my_dir is d else 2 #
-                        # print("state update: %s, in direction: %s"% (next_state,d))
-                        expense = self.priority(next_state,d,goal) #+cost
-                        # print("error")
-                        takeAction.append([expense,next_state,d])
-                        hasBeen[next_state[0]][next_state[1]] = 1 # you have been here
 
-                        open.append((expense,next_cost,next_state,d)) # you will only include costs, states
+                        expense = self.priority(next_state,d,goal)
+                        takeAction.append([expense,next_state,d])
+                        hasBeen[next_state[0]][next_state[1]] = 1
+
+                        open.append((expense,next_cost,next_state,d))
 
             takeAction.sort()
-            open.sort() # sort based on low
-            print(open)
-            return takeAction
+            open.sort() # sort based on low expense
+            return takeAction # return after only one iteration
 
     def priority(self,state,d,goal):
         goal_x,goal_y = goal
-        # print('PRIORITY')
-        # print('----------------------------')
+
         x,y = state[0],state[1]
 
         alpha = 10 # weight for going in a straight line
@@ -490,30 +463,15 @@ class StrategyTestRendezvous(Strategy):
         expense = 0
 
         cell = self.mouse.mazeMap.getCell(x,y)
-        # print("priority getCell: (%s,%s)"% (cell.x,cell.y))
 
         straight_line = self.distance_to_wall(cell,d)
         # print("straight line: ", straight_line)
         # gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
         gradient = (((x - goal_x)**2 + (y-goal_y)**2)**(1/2))
-
-        # print("gradient", gradient)
-        # expense = (beta*gradient + 1/(alpha*straight_line+epsilon)) + energy
-
-        # expense = (beta*(gradient+epsilon)+ 10 * energy)
         expense = gradient/2
-        # expense = gradient/2 +5*energy
-        # print("expense: ",expense)
-
-
-        # print("priority: %s"%expense)
-        # print('----------------------------')
         return expense
 
     def follow_it(self, near_bot):
-        # print("follow it")
-
-        # print(self.assert_( action != None, 'Error: action not = None'))
         cost = 0
         state = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
         direction = self.neighbors_states[near_bot]['direction']
@@ -531,11 +489,10 @@ class StrategyTestRendezvous(Strategy):
         recvData = self.network.retrieveData()
 
         while recvData:
-            # print("recieving data")
+
             otherMap = recvData
             cell = self.mouse.mazeMap.getCell(otherMap['x'], otherMap['y'])
             self.neighbors_states[otherMap['robot']] = {'robot':otherMap['robot'], 'x': otherMap['x'], 'y': otherMap['y'], 'direction':self.mouse.direction} # update neighbors_states as received
-            # print(self.neighbors_states[otherMap['robot']]) # update neighbors_states as received)
             if otherMap['up']:
                 self.mouse.mazeMap.setCellUpAsWall(cell)
             if otherMap['down']:
@@ -561,11 +518,11 @@ class StrategyTestRendezvous(Strategy):
         moved = False
         threshold = 2
         distance, near_bot = self.distance_to_near_neigh() # goal begins as near neighbor
-        far_distance = self.distance_to_far_neigh()
 
         head = True if near_bot > self.whoami else False
         goal = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
 
+        # techinically only need one of these
         if far_distance <= threshold:
             print("RENDEZVOUS!")
             self.isBack = True
@@ -574,10 +531,8 @@ class StrategyTestRendezvous(Strategy):
                 self.isBack = False
                 break
             else:
-                print("check true")
+                print("RENDEZVOUS!")
                 self.isBack = True
-
-        print("isBack? ",self.isBack)
 
         if (self.mouse.x,self.mouse.y) == goal:
             self.switchGoal = True
