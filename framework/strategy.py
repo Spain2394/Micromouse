@@ -754,12 +754,14 @@ class StrategyTestRendezvous(Strategy):
                     if x < self.mouse.x:
                         self.mouse.goLeft()
                         self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'LEFT'}
+                        self.mouse.isVisited[self.mouse.x][self.mouse.y] = 0
                         print("LEFT")
                         moved = True
                     elif x > self.mouse.x:
                         self.mouse.goRight()
                         self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'RIGHT'}
                         moved = True
+                        self.mouse.isVisited[self.mouse.x][self.mouse.y] = 0
                         print("RIGHT")
                     elif y < self.mouse.y:
                         self.mouse.goUp()
@@ -769,6 +771,7 @@ class StrategyTestRendezvous(Strategy):
                     elif y > self.mouse.y:
                         self.mouse.goDown()
                         self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'DOWN'}
+                        self.mouse.isVisited[self.mouse.x][self.mouse.y] = 0
                         moved = True
                         print("DOWN")
                 else:
