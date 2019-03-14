@@ -196,7 +196,7 @@ class StrategyTestRendezvous(Strategy):
     network = None
     neighbors_states = {} # group states including self
     topological_neighbors = []
-    switchGoal = True
+    switchGoal = False
 
     stop_condition = False
     whoami = -1
@@ -581,7 +581,6 @@ class StrategyTestRendezvous(Strategy):
                  y = self.neighbors_states[near_bot]['y']
                  direction = self.neighbors_states[near_bot]['direction']
                  print("far bot: ", far_bot)
-                 print("near bot: ", near_bot)
                  print("goal :", goal)
 
             else:
