@@ -444,6 +444,20 @@ class StrategyTestRendezvous(Strategy):
             open.sort() # sort based on low expense
             return takeAction # return after only one iteration
 
+    def dist(self,xy):
+        x,y = xy
+        dx_temp = 0
+        dy_temp = 0
+        distance = 0 # some small number
+
+        dx_temp = x - self.mouse.x
+
+        dy_temp = y - self.mouse.y
+
+        distance = (dx_temp*dx_temp + dy_temp*dy_temp)**(1/2)
+
+        return distance
+
     def priority(self,state,d,goal):
         goal_x,goal_y = goal
 
@@ -538,7 +552,11 @@ class StrategyTestRendezvous(Strategy):
 
             else:
                  far_distance,far_bot = self.distance_to_far_neigh()
-                 goal = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot]['y'])
+                 group_centroid = self.group_centroid
+                 close_group = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot]['y'])
+                 cent = self.dist(group_centroid)
+                 far = self.dist(close_group)
+                 goal = close_group if far < cent else group_centroid
                  # goal = self.group_centroid # try group centroid
         else: switchGoal = False
 
