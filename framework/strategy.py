@@ -273,7 +273,7 @@ class StrategyTestRendezvous(Strategy):
         # print("final distance: %s"%distance)
         return distance,follow_him
 
-    def distance_to_near_neigh(self):
+    def distance_to_far_neigh(self):
         dx_temp = 0
         dy_temp = 0
         # closest_bot = {}
@@ -577,12 +577,9 @@ class StrategyTestRendezvous(Strategy):
                 # defines group lead
                  best_direction = self.neighbors_states[near_bot]['direction']
                  print("1")
-                 ah = self.follow_him(near_bot)
-                 x,y = ah[1]
-                 direction =  ah[2]
-
-                 (x,y), direction = self.follow_him(near_bot)
+                 (x,y), direction = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y']), self.neighbors_states[near_bot]['direction']
                  print("near bot: ", near_bot)
+
             else:
                  distance,far_bot = self.distance_to_far_neigh()
                  print("far bot: ", far_bot)
