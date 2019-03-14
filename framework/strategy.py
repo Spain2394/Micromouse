@@ -565,16 +565,16 @@ class StrategyTestRendezvous(Strategy):
         group_centroid = self.GroupCentroid()
         print("group centroid: ", group_centroid)
         far_distance,_ = self.distance_to_far_neigh()
-        print("distance to far bot: ",far_distance)
-        print('-----------------------------')
         self.switchGoal = False
         moved = False
         threshold = 2
-        distance, near_bot  = self.distance_to_near_neigh() # goal begins as near neighbor
+        distance, near_bot = self.distance_to_near_neigh() # goal begins as near neighbor
+        far_distance = self.distance_to_far_neigh()
+
         head = True if near_bot > self.whoami else False
         goal = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
-        
-        if distance_to_far_neigh <= threshold:
+
+        if far_distance <= threshold:
             print("RENDEZVOUS!")
             self.isBack = True
         for bots in self.neighbors_states:
