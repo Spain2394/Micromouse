@@ -530,11 +530,6 @@ class StrategyTestRendezvous(Strategy):
 
         return action
 
-
-
-
-
-
     def go(self):
         # print("GO")
         self.iterations +=1
@@ -620,7 +615,7 @@ class StrategyTestRendezvous(Strategy):
                 self.checkFinished()
                 if near_bot > self.whoami:
                      best_direction  = self.neighbors_states[near_bot]['direction']
-                     cost, moves, direction = self.follow_him(near_bot)
+                     cost, (x,y), direction = self.follow_him(near_bot)
 
                  # self.furthestNeighbor()
 
