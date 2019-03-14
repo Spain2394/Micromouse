@@ -534,16 +534,11 @@ class StrategyTestRendezvous(Strategy):
         head = True if near_bot > self.whoami else False
         goal = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
 
-        # techinically only need one of these
+
         if far_distance <= threshold:
             print("distance to far neighbor:", _)
             self.isBack = True
-        # for bots in self.neighbors_states:
-        #     if (self.neighbors_states[bots]['x'],self.neighbors_states[bots]['y']) != goal:
-        #         self.isBack = False
-        #         break
-        #     else:
-        #         self.isBack = True
+
 
         if (self.mouse.x,self.mouse.y) == goal:
             self.switchGoal = True
@@ -608,9 +603,7 @@ class StrategyTestRendezvous(Strategy):
                     moved = True
                     self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'DOWN'}
                     print("DOWN")
-        sleep(0.01)
-
-        print("--------------------------------")
+        sleep(0.001)
 
         if moved == False: #backtrack if unable to move by best action
             if len(self.path) != 0:
@@ -637,7 +630,7 @@ class StrategyTestRendezvous(Strategy):
                     print("DOWN")
             else:
                 self.isBack = True
-        sleep(0.05)
+        sleep(0.005)
 
 
     # # def check_priority(self, dx_list, dy_list):
