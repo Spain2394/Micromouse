@@ -430,7 +430,6 @@ class StrategyTestRendezvous(Strategy):
 
 
     def cost(self,goal):
-        # lets get good direction, movement pairs
         print("COMPUTE COST")
         print('--------------------------------')
         direction_list = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
@@ -484,7 +483,6 @@ class StrategyTestRendezvous(Strategy):
             return takeAction
 
     def priority(self,state,d,goal):
-        # print("in priority")
         goal_x,goal_y = goal
         print('PRIORITY')
         print('----------------------------')
@@ -530,9 +528,7 @@ class StrategyTestRendezvous(Strategy):
         return action
 
     def go(self):
-        # print("GO")
         self.iterations +=1
-        # print("ITER: %s"%self.iterations)
         self.mouse.senseWalls()
         print(self.mouse.getCurrentCell().getWhichIsWall())
         sendData = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y, 'up': not self.mouse.canGoUp(
@@ -541,12 +537,10 @@ class StrategyTestRendezvous(Strategy):
         self.network.sendStringData(sendData)
         recvData = self.network.retrieveData()
 
-
         while recvData:
             print("recieving data")
             otherMap = recvData
             cell = self.mouse.mazeMap.getCell(otherMap['x'], otherMap['y'])
-            # self.isVisited[otherMap['x']][otherMap['y']] = 1
             self.neighbors_states[otherMap['robot']] = {'robot':otherMap['robot'], 'x': otherMap['x'], 'y': otherMap['y'], 'direction':self.mouse.direction} # update neighbors_states as received
             print(self.neighbors_states[otherMap['robot']]) # update neighbors_states as received)
             if otherMap['up']:
@@ -559,16 +553,12 @@ class StrategyTestRendezvous(Strategy):
                 self.mouse.mazeMap.setCellRightAsWall(cell)
             recvData = self.network.retrieveData()
 
-
         group_centroid = ()
         distance = 0
         goal = ()
         cell = self.mouse.mazeMap.getCell(self.mouse.x,self.mouse.y)
         direction = self.mouse.direction
         group_centroid = self.GroupCentroid()
-
-
-        # goal = self.GroupCentroid()
 
         print('-----------------------------')
 
@@ -587,7 +577,11 @@ class StrategyTestRendezvous(Strategy):
                 # defines group lead
                  best_direction = self.neighbors_states[near_bot]['direction']
                  print("1")
-                 cost, (x,y), direction = self.follow_him(near_bot)
+                 ah = self.follow_him(near_bot)
+                 x,y = ah[1]
+                 direction =  ah[2]
+
+                 (x,y), direction = self.follow_him(near_bot)
                  print("near bot: ", near_bot)
             else:
                  distance,far_bot = self.distance_to_far_neigh()
