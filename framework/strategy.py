@@ -214,7 +214,7 @@ class StrategyTestRendezvous(Strategy):
 
     # define number of robots
     def __init__(self, mouse, initPoint, num_bots):
-        print("INTIA")
+        # print("INTIA")
 
         self.mouse = mouse
         self.num_bots = num_bots
@@ -222,7 +222,7 @@ class StrategyTestRendezvous(Strategy):
         self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(self.mouse.mazeMap.height)]
         # print(self.isVisited)
         self.isVisited[self.mouse.x][self.mouse.y] = 1
-        print("made it past initialization")
+        # print("made it past initialization")
         for i in range(1, self.num_bots + 1):
             if initPoint[str(i)] == (self.mouse.x, self.mouse.y):
                 self.whoami = i
@@ -234,7 +234,7 @@ class StrategyTestRendezvous(Strategy):
         self.network = NetworkInterface()
         self.network.initSocket()
         self.network.startReceiveThread()
-        print("network start receive thread")
+        # print("network start receive thread")
 
     def checkFinished(self):
         return self.isBack
@@ -400,8 +400,8 @@ class StrategyTestRendezvous(Strategy):
         move_dir = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
 
         # print("cells:")
-        print('--------------------------------')
-        print("cells before distance calc: (%s,%s)"% (cell.x,cell.y))
+        # print('--------------------------------')
+        # print("cells before distance calc: (%s,%s)"% (cell.x,cell.y))
         current_cell = [cell.x,cell.y] # are we modifying current cell?? if so make a copy
         # print(current_cell)
         # print(current_cell[0],current_cell[1])
@@ -424,14 +424,14 @@ class StrategyTestRendezvous(Strategy):
                     current_cell[1] += move_dir[dir][1]
                 else: check = False
             else: check = False
-        print("cells after distance calc: (%s,%s)"% (cell.x,cell.y))
-        print('--------------------------------')
+        # print("cells after distance calc: (%s,%s)"% (cell.x,cell.y))
+        # print('--------------------------------')
         return open_distance
 
 
     def cost(self,goal):
-        print("COMPUTE COST")
-        print('--------------------------------')
+        # print("COMPUTE COST")
+        # print('--------------------------------')
         direction_list = {'U': [0,-1],'D': [0,1],'L': [-1,0],'R': [1,0]}
         my_dir = 'U'  #
         moves = []
@@ -455,19 +455,19 @@ class StrategyTestRendezvous(Strategy):
             cost = item[1]
             state = item[2]
             my_dir = item[3]
-            print("(p,c,s,d): ",(expense,cost,state,my_dir))
+            # print("(p,c,s,d): ",(expense,cost,state,my_dir))
 
             counter = 0
             for d in direction_list:
                 if self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d) == False: # while mouse can move in some direction
                     counter +=1
 
-                    print("state %s, good for direction: %s"%(state,d))
+                    # print("state %s, good for direction: %s"%(state,d))
                     delta = direction_list[d]
                     next_state = (state[0] + delta[0], state[1] + delta[1])
                     if hasBeen[next_state[0]][next_state[1]] == 0: # hasn't been
                         next_cost = cost + 1 if my_dir is d else 2 #
-                        print("state update: %s, in direction: %s"% (next_state,d))
+                        # print("state update: %s, in direction: %s"% (next_state,d))
                         expense = self.priority(next_state,d,goal) #+cost
                         # print("error")
                         takeAction.append([expense,next_state,d])
@@ -478,14 +478,14 @@ class StrategyTestRendezvous(Strategy):
             takeAction.sort()
             open.sort() # sort based on low
             print(open)
-            print('---------------------------------------------------')
+            # print('---------------------------------------------------')
             # return takeAction
             return takeAction
 
     def priority(self,state,d,goal):
         goal_x,goal_y = goal
-        print('PRIORITY')
-        print('----------------------------')
+        # print('PRIORITY')
+        # print('----------------------------')
         x,y = state[0],state[1]
 
         alpha = 10 # weight for going in a straight line
@@ -500,28 +500,28 @@ class StrategyTestRendezvous(Strategy):
         expense = 0
 
         cell = self.mouse.mazeMap.getCell(x,y)
-        print("priority getCell: (%s,%s)"% (cell.x,cell.y))
+        # print("priority getCell: (%s,%s)"% (cell.x,cell.y))
 
         straight_line = self.distance_to_wall(cell,d)
-        print("straight line: ", straight_line)
+        # print("straight line: ", straight_line)
         # gradient = (((x - self.GroupCentroid()[0])**2 + (y-self.GroupCentroid()[1])**2)**(1/2))
         gradient = (((x - goal_x)**2 + (y-goal_y)**2)**(1/2))
 
-        print("gradient", gradient)
+        # print("gradient", gradient)
         # expense = (beta*gradient + 1/(alpha*straight_line+epsilon)) + energy
 
         # expense = (beta*(gradient+epsilon)+ 10 * energy)
         expense = gradient/2
         # expense = gradient/2 +5*energy
-        print("expense: ",expense)
+        # print("expense: ",expense)
 
 
-        print("priority: %s"%expense)
-        print('----------------------------')
+        # print("priority: %s"%expense)
+        # print('----------------------------')
         return expense
 
     def follow_it(self, near_bot):
-        print("follow it")
+        # print("follow it")
 
         # print(self.assert_( action != None, 'Error: action not = None'))
         cost = 0
@@ -533,19 +533,19 @@ class StrategyTestRendezvous(Strategy):
     def go(self):
         self.iterations +=1
         self.mouse.senseWalls()
-        print(self.mouse.getCurrentCell().getWhichIsWall())
+        self.mouse.getCurrentCell().getWhichIsWall()
         sendData = {'robot': self.whoami, 'x': self.mouse.x, 'y': self.mouse.y, 'up': not self.mouse.canGoUp(
         ), 'down': not self.mouse.canGoDown(), 'left': not self.mouse.canGoLeft(), 'right': not self.mouse.canGoRight(), 'direction':self.mouse.direction}
-        print(sendData)
+        # print(sendData)
         self.network.sendStringData(sendData)
         recvData = self.network.retrieveData()
 
         while recvData:
-            print("recieving data")
+            # print("recieving data")
             otherMap = recvData
             cell = self.mouse.mazeMap.getCell(otherMap['x'], otherMap['y'])
             self.neighbors_states[otherMap['robot']] = {'robot':otherMap['robot'], 'x': otherMap['x'], 'y': otherMap['y'], 'direction':self.mouse.direction} # update neighbors_states as received
-            print(self.neighbors_states[otherMap['robot']]) # update neighbors_states as received)
+            # print(self.neighbors_states[otherMap['robot']]) # update neighbors_states as received)
             if otherMap['up']:
                 self.mouse.mazeMap.setCellUpAsWall(cell)
             if otherMap['down']:
@@ -567,7 +567,6 @@ class StrategyTestRendezvous(Strategy):
         print("group centroid: ", group_centroid)
         far_distance,_ = self.distance_to_far_neigh()
         print("distance to far bot: ",far_distance)
-
         print('-----------------------------')
 
         moved = False
@@ -597,7 +596,7 @@ class StrategyTestRendezvous(Strategy):
 
         if (self.mouse.x,self.mouse.y) == goal:
             self.switchGoal = True
-            print("state == goal")
+            # print("state == goal")
             if near_bot > self.whoami:
                 # print(" follower")
                 action = self.follow_it(near_bot)
@@ -671,7 +670,7 @@ class StrategyTestRendezvous(Strategy):
         print("--------------------------------")
 
         if moved == False:
-            print("bottom loop")
+            # print("bottom loop")
             if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
                 self.path.append([self.mouse.x, self.mouse.y])
                 self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
