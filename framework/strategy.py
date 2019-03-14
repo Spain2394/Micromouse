@@ -572,6 +572,7 @@ class StrategyTestRendezvous(Strategy):
         action = self.cost(goal)
 
         for bots in neighbors_states:
+            print("in")
             if (self.neighbors_states[bots]['x'],self.neighbors_states['y']) != goal:
                 self.isBack = False
                 break
