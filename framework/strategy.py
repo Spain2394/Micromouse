@@ -600,6 +600,7 @@ class StrategyTestRendezvous(Strategy):
             if moved == True: break
 
             if (x,y) == goal:
+                self.switchGoal
                 if near_bot > self.whoami:
                     x,y = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
 
@@ -609,7 +610,7 @@ class StrategyTestRendezvous(Strategy):
             print("Visited = ", self.isVisited[x][y])
             print("Distance = ", distance)
 
-            if self.isVisited[x][y] == 0: # may be some confusion here if not continuos
+            if self.isVisited[x][y] == 0 or self.switchGoal: # may be some confusion here if not continuos
                 print("haven't visited:")
                 print("(x,y) ",(x,y))
 
