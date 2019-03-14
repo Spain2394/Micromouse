@@ -207,7 +207,6 @@ class StrategyTestRendezvous(Strategy):
     num_bots = -1
     # starting_pose = ()
     starting_pose = ()
-    centroid = ()
     drive = (None, None)
     # mazeMap = None
 
@@ -218,7 +217,6 @@ class StrategyTestRendezvous(Strategy):
 
         self.mouse = mouse
         self.num_bots = num_bots
-        self.centroid = (self.mouse.mazeMap.width,self.mouse.mazeMap.height) #
         self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(self.mouse.mazeMap.height)]
         # print(self.isVisited)
         self.isVisited[self.mouse.x][self.mouse.y] = 1
@@ -541,9 +539,9 @@ class StrategyTestRendezvous(Strategy):
                 print("goal follower")
 
             else:
-                 distance,far_bot = self.distance_to_far_neigh()
-                 goal = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot]['y'])
-                 direction = self.neighbors_states[far_bot]['direction']
+                 # far_distance,far_bot = self.distance_to_far_neigh()
+                 # goal = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot]['y'])
+                 goal = self.group_centroid # try group centroid
                  print("goal: nearest neighbor")
         else: switchGoal = False
 
@@ -560,8 +558,9 @@ class StrategyTestRendezvous(Strategy):
 
             if (x,y) == goal:
                 self.switchGoal = True
-                if near_bot > self.whoami:
+                if not head:
                     x,y = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
+                    self.mouse.direction = direction
 
             if self.isVisited[x][y] == 0 or self.switchGoal: # may be some confusion here if not continuos
 
