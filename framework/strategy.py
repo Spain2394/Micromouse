@@ -565,6 +565,8 @@ class StrategyTestRendezvous(Strategy):
         direction = self.mouse.direction
         group_centroid = self.GroupCentroid()
         print("group centroid: ", group_centroid)
+        far_distance,_ = self.distance_to_far_neigh()
+        print("distance to far bot: ",far_distance)
 
         print('-----------------------------')
 
