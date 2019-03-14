@@ -573,8 +573,8 @@ class StrategyTestRendezvous(Strategy):
             if moved == True: break
 
             if (x,y) == goal:
-                self.switchGoal = True
                 if not head:
+                    self.switchGoal = True # 
                     x,y = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
 
             if self.isVisited[x][y] == 0 or self.switchGoal: # may be some confusion here if not continuos
