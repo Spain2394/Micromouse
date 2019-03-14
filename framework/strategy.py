@@ -585,7 +585,7 @@ class StrategyTestRendezvous(Strategy):
             else:
                  distance,far_bot = self.distance_to_far_neigh()
                  print("far bot: ", far_bot)
-                 goal = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot][y])
+                 goal = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot]['y'])
                  print("2")
                  action = self.cost(goal)
                  x,y = action
