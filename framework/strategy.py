@@ -512,7 +512,7 @@ class StrategyTestRendezvous(Strategy):
         group_centroid = self.GroupCentroid()
         print("group centroid: ", group_centroid)
         far_distance,_ = self.distance_to_far_neigh()
-        # self.switchGoal = False
+        self.switchGoal = False
         moved = False
         threshold = 1
         distance, near_bot = self.distance_to_near_neigh() # goal begins as near neighbor
@@ -523,7 +523,7 @@ class StrategyTestRendezvous(Strategy):
         # techinically only need one of these
         if far_distance <= threshold:
             print("distance to far neighbor:", far_distance)
-            print("furthest bot: ", _ ) 
+            print("furthest bot: ", _ )
             self.isBack = True
         # for bots in self.neighbors_states:
         #     if (self.neighbors_states[bots]['x'],self.neighbors_states[bots]['y']) != goal:
@@ -533,8 +533,8 @@ class StrategyTestRendezvous(Strategy):
         #         self.isBack = True
 
         if (self.mouse.x,self.mouse.y) == goal:
+            self.switchGoal = True
             if not head:
-                self.switchGoal = True
                 action = self.follow_it(near_bot)
 
             else:
@@ -556,8 +556,8 @@ class StrategyTestRendezvous(Strategy):
             if moved == True: break
 
             if (x,y) == goal:
+                self.switchGoal = True
                 if not head:
-                    self.switchGoal = True
                     x,y = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
 
             if self.isVisited[x][y] == 0 or self.switchGoal: # may be some confusion here if not continuos
