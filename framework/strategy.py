@@ -589,6 +589,8 @@ class StrategyTestRendezvous(Strategy):
                 print("check true")
                 self.isBack = True
 
+        print("isBack? ",self.isBack)
+
         if far_distance < 1:
             print("far distance:", far_distance)
             self.isBack = True
