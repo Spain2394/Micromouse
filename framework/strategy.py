@@ -624,7 +624,6 @@ class StrategyTestRendezvous(Strategy):
                 if head = False:
                     x,y = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
 
-
             if self.isVisited[x][y] == 0 or self.switchGoal:
 
                 self.mouse.getCurrentCell().getWhichIsWall()
