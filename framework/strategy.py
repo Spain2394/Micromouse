@@ -521,7 +521,9 @@ class StrategyTestRendezvous(Strategy):
         return expense
 
     def follow_it(self, near_bot):
+
         action = [(cost, state, direction)]
+        print(self.assert_( len(action) == 3, 'Error: action not = None'))
         cost = 0
         state = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
         direction = self.neighbors_states[near_bot]['direction']
