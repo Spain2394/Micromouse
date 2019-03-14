@@ -611,7 +611,7 @@ class StrategyTestRendezvous(Strategy):
 
         print("move_list:", moves)
 
-        if (x,y) == goal:
+        if (self.mouse.x,self.mouse.y) == goal:
             print("state == goal")
             if near_bot > self.whoami:
                 # defines group lead
