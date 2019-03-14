@@ -600,6 +600,7 @@ class StrategyTestRendezvous(Strategy):
             return self.isBack
 
         if (self.mouse.x,self.mouse.y) == goal:
+            print("switch question?")
             self.switchGoal = True
             # print("state == goal")
             if near_bot > self.whoami:
