@@ -507,14 +507,12 @@ class StrategyTestRendezvous(Strategy):
         print('PRIORITY')
         print('----------------------------')
         x,y = state[0],state[1]
-        # print(x,y)
+
         alpha = 10 # weight for going in a straight line
         beta = 0.001 # weight for going towards gradient
         zeta = 1
         epsilon = 0.1
         energy = ((self.mouse.x - x)**2 + (self.mouse.y -y)**2)**(1/2)
-        # zeta = 2 # weight for shortest path
-        # when the state is good the priority is low
 
         straight_line = 0
         shortest_distance = 0
@@ -624,10 +622,12 @@ class StrategyTestRendezvous(Strategy):
             direction = moves[2]
 
             if moved == True: break
+
             print("goal: ", goal)
             print("currently position: ",(self.mouse.x,self.mouse.y))
             print("Visited = ", self.isVisited[x][y])
             print("Distance = ", distance)
+
             if self.isVisited[x][y] == 0: # may be some confusion here if not continuos
                 print("haven't visited:")
                 print("(x,y) ",(x,y))
