@@ -620,7 +620,6 @@ class StrategyTestRendezvous(Strategy):
                  x,y = action
 
         for moves in action:
-
             x,y = moves[1]
             direction = moves[2]
 
@@ -665,7 +664,6 @@ class StrategyTestRendezvous(Strategy):
         sleep(0.05)
 
         print("--------------------------------")
-
 
         if moved == False:
             print("bottom loop")
