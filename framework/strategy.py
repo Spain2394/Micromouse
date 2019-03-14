@@ -578,7 +578,7 @@ class StrategyTestRendezvous(Strategy):
                  x = self.neighbors_states[near_bot]['x']
                  y = self.neighbors_states[near_bot]['y']
                  direction = self.neighbors_states[near_bot]['direction']
-                 print("far bot: ", near)
+                 print("far bot: ", near_bot)
                  print("goal :", goal)
 
             else:
