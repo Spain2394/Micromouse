@@ -215,7 +215,7 @@ class StrategyTestRendezvous(Strategy):
     # define number of robots
     def __init__(self, mouse, initPoint, num_bots):
         print("INTIA")
-        
+
         self.mouse = mouse
         self.num_bots = num_bots
         self.centroid = (self.mouse.mazeMap.width,self.mouse.mazeMap.height) #
@@ -573,7 +573,7 @@ class StrategyTestRendezvous(Strategy):
 
         if self.isBack: return self.isBack
 
-        if (self.mouse.x,self.mouse.y) == goal or self.switchGoal:
+        if (self.mouse.x,self.mouse.y) == goal:
             self.switchGoal = True
             print("state == goal")
             if near_bot > self.whoami:
