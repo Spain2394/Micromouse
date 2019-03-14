@@ -578,7 +578,7 @@ class StrategyTestRendezvous(Strategy):
                 break
             else: self.isBack = True
 
-            if self.isBack: return self.isBack
+        if self.isBack: return self.isBack
 
         if (self.mouse.x,self.mouse.y) == goal:
             self.switchGoal = True
