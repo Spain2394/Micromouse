@@ -11,7 +11,7 @@ from socket import *
 import time
 
 mazeMap = Map(16, 16)
-mazeMap.readFromFile('/home/parallels/Micromouse/mazes/2016apec.txt') # load map
+mazeMap.readFromFile('/home/parallels/Micromouse/mazes/2011robotic.txt') # load map
 micromouse = Micromouse(mazeMap)
 index = gethostname()[1:]
 initPoint = {'1':(0,0), '2':(15,5), '3':(0,15), '4':(15,15)} # 4 robot initial positions
