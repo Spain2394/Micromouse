@@ -592,7 +592,9 @@ class StrategyTestRendezvous(Strategy):
 
         if far_distance < 1: self.isBack = True
 
-        if self.isBack: return self.isBack
+        if self.isBack:
+            print("GOAL")
+            return self.isBack
 
         if (self.mouse.x,self.mouse.y) == goal:
             self.switchGoal = True
