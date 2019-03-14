@@ -584,7 +584,7 @@ class StrategyTestRendezvous(Strategy):
                 break
             else: self.isBack = True
 
-        if far_distance < 2: self.isBack = True
+        if far_distance < 1: self.isBack = True
 
         if self.isBack: return self.isBack
 
