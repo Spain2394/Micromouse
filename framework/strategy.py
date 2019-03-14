@@ -123,7 +123,6 @@ class StrategyTestMultiDFS(Strategy):
     network = None
 
     def __init__(self, mouse):
-        print("hello")
         self.mouse = mouse
         self.isVisited = [[0 for i in range(self.mouse.mazeMap.width)] for j in range(self.mouse.mazeMap.height)]
         self.isVisited[self.mouse.x][self.mouse.y] = 1
@@ -266,6 +265,39 @@ class StrategyTestRendezvous(Strategy):
                 # print("temp_distance: %s"%temp_distance)
 
                 if temp_distance < distance:
+                    distance = temp_distance
+                    follow_him = bots
+                    # print("distance: %s"%distance)
+                    # print("following_him: %s"%follow_him)
+
+        # print("final distance: %s"%distance)
+        return distance,follow_him
+
+    def distance_to_near_neigh(self):
+        dx_temp = 0
+        dy_temp = 0
+        # closest_bot = {}
+        follow_him = -1
+        distance = 0 # some small number
+        temp_distance = 0
+        cost = 5
+
+
+        # print("made it into distance_to_near_neigh 1")
+        for bots in range(1,self.num_bots+1):
+            # print("made it into distance_to_near_neigh 2")
+            # print("bots%s"%bots)
+            if bots == self.whoami:
+                continue
+            else:
+                dx_temp = self.neighbors_states[bots]['x'] - self.mouse.x
+
+                dy_temp = self.neighbors_states[bots]['y'] - self.mouse.y
+
+                temp_distance = (dx_temp*dx_temp + dy_temp*dy_temp)**(1/2)
+                # print("temp_distance: %s"%temp_distance)
+
+                if temp_distance > distance:
                     distance = temp_distance
                     follow_him = bots
                     # print("distance: %s"%distance)
@@ -432,7 +464,6 @@ class StrategyTestRendezvous(Strategy):
         while len(open) < 5 and len(open) >0: # give me 20 good points
             item = open.pop(0) # pop appended item
 
-
             expense = item[0]
             cost = item[1]
             state = item[2]
@@ -441,8 +472,6 @@ class StrategyTestRendezvous(Strategy):
 
             counter = 0
             for d in direction_list:
-
-                # print(self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d))
                 if self.mouse.mazeMap.getCell(state[0],state[1]).getIsThereWall(d) == False: # while mouse can move in some direction
                     counter +=1
 
@@ -471,14 +500,6 @@ class StrategyTestRendezvous(Strategy):
             print('---------------------------------------------------')
             # return takeAction
             return takeAction
-        # open.sort()
-        # print("Returning..")
-        # open.sort() #
-        # print(open)
-        # print("open sort: %s" %open[0])
-        # open.sort() # sorting based on cost only helps if they are in order
-        # return open
-
 
     def priority(self,state,d,goal):
         # print("in priority")
@@ -585,29 +606,32 @@ class StrategyTestRendezvous(Strategy):
         threshold = 3 # you can revisit if less than 3 steps from target
 
         print("action list: ", action)
+
+        if self.isBack: return self.isBack
+
+        print("move_list:", moves)
+
+        if (x,y) == goal:
+            print("state == goal")
+            if near_bot > self.whoami:
+                # defines group lead
+                 best_direction = self.neighbors_states[near_bot]['direction']
+                 cost, (x,y), direction = self.follow_him(near_bot)
+            else:
+                 distance,far_bot = self.distance_to_far_neigh()
+                 goal = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot][y])
+                 action = self.cost(goal)
+                 x,y = action
+
+
         for moves in action:
-            action = self.cost(goal)
-            if self.isBack: return self.isBack
-
-            print("move_list:", moves)
-
-            if moved == True: break
 
             x,y = moves[1]
-            print(moves[1])
             direction = moves[2]
-            print(x)
-            print(y)
 
-            print("best move: ", (x,y))
-            if (x,y) == goal:
-                print("state == goal")
-                if near_bot > self.whoami:
-                     best_direction = self.neighbors_states[near_bot]['direction']
-                     cost, (x,y), direction = self.follow_him(near_bot)
 
+            if moved == True: break
             print("currently position: ",(self.mouse.x,self.mouse.y))
-            # print(x)
             print("Visited = ", self.isVisited[x][y])
             print("Distance = ", distance)
             if self.isVisited[x][y] == 0: # may be some confusion here if not continuos
