@@ -590,7 +590,9 @@ class StrategyTestRendezvous(Strategy):
                 break
             else: self.isBack = True
 
-        if far_distance < 1: self.isBack = True
+        if far_distance < 1:
+            print("far distance:", far_distance)
+            self.isBack = True
 
         if self.isBack:
             print("GOAL")
