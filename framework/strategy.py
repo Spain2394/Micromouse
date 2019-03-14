@@ -586,6 +586,8 @@ class StrategyTestRendezvous(Strategy):
             if self.isBack: return self.isBack
 
 
+
+
             print("move_list:", moves)
 
             if moved == True: break
@@ -602,6 +604,8 @@ class StrategyTestRendezvous(Strategy):
             print("best move: ", (x,y))
             if (x,y) == goal:
                 print("state == goal")
+                self.isBack = False
+                self.checkFinished()
                 # self.isBack = True
                 # self.checkFinished()
 
