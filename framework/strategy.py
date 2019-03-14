@@ -582,14 +582,12 @@ class StrategyTestRendezvous(Strategy):
         print("distance to wall: ", distance)
 
         if (self.mouse.x,self.mouse.y) == goal: print("STATE IS GOAL")
+        
         action = self.cost(goal)
         moved = False
-        # i =0
-        # first best move
-        # if goal is achieved then form a group
-        # wait for a neighbors_states
-
         threshold = 3 # you can revisit if less than 3 steps from target
+
+
         print("action list: ", action)
         for moves in action:
             action = self.cost(goal)
