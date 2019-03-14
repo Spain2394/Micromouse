@@ -753,22 +753,22 @@ class StrategyTestRendezvous(Strategy):
                     x, y = self.path.pop()
                     if x < self.mouse.x:
                         self.mouse.goLeft()
-                        self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'LEFT'}
+                        # self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'LEFT'}
                         print("LEFT")
                         moved = True
                     elif x > self.mouse.x:
                         self.mouse.goRight()
-                        self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'RIGHT'}
+                        # self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'RIGHT'}
                         moved = True
                         print("RIGHT")
                     elif y < self.mouse.y:
                         self.mouse.goUp()
-                        self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'UP'}
+                        # self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'UP'}
                         moved = True
                         print("UP")
                     elif y > self.mouse.y:
                         self.mouse.goDown()
-                        self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'DOWN'}
+                        # self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'DOWN'}
                         moved = True
                         print("DOWN")
                 else:
