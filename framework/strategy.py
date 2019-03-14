@@ -575,11 +575,8 @@ class StrategyTestRendezvous(Strategy):
         # goal = self.GroupCentroid()
 
         print('-----------------------------')
+
         print("GOAL:",goal)
-        print("initialize run:")
-        print("group centroid", group_centroid)
-        # distance = self.distance_to_wall(cell,direction)
-        print("distance to wall: ", distance)
 
         if (self.mouse.x,self.mouse.y) == goal: print("STATE IS GOAL")
 
@@ -614,11 +611,6 @@ class StrategyTestRendezvous(Strategy):
                      best_direction  = self.neighbors_states[near_bot]['direction']
                      cost, (x,y), direction = self.follow_him(near_bot)
 
-                 # self.furthestNeighbor()
-
-
-                # self.isBack = True
-                # self.checkFinished()
 
             print("currently position: ",(self.mouse.x,self.mouse.y))
             # print(x)
@@ -657,71 +649,9 @@ class StrategyTestRendezvous(Strategy):
                     moved = True
                     self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'DOWN'}
                     print("DOWN")
-            # i+=1
         sleep(0.05)
 
         print("--------------------------------")
-
-
-
-
-
-        # if self.mouse.isVisited
-        # b.sort()
-        # # b.sort()
-        # print("b: ",b)
-
-        # while len(action)> 0:
-        #     a = open.pop()
-        #     b = list(a[1:])
-        #     print(type(b))
-        #     b.sort()
-        #     # b.sort()
-        #     print("b: ",b)
-            # b.sort()
-            # a.sort()
-            # b = list(a[1:])
-            # print(a)/
-
-            # print(sorted(a[1:])
-            # print(a)
-            # a = list()
-
-            # print(items[1:].sort())
-            # for move in moves:
-
-        # still check is visited
-        # trials = 10
-        # # go based on priority towards goal
-        # for trial in range(trials):
-        #     # x = open[trial][1][0]
-        #     # y = open[trial][1][1]
-        #     # print(open[trial][2])
-        #     dir = open[trial][2]
-        #     if dir is 'L':
-        #         self.path.append([self.mouse.x, self.mouse.y])
-        #         self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
-        #         self.mouse.goLeft()
-        #         self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'LEFT'}
-        #         moved = True
-        #     if dir is 'U':
-        #         self.path.append([self.mouse.x, self.mouse.y])
-        #         self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
-        #         self.mouse.goUp()
-        #         self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'UP'}
-        #         moved = True
-        #     if dir is 'R':
-        #         self.path.append([self.mouse.x, self.mouse.y])
-        #         self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
-        #         self.mouse.goRight()
-        #         self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'RIGHT'}
-        #         moved = True
-        #     if dir is 'D':
-        #         self.path.append([self.mouse.x, self.mouse.y])
-        #         self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
-        #         self.mouse.goDown()
-        #         self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'DOWN'}
-        #         moved = True
 
 
         if moved == False:
