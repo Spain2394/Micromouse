@@ -572,13 +572,6 @@ class StrategyTestRendezvous(Strategy):
         distance, near_bot  = self.distance_to_near_neigh() # goal begins as near neighbor
         head = True if near_bot > self.whoami else False
 
-        # initialize goals centroid if in groups otherwise near neighbor
-        # if self.switchGoal == True and head:
-        #     goal = group_centroid
-        #
-        # else:
-        #     goal = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
-
         print("goal: ", goal)
         action = self.cost(goal)
 
@@ -624,15 +617,7 @@ class StrategyTestRendezvous(Strategy):
                 if near_bot > self.whoami:
                     x,y = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
 
-
-            # print("goal: ", goal)
-            # print("currently position: ",(self.mouse.x,self.mouse.y))
-            # print("Visited = ", self.isVisited[x][y])
-            # print("Distance = ", distance)
-
             if self.isVisited[x][y] == 0 or self.switchGoal: # may be some confusion here if not continuos
-                # print("haven't visited:")
-                # print("(x,y) ",(x,y))
 
                 print(self.mouse.getCurrentCell().getWhichIsWall())
                 if self.mouse.x < x and self.mouse.canGoRight():
