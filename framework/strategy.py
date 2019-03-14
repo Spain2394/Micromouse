@@ -618,7 +618,6 @@ class StrategyTestRendezvous(Strategy):
                  action = self.cost(goal)
                  x,y = action
 
-
         for moves in action:
 
             x,y = moves[1]
