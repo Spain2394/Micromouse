@@ -556,12 +556,15 @@ class StrategyTestRendezvous(Strategy):
                 self.mouse.mazeMap.setCellRightAsWall(cell)
             recvData = self.network.retrieveData()
 
+
+        print('-----------------------------')
         group_centroid = ()
         distance = 0
         goal = ()
         cell = self.mouse.mazeMap.getCell(self.mouse.x,self.mouse.y)
         direction = self.mouse.direction
         group_centroid = self.GroupCentroid()
+        print("group centroid: ", group_centroid)
 
         print('-----------------------------')
 
