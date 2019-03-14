@@ -542,7 +542,7 @@ class StrategyTestRendezvous(Strategy):
                  # far_distance,far_bot = self.distance_to_far_neigh()
                  # goal = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot]['y'])
                  goal = self.group_centroid # try group centroid
-                 print("goal: nearest neighbor")
+                 print("goal: CENTROID")
         else: switchGoal = False
 
         print("goal: ", goal)
