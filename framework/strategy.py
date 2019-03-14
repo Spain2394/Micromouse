@@ -619,10 +619,9 @@ class StrategyTestRendezvous(Strategy):
                  x,y = action
 
         for moves in action:
-
+            
             x,y = moves[1]
             direction = moves[2]
-
 
             if moved == True: break
             print("goal: ", goal)
