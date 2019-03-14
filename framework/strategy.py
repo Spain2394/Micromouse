@@ -571,6 +571,7 @@ class StrategyTestRendezvous(Strategy):
         goal = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
         action = self.cost(goal)
 
+        print("asdf")
         for bots in neighbors_states:
             print("in")
             if (self.neighbors_states[bots]['x'],self.neighbors_states[bots]['y']) != goal:
