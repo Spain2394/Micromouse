@@ -575,9 +575,7 @@ class StrategyTestRendezvous(Strategy):
             print("state == goal")
             if near_bot > self.whoami:
                 # defines group lead
-                 x = self.neighbors_states[near_bot]['x']
-                 y = self.neighbors_states[near_bot]['y']
-                 direction = self.neighbors_states[near_bot]['direction']
+                 action = self.follow_it(near_bot)
                  print("far bot: ", near_bot)
                  print("goal :", goal)
 
@@ -588,9 +586,10 @@ class StrategyTestRendezvous(Strategy):
                  print("far bot: ", far_bot)
                  action = self.cost(goal)
                  print("goal :", goal)
-                 x,y = action
+
 
         for moves in action:
+            #cost = moves[0]
             x,y = moves[1]
             direction = moves[2]
 
