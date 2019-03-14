@@ -576,7 +576,7 @@ class StrategyTestRendezvous(Strategy):
         goal = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
         action = self.cost(goal)
 
-        print("asdf")
+        # print("asdf")
         for bots in self.neighbors_states:
             print("in")
             if (self.neighbors_states[bots]['x'],self.neighbors_states[bots]['y']) != goal:
@@ -592,19 +592,19 @@ class StrategyTestRendezvous(Strategy):
             self.switchGoal = True
             print("state == goal")
             if near_bot > self.whoami:
-                print(" follower")
+                # print(" follower")
                 action = self.follow_it(near_bot)
-                print("far bot: ", near_bot)
-                print("goal :", goal)
+                # print("far bot: ", near_bot)
+                # print("goal :", goal)
 
             else:
                  distance,far_bot = self.distance_to_far_neigh()
-                 print("here")
+                 # print("here")
                  goal = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot]['y'])
                  direction = self.neighbors_states[far_bot]['direction']
-                 print("far bot: ", far_bot)
+                 # print("far bot: ", far_bot)
                  action = self.cost(goal)
-                 print("goal :", goal)
+                 # print("goal :", goal)
 
 
         for moves in action:
@@ -621,14 +621,14 @@ class StrategyTestRendezvous(Strategy):
                     x,y = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
 
 
-            print("goal: ", goal)
-            print("currently position: ",(self.mouse.x,self.mouse.y))
-            print("Visited = ", self.isVisited[x][y])
-            print("Distance = ", distance)
+            # print("goal: ", goal)
+            # print("currently position: ",(self.mouse.x,self.mouse.y))
+            # print("Visited = ", self.isVisited[x][y])
+            # print("Distance = ", distance)
 
             if self.isVisited[x][y] == 0 or self.switchGoal: # may be some confusion here if not continuos
-                print("haven't visited:")
-                print("(x,y) ",(x,y))
+                # print("haven't visited:")
+                # print("(x,y) ",(x,y))
 
                 print(self.mouse.getCurrentCell().getWhichIsWall())
                 if self.mouse.x < x and self.mouse.canGoRight():
