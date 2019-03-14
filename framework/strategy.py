@@ -538,8 +538,7 @@ class StrategyTestRendezvous(Strategy):
                 action = self.follow_it(near_bot)
 
             else:
-                 far_distance,far_bot = self.distance_to_far_neigh()
-                 goal = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot]['y'])
+                 goal = (self.neighbors_states[_]['x'], self.neighbors_states[_]['y'])
                  # goal = self.group_centroid # try group centroid
         else: switchGoal = False
 
