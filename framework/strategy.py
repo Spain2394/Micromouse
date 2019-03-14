@@ -535,7 +535,7 @@ class StrategyTestRendezvous(Strategy):
         goal = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
 
         # techinically only need one of these
-        if far_distance < threshold:
+        if far_distance <= threshold:
             print("distance to far neighbor:", _)
             self.isBack = True
         # for bots in self.neighbors_states:
@@ -574,7 +574,7 @@ class StrategyTestRendezvous(Strategy):
 
             if (x,y) == goal:
                 if not head:
-                    self.switchGoal = True # 
+                    self.switchGoal = True #
                     x,y = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
 
             if self.isVisited[x][y] == 0 or self.switchGoal: # may be some confusion here if not continuos
