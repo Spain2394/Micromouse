@@ -569,14 +569,15 @@ class StrategyTestRendezvous(Strategy):
 
         moved = False
         threshold = 3
-        distance, near_bot  = self.distance_to_near_neigh()
+        distance, near_bot  = self.distance_to_near_neigh() # goal begins as near neighbor
         head = True if near_bot > self.whoami else False
 
-        if self.switchGoal == True and near_bot < self.whoami:
-            goal = group_centroid
-
-        else:
-            goal = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
+        # initialize goals centroid if in groups otherwise near neighbor
+        # if self.switchGoal == True and head:
+        #     goal = group_centroid
+        #
+        # else:
+        #     goal = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
 
         print("goal: ", goal)
         action = self.cost(goal)
@@ -592,23 +593,14 @@ class StrategyTestRendezvous(Strategy):
 
         print("isBack? ",self.isBack)
 
-        if far_distance < 1:
-            print("far distance:", far_distance)
-            self.isBack = True
-
         if self.isBack:
             print("GOAL")
             return self.isBack
 
         if (self.mouse.x,self.mouse.y) == goal:
-            print("switch question?")
             self.switchGoal = True
-            # print("state == goal")
-            if near_bot > self.whoami:
-                # print(" follower")
+            if not head:
                 action = self.follow_it(near_bot)
-                # print("far bot: ", near_bot)
-                # print("goal :", goal)
 
             else:
                  distance,far_bot = self.distance_to_far_neigh()
@@ -618,11 +610,10 @@ class StrategyTestRendezvous(Strategy):
                  # print("far bot: ", far_bot)
                  action = self.cost(goal)
                  # print("goal :", goal)
+        else: switchGoal = False
 
 
-        for moves in action:
-            self.switchGoal = False
-            #cost = moves[0]
+        for moves in action: # best action loop
             x,y = moves[1]
             direction = moves[2]
 
@@ -676,58 +667,27 @@ class StrategyTestRendezvous(Strategy):
 
         print("--------------------------------")
 
-        if moved == False:
-            # # print("bottom loop")
-            # if self.mouse.canGoLeft() and not self.isVisited[self.mouse.x-1][self.mouse.y]:
-            #     self.path.append([self.mouse.x, self.mouse.y])
-            #     self.isVisited[self.mouse.x - 1][self.mouse.y] = 1
-            #     self.mouse.goLeft()
-            #     print("LEFT")
-            #     self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'LEFT'}
-            #     moved = True
-            #     print("LEFT")
-            # elif self.mouse.canGoUp() and not self.isVisited[self.mouse.x][self.mouse.y-1]:
-            #     self.path.append([self.mouse.x, self.mouse.y])
-            #     self.isVisited[self.mouse.x][self.mouse.y - 1] = 1
-            #     self.mouse.goUp()
-            #     self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'UP'}
-            #     moved = True
-            #     print("UP")
-            # elif self.mouse.canGoRight() and not self.isVisited[self.mouse.x+1][self.mouse.y]:
-            #     self.path.append([self.mouse.x, self.mouse.y])
-            #     self.isVisited[self.mouse.x + 1][self.mouse.y] = 1
-            #     self.mouse.goRight()
-            #     self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'RIGHT'}
-            #     moved = True
-            #     print("RIGHT")
-            # elif self.mouse.canGoDown() and not self.isVisited[self.mouse.x][self.mouse.y+1]:
-            #     self.path.append([self.mouse.x, self.mouse.y])
-            #     self.isVisited[self.mouse.x][self.mouse.y + 1] = 1
-            #     self.mouse.goDown()
-            #     self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'DOWN'}
-            #     moved = True
-            #     print("DOWN")
-            # else: # if no gradient available, then backtrack
+        if moved == False: #backtrack if unable to move by best action
             if len(self.path) > 15:
                 x, y = self.path.pop()
                 if x < self.mouse.x:
                     self.mouse.goLeft()
-                    # self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'LEFT'}
+                    self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'LEFT'}
                     print("LEFT")
                     moved = True
                 elif x > self.mouse.x:
                     self.mouse.goRight()
-                    # self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'RIGHT'}
+                    self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'RIGHT'}
                     moved = True
                     print("RIGHT")
                 elif y < self.mouse.y:
                     self.mouse.goUp()
-                    # self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'UP'}
+                    self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'UP'}
                     moved = True
                     print("UP")
                 elif y > self.mouse.y:
                     self.mouse.goDown()
-                    # self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'DOWN'}
+                    self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'DOWN'}
                     moved = True
                     print("DOWN")
             else:
