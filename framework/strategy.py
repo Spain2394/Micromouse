@@ -563,6 +563,7 @@ class StrategyTestRendezvous(Strategy):
         group_centroid = self.GroupCentroid()
         distance,near_bot  = self.distance_to_near_neigh()
         goal = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
+        goal = (4,5)
 
         print('-----------------------------')
         print("GOAL:",goal)
