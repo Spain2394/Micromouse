@@ -521,6 +521,7 @@ class StrategyTestRendezvous(Strategy):
         return expense
 
     def follow_it(self, near_bot):
+        print("follow it")
 
         print(self.assert_( action != None, 'Error: action not = None'))
         cost = 0
@@ -577,10 +578,10 @@ class StrategyTestRendezvous(Strategy):
             self.switchGoal = True
             print("state == goal")
             if near_bot > self.whoami:
-                # defines group lead
-                 action = self.follow_it(near_bot)
-                 print("far bot: ", near_bot)
-                 print("goal :", goal)
+                print(" follower")
+                action = self.follow_it(near_bot)
+                print("far bot: ", near_bot)
+                print("goal :", goal)
 
             else:
                  distance,far_bot = self.distance_to_far_neigh()
