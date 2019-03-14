@@ -567,7 +567,7 @@ class StrategyTestRendezvous(Strategy):
         far_distance,_ = self.distance_to_far_neigh()
         print("distance to far bot: ",far_distance)
         print('-----------------------------')
-
+        self.switchGoal = False
         moved = False
         threshold = 3
         distance, near_bot  = self.distance_to_near_neigh() # goal begins as near neighbor
