@@ -589,7 +589,7 @@ class StrategyTestRendezvous(Strategy):
                     moved = True
                     self.neighbors_states[self.whoami] = {'robot': self.whoami, 'x':self.mouse.x , 'y': self.mouse.y,'direction':'DOWN'}
                     print("DOWN")
-        sleep(0.01)
+        sleep(0.05)
 
         print("--------------------------------")
 
