@@ -707,7 +707,7 @@ class StrategyTestRendezvous(Strategy):
             #     moved = True
             #     print("DOWN")
             # else: # if no gradient available, then backtrack
-            if len(self.path) > 0:
+            if len(self.path) > 15:
                 x, y = self.path.pop()
                 if x < self.mouse.x:
                     self.mouse.goLeft()
