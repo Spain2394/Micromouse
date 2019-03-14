@@ -478,8 +478,6 @@ class StrategyTestRendezvous(Strategy):
             takeAction.sort()
             open.sort() # sort based on low
             print(open)
-            # print('---------------------------------------------------')
-            # return takeAction
             return takeAction
 
     def priority(self,state,d,goal):
