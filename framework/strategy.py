@@ -598,7 +598,7 @@ class StrategyTestRendezvous(Strategy):
 
         moved = False
         threshold = 3
-        distance,near_bot  = self.distance_to_near_neigh()
+        distance, near_bot  = self.distance_to_near_neigh()
         goal = (self.neighbors_states[near_bot]['x'], self.neighbors_states[near_bot]['y'])
         action = self.cost(goal)
 
@@ -610,8 +610,10 @@ class StrategyTestRendezvous(Strategy):
                 # defines group lead
                  best_direction = self.neighbors_states[near_bot]['direction']
                  cost, (x,y), direction = self.follow_him(near_bot)
+                 print("far bot: ", near_bot)
             else:
                  distance,far_bot = self.distance_to_far_neigh()
+                 print("far bot: ", far_bot)
                  goal = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot][y])
                  action = self.cost(goal)
                  x,y = action
