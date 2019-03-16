@@ -337,7 +337,7 @@ class StrategyTestRendezvous(Strategy):
             sumCy += lstP[i]['y']
 
         group_centroid = (math.ceil(sumCx/self.num_bots),math.ceil(sumCy/self.num_bots))
-        print("group_centroid check:" , group_centroid)
+        # print("group_centroid check:" , group_centroid)
         return group_centroid
 
     def BestMove(self,utility,maze):
@@ -553,8 +553,9 @@ class StrategyTestRendezvous(Strategy):
                  close_group = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot]['y'])
                  cent = self.dist(group_centroid)
                  far = self.dist(close_group)
-                 goal = close_group if far < cent else group_centroid
+                 goal = close_group if far < cent else group_centroids
                  # goal = self.group_centroid # try group centroid
+
         else: switchGoal = False
 
         action = self.cost(goal)
@@ -577,8 +578,11 @@ class StrategyTestRendezvous(Strategy):
 
             if (x,y) == goal:
                 if not head:
+                    print("goal: follower")
                     self.switchGoal = True #
                     x,y = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
+            else: print("my goal is :", goal)
+
 
 
             if self.isVisited[x][y] == 0 or self.switchGoal: # may be some confusion here if not continuos
