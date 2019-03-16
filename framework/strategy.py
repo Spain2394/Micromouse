@@ -544,7 +544,7 @@ class StrategyTestRendezvous(Strategy):
             self.isBack = True
 
 
-        if self.switchGoal == True:
+        if self.switchGoal == True or (x,y) == goal:
             if not head:
                 self.switchGoal = True
                 action = self.follow_it(near_bot)
