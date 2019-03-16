@@ -531,6 +531,7 @@ class StrategyTestRendezvous(Strategy):
         moved = False
         threshold = 1
         distance, near_bot = self.distance_to_near_neigh() # goal begins as near neighbor
+        print("here")
 
         head = True if near_bot > self.whoami else False
         goal = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
