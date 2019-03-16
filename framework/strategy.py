@@ -576,6 +576,7 @@ class StrategyTestRendezvous(Strategy):
             print("head : ", head)
 
             if (x,y) == goal_1:
+                print("Centroid achieved")
                 self.isBack = True
                 self.checkFinished()
 
