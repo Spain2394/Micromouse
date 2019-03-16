@@ -337,6 +337,7 @@ class StrategyTestRendezvous(Strategy):
             sumCy += lstP[i]['y']
 
         group_centroid = (math.ceil(sumCx/self.num_bots),math.ceil(sumCy/self.num_bots))
+        print("group_centroid check:" , group_centroid)
         return group_centroid
 
     def BestMove(self,utility,maze):
