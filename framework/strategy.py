@@ -578,11 +578,7 @@ class StrategyTestRendezvous(Strategy):
 
 
             if (x,y) == goal:
-
                 if not head:
-                    print("FOLLOWER")
-                    self.isBack = True
-                    self.checkFinished()
                     print("goal: follower")
                     self.switchGoal = True #
                     x,y = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
