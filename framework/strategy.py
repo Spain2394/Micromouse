@@ -526,7 +526,7 @@ class StrategyTestRendezvous(Strategy):
         direction = self.mouse.direction
         group_centroid = self.GroupCentroid()
         print("group centroid: ", group_centroid)
-        far_distance,_ = self.distance_to_far_neigh()
+        far_distance,far_bot = self.distance_to_far_neigh()
         self.switchGoal = False
         moved = False
         threshold = 1.25
@@ -537,6 +537,7 @@ class StrategyTestRendezvous(Strategy):
         goal = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
 
         print("far_distance", far_distance)
+        print("far bot", far_bot)
         if far_distance < threshold:
             print("distance to far neighbor:", far_distance)
             self.isBack = True
