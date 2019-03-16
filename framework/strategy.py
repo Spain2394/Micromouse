@@ -570,7 +570,7 @@ class StrategyTestRendezvous(Strategy):
             if moved == True: break
 
             print("x,y", (x,y))
-            print("switchGoal : ", self.switchGoal)
+            print("switch : ", self.switchGoal)
             print("head : ", head)
             if (x,y) == goal:
                 if not head:
@@ -613,7 +613,6 @@ class StrategyTestRendezvous(Strategy):
         sleep(0.01)
 
         if moved == False: #backtrack if unable to move by best action
-        print("bottom loop")
             if len(self.path) != 0:
                 x, y = self.path.pop()
                 if x < self.mouse.x:
