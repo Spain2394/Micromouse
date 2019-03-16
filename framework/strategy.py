@@ -563,6 +563,7 @@ class StrategyTestRendezvous(Strategy):
              self.checkFinished() # check if finished
 
         for moves in action: # best action loop
+            print(moves)
             x,y = moves[1]
             direction = moves[2]
 
