@@ -527,7 +527,7 @@ class StrategyTestRendezvous(Strategy):
         group_centroid = self.GroupCentroid()
         print("group centroid: ", group_centroid)
         far_distance,_ = self.distance_to_far_neigh()
-        self.switchGoal = False
+        # self.switchGoal = False
         moved = False
         threshold = 1.25
         distance, near_bot = self.distance_to_near_neigh() # goal begins as near neighbor
@@ -556,7 +556,8 @@ class StrategyTestRendezvous(Strategy):
                  goal = close_group if far < cent else group_centroids
                  # goal = self.group_centroid # try group centroid
 
-        else: switchGoal = False
+        # else: switchGoal = False
+        else: print("...")
 
         action = self.cost(goal)
 
