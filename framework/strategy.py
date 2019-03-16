@@ -531,7 +531,6 @@ class StrategyTestRendezvous(Strategy):
         moved = False
         threshold = 1
         distance, near_bot = self.distance_to_near_neigh() # goal begins as near neighbor
-        print("here")
 
         head = True if near_bot > self.whoami else False
         goal = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
@@ -571,7 +570,7 @@ class StrategyTestRendezvous(Strategy):
             if moved == True: break
 
             print("x,y", (x,y))
-            print("switch : ", self.switchGoal)
+            print("self : ", self.switchGoal)
             print("head : ", head)
             if (x,y) == goal:
                 if not head:
@@ -614,7 +613,6 @@ class StrategyTestRendezvous(Strategy):
         sleep(0.01)
 
         if moved == False: #backtrack if unable to move by best action
-            print("bottom")
             if len(self.path) != 0:
                 x, y = self.path.pop()
                 if x < self.mouse.x:
