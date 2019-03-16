@@ -436,6 +436,7 @@ class StrategyTestRendezvous(Strategy):
                         next_cost = cost + 1 if my_dir is d else 2 #
 
                         expense = self.priority(next_state,d,goal)
+                        expense += next_cost
                         takeAction.append([expense,next_state,d])
                         hasBeen[next_state[0]][next_state[1]] = 1
 
