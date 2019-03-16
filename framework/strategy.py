@@ -554,7 +554,6 @@ class StrategyTestRendezvous(Strategy):
                  cent = self.dist(group_centroid)
                  far = self.dist(close_group)
                  goal = close_group if far < cent else group_centroid
-                 goal_1 = goal
                  # goal = self.group_centroid # try group centroid
         else: switchGoal = False
 
@@ -575,10 +574,6 @@ class StrategyTestRendezvous(Strategy):
             print("self : ", self.switchGoal)
             print("head : ", head)
 
-            if (x,y) == goal_1:
-                print("Centroid achieved")
-                self.isBack = True
-                self.checkFinished()
 
             if (x,y) == goal:
                 if not head:
