@@ -562,9 +562,9 @@ class StrategyTestRendezvous(Strategy):
 
         action = self.cost(goal)
 
-        if self.isBack:
-             print("RENDEZVOUS")
-             self.checkFinished() # check if finished
+        # if self.isBack:
+        #      print("RENDEZVOUS")
+        #      self.checkFinished() # check if finished
 
         for moves in action: # best action loop
             print(moves)
