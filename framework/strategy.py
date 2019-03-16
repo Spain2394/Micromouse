@@ -570,6 +570,8 @@ class StrategyTestRendezvous(Strategy):
             if moved == True: break
 
             print("x,y", (x,y))
+            print("self : ", self.switchGoal)
+            print("head : ", head)
             if (x,y) == goal:
                 if not head:
                     self.switchGoal = True #
