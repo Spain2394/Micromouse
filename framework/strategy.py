@@ -551,11 +551,12 @@ class StrategyTestRendezvous(Strategy):
 
             else:
                  far_distance,far_bot = self.distance_to_far_neigh()
-                 group_centroid = self.group_centroid
+                 # group_centroid = self.group_centroid
                  close_group = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot]['y'])
-                 cent = self.dist(group_centroid)
-                 far = self.dist(close_group)
-                 goal = close_group if far < cent else group_centroids
+                 # cent = self.dist(group_centroid)
+                 # far = self.dist(close_group)
+                 # goal = close_group if far < cent else group_centroids
+                 goal = close_group
                  # goal = self.group_centroid # try group centroid
 
         else: switchGoal = False
