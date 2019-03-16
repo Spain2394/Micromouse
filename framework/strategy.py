@@ -529,14 +529,14 @@ class StrategyTestRendezvous(Strategy):
         far_distance,_ = self.distance_to_far_neigh()
         self.switchGoal = False
         moved = False
-        threshold = 1
+        threshold = 1.25
         distance, near_bot = self.distance_to_near_neigh() # goal begins as near neighbor
         goal_1 = (None,None)
 
         head = True if near_bot > self.whoami else False
         goal = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
 
-
+        print("far_distance", far_distance)
         if far_distance < threshold:
             print("distance to far neighbor:", far_distance)
             self.isBack = True
