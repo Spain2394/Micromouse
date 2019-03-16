@@ -528,7 +528,7 @@ class StrategyTestRendezvous(Strategy):
         print("group centroid: ", group_centroid)
         far_distance,far_bot = self.distance_to_far_neigh()
         print("far distance:",far_distance)
-        self.switchGoal = False
+        # self.switchGoal = False
         moved = False
         threshold = 1
         distance, near_bot = self.distance_to_near_neigh() # goal begins as near neighbor
