@@ -613,6 +613,7 @@ class StrategyTestRendezvous(Strategy):
         sleep(0.01)
 
         if moved == False: #backtrack if unable to move by best action
+        print("bottom loop")
             if len(self.path) != 0:
                 x, y = self.path.pop()
                 if x < self.mouse.x:
