@@ -528,9 +528,9 @@ class StrategyTestRendezvous(Strategy):
         print("group centroid: ", group_centroid)
         far_distance,far_bot = self.distance_to_far_neigh()
         print("far distance:",far_distance)
-        # self.switchGoal = False
+        self.switchGoal = False
         moved = False
-        threshold = 1
+        threshold = 1.25
         distance, near_bot = self.distance_to_near_neigh() # goal begins as near neighbor
         goal_1 = (None,None)
 
@@ -544,39 +544,30 @@ class StrategyTestRendezvous(Strategy):
             self.isBack = True
 
 
-        if self.switchGoal == True or (self.mouse.x,self.mouse.y) == goal:
+        if (self.mouse.x,self.mouse.y) == goal:
             if not head:
                 self.switchGoal = True
                 action = self.follow_it(near_bot)
 
             else:
                  far_distance,far_bot = self.distance_to_far_neigh()
-                 # group_centroid = self.group_centroid
+                 group_centroid = self.group_centroid
                  close_group = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot]['y'])
-                 # cent = self.dist(group_centroid)
-                 # far = self.dist(close_group)
-                 # goal = close_group if far < cent else group_centroids
-                 goal = close_group
+                 cent = self.dist(group_centroid)
+                 far = self.dist(close_group)
+                 goal = close_group if far < cent else group_centroids
                  # goal = self.group_centroid # try group centroid
 
-        # if self.switchGoal == True:
-        #     if not head:
-        #         self.switchGoal = True
-        #         action = self.follow_it(near_bot)
-        #     else:
-        #         close_group = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot]['y'])
-        #         goal = close_group
-        #
+        else: switchGoal = False
+
         action = self.cost(goal)
-        #
-        # # if self.isBack:
-        # #      print("RENDEZVOUS")
-        # #      self.checkFinished() # check if finished
-        #
-        # print("going")
+
+        # if self.isBack:
+        #      print("RENDEZVOUS")
+        #      self.checkFinished() # check if finished
+
 
         for moves in action: # best action loop
-            print("going...")
             print(moves)
             x,y = moves[1]
             direction = moves[2]
