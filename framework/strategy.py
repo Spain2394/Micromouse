@@ -553,6 +553,7 @@ class StrategyTestRendezvous(Strategy):
                  cent = self.dist(group_centroid)
                  far = self.dist(close_group)
                  goal = close_group if far < cent else group_centroid
+                 goal_1 = goal
                  # goal = self.group_centroid # try group centroid
         else: switchGoal = False
 
@@ -572,7 +573,7 @@ class StrategyTestRendezvous(Strategy):
             print("x,y", (x,y))
             print("self : ", self.switchGoal)
             print("head : ", head)
-            if (x,y) == goal:
+            if (x,y) == goal and not goal_1:
                 if not head:
                     self.switchGoal = True #
                     x,y = (self.neighbors_states[near_bot]['x'],self.neighbors_states[near_bot]['y'])
