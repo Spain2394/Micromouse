@@ -567,8 +567,6 @@ class StrategyTestRendezvous(Strategy):
                 close_group = (self.neighbors_states[far_bot]['x'], self.neighbors_states[far_bot]['y'])
                 goal = close_group
 
-        else: switchGoal = False
-
         action = self.cost(goal)
 
         # if self.isBack:
