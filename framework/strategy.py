@@ -575,6 +575,7 @@ class StrategyTestRendezvous(Strategy):
                 print("x,y", (x,y))
 
             if self.isVisited[x][y] == 0 or self.switchGoal: # may be some confusion here if not continuos
+                print("in")
 
                 print(self.mouse.getCurrentCell().getWhichIsWall())
                 if self.mouse.x < x and self.mouse.canGoRight():
