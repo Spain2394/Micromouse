@@ -8,6 +8,7 @@ For full installation instructions visit: [eniacluo/Micromouse](https://github.c
  - The action stategy initializes the gaol at the near neighbor, once this goal is attained the robots decide a group head 
 and follower, wherby the objectives become: go to furthest neighbor, and follow head respectively.
 - Can reach rendezvous in less than 5 seconds. 
+- Simulation often sticks due to packet loss 
  
  ## References
  - Source: http://wiki.ros.org/rrt_exploration
